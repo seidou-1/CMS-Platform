@@ -15,5 +15,68 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"> 
 
     <!-- Bean definitions go here -->
+    <tx:annotation-driven />
+    
+    <bean id="dataSource"
+        class="org.apache.commons.dbcp2.BasicDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+      <property name="url" 
+                value="jdbc:mysql://localhost:3306/BBLTravels" /> <!-- Using the actual database  -->
+      <property name="Username" value="root" />
+      <property name="Password" value="root" /> <!-- Note the value here is the users MySql password  -->
+      <property name="initialSize" value="5" />
+      <property name="maxTotal" value="10" />
+    </bean>
+    
+    <bean id="transactionManager"
+         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <property name="dataSource" ref="dataSource" />
+    </bean>
+   
+    <bean id="jdbcTemplate"
+    
+         class="org.springframework.jdbc.core.JdbcTemplate">
+       <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <!--Dao Interface beans:--> 
+    <bean id="categoryDAOInterface"
+         class="com.sg.blogcms.dao.CategoryDAOInterface">
+       <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    
+    <bean id="postDAOInterface"
+         class="com.sg.blogcms.dao.PostDAOInterface">
+       <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    
+    <bean id="tagDAOInterface"
+         class="com.sg.blogcms.dao.TagDAOInterface">
+       <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    
+    <bean id="userDAOInterface"
+         class="com.sg.blogcms.dao.UserDAOInterface">
+       <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    
+    
+    
+    <!--Service Interface beans:-->
+    <bean id="categoryServiceInterface"
+              class="com.sg.blogcms.service.CategoryServiceInterface">
+    </bean>
+    
+    <bean id="postServiceInterface"
+              class="com.sg.blogcms.service.PostServiceInterface">
+    </bean>
+    
+    <bean id="tagServiceInterface"
+              class="com.sg.blogcms.service.TagServiceInterface">
+    </bean>
+    
+    <bean id="userServiceInterface"
+              class="com.sg.blogcms.service.UserServiceInterface">
+    </bean>
     
 </beans>
