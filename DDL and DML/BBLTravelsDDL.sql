@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
  PRIMARY KEY (`UserID`),
  CONSTRAINT `fk_Users_UserTypes`
  
- -- This table was just floating with the Permissions table above. Made a relationship connection between Users and UserTypes
+ -- Mo: This table was just floating with the Permissions table above. Made a relationship connection between Users and UserTypes
  FOREIGN KEY (`UserTypeID`)
  REFERENCES `UserTypes` (`UserTypeID`)
  ON DELETE CASCADE
@@ -63,8 +63,11 @@ CREATE TABLE IF NOT EXISTS `Tags` (
 CREATE TABLE IF NOT EXISTS `Posts` (
  `PostID` INT NOT NULL AUTO_INCREMENT,
  `PostTitle` VARCHAR(100) NOT NULL,
- `PostDate` VARCHAR(100) NOT NULL,
- `ExpirationDate` VARCHAR(100) NOT NULL,
+ 
+ -- Mo: Changed data types of dates below from VARCHAR(100) to DATETIME
+ `PostDate` DATETIME NOT NULL,
+ `ExpirationDate` DATETIME NOT NULL,
+ 
  `FeatureImage` VARCHAR(100) NOT NULL,
  `CategoryID` INT NOT NULL,
  `UserID` INT NOT NULL,
