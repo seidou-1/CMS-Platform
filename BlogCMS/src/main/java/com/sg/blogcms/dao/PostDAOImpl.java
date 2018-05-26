@@ -21,6 +21,10 @@ public class PostDAOImpl implements PostDAOInterface {
     public void setJdbcTemplate (JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
+    
+    private static final String SQL_INSERT_POST
+            = "INSERT INTO`POSTS` (PostID, PostTitle, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n" +
+               "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     @Override
     public Post addPost(Post post) {
