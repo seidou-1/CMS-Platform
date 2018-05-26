@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
  `AddPosts` boolean NOT NULL,
  `DeletePosts` boolean NOT NULL,
  `UpdatePosts` boolean NOT NULL,
- `ReadPosts` boolean NOT NULL,
  `AddCategories` boolean NOT NULL,
  `DeleteCategories` boolean NOT NULL,
  `ReadPosts` boolean NOT NULL,
@@ -33,11 +32,20 @@ CREATE TABLE IF NOT EXISTS `UserTypes` (
 -- Users Table--
 CREATE TABLE IF NOT EXISTS `Users` (
  `UserID` INT NOT NULL AUTO_INCREMENT,
+ `UserTypeID` INT NOT NULL,
  `UserName` VARCHAR(100) NOT NULL,
  `UserEmail` VARCHAR(100) NOT NULL,
  `UserPassword` VARCHAR(100) NOT NULL,
  `UserAvatar` VARCHAR(100) NOT NULL,
- PRIMARY KEY (`UserID`));
+ PRIMARY KEY (`UserID`),
+ CONSTRAINT `fk_Users_UserTypes`
+ 
+ -- This table was just floating with the Permissions table above. Made a relationship connection between Users and UserTypes
+ FOREIGN KEY (`UserTypeID`)
+ REFERENCES `UserTypes` (`UserTypeID`)
+ ON DELETE CASCADE
+ 
+ );
  
 -- Categories Table--
 CREATE TABLE IF NOT EXISTS `Categories` (
