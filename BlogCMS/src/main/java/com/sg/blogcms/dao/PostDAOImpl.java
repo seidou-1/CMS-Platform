@@ -94,7 +94,7 @@ public class PostDAOImpl implements PostDAOInterface {
                 post.getCategoryId());
 
         /*
-        The above creates the character
+        The above creates the post
         
         The below queries the db for the id that was just assigned
         to the new row
