@@ -5,10 +5,35 @@
  */
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.dao.PostDAOInterface;
+import com.sg.blogcms.service.PostServiceInterface;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  *
  * @author laptop
  */
 public class Controller {
     
+    //Mo: might move this to it's own controller if needed. We'll see how things go.
+    PostDAOInterface postDAOInterface;
+    PostServiceInterface postServiceInterface;
+    
+    @Inject
+    public Controller (PostServiceInterface postServiceInterface){
+        this.postServiceInterface = postServiceInterface;
+    }
+    
+    @RequestMapping(value = {"/viewPosts"}, method = RequestMethod.GET)
+    public String loadPosts (HttpServletRequest request, Model model){
+        
+    //Mo: pick up from here. Continue...
+
+        
+        return "posts";
+    }
 }
