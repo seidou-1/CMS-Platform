@@ -17,7 +17,7 @@ public interface PostDAOInterface {
     
     public Post addPost (Post post);
     
-    public Post updatePost (Post post);
+    public void updatePost (Post post);
     
     public void deletePost(int postId);
     
