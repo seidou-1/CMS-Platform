@@ -16,7 +16,7 @@ public interface TagDAOInterface {
     
     public Tag addTag (Tag tag);
     
-    public Tag updateTag (int tagId);
+    public void updateTag (int tagId);
     
     public void deleteTag (int tagId);
     

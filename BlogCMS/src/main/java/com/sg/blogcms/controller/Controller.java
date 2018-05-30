@@ -6,7 +6,9 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dao.PostDAOInterface;
+import com.sg.blogcms.dao.TagDAOInterface;
 import com.sg.blogcms.service.PostServiceInterface;
+import com.sg.blogcms.service.TagServiceInterface;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class Controller {
     //Mo: might move this to it's own controller if needed. We'll see how things go.
     PostDAOInterface postDAOInterface;
     PostServiceInterface postServiceInterface;
+    TagDAOInterface tagDAOInterface;
+    TagServiceInterface tagServiceInterface;
     
     @Inject
     public Controller (PostServiceInterface postServiceInterface){
@@ -35,5 +39,19 @@ public class Controller {
 
         
         return "posts";
+        
+        
+    @Inject
+    public Controller (TagServiceInterface tagServiceInterface){
+        this.tagServiceInterface = tagServiceInterface;
+    }
+    
+    @RequestMapping(value = {"/viewTags"}, method = RequestMethod.GET)
+    public String loadTags (HttpServletRequest request, Model model){
+        
+  
+
+        
+        return "tags";
     }
 }
