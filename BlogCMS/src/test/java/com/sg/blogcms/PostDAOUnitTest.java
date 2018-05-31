@@ -60,7 +60,7 @@ public class PostDAOUnitTest {
         
     }
     
-    @Test
+//    @Test
     public void addGetDeletePost() throws ParseException{
         Post myPost = new Post();
         
@@ -85,7 +85,7 @@ public class PostDAOUnitTest {
         assertEquals(entireList.size(), 1);
     }
     
-    @Test
+//    @Test
     public void addGetUpdatePost() throws ParseException {
         Post myPost = new Post();
         
@@ -115,7 +115,7 @@ public class PostDAOUnitTest {
         
     }
     
-    @Test
+//    @Test
     public void getAllPosts() throws ParseException{
         
         Post myPost = new Post();
