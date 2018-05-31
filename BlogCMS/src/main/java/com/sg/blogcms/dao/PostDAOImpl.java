@@ -7,6 +7,7 @@ package com.sg.blogcms.dao;
 
 import com.sg.blogcms.dto.Post;
 import java.sql.Date;
+<<<<<<< HEAD
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,12 +17,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+=======
+import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
+>>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
 
 /**
  *
  * @author laptop
  */
 public class PostDAOImpl implements PostDAOInterface {
+<<<<<<< HEAD
 
     private JdbcTemplate jdbcTemplate;
 
@@ -123,15 +129,41 @@ public class PostDAOImpl implements PostDAOInterface {
                 post.getUserId(),
                 post.getPostId());
 
+=======
+    
+    private JdbcTemplate jdbcTemplate;
+    
+    public void setJdbcTemplate (JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
+    
+    private static final String SQL_INSERT_POST
+            = "INSERT INTO`POSTS` (PostID, PostTitle, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n" +
+               "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    @Override
+    public Post addPost(Post post) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Post updatePost(Post post) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
     }
 
     @Override
     public void deletePost(int postId) {
+<<<<<<< HEAD
         jdbcTemplate.update(SQL_DELETE_POST, postId);
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
     }
 
     @Override
     public Post getPostById(int postId) {
+<<<<<<< HEAD
         jdbcTemplate.update(SQL_DELETE_POST, postId);
 
         try {
@@ -142,10 +174,14 @@ public class PostDAOImpl implements PostDAOInterface {
 
             return null;
         }
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
     }
 
     @Override
     public List<Post> getAllPosts() {
+<<<<<<< HEAD
 
         return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
 
@@ -174,10 +210,24 @@ public class PostDAOImpl implements PostDAOInterface {
 
         return null;
 
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Post> getPostsByDate(Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Post> getPostsByUser(int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
     }
 
     @Override
     public List<Post> getPostsByCategory(int categoryId) {
+<<<<<<< HEAD
         try {
             jdbcTemplate.query(SQL_SELECT_POST_BY_CATEGORY,
                     new PostMapper(), categoryId);
@@ -187,10 +237,14 @@ public class PostDAOImpl implements PostDAOInterface {
 
         return null;
 
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
     }
 
     @Override
     public List<Post> getPostsByTag(int tagId) {
+<<<<<<< HEAD
         try {
             jdbcTemplate.query(SQL_SELECT_POST_BY_TAGID,
                     new PostMapper(), tagId);
@@ -220,4 +274,9 @@ public class PostDAOImpl implements PostDAOInterface {
 
     }
 
+=======
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+>>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
 }
