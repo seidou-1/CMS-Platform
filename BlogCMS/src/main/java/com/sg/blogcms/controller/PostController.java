@@ -18,13 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author laptop
  */
-public class Controller {
+
+// Changed from Controller to PostController -  keyword
+public class PostController {
     
     //Mo: might move this to it's own controller if needed. We'll see how things go.
     PostServiceInterface postServiceInterface;
     
     @Inject
-    public Controller (PostServiceInterface postServiceInterface){
+    public PostController (PostServiceInterface postServiceInterface){
         this.postServiceInterface = postServiceInterface;
     }
     
