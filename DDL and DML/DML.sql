@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 USE `BBLTravelsTest`;
-=======
-USE `BBLTravels`;
->>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
 
 INSERT INTO `CATEGORIES` (CategoryName)
 VALUES 
@@ -32,19 +28,14 @@ VALUES
 INSERT INTO`POSTS` (PostTitle, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)
 VALUES 
 ('Adventerous Views', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Beach Vibes', '2', '2'),
-<<<<<<< HEAD
 ('Scenes from the streams', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Image of the sky', '3', '1'),
 ('Night and Day Meals', '2016-05-10 20:59:59', '2013-03-15 11:00:12', 'Image of the sky', '2', '1')
-=======
-('Scenes from the streams', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Image of the sky', '3', '1')
->>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
 ;
 
 INSERT INTO `TAGS` (TagName)
 VALUES
 ('Ice Cream'),
 ('Programming'),
-<<<<<<< HEAD
 ('Mountains'),
 ('FISHING');
 
@@ -58,11 +49,4 @@ VALUES
 ('2', '2'),
 ('2', '3'),
 ('2', '4');
-=======
-('Mountains');
-
-INSERT INTO `POSTS_TAGS` (PostID, TagID)
-VALUES
-('2', '2');
->>>>>>> 56be3ccf71c7b79e9c024cbf396beaff8bf29045
 
