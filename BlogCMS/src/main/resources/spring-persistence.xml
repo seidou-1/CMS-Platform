@@ -39,7 +39,7 @@
        <property name="dataSource" ref="dataSource" />
     </bean>
     
-    <!--Dao Interface beans:--> 
+<!--    Dao Interface beans: 
     <bean id="categoryDAOInterface"
          class="com.sg.blogcms.dao.CategoryDAOInterface">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
@@ -53,17 +53,20 @@
     <bean id="tagDAOInterface"
          class="com.sg.blogcms.dao.TagDAOInterface">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>
+    </bean>    -->
     
-    <bean id="userDAOInterface"
-         class="com.sg.blogcms.dao.UserDAOInterface">
+    <bean id="userDao"
+         class="com.sg.blogcms.dao.UserDaoDBImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
-    
+     <bean id="userService"
+              class="com.sg.blogcms.service.UserServiceImpl">
+    </bean>
+ 
     
     <!--Service Interface beans:-->
-    <bean id="categoryServiceInterface"
+<!--    <bean id="categoryServiceInterface"
               class="com.sg.blogcms.service.CategoryServiceInterface">
     </bean>
     
@@ -74,9 +77,7 @@
     <bean id="tagServiceInterface"
               class="com.sg.blogcms.service.TagServiceInterface">
     </bean>
-    
-    <bean id="userServiceInterface"
-              class="com.sg.blogcms.service.UserServiceInterface">
-    </bean>
-    
+    -->
+   
+   
 </beans>
