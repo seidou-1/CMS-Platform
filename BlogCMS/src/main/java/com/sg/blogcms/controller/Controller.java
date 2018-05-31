@@ -41,17 +41,15 @@ public class Controller {
         return "posts";
         
         
-    @Inject
-    public Controller (TagServiceInterface tagServiceInterface){
-        this.tagServiceInterface = tagServiceInterface;
-    }
-    
-    @RequestMapping(value = {"/viewTags"}, method = RequestMethod.GET)
-    public String loadTags (HttpServletRequest request, Model model){
-        
-  
+/// Tags ///
 
+
+   // @RequestMapping(value = {""})
+    //public String () {
+   // return "" :       
+    
+     
+    
         
-        return "tags";
     }
 }
