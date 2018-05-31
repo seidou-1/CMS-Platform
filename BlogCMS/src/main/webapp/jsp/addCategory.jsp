@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addCategory
-    Created on : May 28, 2018, 5:00:27 PM
-    Author     : darthvader
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -20,49 +15,66 @@
         <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet"> 
     </head>
     <body>
-        <div class="container landingIndex">
+        <div class="container">
             <h1>Bit BucketList Travels</h1>
             <hr/>
 
-            <div class="container">
+            <div class="row">
                 <!-- NOTE: Please refer to the main.css file for custom css -->
-                <!-- Place logo here -->
-                <div class="logo-bg text-center">
-                    <a href="${pageContext.request.contextPath}/" >
-                        <img src="images/logo.png" class="logo"></img>
-                    </a>
-                </div>
                 <!-- bg nav -->
                 <div class="nav">
-
                     <!-- buttons for each nav -->
                     <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/index" class="hero-btns text-center">
+                        <a href="${pageContext.request.contextPath}/index" class="text-center">
                             <p>Bit BucketList Travels</p>
                         </a>
                     </div>
-
                     <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/addPost" class="hero-btns text-center">
+                        <a href="${pageContext.request.contextPath}/addPost" class="text-center">
                             <p>Add Post</p>
                         </a>   
                     </div>
-
                     <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/contact" class="hero-btns text-center"> 
+                        <a href="${pageContext.request.contextPath}/contact" class="text-center"> 
                             <p>Contact Us</p>
                         </a>   
                     </div>
-
                     <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/login" class="hero-btns text-center"> 
-                            <p>Login</p>
-                        </a>    
-                    </div>
+                        <li><a href="${pageContext.request.contextPath}/login" class="btn btn-large btn-primary" rel="popover" data-content='
+                               <form id="mainForm" name="mainForm" method="post" action="">
+                               <p>
+                               <label>Name :</label>
+                               <input type="text" id="txtName" name="txtName" />
+                               </p>
+                               <p>
+                               <label>Address 1 :</label>
+                               <input type="text" id="txtAddress" name="txtAddress" />
+                               </p>
+                               <p>
+                               <label>City :</label>
+                               <input type="text" id="txtCity" name="txtCity" />
+                               </p>
+                               <p>
+                               <input type="submit" name="Submit" value="Submit" />
+                               </p>
+                               </form>
+                               ' data-placement="top" data-original-title="Fill in form">Open form</a></li>
 
-                </div>
+
+                    </div>
+                </div>           
             </div>
+            <div class="row landingIndex"></div>
+
+            <div></div>
+
+
+
+
+
+
         </div>
+
 
         <!--=======ADD CATEGORY FORM==========-->
         <div class="container">

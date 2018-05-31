@@ -76,24 +76,6 @@
         </div>
 
 
-
-        <!--=======EDIT CATEGORY FORM==========-->
-        <div class="container">
-            <form role="form" method="POST" 
-                  action="submitSuper">
-
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Category Name</label>
-                    <input type="text" class="form-control" name="orgName" placeholder="Add Category Name" maxlength="45" required>
-                </div>
-
-                <!--=============BUTTONS====================-->
-                <input type="submit" class="btn btn-default" value="Submit Changes"/>
-                <a href="${pageContext.request.contextPath}/addPost" class="btn btn-danger" role="button">Cancel</a>
-
-            </form>
-        </div>
-
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

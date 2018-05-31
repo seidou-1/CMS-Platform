@@ -3,5 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+$('a[rel=popover]').popover({
+    html: 'true',
+placement: 'right'
+})
 
