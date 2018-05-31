@@ -9,6 +9,9 @@ import com.sg.blogcms.dao.PostDAOInterface;
 import com.sg.blogcms.dao.TagDAOInterface;
 import com.sg.blogcms.service.PostServiceInterface;
 import com.sg.blogcms.service.TagServiceInterface;
+import com.sg.blogcms.dto.Post;
+import com.sg.blogcms.service.PostServiceInterface;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
@@ -19,39 +22,42 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author laptop
  */
-public class Controller {
+
+// Changed from Controller to PostController -  keyword
+public class PostController {
     
     //Mo: might move this to it's own controller if needed. We'll see how things go.
-    PostDAOInterface postDAOInterface;
     PostServiceInterface postServiceInterface;
     TagDAOInterface tagDAOInterface;
     TagServiceInterface tagServiceInterface;
     
     @Inject
-    public Controller (PostServiceInterface postServiceInterface){
+    public PostController (PostServiceInterface postServiceInterface){
         this.postServiceInterface = postServiceInterface;
     }
     
     @RequestMapping(value = {"/viewPosts"}, method = RequestMethod.GET)
     public String loadPosts (HttpServletRequest request, Model model){
-        
-    //Mo: pick up from here. Continue...
 
-        
-        return "posts";
-        
-        
-    @Inject
-    public Controller (TagServiceInterface tagServiceInterface){
-        this.tagServiceInterface = tagServiceInterface;
+    
+    List <Post> allPosts = postServiceInterface.getAllPosts();
+//    List <Post> postsByCategory = postServiceInterface.getPostsByCategory();
+    //Maybe include a List option to display posts by category
+      
+    model.addAttribute("posts", allPosts);
+        return "posts"; //returning the logical view - the posts.jsp page
     }
     
-    @RequestMapping(value = {"/viewTags"}, method = RequestMethod.GET)
-    public String loadTags (HttpServletRequest request, Model model){
+    @RequestMapping (value = {"/createPost"}, method = RequestMethod.POST)
+    public String createPost (HttpServletRequest request, Model model){
         
-  
-
+        Post myPost = new Post();
+        myPost.setPostTitle(request.getParameter(""));
         
-        return "tags";
+                
+    //Mo: pick up from here. Continue...
+    
+    return "redirect: viewPosts";
     }
 }
+

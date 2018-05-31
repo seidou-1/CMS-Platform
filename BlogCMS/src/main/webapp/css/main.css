@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 31, 2018, 11:31:19 AM
+    Author     : darthvader
+*/
+body{
+    background-color: RGBA(0, 0, 0, 1.00);
+    color: RGBA(209, 213, 205, 1.00);
+    font-size: 24px;
+}
+.nav {
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: black;
+    color: white;
+}
+
+.landgingIndex {
+    background-image: url("../images/plane.jpg");
+    background-size: cover;
+    background-attachment: fixed; 
+    padding-bottom: 10%;
+}

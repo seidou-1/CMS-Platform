@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author laptop
  */
-public interface UserServiceInterface {
+public interface UserService {
 //loginUserId is the actual user logged in and userId is the person you want to perform the action on
-    public User addUser(int loginUserId, User user);
+    public User addUser(int loginUserId, User user)  throws Exception;
 
-    public void deleteUser(int loginUserId, int user); 
+    public void deleteUser(int loginUserId, int user) throws Exception; 
 
-    public User updateUser(int loginUserId, User user);
+    public User updateUser(int loginUserId, User user) throws Exception;
 
     public User getUserById(int userId);
 
