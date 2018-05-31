@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.blogcms;
+package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dao.CategoryDAOInterface;
 import com.sg.blogcms.dto.Category;
