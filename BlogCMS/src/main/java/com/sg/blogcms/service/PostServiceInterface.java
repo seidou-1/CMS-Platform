@@ -18,7 +18,7 @@ public interface PostServiceInterface {
     
     public Post addPost (int loginUserId, Post post);
     
-    public Post updatePost (int loginUserId, Post post);
+    public void updatePost (int loginUserId, Post post);
     
     public void deletePost(int loginUserId, int postId);
     

@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -94,7 +96,7 @@ public class PostDAOImpl implements PostDAOInterface {
                 post.getCategoryId());
 
         /*
-        The above creates the character
+        The above creates the post
         
         The below queries the db for the id that was just assigned
         to the new row

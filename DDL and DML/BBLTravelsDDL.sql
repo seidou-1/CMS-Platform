@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `BBLTravels`;
-CREATE DATABASE `BBLTravels`;
-USE `BBLTravels`;
+DROP DATABASE IF EXISTS `BBLTravelsTest`;
+CREATE DATABASE `BBLTravelsTest`;
+USE `BBLTravelsTest`;
 
  
  -- Permission Table--
