@@ -49,7 +49,7 @@ public class PostController {
     public String createPost(HttpServletRequest request, Model model) {
 
         Post myPost = new Post();
-        myPost.setPostTitle(request.getParameter("postName"));
+        myPost.setPostTitle(request.getParameter("postTitle"));
         myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
         myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
         myPost.setFeatureImage(request.getParameter("featuredImage"));
