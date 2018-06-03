@@ -32,8 +32,8 @@ public class PostDAOImpl implements PostDAOInterface {
     }
 
     private static final String SQL_INSERT_POST
-            = "INSERT INTO`POSTS` (PostID, PostTitle, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n"
-            + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            = "INSERT INTO`POSTS` (PostID, PostTitle, PostBody, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n"
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_POST
             = "DELETE FROM `POSTS` WHERE POSTID = ?";
@@ -41,7 +41,7 @@ public class PostDAOImpl implements PostDAOInterface {
     private static final String SQL_UPDATE_POST
             = "UPDATE `POSTS`\n"
             + "\n"
-            + "SET PostTitle = ?, PostDate = ?, ExpirationDate = ?, FeatureImage = ?, CategoryID = ?, UserID = ? \n"
+            + "SET PostTitle = ?, PostBody = ?, PostDate = ?, ExpirationDate = ?, FeatureImage = ?, CategoryID = ?, UserID = ? \n"
             + "\n"
             + "WHERE PostID = ?";
 
@@ -90,6 +90,7 @@ public class PostDAOImpl implements PostDAOInterface {
     public Post addPost(Post post) {
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getPostTitle(),
+                post.getPostBody(),
                 post.getPostDate(),
                 post.getExpirationDate(),
                 post.getFeatureImage(),
@@ -118,6 +119,7 @@ public class PostDAOImpl implements PostDAOInterface {
          */
         jdbcTemplate.update(SQL_UPDATE_POST,
                 post.getPostTitle(),
+                post.getPostBody(),
                 post.getPostDate(),
                 post.getExpirationDate(),
                 post.getFeatureImage(),
@@ -211,9 +213,10 @@ public class PostDAOImpl implements PostDAOInterface {
             Post myPost = new Post();
             myPost.setPostId(rs.getInt("PostID"));//This has to match the DB table spelling
             myPost.setPostTitle(rs.getString("PostTitle"));
+            myPost.setPostTitle(rs.getString("PostBody"));
             myPost.setPostDate((rs.getDate("PostDate")));
             myPost.setExpirationDate((rs.getDate("ExpirationDate")));
-            myPost.setFeatureImage((rs.getString("FeaturedImage")));
+            myPost.setFeatureImage((rs.getString("FeatureImage")));
             myPost.setCategoryId((rs.getInt("CategoryID")));
             myPost.setUserId((rs.getInt("UserID")));
 

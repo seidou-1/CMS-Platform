@@ -11,6 +11,7 @@ body{
     background-color: RGBA(0, 0, 0, 1.00);
     color: RGBA(209, 213, 205, 1.00);
     font-size: 24px;
+    text-align: center;
 }
 .nav {
     display:flex;
@@ -20,9 +21,19 @@ body{
     color: white;
 }
 
+p{
+    font-size: 36px;
+}
+
 .landgingIndex {
     background-image: url("../images/plane.jpg");
     background-size: cover;
     background-attachment: fixed; 
     padding-bottom: 10%;
+}
+
+/*body {
+}*/
+form {
+    display: inline-block;
 }

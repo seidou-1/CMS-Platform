@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 // Changed from Controller to PostController -  keyword
+@Controller
 public class PostController {
     
     //Mo: might move this to it's own controller if needed. We'll see how things go.
@@ -50,6 +52,7 @@ public class PostController {
 
         Post myPost = new Post();
         myPost.setPostTitle(request.getParameter("postTitle"));
+        myPost.setPostTitle(request.getParameter("postBody"));
         myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
         myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
         myPost.setFeatureImage(request.getParameter("featuredImage"));
