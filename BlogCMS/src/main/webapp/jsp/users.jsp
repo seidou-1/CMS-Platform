@@ -12,6 +12,49 @@
         <title>Users add page</title>
     </head>
     <body>
+
+        <!--=============NAVBAR=============-->
+        <div id="app" class="container">
+            <!--===========BRAND NAME BUTTON==========-->
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div id="navbarNavDropdown" class="navbar-collapse collapse">
+                    <!--===========FLOATS RIGHT=========-->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/index"> <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/addPost">Add Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                        </li>
+
+                        <!--==========DROPDOWN==========-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Login
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/login">Login</a>
+                                <a class="dropdown-item" href="#">Sign Up</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <hr>
+
+
         <h4>Create User</h4>
         <form action="createUser" method="POST">
             <label for="userName">Username </label> 

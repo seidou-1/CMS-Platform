@@ -13,16 +13,33 @@ body{
     font-size: 24px;
 }
 .nav {
-    display:flex;
+/*    display:flex;
     justify-content: space-around;
-    flex-wrap: wrap;
-    background-color: black;
+    flex-wrap: wrap;*/
     color: white;
 }
 
 .landgingIndex {
     background-image: url("../images/plane.jpg");
     background-size: cover;
-    background-attachment: fixed; 
+    width: 100%;
+/*    background-attachment: fixed; */
     padding-bottom: 10%;
 }
+
+a{
+    color:white;
+    text-decoration: none;
+}
+
+hr {
+    color: #f00;
+    background-color: #f00;
+    height: 5px;
+    border: 0;
+    width: 100%;
+/*    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);*/
+}
+
+
+
