@@ -72,13 +72,13 @@ public class TagController {
      public String editTag (@Valid @ModelAttribute(/**contact**/) Tag tag, BindingResult result) {
      
          
-     /** Ask Randall about this    
+  
          
          if (result.hasErrors()) {
-            return "editPost";
+            return "edittag";
             }
             
-     **/
+     
         
         return "redirect:viewTags";
 }
