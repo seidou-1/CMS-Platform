@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.blogcms;
+package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dao.CategoryDAOInterface;
 import com.sg.blogcms.dto.Category;
@@ -24,7 +24,7 @@ public class CategoryController {
 
     CategoryDAOInterface categoryDao;
 
-    @RequestMapping(value = "/categories", method = RequestMethod.GET)
+    @RequestMapping(value = {"/categories"}, method = RequestMethod.GET)
     public String category(Model model, HttpServletRequest request) {
         List<Category> categoryList = categoryDao.getAllCategories();
         model.addAttribute("categoryList", categoryList);
@@ -32,7 +32,7 @@ public class CategoryController {
 
     }
 
-    @RequestMapping(value = "/addCategory", method = RequestMethod.GET)
+    @RequestMapping(value = {"/addCategory"}, method = RequestMethod.GET)
     public String addCategory(HttpServletRequest request) {
 //      get values from a form to make a new contact
         Category category = new Category();
@@ -46,7 +46,7 @@ public class CategoryController {
 
     }
 
-    @RequestMapping(value = "/submitCategory", method = RequestMethod.GET)
+    @RequestMapping(value = {"/submitCategory"}, method = RequestMethod.GET)
     public String sumbitCategory(HttpServletRequest request, Model model) {
 
 //      making a new category
@@ -62,7 +62,7 @@ public class CategoryController {
         return "redirect:/addPost";
     }
 
-    @RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
+    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
     public String updateCategory(HttpServletRequest request) {
 
         Category cat = categoryDao.getCategoryById(Integer.parseInt("category"));
@@ -83,7 +83,7 @@ public class CategoryController {
 
     }
 
-    @RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)
+    @RequestMapping(value = {"/deleteCategory"}, method = RequestMethod.GET)
     public String deleteCategory(HttpServletRequest request) {
         categoryDao.deleteCategory(Integer.parseInt(request.getParameter("categoryId")));
         return "redirect:categories";

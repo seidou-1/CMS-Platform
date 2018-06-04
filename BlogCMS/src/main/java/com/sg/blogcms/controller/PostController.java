@@ -67,14 +67,14 @@ public class PostController {
         return "redirect:viewPosts";
     }
 
-    @RequestMapping (value = "/displayEditPostForm", method = RequestMethod.GET)
+    @RequestMapping (value = {"/displayEditPostForm"}, method = RequestMethod.GET)
     public String displayEditPostForm (HttpServletRequest request, Model model){
         String postIdParameter = request.getParameter("postId");       
         int postIdConverted = Integer.parseInt(postIdParameter);
         return "editPost";
     }
     
-    @RequestMapping (value = "/editPost", method = RequestMethod.POST)
+    @RequestMapping (value = {"/editPost"}, method = RequestMethod.POST)
     public String editPost (@Valid @ModelAttribute("contact") Post post, BindingResult result) {
         
         if (result.hasErrors()) {
