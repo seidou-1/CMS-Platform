@@ -134,47 +134,7 @@
                     </div>
                 </div>
 
-                <!--                <div class="card-deck">
-                                    
-                                   
-                                        <div class="card">
-                                             <img class="card-img-top" src="..." alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Blog Title</h5>
-                                                <p class="card-text">First feature Blog Post.</p>
-                                                <div class="card-footer">
-                                                    <a href="#" class="btn btn-primary">See More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                
-                                   
-                                        <div class="card">
-                                             <img class="card-img-top" src="..." alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Blog Title</h5>
-                                                <p class="card-text">Second Feature Blog Post</p>
-                                                <div class="card-footer">
-                                                    <a href="#" class="btn btn-primary">See More</a>
-                                                </div>
-                                            </div>
-                                       
-                
-                                        
-                                            <div class="card">
-                                                 <img class="card-img-top" src="..." alt="Card image cap">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Blog Title</h5>
-                                                    <p class="card-text">Third Feature Blog Post</p>
-                                                    <div class="card-footer">
-                                                        <a href="#" class="btn btn-primary">See More</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                      
-                                    </div>
-                                </div>-->
-
+ 
             </div>
         </div>
 
