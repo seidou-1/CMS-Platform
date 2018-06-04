@@ -20,6 +20,16 @@ public class User {
     private String userPassword;
     private String userAvatar;
 
+    public User(int userId, int userType, String username, String email, String userPassword, String userAvatar) {
+        this.userId = userId;
+        this.userType = userType;
+        this.username = username;
+        this.email = email;
+        this.userPassword = userPassword;
+        this.userAvatar = userAvatar;
+    }
+
+
     public int getUserType() {
         return userType;
     }

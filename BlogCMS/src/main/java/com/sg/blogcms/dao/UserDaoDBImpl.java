@@ -25,7 +25,7 @@ public class UserDaoDBImpl implements UserDao {
 
     // Sighting prepared statements
     private static final String SQL_INSERT_USER
-            = "insert into `Users` ( UserID, UserTypeID, UserName, UserEmail, UserPassword, UserAvatar) " + "values (?, ?, ?, ?, ?, ?)";
+            = "insert into `Users` (UserTypeID, UserName, UserEmail, UserPassword, UserAvatar) " + "values (?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_USER
             = "delete from `Users` where UserID = ?";
@@ -47,8 +47,7 @@ public class UserDaoDBImpl implements UserDao {
                 user.getUsername(),
                 user.getEmail(),
                 user.getUserPassword(),
-                user.getUserAvatar(),
-                user.getUserId());
+                user.getUserAvatar());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 
@@ -98,6 +97,7 @@ public class UserDaoDBImpl implements UserDao {
             User user = new User();
             user.setUserId(rs.getInt("UserID"));
             user.setUserType(rs.getInt("UserTypeID"));
+            user.setUsername(rs.getString("UserName"));
             user.setEmail(rs.getString("UserEmail"));
             user.setUserPassword(rs.getString("UserPassword"));
             user.setUserAvatar(rs.getString("UserAvatar"));

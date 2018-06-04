@@ -47,7 +47,7 @@ public class UserController {
         user.setUserAvatar(request.getParameter("userAvatar"));
         user.setUserId(Integer.parseInt(request.getParameter("userId")));
         user.setUserPassword(request.getParameter("userPassword"));
-        user.setUserType(Integer.parseInt(request.getParameter("userId")));
+        user.setUserType(Integer.parseInt(request.getParameter("userType")));
 
         try {
             userService.addUser(1, user);
