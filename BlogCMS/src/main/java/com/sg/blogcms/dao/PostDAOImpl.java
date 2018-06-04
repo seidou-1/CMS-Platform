@@ -32,8 +32,8 @@ public class PostDAOImpl implements PostDAOInterface {
     }
 
     private static final String SQL_INSERT_POST
-            = "INSERT INTO`POSTS` (PostID, PostTitle, PostBody, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n"
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            = "INSERT INTO`POSTS` (PostTitle, PostBody, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n"
+            + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_POST
             = "DELETE FROM `POSTS` WHERE POSTID = ?";
@@ -88,13 +88,15 @@ public class PostDAOImpl implements PostDAOInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 
     public Post addPost(Post post) {
+        System.out.println(post.getPostTitle());
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getPostTitle(),
                 post.getPostBody(),
                 post.getPostDate(),
                 post.getExpirationDate(),
                 post.getFeatureImage(),
-                post.getCategoryId());
+                post.getCategoryId(),
+                post.getUserId());
 
         /*
         The above creates the post

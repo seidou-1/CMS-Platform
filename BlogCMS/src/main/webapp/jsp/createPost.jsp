@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/addPost" class="hero-btns text-center">
+                        <a href="${pageContext.request.contextPath}/createPost" class="hero-btns text-center">
                             <p>Add Post</p> 
                         </a>   
                     </div>
@@ -89,20 +89,21 @@
                     <div class="form-group">
                         <label for="postTitle" class="control-label col-xs-4">Title</label> 
                         <div class="col-xs-8">
-                            <input id="postTitle" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                            <input id="postTitle" value = "island vibes" name="postTitle" placeholder="Post Title" type="text" class="form-control">
                         </div>
                     </div>
                         
                     <div class="form-group">
                         <label for="category" class="control-label col-xs-4">Category</label> 
                         <div class="col-xs-8">
-                            <select multiple="multiple" id="select" name="select" class="select form-control">
+                            <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
+<!--                            <select multiple="multiple" value = "1" id="categoryId" name="categoryId" class="select form-control">
                                 <option value="Beaches">Beaches</option>
                                 <option value="Sky Scrapers">Sky Scrapers</option>
                                 <option value="Views">Views</option>
                                 <option value="1">CategoryID1</option>
                                 <option value="1">TagID1</option>
-                            </select>
+                            </select>-->
                         </div>
                     </div>
                         
@@ -110,7 +111,7 @@
                         <label for="tags" class="control-label col-xs-4">Tags</label> 
                         <div class="col-xs-8">
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="tags" value="Programming">
+                                <input type="checkbox" name="tags" value="Programming" checked>
                                 Programming
                             </label>
                             <label class="checkbox-inline">
@@ -134,7 +135,13 @@
 
                         <label for="postBody" class="control-label col-xs-4">Body</label> 
                         <div class="col-xs-8">
-                            <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control"></textarea>
+                            <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control">
+                                
+                            
+                            post detailsssssss body
+ 
+
+                            </textarea>
                         </div>
                     </div>
                     <br> <!-- Seperation-->
@@ -148,7 +155,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div> 
-                                <input id="text" name="postDate" placeholder="i.e. 12/22/2018" type="text" class="form-control">
+                                <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 12/22/2018" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -165,14 +172,14 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div> 
-                                <input id="expirationDate" name="expirationDate" placeholder="i.e. 12/31/2022" type="text" class="form-control">
+                                <input id="expirationDate" name="expirationDate" value = "2018-03-20" placeholder="i.e. 12/31/2022" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="userId" class="control-label col-xs-4">UserID</label> 
                         <div class="col-xs-8">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Z
-                            <select id="userId" name="userId" class="select form-control">
+                            <select id="userId" name="userId" value = "1" class="select form-control">
                                 <option value="1">UserID1</option>
                                 <option value="2">UserID2</option>
                             </select>
