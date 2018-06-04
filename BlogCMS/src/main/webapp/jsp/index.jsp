@@ -16,49 +16,168 @@
     </head>
     <body>
 
-        <div id="app" class="container">
-            <!--===========BRAND NAME BUTTON==========-->
-            <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <!--===========BRAND NAME BUTTON==========-->
+        <nav class="navbar navbar-expand-lg navbar-fixed-top">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
 
 
-                <div id="navbarNavDropdown" class="navbar-collapse collapse">
-                    <!--===========FLOATS RIGHT=========-->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/index"> <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/addPost">Add Post</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
-                        </li>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars"></i>
+            </button>
+            <div id="navbarResponsive" class="navbar-collapse collapse">
+                <!--===========FLOATS RIGHT=========-->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/index"> <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/addPost">Add Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                    </li>
 
-                        <!--==========DROPDOWN==========-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Login
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/login">Login</a>
-                                <a class="dropdown-item" href="#">Sign Up</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+                    <!--==========DROPDOWN==========-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Login
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" onclick="document.getElementById('loginModal').style.display = 'block'">Login</a>
+                            <a class="dropdown-item" href="#">Sign Up</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <hr>
 
-        <div class="row landingIndex">
-            <img src="images/plane.jpg"></img>
+        <!--=============LANDING PLANE IMAGE========-->
+        <div class="hero-image">
+            <div class="hero-text">
+                <h1>Where BucketList's become Memories</h1>
+            </div>
         </div>
+
+        <!--===========LOGIN MODAL===========-->
+        <div id="loginModal" class="modal">
+            <span onclick="document.getElementById('loginModal').style.display = 'none'" 
+                  class="close" title="Close Modal">&times;</span>
+
+            <!-- Modal Content -->
+            <form class="modal-content animate" action="#">
+                <div class="imgcontainer">
+                    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label for="email"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                    <button type="submit" class="loginBtn">Login</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+
+                <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
+                    <button type="button" onclick="document.getElementById('loginModal').style.display = 'none'" class="cancelbtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+
+        <!--============PAGE CONTENT=============-->
+        <div class="conatiner contentContainer">
+            <div class="row">
+
+
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <a href="#" class="btn btn-primary">See More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <a href="#" class="btn btn-primary">See More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <a href="#" class="btn btn-primary">See More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                <div class="card-deck">
+                                    
+                                   
+                                        <div class="card">
+                                             <img class="card-img-top" src="..." alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Blog Title</h5>
+                                                <p class="card-text">First feature Blog Post.</p>
+                                                <div class="card-footer">
+                                                    <a href="#" class="btn btn-primary">See More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                   
+                                        <div class="card">
+                                             <img class="card-img-top" src="..." alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Blog Title</h5>
+                                                <p class="card-text">Second Feature Blog Post</p>
+                                                <div class="card-footer">
+                                                    <a href="#" class="btn btn-primary">See More</a>
+                                                </div>
+                                            </div>
+                                       
+                
+                                        
+                                            <div class="card">
+                                                 <img class="card-img-top" src="..." alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Blog Title</h5>
+                                                    <p class="card-text">Third Feature Blog Post</p>
+                                                    <div class="card-footer">
+                                                        <a href="#" class="btn btn-primary">See More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      
+                                    </div>
+                                </div>-->
+
+            </div>
+        </div>
+
 
 
         <!-- Placed at the end of the document so the pages load faster -->
