@@ -58,14 +58,12 @@ button:hover {
     opacity: 0.8;
 }
 
-<<<<<<< HEAD
 p{
     font-size: 36px;
 }
 
 .landgingIndex {
     background-image: url("../images/plane.jpg");
-=======
 /*==============LANDING IMAGE================*/
 
 .hero-image {
@@ -74,7 +72,6 @@ p{
     height: 50%;
     background-position: center;
     background-repeat: no-repeat;
->>>>>>> dev
     background-size: cover;
     position: relative;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -127,13 +124,11 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-<<<<<<< HEAD
 /*body {
 }*/
 form {
     display: inline-block;
 }
-=======
 /*========BUTTONS========*/
 .loginBtn {
     width: 100%;
@@ -201,4 +196,3 @@ img.avatar {
 .contentContainer{
     margin: 40px;
 }
->>>>>>> dev
