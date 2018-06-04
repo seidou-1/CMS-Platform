@@ -1,4 +1,4 @@
-package com.sg.blogcms;
+package com.sg.blogcms.controller;
 
 import java.util.Map;
 import org.springframework.stereotype.Controller;
