@@ -18,6 +18,8 @@ public class Post {
     Date postDate;
     Date expirationDate;
     String featureImage;
+    String postBody;
+    
     List <Tag> tag;
     
     Category category;
@@ -27,6 +29,15 @@ public class Post {
     int categoryId;
     int userId;
 
+    public String getPostBody() {
+        return postBody;
+    }
+
+    public void setPostBody(String postBody) {
+        this.postBody = postBody;
+    }
+ 
+    
     public int getUserId() {
         return userId;
     }

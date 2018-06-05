@@ -15,12 +15,11 @@
         <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet"> 
     </head>
     <body>
-        
-        <!--=============NAVBAR=============-->
 
         <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
+
 
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -94,22 +93,52 @@
         </div>
 
 
-        <!--=======EDIT CATEGORY FORM==========-->
-        <div class="container">
-            <form role="form" method="POST" 
-                  action="submitSuper">
+        <!--============PAGE CONTENT=============-->
+        <div class="conatiner contentContainer">
+            <div class="row">
 
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Category Name</label>
-                    <input type="text" class="form-control" name="orgName" placeholder="Add Category Name" maxlength="45" required>
+
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <a href="#" class="btn btn-primary">See More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <a href="#" class="btn btn-primary">See More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <a href="#" class="btn btn-primary">See More</a>
+                        </div>
+                    </div>
                 </div>
 
-                <!--=============BUTTONS====================-->
-                <input type="submit" class="btn btn-default" value="Submit Changes"/>
-                <a href="${pageContext.request.contextPath}/addPost" class="btn btn-danger" role="button">Cancel</a>
-
-            </form>
+ 
+            </div>
         </div>
+
+
 
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
