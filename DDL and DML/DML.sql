@@ -25,11 +25,11 @@ VALUES
 ('1', 'fuegoDjengo123', 'fab5@michigan.com', 'abcdef', 'straight face')
 ;
 
-INSERT INTO`POSTS` (PostTitle, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)
+INSERT INTO`POSTS` (PostTitle, PostBody, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)
 VALUES 
-('Adventerous Views', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Beach Vibes', '2', '2'),
-('Scenes from the streams', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Image of the sky', '3', '1'),
-('Night and Day Meals', '2016-05-10 20:59:59', '2013-03-15 11:00:12', 'Image of the sky', '2', '1')
+('Adventerous Views', 'Stuff stuffer stuffest', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Beach Vibes', '2', '2'),
+('Scenes from the streams', 'Stuff stuffer stuffestester', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Image of the sky', '3', '1'),
+('Night and Day Meals', 'Stuff stuffer stuffesterrrrer', '2016-05-10 20:59:59', '2013-03-15 11:00:12', 'Image of the sky', '2', '1')
 ;
 
 INSERT INTO `TAGS` (TagName)

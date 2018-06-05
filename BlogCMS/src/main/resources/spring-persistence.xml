@@ -21,7 +21,7 @@
         class="org.apache.commons.dbcp2.BasicDataSource">
       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
       <property name="url" 
-                value="jdbc:mysql://localhost:3306/BBLTravels" /> <!-- Using the actual database  -->
+                value="jdbc:mysql://localhost:3306/BBLTravelsTest" /> <!-- Using the actual database  -->
       <property name="Username" value="root" />
       <property name="Password" value="root" /> <!-- Note the value here is the users MySql password  -->
       <property name="initialSize" value="5" />
@@ -44,16 +44,16 @@
 <!--    <bean id="categoryDAOInterface"
          class="com.sg.blogcms.dao.CategoryDAOInterface">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>
-    -->
-    <!--
+    </bean>-->
+    
     <bean id="postDAOInterface"
-         class="com.sg.blogcms.dao.PostDAOInterface">
+         class="com.sg.blogcms.dao.PostDAOImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
-    <bean id="tagDAOInterface"
-         class="com.sg.blogcms.dao.TagDAOInterface">
+    
+<!--    <bean id="tagDAOInterface"
+         class="com.sg.blogcms.dao.TagDAOImp">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>    -->
     
@@ -67,17 +67,17 @@
     </bean>
  
     
-<!--    Service Interface beans:-->
-
-
-<!--    <bean id="categoryServiceInterface"
+<!--    Service Interface beans:
+    
+    <bean id="categoryServiceInterface"
               class="com.sg.blogcms.service.CategoryServiceImpl">
     </bean>-->
     
-    <!--
+   
+
     <bean id="postServiceInterface"
-              class="com.sg.blogcms.service.PostServiceInterface">
-    </bean>
+              class="com.sg.blogcms.service.PostServiceImpl">
+    </bean><!--
     
     <bean id="tagServiceInterface"
               class="com.sg.blogcms.service.TagServiceInterface">

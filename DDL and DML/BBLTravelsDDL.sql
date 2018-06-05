@@ -63,12 +63,13 @@ CREATE TABLE IF NOT EXISTS `Tags` (
 CREATE TABLE IF NOT EXISTS `Posts` (
  `PostID` INT NOT NULL AUTO_INCREMENT,
  `PostTitle` VARCHAR(100) NOT NULL,
+ `PostBody` LONGTEXT NOT NULL,
  
  -- Mo: Changed data types of dates below from VARCHAR(100) to DATETIME
  `PostDate` DATETIME NOT NULL,
  `ExpirationDate` DATETIME NOT NULL,
  
- `FeatureImage` VARCHAR(100) NOT NULL,
+ `FeatureImage` VARCHAR(100) NULL,
  `CategoryID` INT NOT NULL,
  `UserID` INT NOT NULL,
  PRIMARY KEY (`PostID`),
