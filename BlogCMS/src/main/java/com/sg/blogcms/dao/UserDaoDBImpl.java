@@ -34,7 +34,7 @@ public class UserDaoDBImpl implements UserDao {
             = "update `Users` set UserID = ?, UserTypeID = ?, UserName = ?,  UserEmail = ?, UserPassword = ?, UserAvatar = ? " + " where UserID =  ?";
 
     private static final String SQL_SELECT_USER
-            = "select * from `Users` where UserID = ?";
+            = "select * from `Users` where UserI = ?";
 
     private static final String SQL_SELECT_ALL_USERS
             = "select * from `Users`";
@@ -77,7 +77,7 @@ public class UserDaoDBImpl implements UserDao {
     @Override
     public User getUserById(int userId) {
         try {
-            return jdbcTemplate.queryForObject(SQL_SELECT_ALL_USERS,
+            return jdbcTemplate.queryForObject(SQL_SELECT_USER,
                     new UsersMapper(), userId);
         } catch (EmptyResultDataAccessException ex) {
             return null;
