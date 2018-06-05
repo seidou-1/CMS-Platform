@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `Posts` (
  `PostDate` DATETIME NOT NULL,
  `ExpirationDate` DATETIME NOT NULL,
  
- `FeatureImage` VARCHAR(100) NOT NULL,
+ `FeatureImage` VARCHAR(100) NULL,
  `CategoryID` INT NOT NULL,
  `UserID` INT NOT NULL,
  PRIMARY KEY (`PostID`),

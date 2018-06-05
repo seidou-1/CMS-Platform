@@ -52,14 +52,28 @@ public class PostController {
 
         Post myPost = new Post();
         myPost.setPostTitle(request.getParameter("postTitle"));
-        myPost.setPostTitle(request.getParameter("postBody"));
+        myPost.setPostBody(request.getParameter("postBody"));
         myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
         myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
         myPost.setFeatureImage(request.getParameter("featuredImage"));
         myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
         myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
+        postServiceInterface.addPost(1, myPost);
+        return "redirect: createPost";
+    }
+    @RequestMapping(value = {"/createPost"}, method = RequestMethod.GET)
+    public String addPost(HttpServletRequest request, Model model) {
 
-        return "redirect: viewPosts";
+//        Post myPost = new Post();
+//        myPost.setPostTitle(request.getParameter("postTitle"));
+//        myPost.setPostTitle(request.getParameter("postBody"));
+//        myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
+//        myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
+//        myPost.setFeatureImage(request.getParameter("featuredImage"));
+//        myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
+//        myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
+
+        return "createPost";
     }
 
     @RequestMapping(value = {"/deletePost"}, method = RequestMethod.GET)
