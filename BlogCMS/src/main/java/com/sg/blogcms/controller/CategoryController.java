@@ -7,8 +7,10 @@ package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dao.CategoryDAOInterface;
 import com.sg.blogcms.dto.Category;
+import com.sg.blogcms.service.CategoryServiceInterface;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CategoryController {
 
+    CategoryServiceInterface categoryServiceInterface;
     CategoryDAOInterface categoryDao;
+
+    @Inject
+    public CategoryController(CategoryServiceInterface categoryServiceInterface) {
+        this.categoryServiceInterface = categoryServiceInterface;
+    }
 
     @RequestMapping(value = {"/categories"}, method = RequestMethod.GET)
     public String category(Model model, HttpServletRequest request) {
