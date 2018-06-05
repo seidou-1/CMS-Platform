@@ -67,13 +67,15 @@
     </bean>
  
     
-    <!--Service Interface beans:-->
+<!--    Service Interface beans:
     
-<!--    <bean id="categoryServiceInterface"
+    <bean id="categoryServiceInterface"
               class="com.sg.blogcms.service.CategoryServiceImpl">
-    </bean>
+    </bean>-->
     
--->    <bean id="postServiceInterface"
+   
+
+    <bean id="postServiceInterface"
               class="com.sg.blogcms.service.PostServiceImpl">
     </bean><!--
     

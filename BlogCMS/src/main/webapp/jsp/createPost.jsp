@@ -24,8 +24,8 @@
     <!--Banner and nav -->
     <body>
         <div class="container landingIndex">
-            <h1>Bit Bucket List Travels</h1>
-            <hr/>
+<!--            <h1>Bit Bucket List Travels</h1>
+            <hr/>-->
 
             <div class="container"> <!-- Container starts -->
                 <!-- NOTE: Please refer to the main.css file for custom css -->
