@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--Mo: Spring configuration file that references context-param entry in WEB-INF-->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/security
+ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <beans:bean id="webexpressionHandler"
+                class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
+                
+    <http pattern="/login" security="none" />
+    <http pattern="/error" security="none" />
+    <http pattern="/css/**" security="none" />
+    <http pattern="/js/**" security="none" />
+    <http pattern="/img/**" security="none" />
+
+    <http auto-config="true" use-expressions="false">
+        <form-login login-processing-url="/j_spring_security_check"
+                    login-page="/login"
+                    authentication-failure-url="/login?login_error=1"/>
+       
+        <intercept-url pattern="/" 
+                       access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        
+        <intercept-url pattern="/index.jsp" 
+                       access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        
+        <!--List of URLs that will require access levels. These are based off the JSPs. Will add more later-->
+        
+        <!--***********************POST*************************-->
+
+        <intercept-url pattern="/createPost"
+                       access="ROLE_STANDARD"/>
+        
+        <!--First display the post details -->
+        <intercept-url pattern="/displayEditPost" 
+                       access="ROLE_STANDARD"/>
+        
+        <!--Then allow them to edit the post -->
+        <intercept-url pattern="/editPost"        
+                       access="ROLE_STANDARD"/>
+        
+        <intercept-url pattern="/deletePost"
+                       access="ROLE_ADMIN"/>
+        
+        <!--**********************CATEGORY**********************-->
+        
+        <intercept-url pattern="/addCategory"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/displayEditCategory"
+                       access="ROLE_ADMIN"/> 
+                       
+        <intercept-url pattern="/editCategory"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/deleteCategory"
+                       access="ROLE_ADMIN"/>
+                       
+        <!--************************TAG*************************-->
+
+        <intercept-url pattern="/createNewTag"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/displayEditTag"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/editTag"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/deleteTag"
+                       access="ROLE_ADMIN"/>
+        
+        <!--************************USER************************-->
+        
+        <intercept-url pattern="/createUser"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/displayEditUser"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/editUser"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/deleteUser"
+                       access="ROLE_ADMIN"/>
+        
+        <intercept-url pattern="/allUsers"
+                       access="ROLE_ADMIN"/>
+        
+        <!--****************************************************-->
+      
+    </http> 
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder ref="encoder"/>
+            <jdbc-user-service id="userService"
+                               data-source-ref="dataSource"
+                               users-by-username-query=
+ "select username, password, enabled from users where username=?"
+                               authorities-by-username-query=
+ "select username, authority from authorities where username=?" />
+        </authentication-provider>
+    </authentication-manager>
+    
+</beans:beans>
+        
+<!--Mo: Spring configuration file that references context-param entry in WEB-INF-->
