@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author laptop
  */
-public interface UserService {
+public interface UserServiceInterface {
 //loginUserId is the actual user logged in and userId is the person you want to perform the action on
     public User addUser(int loginUserId, User user)  throws Exception;
 

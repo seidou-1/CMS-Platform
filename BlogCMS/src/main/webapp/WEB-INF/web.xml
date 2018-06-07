@@ -64,13 +64,30 @@
         <url-pattern>*.gif</url-pattern>
     </servlet-mapping>
     
+    <!--Mo: Spring Security Servlet Filter-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--Mo: Spring Security Servlet Filter-->
+    
+    
+    <!--Mo: Additional context-param entry-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring-dispatcher-servlet.xml
+            /WEB-INF/spring-security.xml
             classpath:spring-persistence.xml
         </param-value>
     </context-param>
+    <!--Mo: Additional context-param entry-->
+
+
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener

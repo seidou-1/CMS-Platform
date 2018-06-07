@@ -1,7 +1,6 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dto.User;
-import com.sg.blogcms.service.UserService;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import com.sg.blogcms.service.UserServiceInterface;
 
 /**
  *
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
 
-    UserService userService;
+    UserServiceInterface userService;
 
     @Inject
-    public UserController(UserService userService) {
+    public UserController(UserServiceInterface userService) {
         this.userService = userService;
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 // Changed from UserDaoInterface to UserDao
-public interface UserDao {
+public interface UserDAOInterface {
 
     public User addUser(User user);
 
