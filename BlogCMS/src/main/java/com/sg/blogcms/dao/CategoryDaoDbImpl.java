@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author darthvader
  */
-public class CategoryDaoImpl implements CategoryDAOInterface {
+public class CategoryDaoDbImpl implements CategoryDAOInterface {
 
     private JdbcTemplate jdbcTemplate;
 

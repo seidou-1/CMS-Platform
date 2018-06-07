@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-public class UserDaoDBImpl implements UserDao {
+public class UserDaoDbImpl implements UserDAOInterface {
 
     private JdbcTemplate jdbcTemplate;
 

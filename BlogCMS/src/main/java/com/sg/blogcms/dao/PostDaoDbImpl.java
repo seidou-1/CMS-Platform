@@ -23,7 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author laptop
  */
-public class PostDAOImpl implements PostDAOInterface {
+public class PostDaoDbImpl implements PostDAOInterface {
 
     private JdbcTemplate jdbcTemplate;
 

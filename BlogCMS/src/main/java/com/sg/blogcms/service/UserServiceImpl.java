@@ -6,24 +6,24 @@
 package com.sg.blogcms.service;
 
 
-import com.sg.blogcms.dao.UserDao;
 import com.sg.blogcms.dto.User;
 import java.util.List;
 import javax.inject.Inject;
+import com.sg.blogcms.dao.UserDAOInterface;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserServiceInterface {
 
-    private UserDao userDaoDbImpl;
+    private UserDAOInterface userDao;
     
     @Inject
-    public UserServiceImpl(UserDao userDaoDbImpl) {
-        this.userDaoDbImpl = userDaoDbImpl;
+    public UserServiceImpl(UserDAOInterface userDao) {
+        this.userDao = userDao;
     }
 
     @Override
     public User addUser(int loginUserId, User user) throws Exception {
         if (true) {
-            return userDaoDbImpl.addUser(user);
+            return userDao.addUser(user);
         } else {
             throw new Exception("User Add User, invalid credentials");
         }
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int loginUserId, int user) throws Exception {
         if (true) {
-            userDaoDbImpl.deleteUser(user);
+            userDao.deleteUser(user);
         } else {
             throw new Exception("User Delete User, invalid credentials");
         }
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(int loginUserId, User user) throws Exception {
         if (true) {
-            return userDaoDbImpl.updateUser(user);
+            return userDao.updateUser(user);
         } else {
             throw new Exception("User Update User, invalid credentials");
         }
@@ -49,12 +49,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(int userId) {
-        return userDaoDbImpl.getUserById(userId);
+        return userDao.getUserById(userId);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userDaoDbImpl.getAllUsers();
+        return userDao.getAllUsers();
     }
 
 }

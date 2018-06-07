@@ -17,57 +17,57 @@ import javax.inject.Inject;
  */
 public class PostServiceImpl implements PostServiceInterface {
 
-    PostDAOInterface postDaoDbImpl;
+    PostDAOInterface postDao;
 
     @Inject
-    public PostServiceImpl(PostDAOInterface postDaoDbImpl) {
-        this.postDaoDbImpl = postDaoDbImpl;
+    public PostServiceImpl(PostDAOInterface postDao) {
+        this.postDao = postDao;
     }
 
     @Override
     public Post addPost(int loginUserId, Post post) {
-        return postDaoDbImpl.addPost(post);
+        return postDao.addPost(post);
     }
 
     @Override
     public void updatePost(int loginUserId, Post post) {
-        postDaoDbImpl.updatePost(post);
+        postDao.updatePost(post);
     }
 
     @Override
     public void deletePost(int loginUserId, int postId) {
-        postDaoDbImpl.deletePost(postId); 
+        postDao.deletePost(postId); 
     }
 
     @Override
     public Post getPostById(int postId) {
-        return postDaoDbImpl.getPostById(postId);
+        return postDao.getPostById(postId);
     }
 
     @Override
     public List<Post> getAllPosts() {
-        return postDaoDbImpl.getAllPosts();
+        return postDao.getAllPosts();
 
     }
 
     @Override
     public List<Post> getPostsByDate(Date date) {
-        return postDaoDbImpl.getPostsByDate(date);
+        return postDao.getPostsByDate(date);
     }
 
     @Override
     public List<Post> getPostsByUser(int userId) {
-       return postDaoDbImpl.getPostsByUser(userId);
+       return postDao.getPostsByUser(userId);
     }
 
     @Override
     public List<Post> getPostsByCategory(int categoryId) {
-        return postDaoDbImpl.getPostsByCategory(categoryId);
+        return postDao.getPostsByCategory(categoryId);
     }
 
     @Override
     public List<Post> getPostsByTag(int tagId) {
-        return postDaoDbImpl.getPostsByTag(tagId);
+        return postDao.getPostsByTag(tagId);
     }
 
 }

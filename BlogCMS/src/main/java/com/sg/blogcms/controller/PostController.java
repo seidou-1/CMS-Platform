@@ -29,18 +29,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PostController {
     
     //Mo: might move this to it's own controller if needed. We'll see how things go.
-    PostServiceInterface postServiceInterface;
+    PostServiceInterface postService;
 
     @Inject
-    public PostController (PostServiceInterface postServiceInterface){
-        this.postServiceInterface = postServiceInterface;
+    public PostController (PostServiceInterface postService){
+        this.postService = postService;
     }
 
     @RequestMapping(value = {"/viewPosts"}, method = RequestMethod.GET)
     public String loadPosts(HttpServletRequest request, Model model) {
 
         //Getting all Posts from the dao
-        List<Post> allPosts = postServiceInterface.getAllPosts();
+        List<Post> allPosts = postService.getAllPosts();
 
         //Adding List of Posts into the Model  
         model.addAttribute("posts", allPosts);
@@ -58,7 +58,7 @@ public class PostController {
         myPost.setFeatureImage(request.getParameter("featuredImage"));
         myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
         myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
-        postServiceInterface.addPost(1, myPost);
+        postService.addPost(1, myPost);
         return "redirect: createPost";
     }
     @RequestMapping(value = {"/createPost"}, method = RequestMethod.GET)
@@ -80,7 +80,7 @@ public class PostController {
     public String deletePost(HttpServletRequest request, Model model) {
 
         int postId = Integer.parseInt(request.getParameter("postId"));
-        postServiceInterface.deletePost(postId, postId);//After User CRUD created, swap first parameter with loginUserId
+        postService.deletePost(postId, postId);//After User CRUD created, swap first parameter with loginUserId
         return "redirect:viewPosts";
     }
 
@@ -98,7 +98,7 @@ public class PostController {
             return "editPost";
         }
         
-       postServiceInterface.updatePost(0, post); //Update this method to replace the first parameter with userId
+       postService.updatePost(0, post); //Update this method to replace the first parameter with userId
        
        return "redirect:viewPosts";
     }
