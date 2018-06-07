@@ -30,24 +30,20 @@ public class CategoryDaoImpl implements CategoryDAOInterface {
 //    ==============PREPARED STATEMENTS============
 
     private static final String SQL_INSERT_CATEGORIES = 
-            "insert into Categories(CatergoryName) "
-            + " values (?)";
+            "INSERT INTO `CATEGORIES` (CategoryName) VALUES (?)";
     
     private static final String SQL_DELETE_CATEGORIES =
-            "delete from Categories "
-            + "where CategoryId = ?";
+            "DELETE FROM `CATEGORIES` WHERE CategoryId = ?";
     
     private static final String SQL_UPDATE_CATEGORIES = 
-            "update Categories "
-            + "set CategoryName = ?"
-            + " where CategoryId = ?";
+            "UPDATE `CATEGORIES` SET CategoryName = ?"
+            + " WHERE CategoryId = ?";
     
     private static final String SQL_SELECT_CATEGORIES =
-            "select * from Categories"
-            + "where CategoryId = ?";
+            "SELECT * FROM `CATEGORIES` WHERE CategoryId = ?";
     
     private static final String SQL_SELECT_ALL_CATEGORIES = 
-            "select * from Categories";
+            "SELECT FROM `CATEGORIES` ";
     
     
 //    ==========METHODS==============
