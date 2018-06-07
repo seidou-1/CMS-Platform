@@ -203,11 +203,28 @@
 
             </div> <!--Container closes-->
 
+            <!--Tag  --> 
+            
+           
+             
+               <div class="taggable-container">
+	<ul class="taggable-tags">
+		<li class="taggable-tag">
+			<div class="taggable-text">Foo</div>
+			<button type="button" class="taggable-remove"></button>
+		</li>
+		<li class="taggable-tag">
+			<div class="taggable-text">Bar</div>
+			<button type="button" class="taggable-remove"></button>
+		</li>
+	</ul>
+	<div class="taggable-input">
+		<input type="text" placeholder="Type something...">
+	</div>
+</div>
 
 
-
-
-
+                
 
 
 
