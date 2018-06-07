@@ -41,10 +41,10 @@
     
 <!--    Dao Interface beans: -->
 
-<!--    <bean id="categoryDAOInterface"
-         class="com.sg.blogcms.dao.CategoryDAOInterface">
+    <bean id="categoryDAOInterface"
+         class="com.sg.blogcms.dao.CategoryDaoImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>-->
+    </bean>
     
     <bean id="postDAOInterface"
          class="com.sg.blogcms.dao.PostDAOImpl">
@@ -67,11 +67,11 @@
     </bean>
  
     
-<!--    Service Interface beans:
+<!--    Service Interface beans:-->
     
     <bean id="categoryServiceInterface"
               class="com.sg.blogcms.service.CategoryServiceImpl">
-    </bean>-->
+    </bean>
     
    
 

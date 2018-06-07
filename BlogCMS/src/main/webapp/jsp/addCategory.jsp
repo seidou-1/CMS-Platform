@@ -99,13 +99,12 @@
     <!--=======ADD CATEGORY FORM==========-->
     <div class="container">
         <form role="form" method="POST" 
-              action="submitSuper">
+              action="createCategory">
 
             <div class="form-group">
                 <label for="exampleFormControlInput1">Category Name</label>
-                <input type="text" class="form-control" name="orgName" placeholder="Add Category Name" maxlength="45" required>
+                <input type="text" class="form-control" name="categoryName" placeholder="Add Category Name" maxlength="45" required>
             </div>
-
             <!--=============BUTTONS====================-->
             <input type="submit" class="btn btn-default" value="Submit Category"/>
             <a href="${pageContext.request.contextPath}/addPost" class="btn btn-danger" role="button">Cancel</a>
