@@ -10,7 +10,7 @@ import com.sg.blogcms.dto.User;
 import java.util.List;
 import javax.inject.Inject;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UsersService {
 
     private UserDao dao;
     

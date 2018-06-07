@@ -60,7 +60,7 @@
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
-     <bean id="userService"
+     <bean id="userServices"
               class="com.sg.blogcms.service.UserServiceImpl">
     </bean>
  
