@@ -41,9 +41,8 @@
     
 <!--    Dao Implementation beans: -->
 
-    <!--<bean id="categoryDAOInterface"-->
-     <bean id="categoryDaoDbImpl"
-         class="com.sg.blogcms.dao.CategoryDAOInterface">
+    <bean id="categoryDAOInterface"
+         class="com.sg.blogcms.dao.CategoryDaoImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
