@@ -106,7 +106,7 @@
             <version>2.2</version>
         </dependency>
         
-        <!--Sprint Security Dependencies -->
+        <!--Mo: Sprint Security Dependencies -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
@@ -129,7 +129,7 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <!--Sprint Security Dependencies -->
+        <!--Mo: Sprint Security Dependencies -->
                                 
     </dependencies>
 

@@ -62,6 +62,14 @@ public class PostDAOUnitTest {
     
     //@Test
     public void addGetDeletePost() throws ParseException{
+        //Create Category
+        
+        //Create User
+        
+        //Create Post
+        
+        
+        
         Post myPost = new Post();
         
         myPost.setPostTitle("Water boy");

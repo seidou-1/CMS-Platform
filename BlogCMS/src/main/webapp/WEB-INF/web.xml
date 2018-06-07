@@ -64,7 +64,7 @@
         <url-pattern>*.gif</url-pattern>
     </servlet-mapping>
     
-    <!--Spring Security Servlet Filter-->
+    <!--Mo: Spring Security Servlet Filter-->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -73,10 +73,10 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!--Spring Security Servlet Filter-->
+    <!--Mo: Spring Security Servlet Filter-->
     
     
-    <!--Additional context-param entry-->
+    <!--Mo: Additional context-param entry-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -85,7 +85,7 @@
             classpath:spring-persistence.xml
         </param-value>
     </context-param>
-    <!--Additional context-param entry-->
+    <!--Mo: Additional context-param entry-->
 
 
     <listener>

@@ -9,20 +9,20 @@ VALUES
 
 INSERT INTO `PERMISSIONS` (UserCrud, AddPosts, DeletePosts, UpdatePosts, AddCategories, DeleteCategories, ReadPosts)
 VALUES 
-('0', '1', '0', '0', '0', '0', '1'), -- Contributor
+('0', '1', '0', '0', '0', '0', '1'), -- Standard
 ('1', '1', '1', '1', '1', '1', '1') -- Admin
 ;
 
 INSERT INTO `USERTYPES` (UserType, PermissionID)
 VALUES 
-('Contributor', '1'),
-('Admin', '2')
+('admin', '1'),
+('standard', '2')
 ;
 
-INSERT INTO `USERS` (UserTypeID, UserName, UserEmail, UserPassword, UserAvatar)
+INSERT INTO `USERS` (UserTypeID, UserName, UserEmail, UserPassword, UserAvatar, Enabled)
 VALUES 
-('1', 'chopstickSauce234', 'jackson5@mj.com', '123456', 'smiley face'),
-('1', 'fuegoDjengo123', 'fab5@michigan.com', 'abcdef', 'straight face')
+('1', 'admin', 'jackson5@mj.com', '123456', 'smiley face','1'),
+('2', 'standard', 'fab5@michigan.com', 'abcdef', 'straight face','1')
 ;
 
 INSERT INTO`POSTS` (PostTitle, PostBody, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)
@@ -50,3 +50,8 @@ VALUES
 ('2', '3'),
 ('2', '4');
 
+INSERT INTO `AUTHORITIES`(UserName, Authority) 
+VALUES
+('admin', 'ROLE_ADMIN'),
+('admin', 'ROLE_STANDARD'),
+('standard', 'ROLE_STANDARD');

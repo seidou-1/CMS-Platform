@@ -97,8 +97,17 @@ and open the template in the editor.
         <intercept-url pattern="/allUsers"
                        access="ROLE_ADMIN"/>
         
-        <!--****************************************************-->
+        <!--*******************ALL OTHER URLS********************-->
+        
+        <intercept-url pattern="/**"
+                       access="ROLE_STANDARD"/>
+        
+        
+        <!--*******************REST ENDPOINTS********************-->
+        
+        <!--I'm going to leave the Rest Endpoints empty for now-->
       
+        <!--*******************REST ENDPOINTS********************-->
     </http> 
     <authentication-manager>
         <authentication-provider>
