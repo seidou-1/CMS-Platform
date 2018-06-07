@@ -6,6 +6,7 @@
 package com.sg.blogcms;
 
 import com.sg.blogcms.dao.PostDAOInterface;
+import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.dto.Post;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +16,6 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -67,6 +67,10 @@ public class PostDAOUnitTest {
         //Create User
         
         //Create Post
+        
+        Category myCategory = new Category();
+        
+        myCategory.setCategoryName("snowflakes");
         
         
         

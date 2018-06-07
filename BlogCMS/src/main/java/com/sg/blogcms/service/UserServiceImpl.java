@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.service;
 
+
 import com.sg.blogcms.dao.UserDao;
 import com.sg.blogcms.dto.User;
 import java.util.List;
@@ -12,17 +13,17 @@ import javax.inject.Inject;
 
 public class UserServiceImpl implements UserService {
 
-    private UserDao dao;
+    private UserDao userDaoDbImpl;
     
     @Inject
-    public UserServiceImpl(UserDao dao) {
-        this.dao = dao;
+    public UserServiceImpl(UserDao userDaoDbImpl) {
+        this.userDaoDbImpl = userDaoDbImpl;
     }
 
     @Override
     public User addUser(int loginUserId, User user) throws Exception {
         if (true) {
-            return dao.addUser(user);
+            return userDaoDbImpl.addUser(user);
         } else {
             throw new Exception("User Add User, invalid credentials");
         }
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int loginUserId, int user) throws Exception {
         if (true) {
-            dao.deleteUser(user);
+            userDaoDbImpl.deleteUser(user);
         } else {
             throw new Exception("User Delete User, invalid credentials");
         }
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(int loginUserId, User user) throws Exception {
         if (true) {
-            return dao.updateUser(user);
+            return userDaoDbImpl.updateUser(user);
         } else {
             throw new Exception("User Update User, invalid credentials");
         }
@@ -48,12 +49,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(int userId) {
-        return dao.getUserById(userId);
+        return userDaoDbImpl.getUserById(userId);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return dao.getAllUsers();
+        return userDaoDbImpl.getAllUsers();
     }
 
 }

@@ -39,25 +39,29 @@
        <property name="dataSource" ref="dataSource" />
     </bean>
     
-<!--    Dao Interface beans: -->
+<!--    Dao Implementation beans: -->
 
-<!--    <bean id="categoryDAOInterface"
+    <!--<bean id="categoryDAOInterface"-->
+     <bean id="categoryDaoDbImpl"
          class="com.sg.blogcms.dao.CategoryDAOInterface">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>-->
+    </bean>
     
-    <bean id="postDAOInterface"
+    <!--<bean id="postDAOInterface"-->
+    <bean id="postDaoDbImpl"
          class="com.sg.blogcms.dao.PostDAOImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
     
-<!--    <bean id="tagDAOInterface"
+    <!--<bean id="tagDAOInterface"-->
+    <bean id="tagDaoDbImpl"
          class="com.sg.blogcms.dao.TagDAOImp">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>    -->
+    </bean>    
     
-    <bean id="userDao"
+    <!--<bean id="userDao"-->
+    <bean id="userDaoDbImpl"
          class="com.sg.blogcms.dao.UserDaoDBImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
@@ -67,22 +71,23 @@
     </bean>
  
     
-<!--    Service Interface beans:
+<!-- Service Implementation beans: -->    
     
-    <bean id="categoryServiceInterface"
+    <!--<bean id="categoryServiceInterface"-->
+    <bean id="categoryServiceImpl"
               class="com.sg.blogcms.service.CategoryServiceImpl">
-    </bean>-->
-    
-   
-
-    <bean id="postServiceInterface"
-              class="com.sg.blogcms.service.PostServiceImpl">
-    </bean><!--
-    
-    <bean id="tagServiceInterface"
-              class="com.sg.blogcms.service.TagServiceInterface">
     </bean>
-    -->
+    
+
+    <bean id="postServiceImpl"
+              class="com.sg.blogcms.service.PostServiceImpl">
+    </bean>
+    
+    
+    <bean id="tagServiceImpl"
+              class="com.sg.blogcms.service.TagServiceImpl">
+    </bean>
+    
    
    
 </beans>
