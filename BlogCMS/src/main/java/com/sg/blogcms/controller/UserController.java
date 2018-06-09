@@ -32,21 +32,23 @@ public class UserController {
         this.encoder = encoder;
     }
     
+    /*
+    MO: Commented these below endpoints. Chat with Travz to figure out which JSPs need to be created
     
-    // This endpoint retrieves all users from the database and puts the
-    // List of users on the model
-//    @RequestMapping(value = "/displayUserList", method = RequestMethod.GET)
-//    public String displayUserList(Map<String, Object> model) {
-//        List users = dao.getAllUsers();
-//        model.put("users", users);
-//        return "displayUserList";
-//    }
-//    // This endpoint just displays the Add User form
-//
-//    @RequestMapping(value = "/displayUserForm", method = RequestMethod.GET)
-//    public String displayUserForm(Map<String, Object> model) {
-//        return "addUserForm";
-//    }
+    //  This endpoint retrieves all users from the database and puts the List of users on the model
+    @RequestMapping(value = "/displayUserList", method = RequestMethod.GET)
+    public String displayUserList(Map<String, Object> model) {
+        List users = dao.getAllUsers();
+        model.put("users", users);
+        return "displayUserList";
+    }
+    
+    // This endpoint just displays the Add User form
+    @RequestMapping(value = "/displayUserForm", method = RequestMethod.GET)
+    public String displayUserForm(Map<String, Object> model) {
+        return "addUserForm";
+    }
+    */
 
     @RequestMapping(value = {"/viewUsers"}, method = RequestMethod.GET)
     /*
@@ -73,9 +75,8 @@ public class UserController {
             String clearPw = request.getParameter("userPassword");
             String hashPw = encoder.encode(clearPw);
 
-            // All users have ROLE_USER, only add ROLE_ADMIN if the isAdmin 
-            // box is checked
-            user.addAuthority("ROLE_USER");
+            // All users have ROLE_STANDARD, only add ROLE_ADMIN if the isAdmin box is checked
+            user.addAuthority("ROLE_STANDARD");
             if (null != request.getParameter("isAdmin")) {
                 user.addAuthority("ROLE_ADMIN");
             }
