@@ -23,7 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author laptop
  */
-public class PostDAOImpl implements PostDAOInterface {
+public class PostDaoDbImpl implements PostDAOInterface {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -32,7 +32,7 @@ public class PostDAOImpl implements PostDAOInterface {
     }
 
     private static final String SQL_INSERT_POST
-            = "INSERT INTO`POSTS` (PostID, PostTitle, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n"
+            = "INSERT INTO`POSTS` (PostTitle, PostBody, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID)\n"
             + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_POST
@@ -41,7 +41,7 @@ public class PostDAOImpl implements PostDAOInterface {
     private static final String SQL_UPDATE_POST
             = "UPDATE `POSTS`\n"
             + "\n"
-            + "SET PostTitle = ?, PostDate = ?, ExpirationDate = ?, FeatureImage = ?, CategoryID = ?, UserID = ? \n"
+            + "SET PostTitle = ?, PostBody = ?, PostDate = ?, ExpirationDate = ?, FeatureImage = ?, CategoryID = ?, UserID = ? \n"
             + "\n"
             + "WHERE PostID = ?";
 
@@ -88,12 +88,15 @@ public class PostDAOImpl implements PostDAOInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 
     public Post addPost(Post post) {
+        System.out.println(post.getPostTitle());
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getPostTitle(),
+                post.getPostBody(),
                 post.getPostDate(),
                 post.getExpirationDate(),
                 post.getFeatureImage(),
-                post.getCategoryId());
+                post.getCategoryId(),
+                post.getUserId());
 
         /*
         The above creates the post
@@ -118,6 +121,7 @@ public class PostDAOImpl implements PostDAOInterface {
          */
         jdbcTemplate.update(SQL_UPDATE_POST,
                 post.getPostTitle(),
+                post.getPostBody(),
                 post.getPostDate(),
                 post.getExpirationDate(),
                 post.getFeatureImage(),
@@ -211,9 +215,10 @@ public class PostDAOImpl implements PostDAOInterface {
             Post myPost = new Post();
             myPost.setPostId(rs.getInt("PostID"));//This has to match the DB table spelling
             myPost.setPostTitle(rs.getString("PostTitle"));
+            myPost.setPostTitle(rs.getString("PostBody"));
             myPost.setPostDate((rs.getDate("PostDate")));
             myPost.setExpirationDate((rs.getDate("ExpirationDate")));
-            myPost.setFeatureImage((rs.getString("FeaturedImage")));
+            myPost.setFeatureImage((rs.getString("FeatureImage")));
             myPost.setCategoryId((rs.getInt("CategoryID")));
             myPost.setUserId((rs.getInt("UserID")));
 

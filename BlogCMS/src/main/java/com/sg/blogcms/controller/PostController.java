@@ -5,6 +5,10 @@
  */
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.dao.PostDAOInterface;
+import com.sg.blogcms.dao.TagDAOInterface;
+import com.sg.blogcms.service.PostServiceInterface;
+import com.sg.blogcms.service.TagServiceInterface;
 import com.sg.blogcms.dto.Post;
 import com.sg.blogcms.service.PostServiceInterface;
 import java.sql.Date;
@@ -12,6 +16,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,21 +29,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 // Changed from Controller to PostController -  keyword
+@Controller
 public class PostController {
     
     //Mo: might move this to it's own controller if needed. We'll see how things go.
-    PostServiceInterface postServiceInterface;
+    PostServiceInterface postService;
 
     @Inject
-    public PostController (PostServiceInterface postServiceInterface){
-        this.postServiceInterface = postServiceInterface;
+    public PostController (PostServiceInterface postService){
+        this.postService = postService;
     }
 
     @RequestMapping(value = {"/viewPosts"}, method = RequestMethod.GET)
     public String loadPosts(HttpServletRequest request, Model model) {
 
         //Getting all Posts from the dao
-        List<Post> allPosts = postServiceInterface.getAllPosts();
+        List<Post> allPosts = postService.getAllPosts();
 
         //Adding List of Posts into the Model  
         model.addAttribute("posts", allPosts);
@@ -49,21 +55,36 @@ public class PostController {
     public String createPost(HttpServletRequest request, Model model) {
 
         Post myPost = new Post();
-        myPost.setPostTitle(request.getParameter("postName"));
+        myPost.setPostTitle(request.getParameter("postTitle"));
+        myPost.setPostBody(request.getParameter("postBody"));
         myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
         myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
         myPost.setFeatureImage(request.getParameter("featuredImage"));
         myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
         myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
+        postService.addPost(1, myPost);
+        return "redirect: createPost";
+    }
+    @RequestMapping(value = {"/createPost"}, method = RequestMethod.GET)
+    public String addPost(HttpServletRequest request, Model model) {
 
-        return "redirect: viewPosts";
+//        Post myPost = new Post();
+//        myPost.setPostTitle(request.getParameter("postTitle"));
+//        myPost.setPostTitle(request.getParameter("postBody"));
+//        myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
+//        myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
+//        myPost.setFeatureImage(request.getParameter("featuredImage"));
+//        myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
+//        myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
+
+        return "createPost";
     }
 
     @RequestMapping(value = {"/deletePost"}, method = RequestMethod.GET)
     public String deletePost(HttpServletRequest request, Model model) {
 
         int postId = Integer.parseInt(request.getParameter("postId"));
-        postServiceInterface.deletePost(postId, postId);//After User CRUD created, swap first parameter with loginUserId
+        postService.deletePost(postId, postId);//After User CRUD created, swap first parameter with loginUserId
         return "redirect:viewPosts";
     }
 
@@ -81,7 +102,7 @@ public class PostController {
             return "editPost";
         }
         
-       postServiceInterface.updatePost(0, post); //Update this method to replace the first parameter with userId
+       postService.updatePost(0, post); //Update this method to replace the first parameter with userId
        
        return "redirect:viewPosts";
     }

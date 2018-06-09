@@ -15,12 +15,11 @@
         <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet"> 
     </head>
     <body>
-        
-        <!--=============NAVBAR=============-->
 
         <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
+
 
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -68,54 +67,24 @@
             <span onclick="document.getElementById('loginModal').style.display = 'none'" 
                   class="close" title="Close Modal">&times;</span>
 
-            <!-- Modal Content -->
-            <form class="modal-content animate" action="#">
-                <div class="imgcontainer">
-                    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                </div>
+                  
+                  
+       <!--===========TAG MODALL===========-->
+       
+       
+           	
+       
 
-                <div class="container">
-                    <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
-
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
-
-                    <button type="submit" class="loginBtn">Login</button>
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
-                </div>
-
-                <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
-                    <button type="button" onclick="document.getElementById('loginModal').style.display = 'none'" class="cancelbtn">Cancel</button>
-                </div>
-            </form>
-        </div>
+	<!-- Don't forget to include taggingJS! -->
+	<script src="tagging.js"></script>
 
 
-        <!--=======EDIT CATEGORY FORM==========-->
-        <div class="container">
-            <form role="form" method="POST" 
-                  action="submitSuper">
-
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Category Name</label>
-                    <input type="text" class="form-control" name="orgName" placeholder="Add Category Name" maxlength="45" required>
-                </div>
-
-                <!--=============BUTTONS====================-->
-                <input type="submit" class="btn btn-default" value="Submit Changes"/>
-                <a href="${pageContext.request.contextPath}/addPost" class="btn btn-danger" role="button">Cancel</a>
-
-            </form>
-        </div>
 
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
+        <script src="tagging.js"></script>
 
     </body>
 </html>

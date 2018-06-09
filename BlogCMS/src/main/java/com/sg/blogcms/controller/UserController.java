@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.sg.blogcms.service.UsersService;
+import com.sg.blogcms.service.UserServiceInterface;
 
 /**
  *
@@ -17,10 +17,10 @@ import com.sg.blogcms.service.UsersService;
 @Controller
 public class UserController {
 
-    UsersService userService;
+    UserServiceInterface userService;
 
     @Inject
-    public UserController(UsersService userService) {
+    public UserController(UserServiceInterface userService) {
         this.userService = userService;
     }
 

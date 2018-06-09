@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <!-- Main CSS -->        
         <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet"> 
+        
+        
     </head>
     <body>
 
@@ -34,7 +36,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/addPost">Add Post</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Add Post</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>

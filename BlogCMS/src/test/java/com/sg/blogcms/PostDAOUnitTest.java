@@ -6,6 +6,7 @@
 package com.sg.blogcms;
 
 import com.sg.blogcms.dao.PostDAOInterface;
+import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.dto.Post;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +16,6 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -25,7 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PostDAOUnitTest {
     
-    private PostDAOInterface dao;
+    private PostDAOInterface postDao;
     
     public PostDAOUnitTest() {
     }
@@ -43,13 +43,13 @@ public class PostDAOUnitTest {
         
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
         
-        dao = ctx.getBean("postDAOInterface", PostDAOInterface.class);
+        postDao = ctx.getBean("postDAOInterface", PostDAOInterface.class);
         
         //Clear out Post data from DAO        
-        List<Post> posts = dao.getAllPosts();
+        List<Post> posts = postDao.getAllPosts();
         
         for (Post currentPost : posts){
-            dao.deletePost(currentPost.getPostId());
+            postDao.deletePost(currentPost.getPostId());
         }
         
         //Clear out Tag from DAO
@@ -62,6 +62,18 @@ public class PostDAOUnitTest {
     
     //@Test
     public void addGetDeletePost() throws ParseException{
+        //Create Category
+        
+        //Create User
+        
+        //Create Post
+        
+        Category myCategory = new Category();
+        
+        myCategory.setCategoryName("snowflakes");
+        
+        
+        
         Post myPost = new Post();
         
         myPost.setPostTitle("Water boy");
@@ -79,9 +91,9 @@ public class PostDAOUnitTest {
 //        myPost.setCategoryId(0);
 //        myPost.setUserId(0);
 
-        dao.addPost(myPost);
+        postDao.addPost(myPost);
         
-        List<Post> entireList = dao.getAllPosts();
+        List<Post> entireList = postDao.getAllPosts();
         assertEquals(entireList.size(), 1);
     }
     
@@ -104,13 +116,13 @@ public class PostDAOUnitTest {
 //        myPost.setCategoryId(0);
 //        myPost.setUserId(0);
 
-        dao.addPost(myPost);
+        postDao.addPost(myPost);
         
         //Make change to the date:
        myPost.setPostTitle("New title");
        
        //Call update method
-       dao.updatePost(myPost);
+       postDao.updatePost(myPost);
 
         
     }
@@ -135,9 +147,9 @@ public class PostDAOUnitTest {
 //        myPost.setCategoryId(0);
 //        myPost.setUserId(0);
 
-        dao.addPost(myPost);
+        postDao.addPost(myPost);
         
-        List<Post> entireList = dao.getAllPosts();
+        List<Post> entireList = postDao.getAllPosts();
         assertEquals(entireList.size(), 1);
         
     }

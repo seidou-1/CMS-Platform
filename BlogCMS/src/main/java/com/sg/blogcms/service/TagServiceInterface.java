@@ -16,7 +16,7 @@ public interface TagServiceInterface {
     
     public Tag addTag (int loginUserId, Tag tag);
     
-    public Tag updateTag (int loginUserId, int tagId);
+    public void updateTag (int loginUserId, int tagId);
     
     public void deleteTag (int loginUserId, int tagId);
     

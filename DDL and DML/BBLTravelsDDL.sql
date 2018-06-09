@@ -37,15 +37,23 @@ CREATE TABLE IF NOT EXISTS `Users` (
  `UserEmail` VARCHAR(100) NOT NULL,
  `UserPassword` VARCHAR(100) NOT NULL,
  `UserAvatar` VARCHAR(100) NOT NULL,
+
+--  Mo: Included Enabled for active\inactive user. This is a boolean 0 for inactive, 1 for active
+ `Enabled` tinyint(1) NOT NULL,
  PRIMARY KEY (`UserID`),
- CONSTRAINT `fk_Users_UserTypes`
+ -- Mo: Modifyed this table to include Aurhorities for Spring Security
+ KEY `UserName` (`UserName`),
  
+ CONSTRAINT `fk_Users_UserTypes`
  -- Mo: This table was just floating with the Permissions table above. Made a relationship connection between Users and UserTypes
  FOREIGN KEY (`UserTypeID`)
  REFERENCES `UserTypes` (`UserTypeID`)
  ON DELETE CASCADE
  
- );
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+ -- Took out this Auto Increment thing
+ -- AUTO_INCREMENT=3 
  
 -- Categories Table--
 CREATE TABLE IF NOT EXISTS `Categories` (
@@ -63,19 +71,22 @@ CREATE TABLE IF NOT EXISTS `Tags` (
 CREATE TABLE IF NOT EXISTS `Posts` (
  `PostID` INT NOT NULL AUTO_INCREMENT,
  `PostTitle` VARCHAR(100) NOT NULL,
+ `PostBody` LONGTEXT NOT NULL,
  
  -- Mo: Changed data types of dates below from VARCHAR(100) to DATETIME
  `PostDate` DATETIME NOT NULL,
  `ExpirationDate` DATETIME NOT NULL,
  
- `FeatureImage` VARCHAR(100) NOT NULL,
+ `FeatureImage` VARCHAR(100) NULL,
  `CategoryID` INT NOT NULL,
  `UserID` INT NOT NULL,
  PRIMARY KEY (`PostID`),
+  
   CONSTRAINT `fk_Post_Categories`
    FOREIGN KEY (`CategoryID`)
    REFERENCES `Categories` (`CategoryID`)
    ON DELETE Cascade,
+  
   CONSTRAINT `fk_Post_User`
    FOREIGN KEY (`UserID`)
    REFERENCES `Users` (`UserID`)
@@ -97,6 +108,14 @@ CREATE TABLE IF NOT EXISTS `Posts_Tags` (
    ON DELETE CASCADE
  );
  
+
+-- Authorities table
+CREATE TABLE IF NOT EXISTS `Authorities` (
+ `username` varchar(20) NOT NULL,
+ `authority` varchar(20) NOT NULL,
+ KEY `username` (`username`),
+ CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 

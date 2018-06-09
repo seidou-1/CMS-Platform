@@ -39,45 +39,50 @@
        <property name="dataSource" ref="dataSource" />
     </bean>
     
-<!--    Dao Interface beans: 
-    <bean id="categoryDAOInterface"
-         class="com.sg.blogcms.dao.CategoryDAOInterface">
+<!--    Dao Implementation beans: -->
+
+    <bean id="categoryDao"
+         class="com.sg.blogcms.dao.CategoryDaoDbImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
-    <bean id="postDAOInterface"
-         class="com.sg.blogcms.dao.PostDAOInterface">
+    
+    <bean id="postDao"
+         class="com.sg.blogcms.dao.PostDaoDbImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
-    <bean id="tagDAOInterface"
-         class="com.sg.blogcms.dao.TagDAOInterface">
+    
+    <bean id="tagDao"
+         class="com.sg.blogcms.dao.TagDaoDbImp">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>    -->
+    </bean>    
+    
     
     <bean id="userDao"
-         class="com.sg.blogcms.dao.UserDaoDBImpl">
+         class="com.sg.blogcms.dao.UserDaoDbImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>
-    
-     <bean id="userServices"
-              class="com.sg.blogcms.service.UserServiceImpl">
     </bean>
  
     
-    <!--Service Interface beans:-->
-<!--    <bean id="categoryServiceInterface"
-              class="com.sg.blogcms.service.CategoryServiceInterface">
+<!-- Service Implementation beans: -->    
+    
+    <bean id="categoryService"
+              class="com.sg.blogcms.service.CategoryServiceImpl">
     </bean>
     
-    <bean id="postServiceInterface"
-              class="com.sg.blogcms.service.PostServiceInterface">
+
+    <bean id="postService"
+              class="com.sg.blogcms.service.PostServiceImpl">
     </bean>
     
-    <bean id="tagServiceInterface"
-              class="com.sg.blogcms.service.TagServiceInterface">
+    
+    <bean id="tagService"
+              class="com.sg.blogcms.service.TagServiceImpl">
     </bean>
-    -->
-   
+    
+   <bean id="userService"
+            class = "com.sg.blogcms.service.UserServiceImpl">
+   </bean>
    
 </beans>
