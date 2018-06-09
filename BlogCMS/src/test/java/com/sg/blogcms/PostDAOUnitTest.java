@@ -5,15 +5,21 @@
  */
 package com.sg.blogcms;
 
+import com.sg.blogcms.dao.CategoryDAOInterface;
 import com.sg.blogcms.dao.PostDAOInterface;
+import com.sg.blogcms.dao.TagDAOInterface;
+import com.sg.blogcms.dao.UserDAOInterface;
 import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.dto.Post;
+import com.sg.blogcms.dto.Tag;
+import com.sg.blogcms.dto.User;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +32,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class PostDAOUnitTest {
     
     private PostDAOInterface postDao;
+    private CategoryDAOInterface categoryDao;
+    private UserDAOInterface userDao;
+    private TagDAOInterface tagDao;
     
     public PostDAOUnitTest() {
     }
@@ -43,7 +52,15 @@ public class PostDAOUnitTest {
         
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
         
-        postDao = ctx.getBean("postDAOInterface", PostDAOInterface.class);
+   //Variable name           Bean name    Dao Interface
+        postDao = ctx.getBean("postDao", PostDAOInterface.class);
+        
+        categoryDao = ctx.getBean("categoryDao", CategoryDAOInterface.class);
+        
+        userDao = ctx.getBean("userDao", UserDAOInterface.class);
+        
+        tagDao = ctx.getBean("tagDao", TagDAOInterface.class);
+        
         
         //Clear out Post data from DAO        
         List<Post> posts = postDao.getAllPosts();
@@ -53,29 +70,53 @@ public class PostDAOUnitTest {
         }
         
         //Clear out Tag from DAO
+        List<Tag> tags = tagDao.getAllTags();
+        
+        for (Tag currentTag : tags){
+            tagDao.deleteTag(currentTag.getTagId());
+        }
       
         //Clear out User from DAO
+        List<User> users = userDao.getAllUsers();
+        
+        for (User currentUser : users){
+            userDao.deleteUser(currentUser.getUserId());
+        }
                
         //Clear out Category from DAO
+        List<Category> categories = categoryDao.getAllCategories();
+        
+        for (Category currentCategory : categories) {
+            categoryDao.deleteCategory(currentCategory.getCategoryId());
+        }
         
     }
     
     //@Test
     public void addGetDeletePost() throws ParseException{
+        /*
+        Since Post has foreign keys from Categories and Users, I will create
+        Category and User objects first to get CategoryId and UserId first
+        */
+        
         //Create Category
+        Category myCategory = new Category();
+        myCategory.setCategoryName("snowflakes");
+        categoryDao.addCategory(myCategory);
+        Category categoryIdFromDB = categoryDao.getCategoryById(myCategory.getCategoryId());
         
         //Create User
+        User myUser = new User();
+        myUser.setEmail("myemail@email.com");
+        myUser.setUserAvatar("red fox");
+        myUser.setUserPassword("password");
+        myUser.setUserType(1);
+        myUser.setUsername("admin");
+        userDao.addUser(myUser);
+        User userIdFromDB = userDao.getUserById(myUser.getUserId()); 
         
         //Create Post
-        
-        Category myCategory = new Category();
-        
-        myCategory.setCategoryName("snowflakes");
-        
-        
-        
-        Post myPost = new Post();
-        
+        Post myPost = new Post();        
         myPost.setPostTitle("Water boy");
         
         //Format this properly to match DB
@@ -87,14 +128,28 @@ public class PostDAOUnitTest {
         myPost.setExpirationDate(dateDB);
         myPost.setFeatureImage("Image stuff");
   
-//        Pick up here.. add these two after User and Category have been implemented
-//        myPost.setCategoryId(0);
-//        myPost.setUserId(0);
+        myPost.setCategoryId(categoryIdFromDB.getCategoryId());
+        myPost.setUserId(userIdFromDB.getUserId());
 
         postDao.addPost(myPost);
         
-        List<Post> entireList = postDao.getAllPosts();
-        assertEquals(entireList.size(), 1);
+        //Get Post Id from Database
+        Post postIdFromDB = postDao.getPostById(myPost.getPostId());
+        
+        //Check to see if it's in the database
+        assertEquals(postIdFromDB, myPost);
+        
+        //Check to see if i can delete Post
+        postDao.deletePost(myPost.getPostId());
+        
+        //Check to see if i can delete User
+        userDao.deleteUser(myUser.getUserId());
+        
+        //Check to see if i can delete Category
+        categoryDao.deleteCategory(myCategory.getCategoryId());
+
+        assertNull(postDao.getPostById(myPost.getPostId()));
+
     }
     
     //Test

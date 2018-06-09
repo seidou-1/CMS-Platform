@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.dto;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -19,6 +20,21 @@ public class User {
     private String email;
     private String userPassword;
     private String userAvatar;
+    
+    private ArrayList<String> authorities = new ArrayList<>();
+
+    public ArrayList<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(ArrayList<String> authorities) {
+        this.authorities = authorities;
+    }
+   
+    
+    public void addAuthority(String authority) {
+        authorities.add(authority);
+    }
 
     public int getUserType() {
         return userType;
