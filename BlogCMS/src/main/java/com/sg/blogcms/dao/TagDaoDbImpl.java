@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Blackfox
  */
-public class TagDAOImpl implements TagDAOInterface {
+public class TagDaoDbImpl implements TagDAOInterface {
     
     private JdbcTemplate jdbcTemplate;
     
