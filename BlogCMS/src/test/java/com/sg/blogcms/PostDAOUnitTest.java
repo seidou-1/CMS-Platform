@@ -117,7 +117,12 @@ public class PostDAOUnitTest {
 
     }
 
+    @Test
     public void testCreatePost() throws ParseException {
+        /*
+        This method tests to make sure what's asserted here matches
+        exactly with the createPost method down below
+        */
         //Arrange
         Category myCategory = createCategory();
 
@@ -129,14 +134,13 @@ public class PostDAOUnitTest {
         myPost = postDao.addPost(myPost); //cool 
          
         //Assert
-        assert myPost.getPostId() != 0; //shorthand for assert true. As long as we have an ID back.
-
         assert myPost.getPostTitle().equals("Water boy");
-        assert myPost.getUserId() == (myUser.getUserId()); //WHen cannot be referenced error, change to ==
-
+        assert myPost.getPostBody().equals("Post body text");
+//        assert myPost.getPostDate().equals("2018-03-20"); How do i varify dates?
+//        assert myPost.getExpirationDate().equals("2018-03-20"); How do i varify dates?
+        assert myPost.getPostId() != 0; //shorthand for assert true. As long as we have an ID back.
+        assert myPost.getUserId() == (myUser.getUserId()); //When you get a cannot be referenced error, change to "==" instead of .equals
         assert myPost.getCategoryId() == (myCategory.getCategoryId());
-
-        //Complete these tests for each getter in Post
     }
 
     public void testGetPostById() {
@@ -158,7 +162,10 @@ public class PostDAOUnitTest {
         assert myReadPost.getFeatureImage().equals(myPost.getFeatureImage()); //Taking 159 (the act and compareing it here)
 
         assert myReadPost.getPostBody().equals(myPost.getPostBody());
-
+        
+        assert myReadPost.getCategory().getCategoryName().equals(myCategory.getCategoryName());
+        
+        assert myReadPost.getCategory().getCategoryId() == myCategory.getCategoryId();
         //Do this for each remaining member field
     }
 
@@ -213,7 +220,7 @@ public class PostDAOUnitTest {
         
     }
 
-    @Test
+//    @Test
     public void addGetDeletePost() throws ParseException {
         /*
         Since Post has foreign keys from Categories and Users, I will create
@@ -360,6 +367,7 @@ public class PostDAOUnitTest {
         Post myPost = new Post();
 
         myPost.setPostTitle("Water boy");
+        myPost.setPostBody("Post body text");
 
         //Format this properly to match DB
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM--dd");
@@ -377,7 +385,7 @@ public class PostDAOUnitTest {
 
         myPost.setCategoryId(myCategory.getCategoryId());
         myPost.setUserId(myUser.getUserId());
-
+        //No need to set postId because the DAO does it for me
         return myPost;
     }
 }

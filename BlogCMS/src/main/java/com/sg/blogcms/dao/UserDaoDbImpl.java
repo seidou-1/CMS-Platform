@@ -26,7 +26,8 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     // Sighting prepared statements
     private static final String SQL_INSERT_USER
-            = "insert into `Users` ( UserID, UserTypeID, UserName, UserEmail, UserPassword, UserAvatar, Enabled) " + "values (?, ?, ?, ?, ?, ?, ?)";
+            //Mo: Removed UserID in prepared statement. Let SQL assign the ID automatically
+            = "insert into `Users` (UserTypeID, UserName, UserEmail, UserPassword, UserAvatar, Enabled) " + "values (?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_USER
             = "delete from `Users` where UserID = ?";
