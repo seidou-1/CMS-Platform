@@ -81,7 +81,7 @@ public class PostDaoDbImpl implements PostDAOInterface {
             + "\n"
             + "WHERE TAGS.TAGID = ?";
 
-    private static final String SQL_SELECT_ALL_POSTS
+    private static final String SQL_SELECT_ALL_POSTS //This is lazy loading - we're not getting any other data
             = "SELECT * FROM `POSTS`";
 
     @Override
@@ -138,7 +138,7 @@ public class PostDaoDbImpl implements PostDAOInterface {
 
     @Override
     public Post getPostById(int postId) {
-        jdbcTemplate.update(SQL_DELETE_POST, postId);
+        jdbcTemplate.update(SQL_DELETE_POST, postId);//Shouldn't be Delte Post here...
 
         try {
             return jdbcTemplate.queryForObject(SQL_SELECT_POST,
