@@ -111,15 +111,11 @@ and open the template in the editor.
         <intercept-url pattern="/allUsers"
                        access="ROLE_ADMIN"/>
         
-<<<<<<< HEAD
-        *******************ALL OTHER URLS********************
-=======
         <!--*******************ALL OTHER URLS********************-->
 <!--        
         <intercept-url pattern="/**"
                        access="ROLE_STANDARD"/>-->
         
->>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
         
         <intercept-url pattern="/**"
                        access="IS_AUTHENTICATED_ANONYMOUSLY"/>
@@ -137,11 +133,7 @@ and open the template in the editor.
             <jdbc-user-service id="userService"
                                data-source-ref="dataSource"
                                users-by-username-query=
-<<<<<<< HEAD
- "select username, password from users where username=?"
-=======
  "select username, userpassword, enabled from `users` where username=?"
->>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
                                authorities-by-username-query=
  "select username, authority from authorities where username=?" 
             />
@@ -149,10 +141,5 @@ and open the template in the editor.
     </authentication-manager>
     
 </beans:beans>
-<<<<<<< HEAD
-        -->
-<!--Mo: Spring configuration file that references context-param entry in WEB-INF-->
-=======
         
 <!--Mo: Spring configuration file that references context-param entry in WEB-INF-->
->>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676

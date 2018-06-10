@@ -296,11 +296,7 @@ div#mainUserWindow {
 
 .taggable-container {
 	width: 600px;
-<<<<<<< HEAD
-	border: 2px solid;
-=======
 	border: 2px solid green;
->>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
 	border-radius: 5px;
 	height: auto;
 	padding: 5px;
@@ -334,11 +330,7 @@ div#mainUserWindow {
 .taggable-tag {
 	list-style: none;
 	float: left;
-<<<<<<< HEAD
-	border: 2px solid;
-=======
 	border: 2px solid green;
->>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
 	border-radius: 5px;	
 	padding: 6px 36px 6px 12px;
 	margin: 0 10px 0 0;
