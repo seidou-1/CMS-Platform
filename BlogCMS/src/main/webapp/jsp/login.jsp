@@ -23,12 +23,17 @@
                 <h3>Wrong id or password!</h3>
             </c:if>
 
+            <c:if test="${param.login_error == 2}">
+                <h3>${param.login_error}</h3>
+            </c:if>
+
+
 
             <!-- Mo: This is just a placehodler. Asher's login form goes here-->
 
             <form class="form-horizontal" 
                   role="form" 
-                  method="post" 
+                  method="POST" 
                   action="j_spring_security_check">
                 <div class="form-group">
                     <label for="j_username" 
@@ -65,7 +70,7 @@
 
 
         </div>
-                <!-- Placed at the end of the document so the pages load faster -->
+        <!-- Placed at the end of the document so the pages load faster -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     </body>
