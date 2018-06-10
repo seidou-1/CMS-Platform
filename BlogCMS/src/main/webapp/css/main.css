@@ -213,7 +213,7 @@ img.avatar {
 
 .taggable-container {
 	width: 600px;
-	border: 2px solid $border;
+	border: 2px solid;
 	border-radius: 5px;
 	height: auto;
 	padding: 5px;
@@ -247,7 +247,7 @@ img.avatar {
 .taggable-tag {
 	list-style: none;
 	float: left;
-	border: 2px solid $border;
+	border: 2px solid;
 	border-radius: 5px;	
 	padding: 6px 36px 6px 12px;
 	margin: 0 10px 0 0;

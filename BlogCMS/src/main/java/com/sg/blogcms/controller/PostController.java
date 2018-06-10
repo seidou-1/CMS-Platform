@@ -5,10 +5,6 @@
  */
 package com.sg.blogcms.controller;
 
-import com.sg.blogcms.dao.PostDAOInterface;
-import com.sg.blogcms.dao.TagDAOInterface;
-import com.sg.blogcms.service.PostServiceInterface;
-import com.sg.blogcms.service.TagServiceInterface;
 import com.sg.blogcms.dto.Post;
 import com.sg.blogcms.service.PostServiceInterface;
 import java.sql.Date;
