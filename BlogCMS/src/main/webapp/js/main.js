@@ -8,164 +8,176 @@
 //placement: 'bottom'
 //});
 
-$('.popover-markup>.trigger').popover({
-    html: true,
-    title: function () {
-        return $(this).parent().find('.head').html();
-    },
-    content: function () {
-        return $(this).parent().find('.content').html();
-    }
-});
+// $('.popover-markup>.trigger').popover({
+//     html: true,
+//     title: function () {
+//         return $(this).parent().find('.head').html();
+//     },
+//     content: function () {
+//         return $(this).parent().find('.content').html();
+//     }
+// });
 
 
-// Tagging Example//
+// // Tagging Example//
 
-const container = document.getElementsByClassName("taggable-container")[0];
-const tags = container.getElementsByTagName("ul")[0];
-const input = container.getElementsByTagName("input")[0];
+// const container = document.getElementsByClassName("taggable-container")[0];
+// console.log(container)
+// const tags = container.getElementsByTagName("ul")[0];
+// const input = container.getElementsByTagName("input")[0];
 
-// Token seperators
-const keys = ["Enter", ","];
+// // Token seperators
+// const keys = ["Enter", ","];
 
-const interval = 150;
+// const interval = 150;
 
-// Remove tag
-tags.addEventListener("click", removeTag);
+// // Remove tag
+// tags.addEventListener("click", removeTag);
 
-// Add tag
-input.addEventListener("keydown", (e) => {
-	// Check to see if the key that was pressed is a valid token seperator
-	// and we have some text to use
-	if ( keys.includes(e.key) && input.value.length ) {
-		// Don't enter the key into the input
-		if ( e.key !== "Enter" ) {
-			e.preventDefault();
-		}
+// // Add tag
+// input.addEventListener("keydown", (e) => {
+// 	// Check to see if the key that was pressed is a valid token seperator
+// 	// and we have some text to use
+// 	if ( keys.includes(e.key) && input.value.length ) {
+// 		// Don't enter the key into the input
+// 		if ( e.key !== "Enter" ) {
+// 			e.preventDefault();
+// 		}
 		
-		// Create the tag
-		addTag(input.value);
-	}
-});
+// 		// Create the tag
+// 		addTag(input.value);
+// 	}
+// });
 
-function addTag(text) {
-	let tag = document.createElement("li");
-	let t = `<div class="taggable-text">${text}</div>
-					<button type="button" class="taggable-remove"></button>`;
+// function addTag(text) {
+// 	let tag = document.createElement("li");
+// 	let t = `<div class="taggable-text">${text}</div>
+// 					<button type="button" class="taggable-remove"></button>`;
 	
-	let pos = {
-		el: input,
-		position: input.getBoundingClientRect()
-	};
+// 	let pos = {
+// 		el: input,
+// 		position: input.getBoundingClientRect()
+// 	};
 
-	tag.className = "taggable-tag adding";
-	tag.innerHTML = t;
+// 	tag.className = "taggable-tag adding";
+// 	tag.innerHTML = t;
 	
-	// Append the tag to the DOM
-	tags.appendChild(tag);
+// 	// Append the tag to the DOM
+// 	tags.appendChild(tag);
 	
-	// Clear the input element
-	input.value = "";
+// 	// Clear the input element
+// 	input.value = "";
 	
-	// Check for wrapping
-	tags.classList.toggle("taggable-wrapped", isWrapped());
+// 	// Check for wrapping
+// 	tags.classList.toggle("taggable-wrapped", isWrapped());
 	
-	// Animate the input element's position
-	animate(pos);
+// 	// Animate the input element's position
+// 	animate(pos);
 	
-	setTimeout(function() {
-		tag.classList.remove("adding");
-	}, 400);	
-}
+// 	setTimeout(function() {
+// 		tag.classList.remove("adding");
+// 	}, 400);	
+// }
 
-let data = [];
+// let data = [];
 
-function removeTag(e) {
-	if ( e.target.classList.contains("taggable-remove") ) {
-		let tag = e.target.parentNode;
-		let index = [].slice.call(tags.children).indexOf(tag);
+// function removeTag(e) {
+// 	if ( e.target.classList.contains("taggable-remove") ) {
+// 		let tag = e.target.parentNode;
+// 		let index = [].slice.call(tags.children).indexOf(tag);
 		
-		let pos = {
-			el: input,
-			position: input.getBoundingClientRect()
-		};
+// 		let pos = {
+// 			el: input,
+// 			position: input.getBoundingClientRect()
+// 		};
 		
-		tag.classList.add("deleting");
+// 		tag.classList.add("deleting");
 
-		[].slice.call(tags.children).forEach(function(tag, i) {
-			// Only animate the tags proceeding the deleted tag
-			if ( i >= index ) {
-				data.push({
-					el: tag,
-					position: tag.getBoundingClientRect()
-				});
-			}
-		});
+// 		[].slice.call(tags.children).forEach(function(tag, i) {
+// 			// Only animate the tags proceeding the deleted tag
+// 			if ( i >= index ) {
+// 				data.push({
+// 					el: tag,
+// 					position: tag.getBoundingClientRect()
+// 				});
+// 			}
+// 		});
 		
-		// Remove the tag from the DOM
-		tags.removeChild(tag);
+// 		// Remove the tag from the DOM
+// 		tags.removeChild(tag);
 
-		// Check for wrapping
-		tags.classList.toggle("taggable-wrapped", isWrapped());
+// 		// Check for wrapping
+// 		tags.classList.toggle("taggable-wrapped", isWrapped());
 
-		// Focus back on the input element
-		input.focus();
+// 		// Focus back on the input element
+// 		input.focus();
 
-		// Animte the input element
-		animate(pos);
+// 		// Animte the input element
+// 		animate(pos);
 
-		// Animate the tags affected by the change in the DOM
-		// when the tag is removed
-		data.forEach(function(obj, i) {
-			animate(obj);
-		});
+// 		// Animate the tags affected by the change in the DOM
+// 		// when the tag is removed
+// 		data.forEach(function(obj, i) {
+// 			animate(obj);
+// 		});
 
-		// Reset
-		data = [];
-	}
-}
+// 		// Reset
+// 		data = [];
+// 	}
+// }
 
-// Detect tag wrapping
-function isWrapped() {
-	if ( tags.childElementCount ) {
-		let h = tags.firstElementChild.offsetTop, wrapped = false;
-		for ( let i = 0; i < tags.childElementCount; i++ ) {
-			// node is lower down that it's preceeding siblings
-			// so it's been wrapped
-			if ( tags.children[i].offsetTop > h ) {
-				wrapped = true;
-				break;
-			}
-		}
-		return wrapped;
-	}
-}
+// // Detect tag wrapping
+// function isWrapped() {
+// 	if ( tags.childElementCount ) {
+// 		let h = tags.firstElementChild.offsetTop, wrapped = false;
+// 		for ( let i = 0; i < tags.childElementCount; i++ ) {
+// 			// node is lower down that it's preceeding siblings
+// 			// so it's been wrapped
+// 			if ( tags.children[i].offsetTop > h ) {
+// 				wrapped = true;
+// 				break;
+// 			}
+// 		}
+// 		return wrapped;
+// 	}
+// }
 
-// Animate an element's change in position
-// caused by a change in the DOM order
-function animate(obj) {
-	let css = obj.el.style;
+// // Animate an element's change in position
+// // caused by a change in the DOM order
+// function animate(obj) {
+// 	let css = obj.el.style;
 	
-	// Get the node's positon AFTER the change
-	let r = obj.el.getBoundingClientRect();
+// 	// Get the node's positon AFTER the change
+// 	let r = obj.el.getBoundingClientRect();
 	
-	// Calculate the difference in position
-	let x = obj.position.left - r.left;
-	let y = obj.position.top - r.top;
+// 	// Calculate the difference in position
+// 	let x = obj.position.left - r.left;
+// 	let y = obj.position.top - r.top;
 	
-	// Move the node to it's original position before the DOM change
-	css.transform = `translate3d(${x}px, ${y}px, 0px)`;
+// 	// Move the node to it's original position before the DOM change
+// 	css.transform = `translate3d(${x}px, ${y}px, 0px)`;
 	
-	// Trigger a repaint so the next bit works
-	obj.el.offsetHeight;
+// 	// Trigger a repaint so the next bit works
+// 	obj.el.offsetHeight;
 	
-	// Reset the transform, but add a transition so it's smooth
-	css.transform = `translate3d(0px, 0px, 0px)`;
-	css.transition = `transform ${interval}ms`;
+// 	// Reset the transform, but add a transition so it's smooth
+// 	css.transform = `translate3d(0px, 0px, 0px)`;
+// 	css.transition = `transform ${interval}ms`;
 
-	// Reset the style
-	setTimeout(function() {
-		css.transform = ``;
-		css.transition = ``;
-	}, interval);
+// 	// Reset the style
+// 	setTimeout(function() {
+// 		css.transform = ``;
+// 		css.transition = ``;
+// 	}, interval);
+// }
+
+
+// Travz Users Code
+function toggleItem(item) {
+	$(item).addClass('toggled');
+	var buttons = $('.itemOptions');
+	// buttons.forEach(e => {
+	// 	console.log(e)
+	// });
+	console.log($(item).find('itemOptions'));
 }

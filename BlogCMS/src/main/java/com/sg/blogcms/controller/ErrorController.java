@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.sg.blogcms.service.UsersService;
+import com.sg.blogcms.service.UserServiceInterface;
 
 /**
  *
@@ -17,10 +17,10 @@ import com.sg.blogcms.service.UsersService;
 @Controller
 public class ErrorController {
 
-    UsersService userService;
+    UserServiceInterface userService;
 
     @Inject
-    public ErrorController(UsersService userService) {
+    public ErrorController(UserServiceInterface userService) {
         this.userService = userService;
     }
 

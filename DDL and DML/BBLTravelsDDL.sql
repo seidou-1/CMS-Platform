@@ -1,11 +1,41 @@
-DROP DATABASE IF EXISTS `BBLTravelsTest`;
-CREATE DATABASE `BBLTravelsTest`;
-USE `BBLTravelsTest`;
+DROP DATABASE IF EXISTS `BBLTravels`;
+CREATE DATABASE `BBLTravels`;
+USE `BBLTravels`;
 
+ 
+
+-- Users Table--
+CREATE TABLE IF NOT EXISTS `Users` (
+ `UserID` INT NOT NULL AUTO_INCREMENT,
+ `UserName` VARCHAR(100) NOT NULL,
+ `UserEmail` VARCHAR(100) NOT NULL,
+ `UserPassword` VARCHAR(100) NOT NULL,
+ `UserAvatar` VARCHAR(100) NOT NULL,
+--  Mo: Included Enabled for active\inactive user. This is a boolean 0 for inactive, 1 for active
+ `Enabled` tinyint(1) NOT NULL,
+ PRIMARY KEY (`UserID`),
+ -- Mo: Modifyed this table to include Aurhorities for Spring Security
+ KEY `UserName` (`UserName`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ 
+
+ 
+-- Authorities table
+ 
+CREATE TABLE IF NOT EXISTS `Authorities` (
+`UserName` varchar(20) NOT NULL,
+`Authority` varchar(20) NOT NULL,
+ PRIMARY KEY (`UserName`, `Authority`),
+ KEY `Authority` (`authority`), 
+ CONSTRAINT `fk_Authorities_Users`
+   FOREIGN KEY (`UserName`)
+   REFERENCES `Users` (`UserName`)
+   ON DELETE CASCADE
+ )ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
  -- Permission Table--
 CREATE TABLE IF NOT EXISTS `Permissions` (
- `PermissionID` INT NOT NULL AUTO_INCREMENT,
+ `Authority` varchar(20) NOT NULL,
  `UserCrud` boolean NOT NULL,
  `AddPosts` boolean NOT NULL,
  `DeletePosts` boolean NOT NULL,
@@ -13,45 +43,16 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
  `AddCategories` boolean NOT NULL,
  `DeleteCategories` boolean NOT NULL,
  `ReadPosts` boolean NOT NULL,
- PRIMARY KEY (`PermissionID`)
- );
- 
- 
--- User Type Table--
-CREATE TABLE IF NOT EXISTS `UserTypes` (
- `UserTypeID` INT NOT NULL AUTO_INCREMENT,
- `UserType` VARCHAR(100) NOT NULL,
- `PermissionID` INT NOT NULL,
- PRIMARY KEY (`UserTypeID`),
-   CONSTRAINT `fk_UserTypes_Permissions`
-   FOREIGN KEY (`PermissionID`)
-   REFERENCES `Permissions` (`PermissionID`)
-   ON DELETE Cascade
- );
-
--- Users Table--
-CREATE TABLE IF NOT EXISTS `Users` (
- `UserID` INT NOT NULL AUTO_INCREMENT,
- `UserTypeID` INT NOT NULL,
- `UserName` VARCHAR(100) NOT NULL,
- `UserEmail` VARCHAR(100) NOT NULL,
- `UserPassword` VARCHAR(100) NOT NULL,
- `UserAvatar` VARCHAR(100) NOT NULL,
-
---  Mo: Included Enabled for active\inactive user. This is a boolean 0 for inactive, 1 for active
- `Enabled` tinyint(1) NOT NULL,
- PRIMARY KEY (`UserID`),
- -- Mo: Modifyed this table to include Aurhorities for Spring Security
- KEY `UserName` (`UserName`),
- 
- CONSTRAINT `fk_Users_UserTypes`
- -- Mo: This table was just floating with the Permissions table above. Made a relationship connection between Users and UserTypes
- FOREIGN KEY (`UserTypeID`)
- REFERENCES `UserTypes` (`UserTypeID`)
- ON DELETE CASCADE
- 
+ PRIMARY KEY (`Authority`),
+  CONSTRAINT `fk_Permissions_Authorities`
+   FOREIGN KEY (`Authority`)
+   REFERENCES `Authorities` (`authority`)
+   ON DELETE No Action
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
+ 
+
+
  -- Took out this Auto Increment thing
  -- AUTO_INCREMENT=3 
  
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `Categories` (
 CREATE TABLE IF NOT EXISTS `Tags` (
  `TagID` INT NOT NULL AUTO_INCREMENT,
  `TagName` VARCHAR(100) NOT NULL,
- PRIMARY KEY (`TagID`));
+ PRIMARY KEY (`TagID`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
  -- Posts --
 CREATE TABLE IF NOT EXISTS `Posts` (
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `Posts` (
    FOREIGN KEY (`UserID`)
    REFERENCES `Users` (`UserID`)
    ON DELETE Cascade
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
  -- Posts to Tags bridge table -- 
 CREATE TABLE IF NOT EXISTS `Posts_Tags` (
@@ -106,17 +107,8 @@ CREATE TABLE IF NOT EXISTS `Posts_Tags` (
    FOREIGN KEY (`TagID`)
    REFERENCES `Tags` (`TagID`)
    ON DELETE CASCADE
- );
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
-
--- Authorities table
-CREATE TABLE IF NOT EXISTS `Authorities` (
- `username` varchar(20) NOT NULL,
- `authority` varchar(20) NOT NULL,
- KEY `username` (`username`),
- CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 
 

@@ -25,16 +25,16 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     // Sighting prepared statements
     private static final String SQL_INSERT_USER
-            = "insert into `Users` (UserTypeID, UserName, UserEmail, UserPassword, UserAvatar) " + "values (?, ?, ?, ?, ?)";
+            = "insert into `Users` (UserName, UserEmail, UserPassword, UserAvatar) " + "values (?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_USER
             = "delete from `Users` where UserID = ?";
 
     private static final String SQL_UPDATE_USER
-            = "update `Users` set UserID = ?, UserTypeID = ?, UserName = ?,  UserEmail = ?, UserPassword = ?, UserAvatar = ? " + " where UserID =  ?";
+            = "update `Users` set UserID = ?, UserName = ?,  UserEmail = ?, UserPassword = ?, UserAvatar = ? " + " where UserID =  ?";
 
     private static final String SQL_SELECT_USER
-            = "select * from `Users` where UserI = ?";
+            = "select * from `Users` where UserID = ?";
 
     private static final String SQL_SELECT_ALL_USERS
             = "select * from `Users`";
@@ -95,8 +95,7 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
-            user.setUserId(rs.getInt("UserID"));
-            user.setUserType(rs.getInt("UserTypeID"));
+            user.setUserId(rs.getInt("UserID")); 
             user.setUsername(rs.getString("UserName"));
             user.setEmail(rs.getString("UserEmail"));
             user.setUserPassword(rs.getString("UserPassword"));

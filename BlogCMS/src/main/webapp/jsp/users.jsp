@@ -18,6 +18,8 @@
                                         crossorigin="anonymous">
                                     <!-- Main CSS -->
                                     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+                                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+                                        crossorigin="anonymous">
                                 </head>
 
                                 <body>
@@ -69,164 +71,76 @@
 
                                         <hr>
 
-                                        <sec:authorize access="isAuthenticated()">
-                                            <p>
-                                                This is only visible to users who are logged in.
-                                            </p>
-                                        </sec:authorize>
 
-                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <p>
-                                                This is only visible to users who also have the ADMIN role.
-                                            </p>
-                                        </sec:authorize>
+                                        <div id="mainUserWindow">
+                                            <header id="mainUserWindowPic"></header>
 
+                                            <nav class="navbar navbar-expand-sm bg-info">
+                                                <ul class="navbar-nav">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">Notifications</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">Users</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">Posts</a>
+                                                    </li>
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <c:if test="${param.login_error == 1}">
-                                                    <h3>Wrong id or password!</h3>
-                                                </c:if>
-                                                <form class="form-horizontal" role="form" method="post" action="j_spring_security_check">
-                                                    <div class="form-group" style="float: left">
-                                                        <label for="j_username" class="col-md-4 control-label">Username:</label>
-                                                        <div class="col-md-12">
-                                                            <input type="text" class="form-control" name="j_username" placeholder="Username" />
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">Categories</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">Tags</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                            <div id="viewItems">
+                                                <c:forEach var="i" begin="1" end="10">
+                                                    <div class="viewItem container" onclick="toggleItem(this)">
+
+                                                        <div class="row">
+                                                            <div class="col-md-11 itemDate">
+                                                                <span>January 5th, 9:38pm </span>
+                                                            </div>
+                                                            <div class="col-md-1 itemToggle">
+                                                                <i class="fas fa-angle-double-down"></i>
+                                                            </div>
+                                                            <div class="col-md-8 itemSummary">
+                                                                <span> User: Matt created a new post </span>
+                                                                <p class="itemBrief" hidden> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                    Consequatur delectus maiores, porro ex libero assumenda
+                                                                    reprehenderit nisi! Sed, minus dolorum doloribus amet
+                                                                    earum fuga voluptas non laborum molestias quia aut? Lorem
+                                                                    ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+                                                                    delectus maiores, porro ex libero assumenda reprehenderit
+                                                                    nisi! Sed, minus dolorum doloribus amet earum fuga voluptas
+                                                                    non laborum molestias quia aut? Lorem ipsum dolor sit
+                                                                    amet consectetur adipisicing elit. In dolorum consequuntur
+                                                                    eaque nobis deleniti quia voluptatum nesciunt ad consectetur
+                                                                    debitis! Consectetur, sint quaerat accusamus adipisci
+                                                                    eligendi ea provident nemo eaque!</p>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button type="button" class="btn btn-outline-primary itemOptions" hidden>View</button>
+                                                                <button type="button" class="btn btn-outline-danger itemOptions" hidden>Deny</button>
+                                                                <button type="button" class="btn btn-outline-success itemOptions" hidden>Approve</button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group" style="float: left">
-                                                        <label for="j_password" class="col-md-4 control-label">Password:</label>
-                                                        <div class="col-md-12">
-                                                            <input type="text" class="form-control" name="j_password" placeholder="Password" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group" style="clear: left">
-                                                        <div class="col-md-offset-4 col-md-8">
-                                                            <input type="submit" class="btn btn-default" id="search-button" value="Sign In" />
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <hr>
-                                                <div class="col-md-6">
-                                                    <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                                        <h4>Hello : ${pageContext.request.userPrincipal.name} |
-                                                            <a href="<c:url value=" /j_spring_security_logout " />"> Logout</a>
-                                                        </h4>
-                                                    </c:if>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <a href="#" class="btn btn-primary" onclick="toggleDetails()">Toggle Edit / create</a>
-                                                <h4 id="header" style="display: none">Edit User</h4>
-                                                <h4 id="header2">Create User</h4>
-                                                <form action="createUser" id="myForm" method="POST">
-                                                    <label for="userName">Username </label>
-                                                    <input class="formInput" type="text" id="userName" name="userName" value="randall" placeholder="${user.UserName}" />
-                                                    <br>
-
-                                                    <label for="userType">User Type </label>
-                                                    <input class="formInput" type="text" id="userType" name="userType" value="1" placeholder="${user.userType}" />
-                                                    <br>
-
-                                                    <label for="userEmail">Email </label>
-                                                    <input class="formInput" type="text" id="userEmail" name="userEmail" value="randall@sg.com" placeholder="${user.userEmail}"
-                                                    />
-                                                    <br>
-
-                                                    <label for="userPassword">Password </label>
-                                                    <input class="formInput" type="text" id="userPassword" name="userPassword" value="rootSquared" placeholder="${user.userPassword}"
-                                                    />
-                                                    <br>
-
-                                                    <label for="userAvatar">Avatar </label>
-                                                    <input class="formInput" type="text" id="userAvatar" name="userAvatar" value="Smiley" placeholder="${user.userAvatar}" />
-                                                    <br>
+                                                </c:forEach>
 
 
-                                                    <button class="btn btn-primary" id="formButton"> Create User </button>
-
-                                                </form>
-
-
-
-                                            </div>
-
-                                            <div class="col-md-5">
-                                                <p> // Getting all users </p>
-                                                <table>
-                                                    <thead>
-
-                                                        <tr>
-                                                            <th> User ID </th>
-                                                            <th> Username </th>
-                                                            <th> Email</th>
-                                                            <th> Password </th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-
-                                                <br>
-                                                <hr>
-                                                <br>
-
-                                                <form action="deleteUser">
-                                                    <label for="userID"> // Delete user </label>
-                                                    <input class="formInput" type="text" id="userID" name="userID" value="2" placeholder="2" />
-                                                    <button class="btn btn-primary"> Delete User </button>
-                                                </form>
-                                                <br>
-                                                <hr>
-                                                <br>
-
-                                                <form action="selectUser">
-                                                    <label for="userID"> // Select user </label>
-                                                    <input class="formInput" type="text" id="userID" name="userID" value="2" placeholder="2" />
-                                                    <button class="btn btn-primary"> Select User </button>
-                                                </form>
-                                                <h3>
-                                                    <c:out value="${user}"></c:out> true nuh</h3>
-                                                <br>
                                             </div>
                                         </div>
-
-                                    </div>
-
-                                    </div>
-
-                                    <!-- Placed at the end of the document so the pages load faster -->
-                                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                                        crossorigin="anonymous"></script>
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                                        crossorigin="anonymous"></script>
-                                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-                                        crossorigin="anonymous"></script>
-                                    <script>
-                                        // change the relevant buttons
-
-
-
-                                        function toggleDetails() {
-                                            var myForm = $("#myForm");
-                                            var heading = $("#header");
-                                            var heading2 = $("#header2");
-                                            var temp = `http://localhost:8080/BlogCMS/createUser`;
-                                            var current = `http://localhost:8080/BlogCMS/editUser`;
-                                            var next = "http://localhost:8080/BlogCMS/createUser";
-                                            temp = current;
-                                            current = next;
-                                            next = temp;
-
-                                            var formButton = $("#formButton");
-                                            heading.toggle();
-                                            heading2.toggle();
-                                            console.log(next);
-                                            myForm[0].action = `http://localhost:8080/BlogCMS/${current}`;
-
-                                        }
-                                    </script>
+                                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                                            crossorigin="anonymous"></script>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                                            crossorigin="anonymous"></script>
+                                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+                                            crossorigin="anonymous"></script>
+                                        <script src="${pageContext.request.contextPath}/js/main.js"></script>
                                 </body>
 
                                 </html>

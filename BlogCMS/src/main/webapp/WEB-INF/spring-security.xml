@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-<!--Mo: Spring configuration file that references context-param entry in WEB-INF-->
->>>>>>> dd396f9d821da5579c420106cca71ac151844807
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -19,6 +8,9 @@ and open the template in the editor.
 
     <beans:bean id="webexpressionHandler"
                 class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
+    
+    <beans:bean id="encoder"
+            class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
                 
     <http pattern="/login" security="none" />
     <http pattern="/error" security="none" />
@@ -29,7 +21,10 @@ and open the template in the editor.
     <http auto-config="true" use-expressions="false">
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
-                    authentication-failure-url="/login?login_error=1"/>
+                    authentication-failure-url="/login?login_error=1"
+                    default-target-url="/viewUsers"
+                    
+                    />
        
         <intercept-url pattern="/" 
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -101,9 +96,13 @@ and open the template in the editor.
                        access="ROLE_ADMIN"/>
         
         <!--*******************ALL OTHER URLS********************-->
+<!--        
+        <intercept-url pattern="/**"
+                       access="ROLE_STANDARD"/>-->
+        
         
         <intercept-url pattern="/**"
-                       access="ROLE_STANDARD"/>
+                       access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         
         
         <!--*******************REST ENDPOINTS********************-->
@@ -114,13 +113,14 @@ and open the template in the editor.
     </http> 
     <authentication-manager>
         <authentication-provider>
-            <password-encoder ref="encoder"/>
+            <!--<password-encoder ref="encoder"/>-->
             <jdbc-user-service id="userService"
                                data-source-ref="dataSource"
                                users-by-username-query=
- "select username, password from `users` where username=?"
+ "select username, userpassword, enabled from `users` where username=?"
                                authorities-by-username-query=
- "select username, authority from authorities where username=?" />
+ "select username, authority from authorities where username=?" 
+            />
         </authentication-provider>
     </authentication-manager>
     

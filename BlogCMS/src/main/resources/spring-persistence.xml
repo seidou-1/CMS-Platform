@@ -54,7 +54,7 @@
     
     
     <bean id="tagDao"
-         class="com.sg.blogcms.dao.TagDaoDbImp">
+         class="com.sg.blogcms.dao.TagDAOImpl">
        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>    
     
@@ -81,7 +81,7 @@
               class="com.sg.blogcms.service.TagServiceImpl">
     </bean>
     
-   <bean id="userService"
+   <bean id="usersService"
             class = "com.sg.blogcms.service.UserServiceImpl">
    </bean>
    
