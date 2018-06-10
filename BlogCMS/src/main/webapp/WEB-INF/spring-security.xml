@@ -10,8 +10,8 @@
                 class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
     
     <beans:bean id="encoder"
-                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-    
+            class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+                
     <http pattern="/login" security="none" />
     <http pattern="/error" security="none" />
     <http pattern="/css/**" security="none" />
@@ -21,7 +21,10 @@
     <http auto-config="true" use-expressions="false">
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
-                    authentication-failure-url="/login?login_error=1"/>
+                    authentication-failure-url="/login?login_error=1"
+                    default-target-url="/viewUsers"
+                    
+                    />
        
         <intercept-url pattern="/" 
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -100,9 +103,13 @@
                        access="ROLE_ADMIN"/>
         
         <!--*******************ALL OTHER URLS********************-->
+<!--        
+        <intercept-url pattern="/**"
+                       access="ROLE_STANDARD"/>-->
+        
         
         <intercept-url pattern="/**"
-                       access="ROLE_STANDARD"/>
+                       access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         
         
         <!--*******************REST ENDPOINTS********************-->
@@ -113,13 +120,14 @@
     </http> 
     <authentication-manager>
         <authentication-provider>
-            <password-encoder ref="encoder"/>
+            <!--<password-encoder ref="encoder"/>-->
             <jdbc-user-service id="userService"
                                data-source-ref="dataSource"
                                users-by-username-query=
- "select username, password, enabled from users where username=?"
+ "select username, userpassword, enabled from `users` where username=?"
                                authorities-by-username-query=
- "select username, authority from authorities where username=?" />
+ "select username, authority from authorities where username=?" 
+            />
         </authentication-provider>
     </authentication-manager>
     
