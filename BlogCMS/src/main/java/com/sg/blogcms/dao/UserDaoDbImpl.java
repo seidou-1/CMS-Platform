@@ -8,6 +8,7 @@ package com.sg.blogcms.dao;
 import com.sg.blogcms.dto.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,19 +26,25 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     // Sighting prepared statements
     private static final String SQL_INSERT_USER
-            = "insert into `Users` ( UserID, UserTypeID, UserName, UserEmail, UserPassword, UserAvatar) " + "values (?, ?, ?, ?, ?, ?)";
+            = "insert into `Users` ( UserID, UserTypeID, UserName, UserEmail, UserPassword, UserAvatar, Enabled) " + "values (?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_USER
             = "delete from `Users` where UserID = ?";
 
     private static final String SQL_UPDATE_USER
-            = "update `Users` set UserID = ?, UserTypeID = ?, UserName = ?,  UserEmail = ?, UserPassword = ?, UserAvatar = ? " + " where UserID =  ?";
+            = "update `Users` set UserID = ?, UserTypeID = ?, UserName = ?,  UserEmail = ?, UserPassword = ?, UserAvatar = ?, Enabled = ? " + " where UserID =  ?";
 
     private static final String SQL_SELECT_USER
             = "select * from `Users` where UserID = ?";
 
     private static final String SQL_SELECT_ALL_USERS
             = "select * from `Users`";
+    
+    private static final String SQL_INSERT_AUTHORITY
+        = "insert into authorities (username, authority) values (?, ?)";
+    
+    private static final String SQL_DELETE_AUTHORITIES
+        = "delete from authorities where username = ?";
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -51,6 +58,14 @@ public class UserDaoDbImpl implements UserDAOInterface {
                 user.getUserId());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
+        
+        // now insert user's roles
+        ArrayList<String> authorities = user.getAuthorities();
+        for (String authority : authorities) {
+            jdbcTemplate.update(SQL_INSERT_AUTHORITY, 
+                                user.getUsername(), 
+                                authority);
+        }
 
         user.setUserId(newId);
         return user;
@@ -59,6 +74,11 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     @Override
     public void deleteUser(int userId) {
+        
+        // first delete all authorities for this user
+        jdbcTemplate.update(SQL_DELETE_AUTHORITIES, userId);
+        
+        // second delete the user
         jdbcTemplate.update(SQL_DELETE_USER, userId);
     }
 
@@ -98,6 +118,7 @@ public class UserDaoDbImpl implements UserDAOInterface {
             User user = new User();
             user.setUserId(rs.getInt("UserID"));
             user.setUserType(rs.getInt("UserTypeID"));
+            user.setUsername(rs.getString("UserName"));
             user.setEmail(rs.getString("UserEmail"));
             user.setUserPassword(rs.getString("UserPassword"));
             user.setUserAvatar(rs.getString("UserAvatar"));
