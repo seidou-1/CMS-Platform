@@ -55,12 +55,13 @@ public class UserController {
     Mo: Travz to update this later from retrieving a single static value to retrieving all users dynamically
     */
     public String loadUsers(HttpServletRequest request, Model model) {
-        User user = userService.getUserById(1);
+        List<User> user = userService.getAllUsers();
+        System.out.println(user);
         model.addAttribute("users", user);
-        return "user";
+        return "users";
     }
 
-    @RequestMapping(value = {"/createUser"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String createUser(HttpServletRequest request, Model model) {
 
         try {
@@ -88,11 +89,33 @@ public class UserController {
 
         return "redirect: viewUsers";
     }
-    
-   @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
-    public String deletUser(@RequestParam("username") int userID, Map<String, Object> model) throws Exception { //Should this be an int or a String?
-        userService.deleteUser(1, 1); //Mo: Travz to change this later from 1 to LoginUserID
-        return "redirect:displayUserList";
+
+    @RequestMapping(value = {"/deleteUser"}, method = RequestMethod.GET)
+    public String deleteUser(HttpServletRequest request, Model model) {
+
+        try {
+            int userId = Integer.parseInt(request.getParameter("userID"));
+            userService.deleteUser(1, userId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return "redirect: viewUsers";
     }
-    
+
+    @RequestMapping(value = {"/selectUser"}, method = RequestMethod.GET)
+    public String selectUser(HttpServletRequest request, Model model) {
+
+        try {
+            int userId = Integer.parseInt(request.getParameter("userID"));
+            User user = userService.getUserById(userId);
+            model.addAttribute("users", user);
+            System.out.println(user);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return "redirect: viewUsers";
+    }
+
 }

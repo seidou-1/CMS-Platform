@@ -19,8 +19,8 @@ and open the template in the editor.
                 class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
     
     <beans:bean id="encoder"
-                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-    
+            class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+                
     <http pattern="/login" security="none" />
     <http pattern="/error" security="none" />
     <http pattern="/css/**" security="none" />
@@ -30,7 +30,10 @@ and open the template in the editor.
     <http auto-config="true" use-expressions="false">
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
-                    authentication-failure-url="/login?login_error=1"/>
+                    authentication-failure-url="/login?login_error=1"
+                    default-target-url="/viewUsers"
+                    
+                    />
        
         <intercept-url pattern="/" 
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -108,10 +111,18 @@ and open the template in the editor.
         <intercept-url pattern="/allUsers"
                        access="ROLE_ADMIN"/>
         
+<<<<<<< HEAD
         *******************ALL OTHER URLS********************
+=======
+        <!--*******************ALL OTHER URLS********************-->
+<!--        
+        <intercept-url pattern="/**"
+                       access="ROLE_STANDARD"/>-->
+        
+>>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
         
         <intercept-url pattern="/**"
-                       access="ROLE_STANDARD"/>
+                       access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         
         
         *******************REST ENDPOINTS********************
@@ -122,16 +133,26 @@ and open the template in the editor.
     </http> 
     <authentication-manager>
         <authentication-provider>
-            <password-encoder ref="encoder"/>
+            <!--<password-encoder ref="encoder"/>-->
             <jdbc-user-service id="userService"
                                data-source-ref="dataSource"
                                users-by-username-query=
+<<<<<<< HEAD
  "select username, password from users where username=?"
+=======
+ "select username, userpassword, enabled from `users` where username=?"
+>>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
                                authorities-by-username-query=
- "select username, authority from authorities where username=?" />
+ "select username, authority from authorities where username=?" 
+            />
         </authentication-provider>
     </authentication-manager>
     
 </beans:beans>
+<<<<<<< HEAD
         -->
 <!--Mo: Spring configuration file that references context-param entry in WEB-INF-->
+=======
+        
+<!--Mo: Spring configuration file that references context-param entry in WEB-INF-->
+>>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676

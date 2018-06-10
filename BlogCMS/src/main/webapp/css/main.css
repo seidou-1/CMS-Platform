@@ -196,6 +196,89 @@ img.avatar {
     margin: 40px;
 }
 
+/*==============Users================*/
+div#mainUserWindow {
+    background: #474141;
+    width: 100%;
+    height: 600px;
+}
+
+#mainUserWindowPic {
+    background: url('../images/bossPlane.jpg');
+    background-size: contain;
+    width: 100%;
+    height: 100px;
+}
+
+#viewItems {
+    overflow-y: auto;
+    height: 430px;
+}
+
+.viewItem {
+    padding-top: 10px;
+    border-top: 3px solid whitesmoke;
+    border-bottom: 3px solid whitesmoke;
+    height: 65px;
+}
+ 
+
+.itemBrief.toggled { 
+    display: none;
+}
+
+.itemOptions.toggled { 
+    display: none;
+}
+
+
+.viewItem.toggled { 
+    height: 100px;
+}
+
+.itemBrief.toggled { 
+    display: block;
+}
+
+.itemOptions.toggled { 
+    display: block;
+}
+
+.viewItem:hover {
+    cursor: pointer;
+    background: whitesmoke;
+    color: #474141;
+}
+
+.itemDate {
+    text-align: left;
+    font-size: 12px;
+}
+
+.itemSummary {
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    width: 750px;
+}
+
+.itemSummary p {
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical; 
+    box-orient: vertical; 
+}
+
+.itemToggle {
+    font-size: 11px;
+}
+
+
+
 /*=================TAGS ====================*/
 
 /* Example CSS */
@@ -213,7 +296,11 @@ img.avatar {
 
 .taggable-container {
 	width: 600px;
+<<<<<<< HEAD
 	border: 2px solid;
+=======
+	border: 2px solid green;
+>>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
 	border-radius: 5px;
 	height: auto;
 	padding: 5px;
@@ -247,7 +334,11 @@ img.avatar {
 .taggable-tag {
 	list-style: none;
 	float: left;
+<<<<<<< HEAD
 	border: 2px solid;
+=======
+	border: 2px solid green;
+>>>>>>> 1284b8334f997fb923b5d7bba4bcd40c25106676
 	border-radius: 5px;	
 	padding: 6px 36px 6px 12px;
 	margin: 0 10px 0 0;
@@ -306,3 +397,4 @@ img.avatar {
 }
 
 }
+

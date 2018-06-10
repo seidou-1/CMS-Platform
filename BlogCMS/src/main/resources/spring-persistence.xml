@@ -21,7 +21,7 @@
         class="org.apache.commons.dbcp2.BasicDataSource">
       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
       <property name="url" 
-                value="jdbc:mysql://localhost:3306/BBLTravelsTest" /> <!-- Using the actual database  -->
+                value="jdbc:mysql://localhost:3306/BBLTravels" /> <!-- Using the actual database  -->
       <property name="Username" value="root" />
       <property name="Password" value="root" /> <!-- Note the value here is the users MySql password  -->
       <property name="initialSize" value="5" />
@@ -81,7 +81,7 @@
               class="com.sg.blogcms.service.TagServiceImpl">
     </bean>
     
-   <bean id="userService"
+   <bean id="usersService"
             class = "com.sg.blogcms.service.UserServiceImpl">
    </bean>
    
