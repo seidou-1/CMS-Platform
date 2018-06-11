@@ -19,10 +19,53 @@
 
         <!-- Main CSS -->        
         <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+
+
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinymce.init({
+                selector: '#tinymce',
+                plugins: "code image",
+                toolbar: 'newdocument| bold italic | underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect | cut copy paste | bullist numlist | outdent indent blockquote | undo redo removeformat | subscript superscript |code',
+                menubar: "insert",
+            });
+        </script>
     </head>
 
     <!--Banner and nav -->
     <body>
+
+        <!-- Nav -->
+        <div class="nav">
+
+            <!-- buttons for each nav -->
+            <div class="col-md-3">
+                <a href="${pageContext.request.contextPath}/index" class="hero-btns text-center">
+                    <p>Bit Bucket List Travels</p>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="${pageContext.request.contextPath}/createPost" class="hero-btns text-center">
+                    <p>Add Post</p> 
+                </a>   
+            </div>
+
+            <div class="col-md-3">
+                <a href="${pageContext.request.contextPath}/contact" class="hero-btns text-center"> 
+                    <p>Contact Us</p>
+                </a>   
+            </div>
+
+            <div class="col-md-3">
+                <a href="${pageContext.request.contextPath}/login" class="hero-btns text-center"> 
+                    <p>Login</p>
+                </a>    
+            </div>
+
+        </div>  
+        <!-- Nav ends-->    
+
         <div class="container landingIndex">
             <!--            <h1>Bit Bucket List Travels</h1>
                         <hr/>-->
@@ -38,36 +81,6 @@
                 </div>
 
 
-                <!-- Nav -->
-                <div class="nav">
-
-                    <!-- buttons for each nav -->
-                    <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/index" class="hero-btns text-center">
-                            <p>Bit Bucket List Travels</p>
-                        </a>
-                    </div>
-
-                    <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/createPost" class="hero-btns text-center">
-                            <p>Add Post</p> 
-                        </a>   
-                    </div>
-
-                    <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/contact" class="hero-btns text-center"> 
-                            <p>Contact Us</p>
-                        </a>   
-                    </div>
-
-                    <div class="col-md-3">
-                        <a href="${pageContext.request.contextPath}/login" class="hero-btns text-center"> 
-                            <p>Login</p>
-                        </a>    
-                    </div>
-
-                </div>  
-                <!-- Nav ends-->    
 
                 <!-- Mo: logout option near Nav bar -->
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -77,135 +90,11 @@
                 </c:if>
                 <!-- Mo: logout option near Nav bar -->
 
-                <div class ="row"> <!-- First row starts-->
-                    <!--<form action="createPost" class="displayForm" method="POST" id="userForm">-->
 
 
-
-                    <!--Mo: pick up here.. work on form testing-->
-
-
-
-
-
-                    <!-- ASAP Rocky Testing-->
-
-                    <!--<form action="createPost" class="displayForm" method="POST" id="userForm">-->
-
-                    <form action ="createPost" class ="displayForm" method ="POST" id="userForm">
-
-                        <div class="form-group">
-                            <label for="postTitle" class="control-label col-xs-4">Title</label> 
-                            <div class="col-xs-8">
-                                <input id="postTitle" value = "island vibes" name="postTitle" placeholder="Post Title" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="category" class="control-label col-xs-4">Category</label> 
-                            <div class="col-xs-8">
-                                <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
-                                <!--                            <select multiple="multiple" value = "1" id="categoryId" name="categoryId" class="select form-control">
-                                                                <option value="Beaches">Beaches</option>
-                                                                <option value="Sky Scrapers">Sky Scrapers</option>
-                                                                <option value="Views">Views</option>
-                                                                <option value="1">CategoryID1</option>
-                                                                <option value="1">TagID1</option>
-                                                            </select>-->
-                            </div>
-                        </div>
-
-                        <div class="form-group">    
-                            <label for="tags" class="control-label col-xs-4">Tags</label> 
-                            <div class="col-xs-8">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" name="tags" value="Programming" checked>
-                                    Programming
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" name="tags" value="Ice Cream">
-                                    Ice Cream
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" name="tags" value="Mountains">
-                                    Mountains
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" name="tags" value="Fishing">
-                                    Fishing
-                                </label>
-                            </div>
-                        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                        <br> <!-- Seperate tags from Body-->
-
-                        <div class="form-group">
-                            <br> <!-- Seperate tags from Body-->
-
-                            <label for="postBody" class="control-label col-xs-4">Body</label> 
-                            <div class="col-xs-8">
-                                <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control">
-                                
-                            
-                            post detailsssssss body
- 
-
-                                </textarea>
-                            </div>
-                        </div>
-                        <br> <!-- Seperation-->
-
-                        <div class="form-group">
-                            <br> <!-- Seperation-->
-
-                            <label for="postDate" class="control-label col-xs-4">Post Date</label> 
-                            <div class="col-xs-8">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div> 
-                                    <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 12/22/2018" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <br> <!-- Seperation-->
-
-                        <div class="form-group">
-
-                            <br> <!-- Seperation-->
-
-                            <label for="expirationDate" class="control-label col-xs-4">Post Expiration Date</label> 
-                            <div class="col-xs-8">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div> 
-                                    <input id="expirationDate" name="expirationDate" value = "2018-03-20" placeholder="i.e. 12/31/2022" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="userId" class="control-label col-xs-4">UserID</label> 
-                            <div class="col-xs-8">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Z
-                                <select id="userId" name="userId" value = "1" class="select form-control">
-                                    <option value="1">UserID1</option>
-                                    <option value="2">UserID2</option>
-                                </select>
-                            </div>
-                        </div> 
-                        v class="form-group row">
-                        <div class="col-xs-offset-4 col-xs-8">
-                            <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Publish</button>
-                            <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
-                        </div>
-
-                    </form>
-                </div> <!-- First row ends -->
-                <!--</form>-->
-
-
-
-
+                <form method="post">
+                    <div id="tinymce">Hello, World!</div>
+                </form>
 
 
 
@@ -240,13 +129,13 @@
 
 
         </div> <!--Container ends -->
-    </div>
-
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-</body>
+
+
+    </body>
 </html>

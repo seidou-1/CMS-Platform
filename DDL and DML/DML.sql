@@ -31,7 +31,7 @@ VALUES
 ('travzlife', 'ROLE_ADMIN')
 ;
 
-INSERT INTO `PERMISSIONS` (Authority, AddPosts, DeletePosts, UpdatePosts, AddCategories, DeleteCategories, ReadPosts)
+INSERT INTO `PERMISSIONS` (Authority, UserCrud, AddPosts, DeletePosts, UpdatePosts, AddCategories, DeleteCategories, ReadPosts)
 VALUES 
 ('ROLE_USER', '0', '1', '0', '0', '0', '0', '1'), -- Contributor
 ('ROLE_ADMIN', '1', '1', '1', '1', '1', '1', '1') -- Admin
