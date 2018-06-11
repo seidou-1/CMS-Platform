@@ -69,26 +69,26 @@ public class CategoryController {
         return "redirect:/addPost";
     }
 
-//    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
-//    public String updateCategory(HttpServletRequest request) {
-//
-//        Category cat = categoryDao.getCategoryById(Integer.parseInt("category"));
-//
-//        String[] categoryIds = request.getParameterValues("categoryName");
-//
-//        List<Category> categoryList = new ArrayList();
-//
-//        if (categoryIds != null) {
-//            for (String categoryId : categoryIds) {
-//                Category c = categoryDao.getCategoryById(Integer.parseInt(categoryId));
-//                categoryList.add(c);
-//            }
-//        }
-////        need to persist updated category from form
-//
-//        return "redirect:?addPost";
-//
-//    }
+    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
+    public String updateCategory(HttpServletRequest request) {
+
+        Category cat = categoryService.getCategoryById(Integer.parseInt("category"));
+
+        String[] categoryIds = request.getParameterValues("categoryName");
+
+        List<Category> categoryList = new ArrayList();
+
+        if (categoryIds != null) {
+            for (String categoryId : categoryIds) {
+                Category c = categoryService.getCategoryById(Integer.parseInt(categoryId));
+                categoryList.add(c);
+            }
+        }
+//        need to persist updated category from form
+
+        return "redirect:?addPost";
+
+    }
     
     
 //    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
