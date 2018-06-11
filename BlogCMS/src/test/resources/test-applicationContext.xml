@@ -81,7 +81,7 @@
               class="com.sg.blogcms.service.TagServiceImpl">
     </bean>
     
-   <bean id="usersService"
+   <bean id="userService"
             class = "com.sg.blogcms.service.UserServiceImpl">
    </bean>
    

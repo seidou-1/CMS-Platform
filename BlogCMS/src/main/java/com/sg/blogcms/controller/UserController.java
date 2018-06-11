@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.sg.blogcms.service.UserServiceInterface;
 import java.util.List;
-import java.util.Map;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -71,7 +69,7 @@ public class UserController {
             user.setEmail(request.getParameter("userEmail"));
             user.setUserAvatar(request.getParameter("userAvatar"));
             user.setUsername(request.getParameter("userName"));
-            user.setUserType(Integer.parseInt(request.getParameter("userType")));
+            user.setEnabled(true); //Because the user should always be active
             
             //Mo: For Hashing
             String clearPw = request.getParameter("userPassword");

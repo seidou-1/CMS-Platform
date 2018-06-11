@@ -103,9 +103,9 @@
                        access="ROLE_ADMIN"/>
         
         <!--*******************ALL OTHER URLS********************-->
-        <!--        
-<intercept-url pattern="/**"
-        access="ROLE_STANDARD"/>-->
+<!--        
+        <intercept-url pattern="/**"
+                       access="ROLE_USER"/>-->
         
         
         <intercept-url pattern="/**"
