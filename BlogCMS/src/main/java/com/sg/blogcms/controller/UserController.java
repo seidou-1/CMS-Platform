@@ -69,7 +69,7 @@ public class UserController {
             user.setEmail(request.getParameter("userEmail"));
             user.setUserAvatar(request.getParameter("userAvatar"));
             user.setUsername(request.getParameter("userName"));
-            user.setUserType(Integer.parseInt(request.getParameter("userType")));
+            user.setEnabled(true); //Because the user should always be active
             
             //Mo: For Hashing
             String clearPw = request.getParameter("userPassword");
