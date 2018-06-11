@@ -102,30 +102,114 @@
             </div>
             <div class="row">
 
+                <div class="col-md-7"> <!-- For form to be a certain width-->
 
 
+                    <!-- Form Starts -->
 
-                <!-- Form Starts -->
+                    <form action ="createPost" class ="displayForm" method ="POST" id="userForm"  >
 
-                <form action ="createPost" class ="displayForm" method ="POST" id="userForm"  >
-
-                    <div class="form-group">
-                        <label for="postTitle" class="control-label col-xs-4">Title</label> 
-                        <div class="col-xs-8">
-                            <input id="postTitle" value = "island vibes" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                        <div class="form-group">
+                            <label for="postTitle" class="control-label col-xs-4">Title</label> 
+                            <div class="col-xs-8">
+                                <input id="postTitle" value = "island vibes" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="category" class="control-label col-xs-4">Category</label> 
-                        <div class="col-xs-8">
-                            <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
 
-                            <!-- Asher to add Category logic here. Replace static value-->
 
+
+
+                        <br> <!-- Seperate tags from Body-->
+
+                        <div class="form-group">
+                            <br> <!-- Seperate tags from Body-->
+
+                            <label for="postBody" class="control-label col-xs-4">Body</label> 
+                            <div class="col-xs-8">
+                                <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control">
+                            Lorem Khaled Ipsum is a major key to success. 
+                            To be successful you’ve got to work hard, to make history, 
+                            simple, you’ve got to make it. Mogul talk. The key is to drink coconut, 
+                            fresh coconut, trust me. Cloth talk. 
+                                </textarea>
+                            </div>
                         </div>
-                    </div>
+                        <br> <!-- Seperation-->
 
+                        <div class="form-group">
+                            <br> <!-- Seperation-->
+
+                            <label for="postDate" class="control-label col-xs-4">Post Date</label> 
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div> 
+                                    <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 12/22/2018" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br> <!-- Seperation-->
+
+                        <div class="form-group">
+
+                            <br> <!-- Seperation-->
+
+                            <label for="expirationDate" class="control-label col-xs-4">Post Expiration Date</label> 
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div> 
+                                    <input id="expirationDate" name="expirationDate" value = "2018-03-20" placeholder="i.e. 12/31/2022" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br> <!-- Seperation-->
+
+                        <div class="form-group">
+                            <label for="userId" class="control-label col-xs-4">UserID</label> 
+                            <div class="col-xs-8">
+                                <select id="userId" name="userId" value = "1" class="select form-control">
+                                    <option value="1">UserID1</option>
+                                    <option value="2">UserID2</option>
+                                </select>
+                            </div>
+                        </div> 
+
+
+                        <br> <!-- Seperation-->
+
+                        <div class="form-group row">
+                            <div class="col-xs-offset-4 col-xs-8">
+                                <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Publish</button>
+                                <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
+                            </div>
+                        </div>
+                    </form> 
+
+
+                    <!-- Form Ends -->
+
+
+
+
+
+
+
+
+
+                </div> <!-- div class col-md-8 ends-->
+
+                <div class = "col-md-5">
+
+                    <!-- Previous posts\Categories\Tags will display here-->
+
+
+                    <!-- ******************Tag Selection************************-->
                     <div class="form-group"> 
 
                         <!-- Matt to replace hard coded value with Tag code-->
@@ -150,92 +234,82 @@
                                 Fishing
                             </label>
                         </div>
-                    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                    <br> <!-- Seperate tags from Body-->
-
-                    <div class="form-group">
-                        <br> <!-- Seperate tags from Body-->
-
-                        <label for="postBody" class="control-label col-xs-4">Body</label> 
-                        <div class="col-xs-8">
-                            <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control">
-                            Lorem Khaled Ipsum is a major key to success. 
-                            To be successful you’ve got to work hard, to make history, 
-                            simple, you’ve got to make it. Mogul talk. The key is to drink coconut, 
-                            fresh coconut, trust me. Cloth talk. 
-                            </textarea>
-                        </div>
-                    </div>
-                    <br> <!-- Seperation-->
-
-                    <div class="form-group">
-                        <br> <!-- Seperation-->
-
-                        <label for="postDate" class="control-label col-xs-4">Post Date</label> 
-                        <div class="col-xs-8">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div> 
-                                <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 12/22/2018" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-
-                    <br> <!-- Seperation-->
-
-                    <div class="form-group">
-
-                        <br> <!-- Seperation-->
-
-                        <label for="expirationDate" class="control-label col-xs-4">Post Expiration Date</label> 
-                        <div class="col-xs-8">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div> 
-                                <input id="expirationDate" name="expirationDate" value = "2018-03-20" placeholder="i.e. 12/31/2022" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-
-                    <br> <!-- Seperation-->
-
-                    <div class="form-group">
-                        <label for="userId" class="control-label col-xs-4">UserID</label> 
-                        <div class="col-xs-8">
-                            <select id="userId" name="userId" value = "1" class="select form-control">
-                                <option value="1">UserID1</option>
-                                <option value="2">UserID2</option>
-                            </select>
-                        </div>
                     </div> 
+                    <!-- ******************Tag Selection************************-->
 
+                    <!-- ******************Category Selection************************-->
 
-                    <br> <!-- Seperation-->
+                    <div class="form-group">
+                        <label for="category" class="control-label col-xs-4">Category</label> 
+                        <div class="col-xs-8">
+                            <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
 
-                    <div class="form-group row">
-                        <div class="col-xs-offset-4 col-xs-8">
-                            <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Publish</button>
-                            <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
+                            <!-- Asher to add Category logic here. Replace static value-->
+
                         </div>
                     </div>
-                </form> 
+
+                    <!-- ******************Category Selection************************-->
+
+                    <!-- ******************Previous Posts************************-->
+
+                    <div class ="scrollable">
+
+                        <table class ="table displayTable text-center">
+
+                            <thead>
+                                <tr>
+                                    <th>Post Title</th>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <!--This grabs the value from the PostController "/viewPosts" endpoint in loadPosts method-->
+                                <c:forEach var = "i" begin = "1" end = "${posts.size()}">
+
+                                    <!-- Below: This will go to the Controller and find viewPosts. The Controller will access the service layer and 
+                                    return all the posts in the dao. It will get then look out for the postId for each post. To make it
+                                    dynamic, i am mixing the context path with the index slot of the for loop. This will make it iterate
+                                    through every single post-->
+
+                                    <tr class ="clickable-row" data-href="${pageContext.request.contextPath}/viewPosts?postId=${posts[i].postId}">
+
+                                        <!--Below: this will take all those values and dynamically insert it into the property for each column
+                                        i.e. postTitle, category, and postDate-->
+
+                                            <td>
+                                            <c:out value = "${posts[i].postTitle}"></c:out>
+                                            </td>
+
+                                            <td>
+                                            <c:out value = "${posts[i].Category.categoryName}"></c:out>
+                                            </td>
+
+                                            <td>
+                                            <c:out value = "${posts[i].postDate}"></c:out>
+                                            </td>
+
+                                    </tr>
+                                    
+                                </c:forEach>
+                                    
+                            </tbody>
+
+                    </div> <!-- Scrollable class ends-->
 
 
-                <!-- Form Ends -->
+
+
+                    <!-- ******************Previous Posts************************-->
 
 
 
 
 
-
-
-
-
-
-
-
+                </div> <!-- div class col-md-4 ends-->
 
             </div>
         </div>

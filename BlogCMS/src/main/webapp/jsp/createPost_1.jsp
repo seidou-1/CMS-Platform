@@ -199,9 +199,9 @@
                             <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
                         </div>
 
-                    </form>
+                    </form>                 <!--</form>-->
+
                 </div> <!-- First row ends -->
-                <!--</form>-->
 
 
 
