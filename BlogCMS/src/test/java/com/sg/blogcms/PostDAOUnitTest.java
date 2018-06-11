@@ -74,6 +74,7 @@ public class PostDAOUnitTest {
 
     @Before
     public void setUp() {
+//  No longer need to clear out everything
 //        
 //        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
 //        
@@ -122,7 +123,8 @@ public class PostDAOUnitTest {
         /*
         This method tests to make sure what's asserted here matches
         exactly with the createPost method down below
-        */
+         */
+
         //Arrange
         Category myCategory = createCategory();
 
@@ -130,19 +132,33 @@ public class PostDAOUnitTest {
 
         Post myPost = createPost(myCategory, myUser);
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date dateStr;
+        
+        java.sql.Date dateDB = null;
+        try {
+            dateStr = formatter.parse("2018-03-20");
+            dateDB = new java.sql.Date(dateStr.getTime());
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(PostDAOUnitTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         //Act
         myPost = postDao.addPost(myPost); //cool 
-         
+
         //Assert
         assert myPost.getPostTitle().equals("Water boy");
         assert myPost.getPostBody().equals("Post body text");
-//        assert myPost.getPostDate().equals("2018-03-20"); How do i varify dates?
-//        assert myPost.getExpirationDate().equals("2018-03-20"); How do i varify dates?
+        assert myPost.getPostDate().equals(dateDB); //How do i varify dates?
+        assert myPost.getExpirationDate().equals(dateDB); //How do i varify dates?
         assert myPost.getPostId() != 0; //shorthand for assert true. As long as we have an ID back.
         assert myPost.getUserId() == (myUser.getUserId()); //When you get a cannot be referenced error, change to "==" instead of .equals
         assert myPost.getCategoryId() == (myCategory.getCategoryId());
+        assert myPost.getCategory().getCategoryName().equals(myCategory.getCategoryName());
     }
 
+    @Test
     public void testGetPostById() {
         //Arrange
         Category myCategory = createCategory();
@@ -162,13 +178,14 @@ public class PostDAOUnitTest {
         assert myReadPost.getFeatureImage().equals(myPost.getFeatureImage()); //Taking 159 (the act and compareing it here)
 
         assert myReadPost.getPostBody().equals(myPost.getPostBody());
-        
+
         assert myReadPost.getCategory().getCategoryName().equals(myCategory.getCategoryName());
-        
+
         assert myReadPost.getCategory().getCategoryId() == myCategory.getCategoryId();
         //Do this for each remaining member field
     }
 
+    @Test
     public void testDeletePost() {
         //Arrange
         Category myCategory = createCategory();
@@ -178,16 +195,16 @@ public class PostDAOUnitTest {
         Post myPost = createPost(myCategory, myUser);
 
         myPost = postDao.addPost(myPost); //cool 
-        
+
         //Act
-        
         postDao.deletePost(myPost.getPostId());
-        
-        assert postDao.getPostById(myPost.getPostId())== null;
+
+        assert postDao.getPostById(myPost.getPostId()) == null;
     }
-    
-    public void testUpdatePost(){
-         //Arrange
+
+    @Test
+    public void testUpdatePost() {
+        //Arrange
         Category myCategory = createCategory();
 
         User myUser = createUser();
@@ -195,29 +212,26 @@ public class PostDAOUnitTest {
         Post myPost = createPost(myCategory, myUser);
 
         myPost = postDao.addPost(myPost); //cool 
-        
+
         //Changes:
         myPost.setPostTitle("a brand new title");
         //Do this for each member property. Best practice to change all of them
-        
+
         //Act
-        
         postDao.updatePost(myPost);
-        
+
         Post myUpdatedPost = postDao.getPostById(myPost.getPostId());
-        
+
         //Assert
         assert myUpdatedPost.getPostTitle().equals("a brand new title");
         //I would do this for each change i made from line 194 (before a brand new title)
-        
-        List <Post> myPostByCategory = new ArrayList<>();
-        assert myPostByCategory.size() == 1;
-        
+
+        List<Post> myPostByCategory = new ArrayList<>();
+
         /*
         For every method in the dao, have a unit test for it
         For every method in the service, have a unit test for it
-        */
-        
+         */
     }
 
 //    @Test
@@ -238,7 +252,7 @@ public class PostDAOUnitTest {
         myUser.setEmail("myemail@email.com");
         myUser.setUserAvatar("red fox");
         myUser.setUserPassword("password");
-        myUser.setUserType(1);
+//        myUser.setUserType(1);
         myUser.setUsername("admin");
         userDao.addUser(myUser);
         User userIdFromDB = userDao.getUserById(myUser.getUserId());
@@ -337,40 +351,35 @@ public class PostDAOUnitTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     private Category createCategory() {
         Category myCategory = new Category();
         myCategory.setCategoryName("snowflakes");
         myCategory = categoryDao.addCategory(myCategory);
-        
+
         return myCategory;
-        
+
     }
 
     private User createUser() {
         User myUser = new User();
+        myUser.setUsername("molife");
         myUser.setEmail("myemail@email.com");
+        myUser.setUserPassword("1");
         myUser.setUserAvatar("red fox");
-        myUser.setUserPassword("password");
-        myUser.setUserType(1);
-        myUser.setUsername("admin");
+        myUser.setEnabled(true);
         myUser = userDao.addUser(myUser);
-        
+
         return myUser;
     }
 
-    private Post createPost(Category myCategory, User myUser) { //rename to createTestPost
+    private Post createPost(Category myCategory, User myUser) {
         Post myPost = new Post();
 
         myPost.setPostTitle("Water boy");
         myPost.setPostBody("Post body text");
 
         //Format this properly to match DB
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM--dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date dateStr;
         try {
             dateStr = formatter.parse("2018-03-20");
@@ -382,8 +391,11 @@ public class PostDAOUnitTest {
         }
 
         myPost.setFeatureImage("Image stuff");
-
+        
+        myPost.setCategory(myCategory);//Need to set category first otherwise null pointer
         myPost.setCategoryId(myCategory.getCategoryId());
+        
+        myPost.setUser(myUser);//Same
         myPost.setUserId(myUser.getUserId());
         //No need to set postId because the DAO does it for me
         return myPost;

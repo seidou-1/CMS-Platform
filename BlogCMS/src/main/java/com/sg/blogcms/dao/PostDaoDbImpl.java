@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
@@ -154,10 +155,13 @@ public class PostDaoDbImpl implements PostDAOInterface {
 //        jdbcTemplate.update(SQL_DELETE_POST, postId);//Shouldn't be Delte Post here...
 
         try {
-            String SQLselect = SQL_SELECT_ALL_POSTS + "/n where PostID = ?";
+            String SQLselect = SQL_SELECT_ALL_POSTS + "\n where POSTS.PostID = ?";
 //            return jdbcTemplate.queryForObject(SQL_SELECT_POST, //This will mimic Select all posts but put a where in there. Use the same extractor
             List <Post> myPosts = jdbcTemplate.query(SQLselect, //This will mimic Select all posts but put a where in there. Use the same extractor
                     new PostMapExtractor(), postId);
+            if (myPosts.size()== 0) {
+                return null;
+            }
             return myPosts.get(0); //Grab the only one in the index... 0
         } catch (EmptyResultDataAccessException ex) {
 
@@ -241,14 +245,15 @@ public class PostDaoDbImpl implements PostDAOInterface {
                 Post myPost = results.get(postId); //This checks our map to see if we already have that postId
 
                 if (myPost == null) { //Meaning we haven't ran into this postId yet
-
+                    
+                    myPost = new Post();
+                    
                     Category myCategory = new Category();
                     myCategory.setCategoryId(rs.getInt("CategoryID"));
                     myCategory.setCategoryName(rs.getString("CategoryName"));
 
                     User myUser = new User();
                     myUser.setUserId(rs.getInt("UserID"));
-                    myUser.setUserType(rs.getInt("UserTypeID"));
                     myUser.setUsername(rs.getString("UserName"));
                     myUser.setEmail(rs.getString("UserEmail"));
                     myUser.setUserPassword(rs.getString("UserPassword"));
@@ -256,7 +261,7 @@ public class PostDaoDbImpl implements PostDAOInterface {
 
                     myPost.setPostId(postId);
                     myPost.setPostTitle(rs.getString("PostTitle"));
-                    myPost.setPostTitle(rs.getString("PostBody"));
+                    myPost.setPostBody(rs.getString("PostBody"));
                     myPost.setPostDate((rs.getDate("PostDate")));
                     myPost.setExpirationDate((rs.getDate("ExpirationDate")));
                     myPost.setFeatureImage((rs.getString("FeatureImage")));
@@ -303,7 +308,10 @@ public class PostDaoDbImpl implements PostDAOInterface {
                 }
             } //Closes While loop
 
-            return (List<Post>) results.values();
+            return (List<Post>) results.values().stream().collect(Collectors.toList());
+            //Values returns collections and collections is not an implementation of List
+            //Results is the map, values are the values in the map
+            //Streaming those values (like a for each)
         }
 
     }

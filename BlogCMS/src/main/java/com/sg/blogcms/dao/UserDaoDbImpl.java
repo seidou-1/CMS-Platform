@@ -32,7 +32,7 @@ public class UserDaoDbImpl implements UserDAOInterface {
             = "delete from `Users` where UserID = ?";
 
     private static final String SQL_UPDATE_USER
-            = "update `Users` set UserID = ?, UserName = ?,  UserEmail = ?, UserPassword = ?, UserAvatar = ? " + " where UserID =  ?";
+            = "update `Users` set UserID = ?, UserName = ?,  UserEmail = ?, UserPassword = ?, UserAvatar = ?, Enabled = ? " + " where UserID =  ?";
 
     private static final String SQL_SELECT_USER
             = "select * from `Users` where UserID = ?";
@@ -50,11 +50,11 @@ public class UserDaoDbImpl implements UserDAOInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public User addUser(User user) {
         jdbcTemplate.update(SQL_INSERT_USER,
-                user.getUserType(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getUserPassword(),
-                user.getUserAvatar());
+                user.getUserAvatar(),
+                user.isEnabled());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
         
@@ -84,11 +84,11 @@ public class UserDaoDbImpl implements UserDAOInterface {
     @Override
     public User updateUser(User user) {
         jdbcTemplate.update(SQL_UPDATE_USER,
-                user.getUserType(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getUserPassword(),
                 user.getUserAvatar(),
+                user.isEnabled(),
                 user.getUserId());
 
         return user;
