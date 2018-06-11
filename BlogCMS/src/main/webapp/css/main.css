@@ -125,7 +125,7 @@ input[type=text], input[type=password] {
 
 /*body {
 }*/
-form {
+displayForm {
     display: inline-block;
 }
 /*========BUTTONS========*/

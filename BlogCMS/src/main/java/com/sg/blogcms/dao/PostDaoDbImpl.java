@@ -230,9 +230,9 @@ public class PostDaoDbImpl implements PostDAOInterface {
     private static final class PostMapExtractor implements ResultSetExtractor<List<Post>> {
 
         /*
-        Purpose of this is to... you get your result set (your data). Then 
-        This helps perform Eager loading in that - you get all the data associated to a record
-        if you have multipel joins in a one to many relationship, it will get all the associated data
+        Purpose of this is.. you get your result set (your data).  
+        This helps perform Eager loading such that - you get all the data associated to a record.
+        If you have multipel joins in a one to many relationship, it will get all the associated data
         for that record
          */
         @Override

@@ -215,6 +215,8 @@ public class PostDAOUnitTest {
 
         //Changes:
         myPost.setPostTitle("a brand new title");
+        //...Continue here
+        
         //Do this for each member property. Best practice to change all of them
 
         //Act
