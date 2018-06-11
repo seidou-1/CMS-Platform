@@ -37,15 +37,15 @@
         <!--***********************POST*************************-->
 
         <intercept-url pattern="/createPost"
-                       access="ROLE_STANDARD"/>
+                       access="ROLE_USER"/>
         
         <!--First display the post details -->
         <intercept-url pattern="/displayEditPost" 
-                       access="ROLE_STANDARD"/>
+                       access="ROLE_USER"/>
         
         <!--Then allow them to edit the post -->
         <intercept-url pattern="/editPost"        
-                       access="ROLE_STANDARD"/>
+                       access="ROLE_USER"/>
         
         <intercept-url pattern="/deletePost"
                        access="ROLE_ADMIN"/>
@@ -105,7 +105,7 @@
         <!--*******************ALL OTHER URLS********************-->
 <!--        
         <intercept-url pattern="/**"
-                       access="ROLE_STANDARD"/>-->
+                       access="ROLE_USER"/>-->
         
         
         <intercept-url pattern="/**"
@@ -115,8 +115,8 @@
         <!--*******************REST ENDPOINTS********************-->
         
         <!--I'm going to leave the Rest Endpoints empty for now-->
-      
         <!--*******************REST ENDPOINTS********************-->
+      
     </http> 
     <authentication-manager>
         <authentication-provider>

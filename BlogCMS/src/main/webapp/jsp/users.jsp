@@ -77,7 +77,7 @@
 
                                             <nav class="navbar navbar-expand-sm bg-info">
                                                 <ul class="navbar-nav">
-                                                    <li class="nav-item">
+                                                    <li class="nav-item active">
                                                         <a class="nav-link" href="#">Notifications</a>
                                                     </li>
                                                     <li class="nav-item">
@@ -96,6 +96,22 @@
                                                     </li>
                                                 </ul>
                                             </nav>
+                                            <div id="windowOptions">
+                                                <span>Filters</span>
+                                                <div id="filters">
+                                                    <label for="filter_posts">Posts</label>
+                                                    <input type="checkbox" name="workingFilters" id="filter_posts" checked>
+                                                    
+                                                    <label for="filter_categories">Categories</label>
+                                                    <input type="checkbox" name="workingFilters" id="filter_categories" checked>
+                                                    
+                                                    <label for="filter_users">Users</label>
+                                                    <input type="checkbox" name="workingFilters" id="filter_users" checked>
+                                                    
+                                                    <label for="filter_tags">Tags</label>
+                                                    <input type="checkbox" name="workingFilters" id="filter_tags" checked>
+                                                </div>
+                                            </div>
                                             <div id="viewItems">
                                                 <c:forEach var="i" begin="1" end="10">
                                                     <div class="viewItem container" onclick="toggleItem(this)">
@@ -107,25 +123,19 @@
                                                             <div class="col-md-1 itemToggle">
                                                                 <i class="fas fa-angle-double-down"></i>
                                                             </div>
-                                                            <div class="col-md-8 itemSummary">
+                                                            <div class="col-md-7 itemSummary">
                                                                 <span> User: Matt created a new post </span>
-                                                                <p class="itemBrief" hidden> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                <p class="itemBrief "> Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                                                     Consequatur delectus maiores, porro ex libero assumenda
                                                                     reprehenderit nisi! Sed, minus dolorum doloribus amet
                                                                     earum fuga voluptas non laborum molestias quia aut? Lorem
                                                                     ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-                                                                    delectus maiores, porro ex libero assumenda reprehenderit
-                                                                    nisi! Sed, minus dolorum doloribus amet earum fuga voluptas
-                                                                    non laborum molestias quia aut? Lorem ipsum dolor sit
-                                                                    amet consectetur adipisicing elit. In dolorum consequuntur
-                                                                    eaque nobis deleniti quia voluptatum nesciunt ad consectetur
-                                                                    debitis! Consectetur, sint quaerat accusamus adipisci
-                                                                    eligendi ea provident nemo eaque!</p>
+                                                                    delectus maiores, porro ex libero assumenda!</p>
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <button type="button" class="btn btn-outline-primary itemOptions" hidden>View</button>
-                                                                <button type="button" class="btn btn-outline-danger itemOptions" hidden>Deny</button>
-                                                                <button type="button" class="btn btn-outline-success itemOptions" hidden>Approve</button>
+                                                            <div class="col-md-5 options">
+                                                                <button type="button" class="btn btn-outline-primary itemOptions">View</button>
+                                                                <button type="button" class="btn btn-outline-danger itemOptions">Deny</button>
+                                                                <button type="button" class="btn btn-outline-success itemOptions">Approve</button>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -109,6 +109,19 @@ CREATE TABLE IF NOT EXISTS `Posts_Tags` (
    ON DELETE CASCADE
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
+ 
+  -- Posts to Tags bridge table -- 
+CREATE TABLE IF NOT EXISTS `Notifications` (
+`NotificationID` INT NOT NULL AUTO_INCREMENT,
+`NotificationType` VARCHAR(20) NOT NULL,
+`Username` VARCHAR(20) NOT NULL,
+`ID` INT NOT NULL,
+ PRIMARY KEY (`NotificationID`),
+ CONSTRAINT `fk_Notifications_Username`
+   FOREIGN KEY (`Username`)
+   REFERENCES `Users` (`Username`)
+   ON DELETE NO ACTION 
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 

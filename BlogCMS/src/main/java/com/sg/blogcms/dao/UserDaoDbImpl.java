@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.dao;
 
+import com.sg.blogcms.dto.Notification;
 import com.sg.blogcms.dto.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,12 +40,28 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     private static final String SQL_SELECT_ALL_USERS
             = "select * from `Users`";
-    
+
     private static final String SQL_INSERT_AUTHORITY
-        = "insert into authorities (username, authority) values (?, ?)";
-    
+            = "insert into authorities (username, authority) values (?, ?)";
+
     private static final String SQL_DELETE_AUTHORITIES
-        = "delete from authorities where username = ?";
+            = "delete from authorities where username = ?";
+
+    // Notifications
+    private static final String SQL_INSERT_NOTIFICATION
+            = "insert into `Notifications` (NotificationType, UserName, ID) " + "values (?, ?, ?)";
+
+    private static final String SQL_DELETE_NOTIFICATION
+            = "delete from `Notifications` where NotificationID = ?";
+
+    private static final String SQL_UPDATE_NOTIFICATION
+            = "update `Notifications` set NotificationID = ?, UserName = ?,  ID = ?, Notificationtype = ? " + " where NotificationID =  ?";
+
+    private static final String SQL_SELECT_NOTIFICATION
+            = "select * from `Notifications` where NotificationID = ?";
+
+    private static final String SQL_SELECT_ALL_NOTIFICATION
+            = "select * from `Notifications`";
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -57,13 +74,13 @@ public class UserDaoDbImpl implements UserDAOInterface {
                 user.getUserAvatar());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
-        
+
         // now insert user's roles
         ArrayList<String> authorities = user.getAuthorities();
         for (String authority : authorities) {
-            jdbcTemplate.update(SQL_INSERT_AUTHORITY, 
-                                user.getUsername(), 
-                                authority);
+            jdbcTemplate.update(SQL_INSERT_AUTHORITY,
+                    user.getUsername(),
+                    authority);
         }
 
         user.setUserId(newId);
@@ -73,10 +90,10 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     @Override
     public void deleteUser(int userId) {
-        
+
         // first delete all authorities for this user
         jdbcTemplate.update(SQL_DELETE_AUTHORITIES, userId);
-        
+
         // second delete the user
         jdbcTemplate.update(SQL_DELETE_USER, userId);
     }
@@ -115,12 +132,27 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
-            user.setUserId(rs.getInt("UserID")); 
+            user.setUserId(rs.getInt("UserID"));
             user.setUsername(rs.getString("UserName"));
             user.setEmail(rs.getString("UserEmail"));
             user.setUserPassword(rs.getString("UserPassword"));
             user.setUserAvatar(rs.getString("UserAvatar"));
             return user;
+
+        }
+    }
+
+    private static final class NotificationsMapper implements RowMapper<Notification> {
+
+        public Notification mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Notification notify = new Notification();
+            notify.setNotificationID(rs.getInt("NotificationID"));
+            notify.setNotificationType(rs.getString("NotificationType"));
+//            notify.setDate(rs.getDate("NotificationDate"));
+            notify.setUser(rs.getString("NotificationUser"));
+//            notify.setNotificationBrief(rs.getString("NotificationBrief"));
+
+            return notify;
 
         }
     }
