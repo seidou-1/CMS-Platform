@@ -21,6 +21,8 @@
 
 
     </head>
+    
+    
     <body>
 
         <!--===========BRAND NAME BUTTON==========-->
@@ -100,6 +102,9 @@
             <div>
                 <img src="images/get-buckets.png" alt = "Man getting buckets" class="center-block">
             </div>
+
+            <br> <!-- Seperation-->
+
             <div class="row">
 
                 <div class="col-md-7"> <!-- For form to be a certain width-->
@@ -120,10 +125,11 @@
 
 
 
-                        <br> <!-- Seperate tags from Body-->
+                        <br> <!-- Separation-->
 
                         <div class="form-group">
-                            <br> <!-- Seperate tags from Body-->
+
+                            <br> <!-- Separation-->
 
                             <label for="postBody" class="control-label col-xs-4">Body</label> 
                             <div class="col-xs-8">
@@ -194,17 +200,9 @@
 
                     <!-- Form Ends -->
 
+                </div> <!-- div class col-md-7 ends-->
 
-
-
-
-
-
-
-
-                </div> <!-- div class col-md-8 ends-->
-
-                <div class = "col-md-5">
+                <div class = "col-md-5"> <!-- div class col-md-5 starts-->
 
                     <!-- Previous posts\Categories\Tags will display here-->
 
@@ -212,8 +210,7 @@
                     <!-- ******************Tag Selection************************-->
                     <div class="form-group"> 
 
-                        <!-- Matt to replace hard coded value with Tag code-->
-
+                        <!-- Matt to replace hard coded code below with Tag code-->
 
                         <label for="tags" class="control-label col-xs-4">Tags</label> 
                         <div class="col-xs-8">
@@ -253,7 +250,7 @@
 
                     <!-- ******************Previous Posts************************-->
 
-                    <div class ="scrollable">
+                    <div class ="scrollable"> <!-- Contains for each data-->
 
                         <table class ="table displayTable text-center">
 
@@ -292,28 +289,24 @@
                                             <c:out value = "${posts[i].postDate}"></c:out>
                                             </td>
 
-                                    </tr>
-                                    
+                                        </tr>
+
                                 </c:forEach>
-                                    
+
                             </tbody>
+                        </table>
 
                     </div> <!-- Scrollable class ends-->
-
 
 
 
                     <!-- ******************Previous Posts************************-->
 
 
-
-
-
-                </div> <!-- div class col-md-4 ends-->
-
             </div>
         </div>
 
+                  
 
 
         <!-- Placed at the end of the document so the pages load faster -->
