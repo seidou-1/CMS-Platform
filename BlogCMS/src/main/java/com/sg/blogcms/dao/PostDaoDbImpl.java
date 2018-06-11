@@ -5,19 +5,25 @@
  */
 package com.sg.blogcms.dao;
 
+import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.dto.Post;
+import com.sg.blogcms.dto.Tag;
+import com.sg.blogcms.dto.User;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 
 /**
  *
@@ -81,8 +87,16 @@ public class PostDaoDbImpl implements PostDAOInterface {
             + "\n"
             + "WHERE TAGS.TAGID = ?";
 
-    private static final String SQL_SELECT_ALL_POSTS
-            = "SELECT * FROM `POSTS`";
+    private static final String SQL_SELECT_ALL_POSTS //This used to be lazy loading - we're not getting any other data. But now it's eager loading
+            = "SELECT POSTS.* , CATEGORIES.CATEGORYNAME, USERS.*, TAGS.*FROM BBLTRAVELSTEST.POSTS \n"
+            + "\n"
+            + "INNER JOIN CATEGORIES ON CATEGORIES.CATEGORYID = POSTS.CATEGORYID\n"
+            + "\n"
+            + "INNER JOIN USERS ON USERS.USERID = POSTS.USERID\n"
+            + "\n"
+            + "LEFT  JOIN POSTS_TAGS ON POSTS.POSTID = POSTS_TAGS.POSTID\n"
+            + "\n"
+            + "LEFT JOIN TAGS ON TAGS.TAGID = POSTS_TAGS.TAGID";
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -138,22 +152,27 @@ public class PostDaoDbImpl implements PostDAOInterface {
 
     @Override
     public Post getPostById(int postId) {
-        jdbcTemplate.update(SQL_DELETE_POST, postId);
+//        jdbcTemplate.update(SQL_DELETE_POST, postId);//Shouldn't be Delte Post here...
 
         try {
-            return jdbcTemplate.queryForObject(SQL_SELECT_POST,
-                    new PostMapper(), postId);
-
+            String SQLselect = SQL_SELECT_ALL_POSTS + "\n where POSTS.PostID = ?";
+//            return jdbcTemplate.queryForObject(SQL_SELECT_POST, //This will mimic Select all posts but put a where in there. Use the same extractor
+            List <Post> myPosts = jdbcTemplate.query(SQLselect, //This will mimic Select all posts but put a where in there. Use the same extractor
+                    new PostMapExtractor(), postId);
+            if (myPosts.size()== 0) {
+                return null;
+            }
+            return myPosts.get(0); //Grab the only one in the index... 0
         } catch (EmptyResultDataAccessException ex) {
 
-            return null;
+            return null; 
         }
     }
 
     @Override
     public List<Post> getAllPosts() {
 
-        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
+        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapExtractor());
 
     }
 
@@ -205,6 +224,95 @@ public class PostDaoDbImpl implements PostDAOInterface {
         }
 
         return null;
+
+    }
+
+    private static final class PostMapExtractor implements ResultSetExtractor<List<Post>> {
+
+        /*
+        Purpose of this is.. you get your result set (your data).  
+        This helps perform Eager loading such that - you get all the data associated to a record.
+        If you have multipel joins in a one to many relationship, it will get all the associated data
+        for that record
+         */
+        @Override
+        public List<Post> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+            Map<Integer, Post> results = new HashMap<>();//within this
+            //This will go to the next record and loop through the record set
+            while (rs.next()) { //Loop through all the results (whichever query is ran.. like select all posts)
+                int postId = rs.getInt("PostID");//This has to match the DB table spelling
+                Post myPost = results.get(postId); //This checks our map to see if we already have that postId
+
+                if (myPost == null) { //Meaning we haven't ran into this postId yet
+                    
+                    myPost = new Post();
+                    
+                    Category myCategory = new Category();
+                    myCategory.setCategoryId(rs.getInt("CategoryID"));
+                    myCategory.setCategoryName(rs.getString("CategoryName"));
+
+                    User myUser = new User();
+                    myUser.setUserId(rs.getInt("UserID"));
+                    myUser.setUsername(rs.getString("UserName"));
+                    myUser.setEmail(rs.getString("UserEmail"));
+                    myUser.setUserPassword(rs.getString("UserPassword"));
+                    myUser.setUserAvatar(rs.getString("UserAvatar"));
+
+                    myPost.setPostId(postId);
+                    myPost.setPostTitle(rs.getString("PostTitle"));
+                    myPost.setPostBody(rs.getString("PostBody"));
+                    myPost.setPostDate((rs.getDate("PostDate")));
+                    myPost.setExpirationDate((rs.getDate("ExpirationDate")));
+                    myPost.setFeatureImage((rs.getString("FeatureImage")));
+                    myPost.setCategoryId((rs.getInt("CategoryID")));
+                    myPost.setUserId((rs.getInt("UserID")));
+
+                    //Now associate the Category and User with the Post
+                    myPost.setCategory(myCategory);
+                    myPost.setUser(myUser);
+
+                    List<Tag> myTags = new ArrayList<>();
+
+                    //An int cannot be set to null but Integer can
+                    Integer myTagId = rs.getInt("TagID");
+
+                    if (myTagId != null) { //Meaning i have a tag
+
+                        Tag myTag = new Tag();
+                        //I already have the Id.. hence this if statement condition being true
+
+                        myTag.setTagId(myTagId);
+                        myTag.setTagName(rs.getString("TagName"));
+
+                        myTags.add(myTag);
+
+                    }
+
+                    myPost.setTag(myTags);
+
+                    results.put(postId, myPost);
+
+                    /*
+                    We are eagerly taking all this data and "hydrating" our post object
+                     */
+                } //myPost if ends
+                else {
+                    Tag myTag = new Tag();
+
+                    myTag.setTagId(rs.getInt("TagID"));
+                    myTag.setTagName(rs.getString("TagName"));
+
+                    //This returns a list of Tags
+                    myPost.getTag().add(myTag);
+                }
+            } //Closes While loop
+
+            return (List<Post>) results.values().stream().collect(Collectors.toList());
+            //Values returns collections and collections is not an implementation of List
+            //Results is the map, values are the values in the map
+            //Streaming those values (like a for each)
+        }
 
     }
 
