@@ -21,8 +21,8 @@
 
 
     </head>
-    
-    
+
+
     <body>
 
         <!--===========BRAND NAME BUTTON==========-->
@@ -177,17 +177,27 @@
                         <br> <!-- Seperation-->
 
                         <div class="form-group">
-                            <label for="userId" class="control-label col-xs-4">UserID</label> 
-                            <div class="col-xs-8">
-                                <select id="userId" name="userId" value = "1" class="select form-control">
-                                    <option value="1">UserID1</option>
-                                    <option value="2">UserID2</option>
-                                </select>
-                            </div>
+                            <input id="userId" name="userId" value = "1" type = "hidden">
+
                         </div> 
 
 
                         <br> <!-- Seperation-->
+
+
+                        <!-- ******************Category Selection************************-->
+
+                        <div class="form-group">
+                            <label for="category" class="control-label col-xs-4">Category</label> 
+                            <div class="col-xs-8">
+                                <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
+
+                                <!-- Asher to add Category logic here. Replace static value-->
+
+                            </div>
+                        </div>
+
+                        <!-- ******************Category Selection************************-->
 
                         <div class="form-group row">
                             <div class="col-xs-offset-4 col-xs-8">
@@ -195,6 +205,7 @@
                                 <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
                             </div>
                         </div>
+
                     </form> 
 
 
@@ -234,19 +245,7 @@
                     </div> 
                     <!-- ******************Tag Selection************************-->
 
-                    <!-- ******************Category Selection************************-->
 
-                    <div class="form-group">
-                        <label for="category" class="control-label col-xs-4">Category</label> 
-                        <div class="col-xs-8">
-                            <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
-
-                            <!-- Asher to add Category logic here. Replace static value-->
-
-                        </div>
-                    </div>
-
-                    <!-- ******************Category Selection************************-->
 
                     <!-- ******************Previous Posts************************-->
 
@@ -264,35 +263,21 @@
                             </thead>
 
                             <tbody>
-                                <!--This grabs the value from the PostController "/viewPosts" endpoint in loadPosts method-->
-                                <c:forEach var = "i" begin = "1" end = "${posts.size()}">
-
-                                    <!-- Below: This will go to the Controller and find viewPosts. The Controller will access the service layer and 
-                                    return all the posts in the dao. It will get then look out for the postId for each post. To make it
-                                    dynamic, i am mixing the context path with the index slot of the for loop. This will make it iterate
-                                    through every single post-->
-
-                                    <tr class ="clickable-row" data-href="${pageContext.request.contextPath}/viewPosts?postId=${posts[i].postId}">
-
-                                        <!--Below: this will take all those values and dynamically insert it into the property for each column
-                                        i.e. postTitle, category, and postDate-->
-
-                                            <td>
-                                            <c:out value = "${posts[i].postTitle}"></c:out>
-                                            </td>
-
-                                            <td>
-                                            <c:out value = "${posts[i].Category.categoryName}"></c:out>
-                                            </td>
-
-                                            <td>
-                                            <c:out value = "${posts[i].postDate}"></c:out>
-                                            </td>
-
-                                        </tr>
+                                <c:forEach items="${posts}" var = "post" >
+                                    
+                                <tr>
+                                    <td>
+                                       ${post.postTitle}
+                                    </td>
+                                    <td>
+                                       ${post.postDate}
+                                    </td>
+                                    <td>
+                                       ${post.category.categoryName}
+                                    </td>
+                                </tr>
 
                                 </c:forEach>
-
                             </tbody>
                         </table>
 
@@ -303,16 +288,16 @@
                     <!-- ******************Previous Posts************************-->
 
 
+                </div>
             </div>
-        </div>
-
-                  
 
 
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 
     </body>
