@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.sg.blogcms.dto;
 
 import java.sql.Date;
@@ -13,12 +12,14 @@ import java.sql.Date;
  * @author Travz
  */
 public class Notification {
-     private int notificationID;
-     private String notificationType;
-     private String notificationBrief;
-     private String user;
-     private boolean viewed;
-     private Date date;
+
+    private int notificationID;
+    private String notificationType;
+    private String notificationClass;
+    private String notificationBrief;
+    private String user;
+    private boolean viewed;
+    private Date date;
 
     public Notification(int notificationID, String notificationType, String notificationBrief, String user, boolean viewed, Date date) {
         this.notificationID = notificationID;
@@ -28,8 +29,16 @@ public class Notification {
         this.viewed = viewed;
         this.date = date;
     }
-    
-    public Notification() { 
+
+    public String getNotificationClass() {
+        return notificationClass;
+    }
+
+    public void setNotificationClass(String notificationClass) {
+        this.notificationClass = notificationClass;
+    }
+
+    public Notification() {
     }
 
     public int getNotificationID() {
@@ -79,11 +88,5 @@ public class Notification {
     public void setDate(Date date) {
         this.date = date;
     }
-     
-     
-     
-     
-     
-     
-     
+
 }

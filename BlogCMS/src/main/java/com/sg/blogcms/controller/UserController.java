@@ -1,6 +1,8 @@
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.dto.Notification;
 import com.sg.blogcms.dto.User;
+import com.sg.blogcms.service.MiscService;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -17,20 +19,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Controller
 public class UserController {
-    
+
     /*
     Mo: This UserController hashes the password for new Users before storing the values in the database.
-    */
-
+     */
     UserServiceInterface userService;
+    MiscService miscService;
     PasswordEncoder encoder;
 
     @Inject
-    public UserController(UserServiceInterface userService, PasswordEncoder encoder) {
+    public UserController(UserServiceInterface userService, MiscService miscService, PasswordEncoder encoder) {
         this.userService = userService;
+        this.miscService = miscService;
         this.encoder = encoder;
+
     }
-    
+
     /*
     MO: Commented these below endpoints. Chat with Travz to figure out which JSPs need to be created
     
@@ -47,16 +51,14 @@ public class UserController {
     public String displayUserForm(Map<String, Object> model) {
         return "addUserForm";
     }
-    */
-
-    @RequestMapping(value = {"/viewUsers"}, method = RequestMethod.GET)
-    /*
-    Mo: Travz to update this later from retrieving a single static value to retrieving all users dynamically
-    */
+     */
+    @RequestMapping(value = {"/userDashboard"}, method = RequestMethod.GET)
     public String loadUsers(HttpServletRequest request, Model model) {
         List<User> user = userService.getAllUsers();
-        System.out.println(user);
-        model.addAttribute("users", user);
+        List<Notification> notifications = miscService.getUserNotifications("travzlife");
+
+        model.addAttribute("view", request.getParameter("view"));
+        model.addAttribute("notifications", notifications);
         return "users";
     }
 
@@ -70,7 +72,7 @@ public class UserController {
             user.setUserAvatar(request.getParameter("userAvatar"));
             user.setUsername(request.getParameter("userName"));
             user.setUserType(Integer.parseInt(request.getParameter("userType")));
-            
+
             //Mo: For Hashing
             String clearPw = request.getParameter("userPassword");
             String hashPw = encoder.encode(clearPw);

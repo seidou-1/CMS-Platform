@@ -75,62 +75,60 @@
                                         <div id="mainUserWindow">
                                             <header id="mainUserWindowPic"></header>
 
-                                            <nav class="navbar navbar-expand-sm bg-info">
-                                                <ul class="navbar-nav">
+                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                <ul class="navbar-nav" id="inner">
                                                     <li class="nav-item active">
-                                                        <a class="nav-link" href="#">Notifications</a>
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=notifications">Notifications</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Users</a>
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=users">Users</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Posts</a>
-                                                    </li>
-
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">Categories</a>
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=posts">Posts</a>
                                                     </li>
 
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Tags</a>
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=categories">Categories</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=tags">Tags</a>
                                                     </li>
                                                 </ul>
                                             </nav>
                                             <div id="windowOptions">
-                                                <span>Filters</span>
-                                                <div id="filters">
-                                                    <label for="filter_posts">Posts</label>
-                                                    <input type="checkbox" name="workingFilters" id="filter_posts" checked>
-                                                    
-                                                    <label for="filter_categories">Categories</label>
-                                                    <input type="checkbox" name="workingFilters" id="filter_categories" checked>
-                                                    
-                                                    <label for="filter_users">Users</label>
-                                                    <input type="checkbox" name="workingFilters" id="filter_users" checked>
-                                                    
-                                                    <label for="filter_tags">Tags</label>
-                                                    <input type="checkbox" name="workingFilters" id="filter_tags" checked>
-                                                </div>
+                                                <div class="dropdown show" id="dropdownDiv">
+                                                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Filters
+                                                    </a>
+                                                  
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                      <a class="dropdown-item" href="#">Users</a>
+                                                      <a class="dropdown-item" href="#">Posts</a>
+                                                      <a class="dropdown-item" href="#">Categories</a>
+                                                      <a class="dropdown-item" href="#">Tags</a>
+                                                    </div>
+                                                  </div>
                                             </div>
                                             <div id="viewItems">
-                                                <c:forEach var="i" begin="1" end="10">
+                                                
+                                                <c:choose>
+                                                    <c:when test="${view == 'notifications'}">
+                                                        <c:forEach var="i" begin="1" end="${notifications.size()-1}">
                                                     <div class="viewItem container" onclick="toggleItem(this)">
 
                                                         <div class="row">
                                                             <div class="col-md-11 itemDate">
-                                                                <span>January 5th, 9:38pm </span>
+                                                                <span>
+                                                                        ${notifications[i].date}
+                                                                </span>
                                                             </div>
                                                             <div class="col-md-1 itemToggle">
                                                                 <i class="fas fa-angle-double-down"></i>
                                                             </div>
                                                             <div class="col-md-7 itemSummary">
-                                                                <span> User: Matt created a new post </span>
-                                                                <p class="itemBrief "> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                    Consequatur delectus maiores, porro ex libero assumenda
-                                                                    reprehenderit nisi! Sed, minus dolorum doloribus amet
-                                                                    earum fuga voluptas non laborum molestias quia aut? Lorem
-                                                                    ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-                                                                    delectus maiores, porro ex libero assumenda!</p>
+                                                                <span> User: ${notifications[i].user} ${notifications[i].notificationClass}  a ${notifications[i].notificationType}</span>
+                                                                <p class="itemBrief ">${notifications[i].notificationBrief} </p>
                                                             </div>
                                                             <div class="col-md-5 options">
                                                                 <button type="button" class="btn btn-outline-primary itemOptions">View</button>
@@ -141,6 +139,8 @@
                                                     </div>
                                                 </c:forEach>
 
+                                                    </c:when>
+                                                </c:choose>
 
                                             </div>
                                         </div>
@@ -153,4 +153,4 @@
                                         <script src="${pageContext.request.contextPath}/js/main.js"></script>
                                 </body>
 
-                                </html>
+                                </html>  

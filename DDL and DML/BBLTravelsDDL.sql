@@ -113,7 +113,10 @@ CREATE TABLE IF NOT EXISTS `Posts_Tags` (
   -- Posts to Tags bridge table -- 
 CREATE TABLE IF NOT EXISTS `Notifications` (
 `NotificationID` INT NOT NULL AUTO_INCREMENT,
+`NotificationClass` VARCHAR(20) NOT NULL,
+`NotificationDate` DATETIME NOT NULL,
 `NotificationType` VARCHAR(20) NOT NULL,
+`NotificationBrief` LONGTEXT NOT NULL,
 `Username` VARCHAR(20) NOT NULL,
 `ID` INT NOT NULL,
  PRIMARY KEY (`NotificationID`),

@@ -1,9 +1,9 @@
-<%-- 
-    Document   : login
-    Created on : Jun 7, 2018, 12:25:52 PM
-    Author     : laptop
---%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,6 +42,7 @@
                         <input type="text" 
                                class="form-control" 
                                name="j_username" 
+                               value="travzlife"
                                placeholder="Username"/>
                     </div>
                 </div>
@@ -52,6 +53,7 @@
                         <input type="password" 
                                class="form-control" 
                                name="j_password" 
+                               value="1"
                                placeholder="Password"/>
                     </div>
                 </div>

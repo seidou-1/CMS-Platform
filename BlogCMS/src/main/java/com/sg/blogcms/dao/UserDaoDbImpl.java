@@ -47,22 +47,6 @@ public class UserDaoDbImpl implements UserDAOInterface {
     private static final String SQL_DELETE_AUTHORITIES
             = "delete from authorities where username = ?";
 
-    // Notifications
-    private static final String SQL_INSERT_NOTIFICATION
-            = "insert into `Notifications` (NotificationType, UserName, ID) " + "values (?, ?, ?)";
-
-    private static final String SQL_DELETE_NOTIFICATION
-            = "delete from `Notifications` where NotificationID = ?";
-
-    private static final String SQL_UPDATE_NOTIFICATION
-            = "update `Notifications` set NotificationID = ?, UserName = ?,  ID = ?, Notificationtype = ? " + " where NotificationID =  ?";
-
-    private static final String SQL_SELECT_NOTIFICATION
-            = "select * from `Notifications` where NotificationID = ?";
-
-    private static final String SQL_SELECT_ALL_NOTIFICATION
-            = "select * from `Notifications`";
-
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public User addUser(User user) {
@@ -142,15 +126,16 @@ public class UserDaoDbImpl implements UserDAOInterface {
         }
     }
 
+ 
     private static final class NotificationsMapper implements RowMapper<Notification> {
 
         public Notification mapRow(ResultSet rs, int rowNum) throws SQLException {
             Notification notify = new Notification();
             notify.setNotificationID(rs.getInt("NotificationID"));
             notify.setNotificationType(rs.getString("NotificationType"));
-//            notify.setDate(rs.getDate("NotificationDate"));
+            notify.setDate(rs.getDate("NotificationDate"));
             notify.setUser(rs.getString("NotificationUser"));
-//            notify.setNotificationBrief(rs.getString("NotificationBrief"));
+            notify.setNotificationBrief(rs.getString("NotificationBrief"));
 
             return notify;
 
