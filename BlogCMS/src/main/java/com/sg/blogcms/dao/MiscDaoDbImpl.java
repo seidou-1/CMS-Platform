@@ -118,9 +118,6 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
             notify.setNotificationClass(rs.getString("NotificationClass"));
             notify.setNotificationBrief(rs.getString("NotificationBrief"));
             return notify;
-            
-            
-
         }
     }
 

@@ -140,6 +140,40 @@
                                                 </c:forEach>
 
                                                     </c:when>
+                                                    <c:when test="${view == 'users'}">
+                                                            <c:forEach var="i" begin="1" end="${users.size()-1}">
+                                                        <div class="viewItem container" onclick="toggleItem(this)">
+    
+                                                            <div class="row">
+                                                                <div class="col-md-11 itemDate">
+                                                                    <span>
+                                                                          Last Active: ${users[i].lastActive}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-1 itemToggle">
+                                                                    <i class="fas fa-angle-double-down"></i>
+                                                                </div>
+                                                                <div class="col-md-7 itemSummary">
+                                                                    <span> Username: ${users[i].username} </span>
+                                                                    <p class="itemBrief"> This user has a total of (Change me!) 45 posts </p>
+                                                                </div>
+                                                                <div class="col-md-5 options">
+                                                                    <button type="button" class="btn btn-outline-primary itemOptions">View User Stats</button>
+                                                                    <button type="button" class="btn btn-outline-danger itemOptions">Delete User</button>
+                                                                    <button type="button" class="btn btn-outline-success itemOptions">Edit User</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </c:forEach>
+    
+                                                        </c:when>
+                                                        <c:when test="${view == 'posts'}">
+                                                            <div class="viewItem container" onclick="toggleItem(this)">
+                                                            
+                                                            </div>
+                                                   
+        
+                                                            </c:when>
                                                 </c:choose>
 
                                             </div>

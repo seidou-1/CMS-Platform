@@ -121,25 +121,12 @@ public class UserDaoDbImpl implements UserDAOInterface {
             user.setEmail(rs.getString("UserEmail"));
             user.setUserPassword(rs.getString("UserPassword"));
             user.setUserAvatar(rs.getString("UserAvatar"));
+            user.setLastActive(rs.getDate("LastActive"));
             return user;
 
         }
     }
 
  
-    private static final class NotificationsMapper implements RowMapper<Notification> {
-
-        public Notification mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Notification notify = new Notification();
-            notify.setNotificationID(rs.getInt("NotificationID"));
-            notify.setNotificationType(rs.getString("NotificationType"));
-            notify.setDate(rs.getDate("NotificationDate"));
-            notify.setUser(rs.getString("NotificationUser"));
-            notify.setNotificationBrief(rs.getString("NotificationBrief"));
-
-            return notify;
-
-        }
-    }
 
 }

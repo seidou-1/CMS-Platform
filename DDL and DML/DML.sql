@@ -11,12 +11,12 @@ VALUES
 
 
 
-INSERT INTO `USERS` (UserName, UserEmail, UserPassword, UserAvatar, Enabled)
+INSERT INTO `USERS` (UserName, UserEmail, UserPassword, UserAvatar, Enabled, LastLogin)
 VALUES 
-('molife', 'molife@shinobilife.com', '1', 'smiley face', 1),
-('asherlife', 'asherlife@shinobilife.com', '1', 'straight face', 1),
-('mattlife', 'asherlife@shinobilife.com', '1', 'straight face', 1),
-('travzlife', 'travzlife@shinobilife.com', '1', 'straight face', 1)
+('molife', 'molife@shinobilife.com', '1', 'smiley face', 1, '2018-02-20 23:59:59'),
+('asherlife', 'asherlife@shinobilife.com', '1', 'straight face', 1, '2018-01-1223:59:59'),
+('mattlife', 'asherlife@shinobilife.com', '1', 'straight face', 1, '2018-03-30 23:59:59'),
+('travzlife', 'travzlife@shinobilife.com', '1', 'straight face', 1, '2018-01-11 23:59:59')
 ;
 
 INSERT INTO `Authorities` (UserName, Authority)

@@ -1,8 +1,10 @@
 package com.sg.blogcms.controller;
 
 import com.sg.blogcms.dto.Notification;
+import com.sg.blogcms.dto.Post;
 import com.sg.blogcms.dto.User;
 import com.sg.blogcms.service.MiscService;
+import com.sg.blogcms.service.PostServiceInterface;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -25,14 +27,15 @@ public class UserController {
      */
     UserServiceInterface userService;
     MiscService miscService;
+    PostServiceInterface postService;
     PasswordEncoder encoder;
 
     @Inject
-    public UserController(UserServiceInterface userService, MiscService miscService, PasswordEncoder encoder) {
+    public UserController(UserServiceInterface userService, MiscService miscService, PostServiceInterface postService,  PasswordEncoder encoder) {
         this.userService = userService;
         this.miscService = miscService;
         this.encoder = encoder;
-
+        this.postService = postService;
     }
 
     /*
@@ -54,18 +57,22 @@ public class UserController {
      */
     @RequestMapping(value = {"/userDashboard"}, method = RequestMethod.GET)
     public String loadUsers(HttpServletRequest request, Model model) {
-        List<User> user = userService.getAllUsers();
+        List<User> users = userService.getAllUsers();
         List<Notification> notifications = miscService.getUserNotifications("travzlife");
+        List<Post> posts = postService.getPostsByUser(1);
+        System.out.println(posts);
 
         model.addAttribute("view", request.getParameter("view"));
+        model.addAttribute("users", users);
         model.addAttribute("notifications", notifications);
+        model.addAttribute("posts", posts);
         return "users";
     }
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String createUser(HttpServletRequest request, Model model) {
 
-        try {
+        try { 
             User user = new User();
 
             user.setEmail(request.getParameter("userEmail"));

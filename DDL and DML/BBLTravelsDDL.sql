@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
  `UserEmail` VARCHAR(100) NOT NULL,
  `UserPassword` VARCHAR(100) NOT NULL,
  `UserAvatar` VARCHAR(100) NOT NULL,
+ `LastActive`  DATETIME NOT NULL,
 --  Mo: Included Enabled for active\inactive user. This is a boolean 0 for inactive, 1 for active
  `Enabled` tinyint(1) NOT NULL,
  PRIMARY KEY (`UserID`),

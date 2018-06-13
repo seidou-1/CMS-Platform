@@ -270,6 +270,7 @@ div#filters {
     -webkit-box-orient: vertical; 
     box-orient: vertical; 
     text-overflow: ellipsis;
+    text-transform: capitalize;
 }
 
 .options .itemOptions.toggled { 
@@ -292,10 +293,11 @@ div#filters {
     font-size: 14px;
     font-weight: bold;
     width: 750px;
+    text-transform: uppercase;
 }
 
-.itemSummary p {
-
+.itemSummary span {
+    text-transform: uppercase;
 }
 
 .itemToggle {
