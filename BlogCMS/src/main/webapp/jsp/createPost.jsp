@@ -21,8 +21,8 @@
 
 
     </head>
-    
-    
+
+
     <body>
 
         <!--===========BRAND NAME BUTTON==========-->
@@ -38,28 +38,37 @@
                 <!--===========FLOATS RIGHT=========-->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/index"> <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/index"></a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Add Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
-                    </li>
 
-                    <!--==========DROPDOWN==========-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Login
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" onclick="document.getElementById('loginModal').style.display = 'block'">Login</a>
-                            <a class="dropdown-item" href="#">Sign Up</a>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="navbar-nav">
+
+                    <ul class="navbar-nav">
+                        
+                        <li class ="nav-item">
+                            <a class ="nav-link" href="${pageContext.request.contextPath}/viewPosts">View Posts</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${pageContext.request.contextPath}/createPost">Add Post</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                        </li>
+
+                        <!--==========DROPDOWN==========-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Login
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" onclick="document.getElementById('loginModal').style.display = 'block'">Login</a>
+                                <a class="dropdown-item" href="#">Sign Up</a>
+                            </div>
+                        </li>
+                    </ul>
             </div>
         </nav>
         <hr>
@@ -117,11 +126,9 @@
                         <div class="form-group">
                             <label for="postTitle" class="control-label col-xs-4">Title</label> 
                             <div class="col-xs-8">
-                                <input id="postTitle" value = "island vibes" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                                <input id="postTitle" value = "${post.postTitle}" name="postTitle" placeholder="Post Title" type="text" class="form-control">
                             </div>
                         </div>
-
-
 
 
 
@@ -131,28 +138,34 @@
 
                             <br> <!-- Separation-->
 
-                            <label for="postBody" class="control-label col-xs-4">Body</label> 
+                            <label for="postBody" class="control-label col-xs-4">Body</label> <!--How to get the textarea value -->
                             <div class="col-xs-8">
-                                <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control">
-                            Lorem Khaled Ipsum is a major key to success. 
-                            To be successful you’ve got to work hard, to make history, 
-                            simple, you’ve got to make it. Mogul talk. The key is to drink coconut, 
-                            fresh coconut, trust me. Cloth talk. 
+                                <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" 
+                                          placeholder="
+                                          Lorem Khaled Ipsum is a major key to success. 
+                                          To be successful you’ve got to work hard, to make history, 
+                                          simple, you’ve got to make it. Mogul talk. The key is to drink coconut, 
+                                          fresh coconut, trust me. Cloth talk.">
+
+                                    cloth talk.
+
                                 </textarea>
                             </div>
                         </div>
                         <br> <!-- Seperation-->
 
+
+
                         <div class="form-group">
                             <br> <!-- Seperation-->
 
-                            <label for="postDate" class="control-label col-xs-4">Post Date</label> 
+                            <label for="postDate" class="control-label col-xs-4">Post Date</label> <!-- Change this calendar to be a selection type-->
                             <div class="col-xs-8">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div> 
-                                    <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 12/22/2018" type="text" class="form-control">
+                                    <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 2018-03-20" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -177,17 +190,27 @@
                         <br> <!-- Seperation-->
 
                         <div class="form-group">
-                            <label for="userId" class="control-label col-xs-4">UserID</label> 
-                            <div class="col-xs-8">
-                                <select id="userId" name="userId" value = "1" class="select form-control">
-                                    <option value="1">UserID1</option>
-                                    <option value="2">UserID2</option>
-                                </select>
-                            </div>
+                            <input id="userId" name="userId" value = "1" type = "hidden">
+
                         </div> 
 
 
                         <br> <!-- Seperation-->
+
+
+                        <!-- ******************Category Selection************************-->
+
+                        <div class="form-group">
+                            <label for="category" class="control-label col-xs-4">Category</label> 
+                            <div class="col-xs-8">
+                                <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
+
+                                <!-- Asher to add Category logic here. Replace static value-->
+
+                            </div>
+                        </div>
+
+                        <!-- ******************Category Selection************************-->
 
                         <div class="form-group row">
                             <div class="col-xs-offset-4 col-xs-8">
@@ -195,6 +218,7 @@
                                 <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
                             </div>
                         </div>
+
                     </form> 
 
 
@@ -234,24 +258,12 @@
                     </div> 
                     <!-- ******************Tag Selection************************-->
 
-                    <!-- ******************Category Selection************************-->
 
-                    <div class="form-group">
-                        <label for="category" class="control-label col-xs-4">Category</label> 
-                        <div class="col-xs-8">
-                            <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
-
-                            <!-- Asher to add Category logic here. Replace static value-->
-
-                        </div>
-                    </div>
-
-                    <!-- ******************Category Selection************************-->
 
                     <!-- ******************Previous Posts************************-->
 
                     <div class ="scrollable"> <!-- Contains for each data-->
-
+                        <h4>Latest Posts</h4>
                         <table class ="table displayTable text-center">
 
                             <thead>
@@ -264,35 +276,21 @@
                             </thead>
 
                             <tbody>
-                                <!--This grabs the value from the PostController "/viewPosts" endpoint in loadPosts method-->
-                                <c:forEach var = "i" begin = "1" end = "${posts.size()}">
+                                <c:forEach items="${posts}" var = "post" >
 
-                                    <!-- Below: This will go to the Controller and find viewPosts. The Controller will access the service layer and 
-                                    return all the posts in the dao. It will get then look out for the postId for each post. To make it
-                                    dynamic, i am mixing the context path with the index slot of the for loop. This will make it iterate
-                                    through every single post-->
-
-                                    <tr class ="clickable-row" data-href="${pageContext.request.contextPath}/viewPosts?postId=${posts[i].postId}">
-
-                                        <!--Below: this will take all those values and dynamically insert it into the property for each column
-                                        i.e. postTitle, category, and postDate-->
-
-                                            <td>
-                                            <c:out value = "${posts[i].postTitle}"></c:out>
-                                            </td>
-
-                                            <td>
-                                            <c:out value = "${posts[i].Category.categoryName}"></c:out>
-                                            </td>
-
-                                            <td>
-                                            <c:out value = "${posts[i].postDate}"></c:out>
-                                            </td>
-
-                                        </tr>
+                                    <tr>
+                                        <td>
+                                            ${post.postTitle}
+                                        </td>
+                                        <td>
+                                            ${post.postDate}
+                                        </td>
+                                        <td>
+                                            ${post.category.categoryName}
+                                        </td>
+                                    </tr>
 
                                 </c:forEach>
-
                             </tbody>
                         </table>
 
@@ -303,16 +301,16 @@
                     <!-- ******************Previous Posts************************-->
 
 
+                </div>
             </div>
-        </div>
-
-                  
 
 
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 
     </body>
