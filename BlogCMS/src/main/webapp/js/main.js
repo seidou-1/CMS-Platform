@@ -43,7 +43,7 @@
 // 		if ( e.key !== "Enter" ) {
 // 			e.preventDefault();
 // 		}
-		
+
 // 		// Create the tag
 // 		addTag(input.value);
 // 	}
@@ -53,7 +53,7 @@
 // 	let tag = document.createElement("li");
 // 	let t = `<div class="taggable-text">${text}</div>
 // 					<button type="button" class="taggable-remove"></button>`;
-	
+
 // 	let pos = {
 // 		el: input,
 // 		position: input.getBoundingClientRect()
@@ -61,19 +61,19 @@
 
 // 	tag.className = "taggable-tag adding";
 // 	tag.innerHTML = t;
-	
+
 // 	// Append the tag to the DOM
 // 	tags.appendChild(tag);
-	
+
 // 	// Clear the input element
 // 	input.value = "";
-	
+
 // 	// Check for wrapping
 // 	tags.classList.toggle("taggable-wrapped", isWrapped());
-	
+
 // 	// Animate the input element's position
 // 	animate(pos);
-	
+
 // 	setTimeout(function() {
 // 		tag.classList.remove("adding");
 // 	}, 400);	
@@ -85,12 +85,12 @@
 // 	if ( e.target.classList.contains("taggable-remove") ) {
 // 		let tag = e.target.parentNode;
 // 		let index = [].slice.call(tags.children).indexOf(tag);
-		
+
 // 		let pos = {
 // 			el: input,
 // 			position: input.getBoundingClientRect()
 // 		};
-		
+
 // 		tag.classList.add("deleting");
 
 // 		[].slice.call(tags.children).forEach(function(tag, i) {
@@ -102,7 +102,7 @@
 // 				});
 // 			}
 // 		});
-		
+
 // 		// Remove the tag from the DOM
 // 		tags.removeChild(tag);
 
@@ -146,20 +146,20 @@
 // // caused by a change in the DOM order
 // function animate(obj) {
 // 	let css = obj.el.style;
-	
+
 // 	// Get the node's positon AFTER the change
 // 	let r = obj.el.getBoundingClientRect();
-	
+
 // 	// Calculate the difference in position
 // 	let x = obj.position.left - r.left;
 // 	let y = obj.position.top - r.top;
-	
+
 // 	// Move the node to it's original position before the DOM change
 // 	css.transform = `translate3d(${x}px, ${y}px, 0px)`;
-	
+
 // 	// Trigger a repaint so the next bit works
 // 	obj.el.offsetHeight;
-	
+
 // 	// Reset the transform, but add a transition so it's smooth
 // 	css.transform = `translate3d(0px, 0px, 0px)`;
 // 	css.transition = `transform ${interval}ms`;
@@ -174,10 +174,31 @@
 
 // Travz Users Code
 function toggleItem(item) {
-	$(item).addClass('toggled');
-	var buttons = $('.itemOptions');
-	// buttons.forEach(e => {
-	// 	console.log(e)
-	// });
-	console.log($(item).find('itemOptions'));
+		
+	var summary = $(item).find('.itemBrief');
+	var buttons = $(item).find('.itemOptions');
+	
+	if ($(item).hasClass('toggled')) {
+		$(item).removeClass('toggled');
+	} else {
+		$(item).addClass('toggled');
+		
+	}
+
+	summary.each((index, element) => {
+		$(element).toggle();
+		$(element).addClass('toggled');
+	})
+	
+	buttons.each((index, element) => {
+		$(element).toggle(
+			function() {
+				$(element).addClass('toggled');
+			},
+			function() {
+				$(element).removeClass('toggled');
+			}
+		);
+	 
+	})
 }

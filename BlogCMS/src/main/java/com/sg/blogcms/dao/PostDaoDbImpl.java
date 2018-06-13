@@ -59,11 +59,10 @@ public class PostDaoDbImpl implements PostDAOInterface {
             = "SELECT * FROM `POSTS` WHERE `POSTDATE` = ?";
 
     private static final String SQL_SELECT_POST_BY_USER
-            = "SELECT USERNAME, USEREMAIL, POSTTITLE, POSTDATE FROM `USERS` \n"
-            + "\n"
-            + "RIGHT JOIN `POSTS`\n"
-            + "\n"
-            + "ON POSTS.POSTID = USERS.USERID";
+            = "SELECT USERNAME, USEREMAIL, POSTTITLE, POSTDATE FROM `USERS` RIGHT JOIN `POSTS` ON POSTS.POSTID = USERS.USERID";
+    
+//    private static final String SQL_SELECT_POST_BY_USER
+//            = "SELECT * FROM `POSTS` WHERE `POSTDATE` = ?";
 
     private static final String SQL_SELECT_POST_BY_CATEGORY
             = "SELECT CATEGORYNAME, POSTTITLE, POSTDATE FROM `CATEGORIES` \n"
@@ -191,14 +190,11 @@ public class PostDaoDbImpl implements PostDAOInterface {
     @Override
     public List<Post> getPostsByUser(int userId) { //Varify method
         try {
-            jdbcTemplate.query(SQL_SELECT_POST_BY_USER,
-                    new PostMapper(), userId);
+            return jdbcTemplate.query(SQL_SELECT_POST_BY_USER,
+                    new PostMapper());
         } catch (DataAccessException ex) {
-
+            return null;
         }
-
-        return null;
-
     }
 
     @Override

@@ -75,62 +75,193 @@
                                         <div id="mainUserWindow">
                                             <header id="mainUserWindowPic"></header>
 
-                                            <nav class="navbar navbar-expand-sm bg-info">
-                                                <ul class="navbar-nav">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">Notifications</a>
+                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                <ul class="navbar-nav" id="inner">
+                                                    <li class="nav-item active">
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=notifications">Notifications</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Users</a>
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=users">Users</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Posts</a>
-                                                    </li>
-
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">Categories</a>
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=posts">Posts</a>
                                                     </li>
 
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Tags</a>
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=categories">Categories</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=tags">Tags</a>
                                                     </li>
                                                 </ul>
                                             </nav>
-                                            <div id="viewItems">
-                                                <c:forEach var="i" begin="1" end="10">
-                                                    <div class="viewItem container" onclick="toggleItem(this)">
+                                            <div id="windowOptions">
+                                                <div class="dropdown show" id="dropdownDiv">
+                                                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Filters
+                                                    </a>
 
-                                                        <div class="row">
-                                                            <div class="col-md-11 itemDate">
-                                                                <span>January 5th, 9:38pm </span>
-                                                            </div>
-                                                            <div class="col-md-1 itemToggle">
-                                                                <i class="fas fa-angle-double-down"></i>
-                                                            </div>
-                                                            <div class="col-md-8 itemSummary">
-                                                                <span> User: Matt created a new post </span>
-                                                                <p class="itemBrief" hidden> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                    Consequatur delectus maiores, porro ex libero assumenda
-                                                                    reprehenderit nisi! Sed, minus dolorum doloribus amet
-                                                                    earum fuga voluptas non laborum molestias quia aut? Lorem
-                                                                    ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-                                                                    delectus maiores, porro ex libero assumenda reprehenderit
-                                                                    nisi! Sed, minus dolorum doloribus amet earum fuga voluptas
-                                                                    non laborum molestias quia aut? Lorem ipsum dolor sit
-                                                                    amet consectetur adipisicing elit. In dolorum consequuntur
-                                                                    eaque nobis deleniti quia voluptatum nesciunt ad consectetur
-                                                                    debitis! Consectetur, sint quaerat accusamus adipisci
-                                                                    eligendi ea provident nemo eaque!</p>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <button type="button" class="btn btn-outline-primary itemOptions" hidden>View</button>
-                                                                <button type="button" class="btn btn-outline-danger itemOptions" hidden>Deny</button>
-                                                                <button type="button" class="btn btn-outline-success itemOptions" hidden>Approve</button>
-                                                            </div>
-                                                        </div>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Users</a>
+                                                        <a class="dropdown-item" href="#">Posts</a>
+                                                        <a class="dropdown-item" href="#">Categories</a>
+                                                        <a class="dropdown-item" href="#">Tags</a>
                                                     </div>
-                                                </c:forEach>
+                                                </div>
+                                            </div>
+                                            <div id="viewItems">
 
+                                                <c:choose>
+                                                    <c:when test="${view == 'notifications'}">
+                                                        <c:forEach var="i" begin="1" end="${notifications.size()-1}">
+                                                            <div class="viewItem container" onclick="toggleItem(this)">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-11 itemDate">
+                                                                        <span>
+                                                                            ${notifications[i].date}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-md-1 itemToggle">
+                                                                        <i class="fas fa-angle-double-down"></i>
+                                                                    </div>
+                                                                    <div class="col-md-7 itemSummary">
+                                                                        <span> User: ${notifications[i].user} ${notifications[i].notificationClass}
+                                                                            a ${notifications[i].notificationType}</span>
+                                                                        <p class="itemBrief ">${notifications[i].notificationBrief} </p>
+                                                                    </div>
+                                                                    <div class="col-md-5 options">
+                                                                        <button type="button" class="btn btn-outline-primary itemOptions">View</button>
+                                                                        <button type="button" class="btn btn-outline-danger itemOptions">Deny</button>
+                                                                        <button type="button" class="btn btn-outline-success itemOptions">Approve</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </c:forEach>
+
+                                                    </c:when>
+                                                    <c:when test="${view == 'users'}">
+                                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                                    <ul class="navbar-nav" id="inner">
+                                                                        <li class="nav-item">
+                                                                            <a href="${pageContext.request.contextPath}/createUser" class="btn btn-warning" style="color: red; font-size: bold"> Create New User</a>
+                                                                        </li> 
+                                                                        
+                                                                    </ul>
+                                                                </nav>
+                                                        <c:forEach var="i" begin="1" end="${users.size()-1}">
+                                                            <div class="viewItem container" onclick="toggleItem(this)">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-11 itemDate">
+                                                                        <span>
+                                                                            Last Active: ${users[i].lastActive}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-md-1 itemToggle">
+                                                                        <i class="fas fa-angle-double-down"></i>
+                                                                    </div>
+                                                                    <div class="col-md-7 itemSummary">
+                                                                        <span> Username: ${users[i].username} </span>
+                                                                        <p class="itemBrief"> This user has a total of (Change me!) 45 posts </p>
+                                                                    </div>
+                                                                    <div class="col-md-5 options">
+                                                                        <button type="button" class="btn btn-outline-primary itemOptions">View User Stats</button>
+                                                                        <button type="button" class="btn btn-outline-danger itemOptions">Delete User</button>
+                                                                        <button type="button" class="btn btn-outline-success itemOptions">Edit User</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </c:forEach>
+
+                                                    </c:when>
+                                                    <c:when test="${view == 'posts'}">
+                                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                                    <ul class="navbar-nav" id="inner">
+                                                                        <li class="nav-item">
+                                                                                <a href="${pageContext.request.contextPath}/createPost" class="btn btn-warning" style="color: red; font-size: bold"> Create New Post</a>
+                                                                        </li> 
+                                                                        
+                                                                    </ul>
+                                                                </nav>
+                                                        <div class="viewItem container" onclick="toggleItem(this)">
+                                                            All the posts goes here
+                                                        </div>
+                                                    </c:when>
+                                                    <c:when test="${view == 'categories'}">
+                                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                                    <ul class="navbar-nav" id="inner">
+                                                                        <li class="nav-item">
+                                                                                <a href="${pageContext.request.contextPath}/createCategory" class="btn btn-warning" style="color: red; font-size: bold"> Create New Category</a>
+                                                                        </li> 
+                                                                        
+                                                                    </ul>
+                                                                </nav>
+                                                        <div class="viewItem container" onclick="toggleItem(this)">
+                                                                <c:forEach var="i" begin="1" end="${categories.size()-1}">
+                                                                        <div class="viewItem container" onclick="toggleItem(this)">
+            
+                                                                            <div class="row">
+                                                                                <div class="col-md-11 itemDate">
+                                                                                    <span>
+                                                                                        Date Created: Yesterday 
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="col-md-1 itemToggle">
+                                                                                    <i class="fas fa-angle-double-down"></i>
+                                                                                </div>
+                                                                                <div class="col-md-7 itemSummary">
+                                                                                    <span> Name of: ${categories[i].categoryName} </span>
+                                                                                    <p class="itemBrief"> See all posts of category </p>
+                                                                                </div>
+                                                                                <div class="col-md-5 options">
+                                                                                    <button type="button" class="btn btn-outline-primary itemOptions">View User Stats</button>
+                                                                                    <button type="button" class="btn btn-outline-danger itemOptions">Delete User</button>
+                                                                                    <button type="button" class="btn btn-outline-success itemOptions">Edit User</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:when test="${view == 'tags'}">
+                                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                                    <ul class="navbar-nav" id="inner">
+                                                                        <li class="nav-item">
+                                                                                <a href="${pageContext.request.contextPath}/createTag" class="btn btn-warning" style="color: red; font-size: bold"> Create New Tag</a>
+                                                                        </li> 
+                                                                        
+                                                                    </ul>
+                                                                </nav>
+                                                        <div class="viewItem container" onclick="toggleItem(this)">
+                                                                <c:forEach var="i" begin="1" end="${tags.size()-1}">
+                                                                        <div class="viewItem container" onclick="toggleItem(this)">
+            
+                                                                            <div class="row">
+                                                                                <div class="col-md-11 itemDate">
+                                                                                    <span>
+                                                                                        Date Created: Yesterday 
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="col-md-1 itemToggle">
+                                                                                    <i class="fas fa-angle-double-down"></i>
+                                                                                </div>
+                                                                                <div class="col-md-7 itemSummary">
+                                                                                    <span> Name of: ${tags[i].tagName} </span>
+                                                                                    <p class="itemBrief"> See all posts with tag </p>
+                                                                                </div>
+                                                                                <div class="col-md-5 options">
+                                                                                    <button type="button" class="btn btn-outline-primary itemOptions">View User Stats</button>
+                                                                                    <button type="button" class="btn btn-outline-danger itemOptions">Delete User</button>
+                                                                                    <button type="button" class="btn btn-outline-success itemOptions">Edit User</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </c:forEach>
+                                                        </div>
+                                                    </c:when>
+                                                </c:choose>
 
                                             </div>
                                         </div>

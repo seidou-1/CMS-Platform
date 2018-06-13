@@ -31,7 +31,7 @@ and open the template in the editor.
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
                     authentication-failure-url="/login?login_error=1"
-                    default-target-url="/userDashboard?view=notificatons"
+                    default-target-url="/userDashboard?view=notifications"
                     
                     />
        
@@ -123,9 +123,9 @@ and open the template in the editor.
         
         *******************REST ENDPOINTS********************
         
-        I'm going to leave the Rest Endpoints empty for now
+        <!--I'm going to leave the Rest Endpoints empty for now-->
+        <!--*******************REST ENDPOINTS********************-->
       
-        *******************REST ENDPOINTS********************
     </http> 
     <authentication-manager>
         <authentication-provider>
