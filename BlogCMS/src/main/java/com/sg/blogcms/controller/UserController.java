@@ -105,6 +105,7 @@ public class UserController {
             java.sql.Date sqlDate =  new java.sql.Date(Calendar.getInstance().getTime().getTime());
             user.setLastActive(sqlDate);
             
+            
             user.setUserAvatar(request.getParameter("userAvatar"));
 //            user.setLastActive(request.getParameter("userDater"));
             // All users have ROLE_STANDARD, only add ROLE_ADMIN if the isAdmin box is checked

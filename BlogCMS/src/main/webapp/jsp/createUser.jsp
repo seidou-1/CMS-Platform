@@ -117,7 +117,7 @@
                                                                 <label for="userAvatar" class="control-label col-xs-4">Avatar: </label> 
                                                                 <input type="text" name="userAvatar" id="userAvatar" value="Bright Light"><br>
                                                                 
-                                                                <input type="hidden" name="userName" id="createDate" value="1"><br>
+                                                                <input type="hidden" name="createDate" id="createDate" value="1"><br>
                                                             </div>
 
                                                 </form>
