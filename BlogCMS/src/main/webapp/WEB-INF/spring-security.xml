@@ -31,7 +31,7 @@ and open the template in the editor.
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
                     authentication-failure-url="/login?login_error=1"
-                    default-target-url="/viewUsers"
+                    default-target-url="/userDashboard?view=notificatons"
                     
                     />
        
