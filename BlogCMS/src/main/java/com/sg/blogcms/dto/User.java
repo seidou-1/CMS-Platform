@@ -16,20 +16,31 @@ import java.util.Objects;
 public class User {
 
     private int userId;
-    private int userType;
     private String username;
     private String email;
     private String userPassword;
     private String userAvatar;
     private Date lastActive;
+    private boolean enabled;
 
-    public User(int userId, int userType, String username, String email, String userPassword, String userAvatar) {
+    public User(int userId, String username, String email, String userPassword, String userAvatar) {
         this.userId = userId;
-        this.userType = userType;
         this.username = username;
         this.email = email;
         this.userPassword = userPassword;
         this.userAvatar = userAvatar;
+    }
+
+    public User() {
+        this.userId = 2434;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Date getLastActive() {
@@ -53,18 +64,7 @@ public class User {
     public void addAuthority(String authority) {
         authorities.add(authority);
     }
-
-    public int getUserType() {
-        return userType;
-    }
-
-    public void setUserType(int userType) {
-        this.userType = userType;
-    }
-
-    public User() {
-    }
-
+ 
     public int getUserId() {
         return userId;
     }

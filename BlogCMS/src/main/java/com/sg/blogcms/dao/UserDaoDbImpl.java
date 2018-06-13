@@ -27,7 +27,7 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     // Sighting prepared statements
     private static final String SQL_INSERT_USER
-            = "insert into `Users` (UserName, UserEmail, UserPassword, UserAvatar) " + "values (?, ?, ?, ?, ?)";
+            = "insert into `Users` (UserName, UserEmail, UserPassword, UserAvatar, LastActive, Enabled) " + "values (?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_USER
             = "delete from `Users` where UserID = ?";
@@ -50,12 +50,13 @@ public class UserDaoDbImpl implements UserDAOInterface {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public User addUser(User user) {
-        jdbcTemplate.update(SQL_INSERT_USER,
-                user.getUserType(),
+        jdbcTemplate.update(SQL_INSERT_USER, 
                 user.getUsername(),
                 user.getEmail(),
                 user.getUserPassword(),
-                user.getUserAvatar());
+                user.getUserAvatar(),
+                user.getLastActive(),
+                user.isEnabled());
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 
@@ -84,8 +85,7 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     @Override
     public User updateUser(User user) {
-        jdbcTemplate.update(SQL_UPDATE_USER,
-                user.getUserType(),
+        jdbcTemplate.update(SQL_UPDATE_USER, 
                 user.getUsername(),
                 user.getEmail(),
                 user.getUserPassword(),

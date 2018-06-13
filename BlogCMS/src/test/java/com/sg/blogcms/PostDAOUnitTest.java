@@ -110,7 +110,7 @@ public class PostDAOUnitTest {
         myUser.setEmail("myemail@email.com");
         myUser.setUserAvatar("red fox");
         myUser.setUserPassword("password");
-        myUser.setUserType(1);
+//        myUser.setUserType(1);
         myUser.setUsername("admin");
         userDao.addUser(myUser);
         User userIdFromDB = userDao.getUserById(myUser.getUserId()); 

@@ -1,10 +1,14 @@
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.dto.Notification;
 import com.sg.blogcms.dto.Post;
+import com.sg.blogcms.dto.Tag;
 import com.sg.blogcms.dto.User;
+import com.sg.blogcms.service.CategoryServiceInterface;
 import com.sg.blogcms.service.MiscService;
 import com.sg.blogcms.service.PostServiceInterface;
+import com.sg.blogcms.service.TagServiceInterface;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.sg.blogcms.service.UserServiceInterface;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -28,14 +36,18 @@ public class UserController {
     UserServiceInterface userService;
     MiscService miscService;
     PostServiceInterface postService;
+    CategoryServiceInterface categoryService;
+    TagServiceInterface tagService;
     PasswordEncoder encoder;
 
     @Inject
-    public UserController(UserServiceInterface userService, MiscService miscService, PostServiceInterface postService,  PasswordEncoder encoder) {
+    public UserController(UserServiceInterface userService, MiscService miscService, PostServiceInterface postService, CategoryServiceInterface categoryService, TagServiceInterface tagService, PasswordEncoder encoder) {
         this.userService = userService;
         this.miscService = miscService;
         this.encoder = encoder;
         this.postService = postService;
+        this.categoryService = categoryService;
+        this.tagService = tagService;
     }
 
     /*
@@ -60,30 +72,39 @@ public class UserController {
         List<User> users = userService.getAllUsers();
         List<Notification> notifications = miscService.getUserNotifications("travzlife");
         List<Post> posts = postService.getPostsByUser(1);
-        System.out.println(posts);
+        List<Category> categories = categoryService.getAllCategories();
+        List<Tag> tags = tagService.getAllTags();
 
         model.addAttribute("view", request.getParameter("view"));
         model.addAttribute("users", users);
         model.addAttribute("notifications", notifications);
+        model.addAttribute("tags", tags);
         model.addAttribute("posts", posts);
+        model.addAttribute("categories", categories);
         return "users";
     }
 
-    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String createUser(HttpServletRequest request, Model model) {
 
-        try { 
+        try {
             User user = new User();
-
-            user.setEmail(request.getParameter("userEmail"));
-            user.setUserAvatar(request.getParameter("userAvatar"));
-            user.setUsername(request.getParameter("userName"));
-            user.setUserType(Integer.parseInt(request.getParameter("userType")));
-
+            System.out.println(134 + " " + user);
             //Mo: For Hashing
-            String clearPw = request.getParameter("userPassword");
-            String hashPw = encoder.encode(clearPw);
 
+            user.setUsername(request.getParameter("userName"));
+            user.setEmail(request.getParameter("userEmail"));
+            String clearPw = request.getParameter("userPassword");
+//            String hashPw = encoder.encode(clearPw);
+            user.setUserPassword(clearPw);
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            java.sql.Date sqlDate =  new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            System.out.println(dateFormat.format(sqlDate));
+            user.setLastActive(sqlDate);
+            
+            user.setUserAvatar(request.getParameter("userAvatar"));
+//            user.setLastActive(request.getParameter("userDater"));
             // All users have ROLE_STANDARD, only add ROLE_ADMIN if the isAdmin box is checked
             user.addAuthority("ROLE_STANDARD");
             if (null != request.getParameter("isAdmin")) {
@@ -95,7 +116,12 @@ public class UserController {
             System.out.println(e.getMessage());
         }
 
-        return "redirect: viewUsers";
+        return "redirect: userDashboard?view=users";
+    }
+
+    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
+    public String createUserForm(HttpServletRequest request, Model model) {
+        return "createUser";
     }
 
     @RequestMapping(value = {"/deleteUser"}, method = RequestMethod.GET)
