@@ -35,9 +35,15 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
+
+                    <li class ="nav-item">
+                        <a class ="nav-link" href="${pageContext.request.contextPath}/viewPosts">View Posts</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Add Post</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
                     </li>
