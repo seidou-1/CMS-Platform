@@ -390,3 +390,9 @@ div#mainUserWindow {
 
 }
 
+/*====================CATEGORIES=============*/
+.categoryList {
+  height:150px;
+  overflow-y: scroll;
+}
+

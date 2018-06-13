@@ -5,7 +5,6 @@
  */
 package com.sg.blogcms.controller;
 
-import com.sg.blogcms.dao.CategoryDAOInterface;
 import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.service.CategoryServiceInterface;
 import java.util.ArrayList;
@@ -38,19 +37,26 @@ public class CategoryController {
         return "categories";
 
     }
+    
+//    Gets you to the addCategoryForm
+    @RequestMapping(value = {"/displayAddCategoryPage"}, method = RequestMethod.GET)
+    public String displayCatPage(HttpServletRequest request) {
+
+        return "addCategory";
+    }
+    
 
     @RequestMapping(value = {"/addCategory"}, method = RequestMethod.GET)
     public String addCategory(HttpServletRequest request) {
 //      get values from a form to make a new contact
         Category category = new Category();
         category.setCategoryName(request.getParameter("categoryName"));
-
+//        category.setCategoryName("Ultimate Frisbee");
 //      persist the values
         categoryService.addCategory(1, category);
 
         //fill correct page here
-        return "redirect:/index";
-
+        return "addCategory";
     }
 
     @RequestMapping(value = {"/submitCategory"}, method = RequestMethod.GET)

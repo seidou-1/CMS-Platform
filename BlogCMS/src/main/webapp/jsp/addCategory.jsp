@@ -70,23 +70,33 @@
                   class="close" title="Close Modal">&times;</span>
 
             <!-- Modal Content -->
-            <form class="modal-content animate" action="#">
+            <form role="form" class="modal-content animate" action="j_spring_security_check" method="POST">
                 <div class="imgcontainer">
                     <img src="img_avatar2.png" alt="Avatar" class="avatar">
                 </div>
 
-                <div class="container">
-                    <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
+                <div class="container form-group">
+                    <c:if test="${param.login_error == 1}">
+                        <h3>Wrong id or password!</h3>
+                    </c:if>
 
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <c:if test="${param.login_error == 2}">
+                        <h3>${param.login_error}</h3>
+                    </c:if>
 
-                    <button type="submit" class="loginBtn">Login</button>
+                    <label for="j_username" class="col-md-4 control-label">Username:</label>
+                    <input type="text" class=" col-md-8 form-control" name="j_username" placeholder="Username Here " maxlength="45" required>
+
+                    <label for="j_password" class="col-md-4 control-label">Password:</label>
+                    <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
+
+                    <button type="submit" class="loginBtn" id="search-button" value="Sign In">Login</button
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
                 </div>
+
+
 
                 <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                     <button type="button" onclick="document.getElementById('loginModal').style.display = 'none'" class="cancelbtn">Cancel</button>
@@ -98,16 +108,17 @@
 
     <!--=======ADD CATEGORY FORM==========-->
     <div class="container">
-        <form role="form" method="POST" 
-              action="createCategory">
+        <form  role="form" method="POST" 
+              action="addCategory">
 
             <div class="form-group">
                 <label for="exampleFormControlInput1">Category Name</label>
+        
                 <input type="text" class="form-control" name="categoryName" placeholder="Add Category Name" maxlength="45" required>
             </div>
             <!--=============BUTTONS====================-->
             <input type="submit" class="btn btn-default" value="Submit Category"/>
-            <a href="${pageContext.request.contextPath}/addPost" class="btn btn-danger" role="button">Cancel</a>
+            <!--<a href="${pageContext.request.contextPath}/addPost" class="btn btn-danger" role="button">Cancel</a>-->
 
         </form>
     </div>
