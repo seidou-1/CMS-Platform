@@ -38,28 +38,37 @@
                 <!--===========FLOATS RIGHT=========-->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/index"> <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/index"></a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Add Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
-                    </li>
 
-                    <!--==========DROPDOWN==========-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Login
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" onclick="document.getElementById('loginModal').style.display = 'block'">Login</a>
-                            <a class="dropdown-item" href="#">Sign Up</a>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="navbar-nav">
+
+                    <ul class="navbar-nav">
+                        
+                        <li class ="nav-item">
+                            <a class ="nav-link" href="${pageContext.request.contextPath}/viewPosts">View Posts</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="${pageContext.request.contextPath}/createPost">Add Post</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                        </li>
+
+                        <!--==========DROPDOWN==========-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Login
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" onclick="document.getElementById('loginModal').style.display = 'block'">Login</a>
+                                <a class="dropdown-item" href="#">Sign Up</a>
+                            </div>
+                        </li>
+                    </ul>
             </div>
         </nav>
         <hr>
@@ -117,11 +126,9 @@
                         <div class="form-group">
                             <label for="postTitle" class="control-label col-xs-4">Title</label> 
                             <div class="col-xs-8">
-                                <input id="postTitle" value = "island vibes" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                                <input id="postTitle" value = "${post.postTitle}" name="postTitle" placeholder="Post Title" type="text" class="form-control">
                             </div>
                         </div>
-
-
 
 
 
@@ -131,28 +138,34 @@
 
                             <br> <!-- Separation-->
 
-                            <label for="postBody" class="control-label col-xs-4">Body</label> 
+                            <label for="postBody" class="control-label col-xs-4">Body</label> <!--How to get the textarea value -->
                             <div class="col-xs-8">
-                                <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control">
-                            Lorem Khaled Ipsum is a major key to success. 
-                            To be successful you’ve got to work hard, to make history, 
-                            simple, you’ve got to make it. Mogul talk. The key is to drink coconut, 
-                            fresh coconut, trust me. Cloth talk. 
+                                <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" 
+                                          placeholder="
+                                          Lorem Khaled Ipsum is a major key to success. 
+                                          To be successful you’ve got to work hard, to make history, 
+                                          simple, you’ve got to make it. Mogul talk. The key is to drink coconut, 
+                                          fresh coconut, trust me. Cloth talk.">
+
+                                    cloth talk.
+
                                 </textarea>
                             </div>
                         </div>
                         <br> <!-- Seperation-->
 
+
+
                         <div class="form-group">
                             <br> <!-- Seperation-->
 
-                            <label for="postDate" class="control-label col-xs-4">Post Date</label> 
+                            <label for="postDate" class="control-label col-xs-4">Post Date</label> <!-- Change this calendar to be a selection type-->
                             <div class="col-xs-8">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div> 
-                                    <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 12/22/2018" type="text" class="form-control">
+                                    <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 2018-03-20" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -250,7 +263,7 @@
                     <!-- ******************Previous Posts************************-->
 
                     <div class ="scrollable"> <!-- Contains for each data-->
-
+                        <h4>Latest Posts</h4>
                         <table class ="table displayTable text-center">
 
                             <thead>
@@ -264,18 +277,18 @@
 
                             <tbody>
                                 <c:forEach items="${posts}" var = "post" >
-                                    
-                                <tr>
-                                    <td>
-                                       ${post.postTitle}
-                                    </td>
-                                    <td>
-                                       ${post.postDate}
-                                    </td>
-                                    <td>
-                                       ${post.category.categoryName}
-                                    </td>
-                                </tr>
+
+                                    <tr>
+                                        <td>
+                                            ${post.postTitle}
+                                        </td>
+                                        <td>
+                                            ${post.postDate}
+                                        </td>
+                                        <td>
+                                            ${post.category.categoryName}
+                                        </td>
+                                    </tr>
 
                                 </c:forEach>
                             </tbody>

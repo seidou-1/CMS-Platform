@@ -45,10 +45,14 @@ public class PostController {
 
         //Getting all Posts from the dao
         List<Post> allPosts = postService.getAllPosts();
+        
+//        Post myPost = new Post();
+//        
+//        myPost
 
         //Adding List of Posts into the Model  
         model.addAttribute("posts", allPosts);
-        return "posts"; //returning the logical view - the posts.jsp page
+        return "viewPosts"; //returning the logical view - the posts.jsp page
     }
 
     @RequestMapping(value = {"/createPost"}, method = RequestMethod.POST)
