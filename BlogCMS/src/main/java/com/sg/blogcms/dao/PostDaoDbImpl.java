@@ -87,7 +87,7 @@ public class PostDaoDbImpl implements PostDAOInterface {
             + "WHERE TAGS.TAGID = ?";
 
     private static final String SQL_SELECT_ALL_POSTS //This used to be lazy loading - we're not getting any other data. But now it's eager loading
-            = "SELECT POSTS.* , CATEGORIES.CATEGORYNAME, USERS.*, TAGS.*FROM BBLTRAVELSTEST.POSTS \n"
+            = "SELECT POSTS.* , CATEGORIES.CATEGORYNAME, USERS.*, TAGS.*FROM BBLTRAVELS.POSTS \n"
             + "\n"
             + "INNER JOIN CATEGORIES ON CATEGORIES.CATEGORYID = POSTS.CATEGORYID\n"
             + "\n"
