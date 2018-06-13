@@ -41,15 +41,18 @@ public class PostController {
 
         //Getting all Posts from the dao
         List<Post> allPosts = postService.getAllPosts();
+        
+//        Post myPost = new Post();
+//        
+//        myPost
 
         //Adding List of Posts into the Model  
         model.addAttribute("posts", allPosts);
-        return "posts"; //returning the logical view - the posts.jsp page
+        return "viewPosts"; //returning the logical view - the posts.jsp page
     }
 
     @RequestMapping(value = {"/createPost"}, method = RequestMethod.POST)
     public String createPost(HttpServletRequest request, Model model) {
-
         Post myPost = new Post();
         myPost.setPostTitle(request.getParameter("postTitle"));
         myPost.setPostBody(request.getParameter("postBody"));
@@ -59,11 +62,25 @@ public class PostController {
         myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
         myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
         postService.addPost(1, myPost);
+        
+        /*
+        In order to use the attribute for this respective end point, we have to include
+        the attribute for this end point
+        */
+        
+        //Getting all Posts from the dao
+        List<Post> allPosts = postService.getAllPosts();
+        
+        model.addAttribute("posts", allPosts);
+        
         return "redirect: createPost";
     }
+    
     @RequestMapping(value = {"/createPost"}, method = RequestMethod.GET)
     public String addPost(HttpServletRequest request, Model model) {
 
+        model.addAttribute("posts", postService.getAllPosts());
+        
 //        Post myPost = new Post();
 //        myPost.setPostTitle(request.getParameter("postTitle"));
 //        myPost.setPostTitle(request.getParameter("postBody"));
