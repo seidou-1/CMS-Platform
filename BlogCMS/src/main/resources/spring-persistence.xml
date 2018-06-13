@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-              xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/mvc
@@ -18,71 +18,86 @@
     <tx:annotation-driven />
     
     <bean id="dataSource"
-        class="org.apache.commons.dbcp2.BasicDataSource">
-      <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-      <property name="url" 
-                value="jdbc:mysql://localhost:3306/BBLTravels" /> <!-- Using the actual database  -->
-      <property name="Username" value="root" />
-      <property name="Password" value="root" /> <!-- Note the value here is the users MySql password  -->
-      <property name="initialSize" value="5" />
-      <property name="maxTotal" value="10" />
+          class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" 
+                  value="jdbc:mysql://localhost:3306/BBLTravels" /> <!-- Using the actual database  -->
+        <property name="Username" value="root" />
+        <property name="Password" value="root" /> <!-- Note the value here is the users MySql password  -->
+        <property name="initialSize" value="5" />
+        <property name="maxTotal" value="10" />
     </bean>
     
     <bean id="transactionManager"
-         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-            <property name="dataSource" ref="dataSource" />
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
     </bean>
    
     <bean id="jdbcTemplate"
     
-         class="org.springframework.jdbc.core.JdbcTemplate">
-       <property name="dataSource" ref="dataSource" />
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
     </bean>
     
-<!--    Dao Implementation beans: -->
+    <!--    Dao Implementation beans: -->
+    
+    <bean id="miscDao"
+              class="com.sg.blogcms.dao.MiscDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+ 
 
     <bean id="categoryDao"
-         class="com.sg.blogcms.dao.CategoryDaoDbImpl">
-       <property name="jdbcTemplate" ref="jdbcTemplate" />
+          class="com.sg.blogcms.dao.CategoryDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
     
     <bean id="postDao"
-         class="com.sg.blogcms.dao.PostDaoDbImpl">
-       <property name="jdbcTemplate" ref="jdbcTemplate" />
+          class="com.sg.blogcms.dao.PostDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     
     
     <bean id="tagDao"
-         class="com.sg.blogcms.dao.TagDaoDbImpl">
-       <property name="jdbcTemplate" ref="jdbcTemplate" />
+          class="com.sg.blogcms.dao.TagDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>    
     
     
     <bean id="userDao"
-         class="com.sg.blogcms.dao.UserDaoDbImpl">
-       <property name="jdbcTemplate" ref="jdbcTemplate" />
+          class="com.sg.blogcms.dao.UserDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
+    
+
  
     
-<!-- Service Implementation beans: -->    
+    <!-- Service Implementation beans: -->    
+
     
     <bean id="categoryService"
-              class="com.sg.blogcms.service.CategoryServiceImpl">
+          class="com.sg.blogcms.service.CategoryServiceImpl">
     </bean>
     
 
     <bean id="postService"
-              class="com.sg.blogcms.service.PostServiceImpl">
+          class="com.sg.blogcms.service.PostServiceImpl">
     </bean>
-    
+   
     
     <bean id="tagService"
-              class="com.sg.blogcms.service.TagServiceImpl">
+          class="com.sg.blogcms.service.TagServiceImpl">
     </bean>
     
-   <bean id="usersService"
-            class = "com.sg.blogcms.service.UserServiceImpl">
-   </bean>
+    <bean id="miscService"
+          class = "com.sg.blogcms.service.MiscServiceImpl">
+    </bean>
+    
+    <bean id="usersService"
+          class = "com.sg.blogcms.service.UserServiceImpl">
+    </bean>
+   
+  
    
 </beans>

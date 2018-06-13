@@ -43,7 +43,7 @@ public class CategoryDaoDbImpl implements CategoryDAOInterface {
             "SELECT * FROM `CATEGORIES` WHERE CategoryId = ?";
     
     private static final String SQL_SELECT_ALL_CATEGORIES = 
-            "SELECT FROM `CATEGORIES` ";
+            "SELECT * FROM `CATEGORIES` ";
     
     
 //    ==========METHODS==============

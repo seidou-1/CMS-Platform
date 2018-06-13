@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.dao;
 
+import com.sg.blogcms.dto.Notification;
 import com.sg.blogcms.dto.User;
 import java.util.List;
 

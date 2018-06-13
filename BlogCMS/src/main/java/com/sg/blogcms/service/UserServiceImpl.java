@@ -10,6 +10,7 @@ import com.sg.blogcms.dto.User;
 import java.util.List;
 import javax.inject.Inject;
 import com.sg.blogcms.dao.UserDAOInterface;
+import com.sg.blogcms.dto.Notification;
 
 public class UserServiceImpl implements UserServiceInterface {
 
@@ -56,5 +57,7 @@ public class UserServiceImpl implements UserServiceInterface {
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
+
+    
 
 }

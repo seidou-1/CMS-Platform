@@ -23,5 +23,5 @@ public interface UserServiceInterface {
     public User getUserById(int userId);
 
     public List<User> getAllUsers();
-
+    
 }
