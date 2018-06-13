@@ -11,12 +11,12 @@ VALUES
 
 
 
-INSERT INTO `USERS` (UserName, UserEmail, UserPassword, UserAvatar, Enabled)
+INSERT INTO `USERS` (UserName, UserEmail, UserPassword, UserAvatar, Enabled, LastLogin)
 VALUES 
-('molife', 'molife@shinobilife.com', '1', 'smiley face', 1),
-('asherlife', 'asherlife@shinobilife.com', '1', 'straight face', 1),
-('mattlife', 'asherlife@shinobilife.com', '1', 'straight face', 1),
-('travzlife', 'travzlife@shinobilife.com', '1', 'straight face', 1)
+('molife', 'molife@shinobilife.com', '1', 'smiley face', 1, '2018-02-20 23:59:59'),
+('asherlife', 'asherlife@shinobilife.com', '1', 'straight face', 1, '2018-01-1223:59:59'),
+('mattlife', 'asherlife@shinobilife.com', '1', 'straight face', 1, '2018-03-30 23:59:59'),
+('travzlife', 'travzlife@shinobilife.com', '1', 'straight face', 1, '2018-01-11 23:59:59')
 ;
 
 INSERT INTO `Authorities` (UserName, Authority)
@@ -37,7 +37,7 @@ VALUES
 ('ROLE_ADMIN', '1', '1', '1', '1', '1', '1', '1') -- Admin
 ;
  
-INSERT INTO`POSTS` (PostTitle, PostDate, ExpirationDate, FeatureImage, CategoryID, UserID, PostBody)
+INSERT INTO`POSTS` (PostTitle,  PostDate, ExpirationDate, FeatureImage, CategoryID, UserID, PostBody)
 VALUES 
 ('Adventerous Views', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Beach Vibes', '2', '2', 'I look at all types of Adventerous Views'),
 ('Scenes from the streams', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Image of the sky', '3', '1', 'I look at all types of scenes'),
@@ -61,4 +61,39 @@ VALUES
 ('2', '2'),
 ('2', '3'),
 ('2', '4');
+
+INSERT INTO `notifications` (NotificationClass, NotificationDate, NotificationType, Username, ID, NotificationBrief)
+VALUES 
+('create','2018-04-20 12:30:30', 'post', 'asherlife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'tag', 'asherlife', 1, 'Ice Cream'),
+('modify','2018-04-20 12:30:30', 'category', 'asherlife', 1, 'Beaches'),
+('modify','2018-04-20 12:30:30', 'post', 'asherlife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'category', 'asherlife', 1, 'Beaches'),
+('delete','2018-04-20 12:30:30', 'post', 'asherlife', 1, 'I look at all types of Adventerous View'),
+('delete','2018-04-20 12:30:30', 'tag', 'asherlife', 1, 'Ice Cream'),
+('create','2018-04-20 12:30:30', 'post', 'molife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'tag', 'molife', 1, 'Ice Cream'),
+('modify','2018-04-20 12:30:30', 'category', 'molife', 1, 'Beaches'),
+('modify','2018-04-20 12:30:30', 'post', 'molife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'category', 'molife', 1, 'Beaches'),
+('delete','2018-04-20 12:30:30', 'post', 'molife', 1, 'I look at all types of Adventerous View'),
+('delete','2018-04-20 12:30:30', 'tag', 'molife', 1, 'All things Ice Cream'),
+('create','2018-04-20 12:30:30', 'post', 'mattlife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'tag', 'mattlife', 1, 'Ice Cream'),
+('modify','2018-04-20 12:30:30', 'category', 'mattlife', 1, 'Beaches'),
+('modify','2018-04-20 12:30:30', 'post', 'mattlife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'category', 'mattlife', 1, 'Beaches'),
+('delete','2018-04-20 12:30:30', 'post', 'mattlife', 1, 'I look at all types of Adventerous View'),
+('delete','2018-04-20 12:30:30', 'tag', 'mattlife', 1, 'Ice Cream'),
+('create','2018-04-20 12:30:30', 'post', 'travzlife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'tag', 'travzlife', 1, 'Ice Cream'),
+('modify','2018-04-20 12:30:30', 'category', 'travzlife', 1, 'Beaches'),
+('modify','2018-04-20 12:30:30', 'post', 'travzlife', 1, 'I look at all types of Adventerous View'),
+('create','2018-04-20 12:30:30', 'category', 'travzlife', 1, 'Beaches'),
+('delete','2018-04-20 12:30:30', 'post', 'travzlife', 1, 'I look at all types of Adventerous View'),
+('delete','2018-04-20 12:30:30', 'tag', 'travzlife', 1, 'Ice Cream') 
+;
+
+ 
+select * from `notifications`;
 

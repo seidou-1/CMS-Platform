@@ -22,7 +22,7 @@
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
                     authentication-failure-url="/login?login_error=1"
-                    default-target-url="/viewUsers"
+                    default-target-url="/userDashboard?view=notifications"
                     
         />
        
@@ -32,25 +32,24 @@
         <intercept-url pattern="/index.jsp" 
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />
         
-<!--        List of URLs that will require access levels. These are based off the JSPs. Will add more later-->
         
-        <!--        ***********************POST*************************-->
+        <!--***********************POST*************************-->
 
         <intercept-url pattern="/createPost"
                        access="ROLE_USER"/>
         
-<!--        First display the post details -->
+        <!--First display the post details--> 
         <intercept-url pattern="/displayEditPost" 
                        access="ROLE_USER"/>
         
-<!--        Then allow them to edit the post -->
+        <!--Then allow them to edit the post--> 
         <intercept-url pattern="/editPost"        
                        access="ROLE_USER"/>
         
         <intercept-url pattern="/deletePost"
                        access="ROLE_ADMIN"/>
         
-        <!--        **********************CATEGORY**********************-->
+        <!--**********************CATEGORY**********************-->
         
         <intercept-url pattern="/addCategory"
                        access="ROLE_ADMIN"/>
@@ -64,7 +63,7 @@
         <intercept-url pattern="/deleteCategory"
                        access="ROLE_ADMIN"/>
                        
-        <!--        ************************TAG*************************-->
+        <!--************************TAG*************************-->
 
         <intercept-url pattern="/createNewTag"
                        access="ROLE_ADMIN"/>
@@ -78,7 +77,7 @@
         <intercept-url pattern="/deleteTag"
                        access="ROLE_ADMIN"/>
         
-        <!--        ************************USER************************-->
+        <!--************************USER************************-->
         
         <intercept-url pattern="/createUser"
                        access="ROLE_ADMIN"/>
@@ -103,15 +102,20 @@
                        access="ROLE_ADMIN"/>
         
         <!--*******************ALL OTHER URLS********************-->
-<!--        
-        <intercept-url pattern="/**"
-                       access="ROLE_USER"/>-->
+        <!--        
+<intercept-url pattern="/**"
+        access="ROLE_USER"/>-->
         
         
         <intercept-url pattern="/**"
                        access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         
-           
+        
+        <!--*******************REST ENDPOINTS********************-->
+        
+        <!--I'm going to leave the Rest Endpoints empty for now-->
+        <!--*******************REST ENDPOINTS********************-->
+      
     </http> 
     
     <authentication-manager>

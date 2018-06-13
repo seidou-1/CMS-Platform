@@ -5,6 +5,7 @@
  */
 package com.sg.blogcms.dto;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public class User {
     private String userPassword;
     private String userAvatar;
     private boolean enabled;
+    private Date lastActive;
     
     private ArrayList<String> authorities = new ArrayList<>();
 
@@ -35,6 +37,16 @@ public class User {
 
     public User() {
     }
+
+    public Date getLastActive() {
+        return lastActive;
+    }
+
+    public void setLastActive(Date lastActive) {
+        this.lastActive = lastActive;
+    }
+    
+    
 
     public boolean isEnabled() {
         return enabled;
@@ -52,14 +64,16 @@ public class User {
 
     public void setAuthorities(ArrayList<String> authorities) {
         this.authorities = authorities;
+        this.userId = 2434;
     }
+
    
     
     public void addAuthority(String authority) {
         authorities.add(authority);
     }
 
-
+ 
     public int getUserId() {
         return userId;
     }
@@ -139,6 +153,11 @@ public class User {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.username;
     }
 
 }

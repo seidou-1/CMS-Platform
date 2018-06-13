@@ -203,16 +203,39 @@ div#mainUserWindow {
     height: 600px;
 }
 
+div#mainUserWindow > nav .active .nav-link {
+    color: rgb(233, 227, 224);
+    text-decoration: underline;
+}
+
+
 #mainUserWindowPic {
-    background: url('../images/bossPlane.jpg');
-    background-size: contain;
+    background: url('../images/get-buckets.png');
+
     width: 100%;
     height: 100px;
+}
+
+#dropdownMenuLink {
+     color: rgb(255, 255, 255);
+     font-weight: bold;
+     font-size: 10px; 
+    
+}
+
+#dropdownDiv {
+    text-align: right;
+    padding-right: 50px;
 }
 
 #viewItems {
     overflow-y: auto;
     height: 430px;
+}
+
+
+div#filters {
+    display: inline;
 }
 
 .viewItem {
@@ -223,11 +246,11 @@ div#mainUserWindow {
 }
  
 
-.itemBrief.toggled { 
+.itemSummary .itemBrief { 
     display: none;
 }
 
-.itemOptions.toggled { 
+.options .itemOptions { 
     display: none;
 }
 
@@ -236,12 +259,22 @@ div#mainUserWindow {
     height: 100px;
 }
 
-.itemBrief.toggled { 
-    display: block;
+.itemSummary .itemBrief.toggled { 
+    font-size: 14px;
+    font-weight: normal;
+    height: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical; 
+    box-orient: vertical; 
+    text-overflow: ellipsis;
+    text-transform: capitalize;
 }
 
-.itemOptions.toggled { 
-    display: block;
+.options .itemOptions.toggled { 
+    display: inline-block;
 }
 
 .viewItem:hover {
@@ -260,21 +293,39 @@ div#mainUserWindow {
     font-size: 14px;
     font-weight: bold;
     width: 750px;
+    text-transform: uppercase;
 }
 
-.itemSummary p {
-    font-size: 14px;
-    font-weight: normal;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical; 
-    box-orient: vertical; 
+.itemSummary span {
+    text-transform: uppercase;
 }
 
 .itemToggle {
     font-size: 11px;
+}
+
+nav#mainUserNav {
+    background: #474141;
+    display: flex;
+    width: 100%;
+}
+
+nav#mainUserNav {
+    background: #474141;
+}
+
+nav#mainUserNav a.nav-link {
+    color: whitesmoke;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0;
+
+}
+
+ul#inner.navbar-nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }
 
 
@@ -326,7 +377,7 @@ div#mainUserWindow {
 	text-align: center;
 	width: 10px;
 }
-
+ 
 .taggable-tag {
 	list-style: none;
 	float: left;

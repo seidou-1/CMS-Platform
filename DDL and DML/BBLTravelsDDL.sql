@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
  `UserEmail` VARCHAR(100) NOT NULL,
  `UserPassword` VARCHAR(100) NOT NULL,
  `UserAvatar` VARCHAR(100) NOT NULL,
+ `LastActive`  DATETIME NOT NULL,
 --  Mo: Included Enabled for active\inactive user. This is a boolean 0 for inactive, 1 for active
  `Enabled` tinyint(1) NOT NULL,
  PRIMARY KEY (`UserID`),
@@ -109,6 +110,22 @@ CREATE TABLE IF NOT EXISTS `Posts_Tags` (
    ON DELETE CASCADE
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
+ 
+  -- Posts to Tags bridge table -- 
+CREATE TABLE IF NOT EXISTS `Notifications` (
+`NotificationID` INT NOT NULL AUTO_INCREMENT,
+`NotificationClass` VARCHAR(20) NOT NULL,
+`NotificationDate` DATETIME NOT NULL,
+`NotificationType` VARCHAR(20) NOT NULL,
+`NotificationBrief` LONGTEXT NOT NULL,
+`Username` VARCHAR(20) NOT NULL,
+`ID` INT NOT NULL,
+ PRIMARY KEY (`NotificationID`),
+ CONSTRAINT `fk_Notifications_Username`
+   FOREIGN KEY (`Username`)
+   REFERENCES `Users` (`Username`)
+   ON DELETE NO ACTION 
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 

@@ -121,8 +121,41 @@
                    action="j_spring_security_check">
 
                 <div class="form-group">
+<<<<<<< HEAD
                     <label for="j_username" class="col-md-4 control-label">Username:</label>
                     <input type="text" class=" col-md-8 form-control" name="j_username" placeholder="Username Here " maxlength="45" required>
+=======
+                    <label for="j_username" 
+                           class="col-md-4 control-label">Username:</label>
+                    <div class="col-md-8">
+                        <input type="text" 
+                               class="form-control" 
+                               name="j_username" 
+                               value="travzlife"
+                               placeholder="Username"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="j_password" 
+                           class="col-md-4 control-label">Password:</label>
+                    <div class="col-md-8">
+                        <input type="password" 
+                               class="form-control" 
+                               name="j_password" 
+                               value="1"
+                               placeholder="Password"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" 
+                               class="btn btn-default" 
+                               id="search-button" 
+                               value="Sign In"/>
+                    </div>
+                </div>
+            </form>   
+>>>>>>> dev
 
                     <label for="j_password" class="col-md-4 control-label">Password:</label>
                     <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
