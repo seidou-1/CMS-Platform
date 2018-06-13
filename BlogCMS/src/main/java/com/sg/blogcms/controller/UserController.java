@@ -100,7 +100,6 @@ public class UserController {
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             java.sql.Date sqlDate =  new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            System.out.println(dateFormat.format(sqlDate));
             user.setLastActive(sqlDate);
             
             user.setUserAvatar(request.getParameter("userAvatar"));
@@ -110,8 +109,20 @@ public class UserController {
             if (null != request.getParameter("isAdmin")) {
                 user.addAuthority("ROLE_ADMIN");
             }
-
-            userService.addUser(1, user); //Mo: Travz change this from static value
+            User fromDb = userService.addUser(1, user); //Mo: Travz change this from static value
+            
+            
+            Notification notify = new Notification();
+            notify.setDate(sqlDate);
+        
+            notify.setNotificationBrief("Created a new user with his/her own unique properties");
+            notify.setNotificationClass("create");
+            notify.setNotificationType("user");
+            notify.setUser("travzlife");
+             
+            
+            miscService.addNotification(notify);
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

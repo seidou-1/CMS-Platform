@@ -31,7 +31,7 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
 
     // Notifications
     private static final String SQL_INSERT_NOTIFICATION
-            = "insert into `Notifications` (NotificationType, UserName, ID) " + "values (?, ?, ?)";
+            = "insert into `Notifications` (NotificationType, UserName, ID, NotificationBrief,  NotificationDate, NotificationClass) " + "values (?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_NOTIFICATION
             = "delete from `Notifications` where NotificationID = ?";
@@ -49,11 +49,12 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Notification addNotification(Notification notification) {
         jdbcTemplate.update(SQL_INSERT_NOTIFICATION,
-                notification.getNotificationBrief(),
+                notification.getNotificationType(),
                 notification.getUser(),
-                notification.getNotificationID(),
+                1,
+                notification.getNotificationBrief(),
                 notification.getDate(),
-                notification.getNotificationType()
+                notification.getNotificationClass() 
         );
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
