@@ -42,20 +42,20 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/index"> </a>
                     </li>
                 </ul>
-                    
+
                 <ul class="navbar-nav">
                     <li class ="nav-item active">
                         <a class ="nav-link" href="${pageContext.request.contextPath}/viewPosts">View Posts</a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Add Post</a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
                     </li>
-                    
+
 
                     <!--==========DROPDOWN==========-->
                     <li class="nav-item dropdown">
@@ -106,59 +106,53 @@
 
 
         <!--============PAGE CONTENT=============-->
-       
-        <div class ="row">
-            
-            
-            <!--<span class ="font-size: 24px; padding: 10px 0; font-weight: bold;"> All Blogs</span>-->
-            
-            <div class="col-md-8">
-                
-<!--                <table class ="table displayTable text-center">
-                    
-                    <thead>
-                        
-                        <tr>
-                            <th>Post Title </th>
-                            <th>Published Date </th>
-                            <th>Category</th>
-                            <th>Expiration Date</th>
-                            <th>Post Tags</th>
-                            
-                        </tr>
-                        
-                    </thead>
-                    
-                    <tbody>
-                        
-                    </tbody>
-                </table>-->
+        <div class="conatiner contentContainer">
+            <div>
+                <img src="images/get-buckets.png" alt = "Man getting buckets" class="center-block">
+            </div>
 
-<c:forEach var = "currentPost" items= "${posts}">
-    
-    <a href="${pageContext.request.contextPath}/viewPosts?postId=${currentPost.postId}"/>
-    
-   <!-- Include display for title, body, dates...-->
-   
-   <p class = "text-center"><c:out value = "${currentPost.postTitle}"/></p>
-   
-   <p class ="text-center"><c:out value = "${currentPost.postDate}"/></p>
-   
-   <p class ="text-center"><c:out value = "${currentPost.expirationDate}"/></p>
-   
-   <p class ="text-center"><c:out value = "${currentPost.postBody}"/></p>
-       
-    
-</c:forEach>
-                
-            </div> <!--End of col-md-8 Div-->
+            <br> <!-- Seperation-->
+        </div>
+        <div class ="row">
+
+
+            <!--<span class ="font-size: 24px; padding: 10px 0; font-weight: bold;"> All Blogs</span>-->
+
+            <!--<div class="col-md-12">-->
+
+
+
+
+            <div class = "entireCard">
+            <div class="card-deck">
+                <c:forEach var = "currentPost" items= "${posts}">
+
+                    <div class="card">
+                        <div class="card-header cardPostTitle">
+                            <h3> <c:out value = "${currentPost.postTitle}"/> </h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text cardPostBody"> <c:out value = "${currentPost.postBody}"/> </p>
+                            
+                        </div>
+                        <div class="card-footer cardPostDate">
+                            <small class="text-muted">Post Date: <c:out value = "${currentPost.postDate}"/></small>
+                        </div>
+                    </div>Ï
+                </c:forEach>
+            </div>
+
             
-            
-            
+            </div>
+
         </div> <!--End of row -->
-        
-        
-        
-        
-        
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    </body>
+
+
 </html>

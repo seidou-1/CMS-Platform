@@ -11,10 +11,10 @@ VALUES
 
 
 
-INSERT INTO `USERS` (UserName, UserEmail, UserPassword, UserAvatar, Enabled, LastLogin)
+INSERT INTO `USERS` (UserName, UserEmail, UserPassword, UserAvatar, Enabled, LastActive)
 VALUES 
 ('molife', 'molife@shinobilife.com', '1', 'smiley face', 1, '2018-02-20 23:59:59'),
-('asherlife', 'asherlife@shinobilife.com', '1', 'straight face', 1, '2018-01-1223:59:59'),
+('asherlife', 'asherlife@shinobilife.com', '1', 'straight face', 1, '2018-01-12 23:59:59'),
 ('mattlife', 'asherlife@shinobilife.com', '1', 'straight face', 1, '2018-03-30 23:59:59'),
 ('travzlife', 'travzlife@shinobilife.com', '1', 'straight face', 1, '2018-01-11 23:59:59')
 ;
