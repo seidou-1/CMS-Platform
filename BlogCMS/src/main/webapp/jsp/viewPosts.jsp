@@ -125,18 +125,20 @@
 
             <div class = "entireCard">
             <div class="card-deck">
-                <c:forEach var = "currentPost" items= "${posts}">
-
+                <c:forEach var = "currentPost" begin="0" end="2"  >
+                    <!--items= "${posts} "-->
+                    
+                    <a href="${pageContext.request.contextPath}/viewPost?postId=${posts[currentPost].postId}"></a>
                     <div class="card">
                         <div class="card-header cardPostTitle">
-                            <h3> <c:out value = "${currentPost.postTitle}"/> </h3>
+                            <h3> <c:out value = "${posts[currentPost].postTitle}"/> </h3>
                         </div>
                         <div class="card-body">
-                            <p class="card-text cardPostBody"> <c:out value = "${currentPost.postBody}"/> </p>
+                            <p class="card-text cardPostBody"> <c:out value = "${posts[currentPost].postBody}"/> </p>
                             
                         </div>
                         <div class="card-footer cardPostDate">
-                            <small class="text-muted">Post Date: <c:out value = "${currentPost.postDate}"/></small>
+                            <small class="text-muted">Post Date: <c:out value = "${posts[currentPost].postDate}"/></small>
                         </div>
                     </div>Ï
                 </c:forEach>

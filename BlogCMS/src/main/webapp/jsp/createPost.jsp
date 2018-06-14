@@ -113,7 +113,7 @@
             </div>
 
             <br> <!-- Seperation-->
-
+        </div>
             <div class="row">
 
                 <div class="col-md-7"> <!-- For form to be a certain width-->
