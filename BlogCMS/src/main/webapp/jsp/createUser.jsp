@@ -96,31 +96,56 @@
                                                     </li>
                                                 </ul>
                                             </nav>
-                        
+
                                             <div id="viewItems">
-                                                <h4>Create a new User here</h4>
+                                                <!-- <h4>Create a new User here</h4>
                                                 <br>
-                                                <hr>
-                                                <form action="addUser" method="POST">
-                                                        <button name="submit" type="submit" class="btn btn-primary" id ="createUser">Submit User</button>
-                                                    
-                                                        <div class="form-group">
-                                                                <label for="userName" class="control-label col-xs-4">UserName: </label> 
-                                                                <input type="text" name="userName" id="userName" value="mad"><br>
-                                                                
-                                                                <label for="UserEmail" class="control-label col-xs-4">UserEmail: </label> 
-                                                                <input type="text" name="userEmail" id="userEmail" value="madlife@shinobilife.com"><br>
-                                                                
-                                                                <label for="UserPassword" class="control-label col-xs-4">UserPassword: </label> 
-                                                                <input type="password" name="userPassword"  id="UserPassword" value="1"><br>
+                                                <hr> -->
 
-                                                                <label for="userAvatar" class="control-label col-xs-4">Avatar: </label> 
-                                                                <input type="text" name="userAvatar" id="userAvatar" value="Bright Light"><br>
-                                                                
-                                                                <input type="hidden" name="createDate" id="createDate" value="1"><br>
+                                                <section class="row" id="placement">
+                                                    <div class="col-md-3 windowMenu">
+                                                        <h4 class="heading1">Instructions</h4>
+                                                        <ul class=" placementMenu">
+                                                            <li>
+                                                                1. Enter a valid username
+                                                            </li>
+                                                            <li>
+                                                                2. Enter a valid email
+                                                            </li>
+                                                            <li>
+                                                                Please Note: Password defaults to 12345
+                                                                <br> The user will be forced to update password on the first
+                                                                log in
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-9 windowDisplay">
+                                                        <h4 class="heading1">Create a new User</h4>
+                                                        <form action="addUser" method="POST">
+                                                            
+                                                            <div class="form-group" id="idealo">
+                                                                <label for="userName">User Name: </label>
+                                                                <input type="text" name="userName" id="userName" class="sm-form" value="mad">
+                                                                <br>
+                                                                <label for="UserEmail">User Email: </label>
+                                                                <input type="text" name="userEmail" id="userEmail" class="sm-form" value="madlife@shinobilife.com">
+                                                                <br>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                                    <label class="form-check-label" for="inlineRadio1">Administrator</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                                    <label class="form-check-label" for="inlineRadio2">Standard User</label>
+                                                                </div> 
                                                             </div>
+                                                            <div class="form-group" style="width: 100%; text-align: right;">
+                                                                    <button name="submit" type="submit" class="btn btn-success" id="createUser">Submit User</button>
+                                                                </div>
+                                                        </form>
+                                                    </div>
+                                                </section>
 
-                                                </form>
                                             </div>
                                         </div>
                                         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

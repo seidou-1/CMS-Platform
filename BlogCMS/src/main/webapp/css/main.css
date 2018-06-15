@@ -13,7 +13,7 @@ body, html{
 body{
     background-color: RGBA(0, 0, 0, 1.00);
     color: RGBA(209, 213, 205, 1.00);
-    font-size: 24px;
+    /* font-size: 24px; Might be  a little too big there*/ 
     text-align: center;
 }
 
@@ -28,16 +28,15 @@ a{
     color:white;
     text-decoration: none;
 }
+
 a:hover{
   font-style: oblique;
   color: RGBA(193, 193, 194, 1.00);
 }
 
 hr {
-    color: #f00;
-    background-color: #f00;
-    height: 5px;
-    border: 0;
+    height: 0.5px;
+    background: white;
     width: 100%;
     padding: 0px;
     margin-top: 0px;
@@ -230,6 +229,7 @@ div#mainUserWindow > nav .active .nav-link {
 
 #viewItems {
     overflow-y: auto;
+    overflow-x: hidden;
     height: 430px;
 }
 
@@ -240,11 +240,17 @@ div#filters {
 
 .viewItem {
     padding-top: 10px;
-    border-top: 3px solid whitesmoke;
-    border-bottom: 3px solid whitesmoke;
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
     height: 65px;
 }
- 
+
+.viewItem:first-of-type {
+    padding-top: 10px;
+    border-top: none;
+    height: 65px;
+}
+
 
 .itemSummary .itemBrief { 
     display: none;
@@ -328,7 +334,52 @@ ul#inner.navbar-nav {
     justify-content: space-around;
 }
 
+ul#inner.nav-btn  {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
 
+
+
+
+#placement {
+    display: flex;
+}
+
+ 
+div.windowMenu {
+    width: 100px;
+}
+
+.heading1 {
+    color: orange;
+    font-size: 18px;
+    font-weight: normal;
+    border-bottom: 1px solid wheat;
+}
+
+.windowMenu > ul > li {
+    width: 80%;
+    font-size: 0.5rem;
+    margin: 5px auto;
+    border-radius: 0px;
+    color: #474141;
+    background: rgb(177, 182, 177);
+}
+
+#idealo > label {
+    display: inline;
+    font-size: 15px;
+    margin: 0 5px;
+}
+
+
+input[type=text].sm-form, input[type=password].sm-form {
+    width: 200px;
+    margin: 8px 0;
+    display: inline-block;
+}
 
 /*=================TAGS ====================*/
 

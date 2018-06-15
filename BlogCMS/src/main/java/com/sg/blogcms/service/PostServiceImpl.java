@@ -57,7 +57,7 @@ public class PostServiceImpl implements PostServiceInterface {
 
     @Override
     public List<Post> getPostsByUser(int userId) {
-       return postDao.getPostsByUser(userId);
+       return postDao.getAllPosts();
     }
 
     @Override
