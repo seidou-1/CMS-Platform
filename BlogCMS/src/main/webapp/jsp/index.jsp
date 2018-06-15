@@ -50,7 +50,7 @@
 
                     <!--==========DROPDOWN==========-->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -61,14 +61,6 @@
                 </ul>
             </div>
         </nav>
-        <hr>
-
-        <!--=============LANDING PLANE IMAGE========-->
-        <div class="hero-image">
-            <div class="hero-text">
-                <h1>Where BucketList's become Memories</h1>
-            </div>
-        </div>
 
         <!--===========LOGIN MODAL===========-->
         <div id="loginModal" class="modal">
@@ -77,9 +69,9 @@
 
             <!-- Modal Content -->
             <form role="form" class="modal-content animate" action="j_spring_security_check" method="POST">
-                <div class="imgcontainer">
+<!--                <div class="imgcontainer">
                     <img src="../images/get-buckets.png" alt="Avatar" class="avatar">
-                </div>
+                </div>-->
 
                 <div class="container form-group">
                     <c:if test="${param.login_error == 1}">
@@ -96,13 +88,11 @@
                     <label for="j_password" class="col-md-4 control-label">Password:</label>
                     <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
 
-                    <button type="submit" class="loginBtn" id="search-button" value="Sign In">Login</button
+                    <button type="submit" class="loginBtn" id="search-" value="Sign In">Login</button
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
                 </div>
-
-
 
                 <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                     <button type="button" onclick="document.getElementById('loginModal').style.display = 'none'" class="cancelbtn">Cancel</button>
@@ -110,53 +100,96 @@
             </form>
         </div>
 
+        <div class="conatiner-fluid">
 
-        <!--============PAGE CONTENT=============-->
-        <div class="conatiner contentContainer">
-            <div class="row">
+            <hr>
 
 
-                <div class="card-deck">
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Blog Title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="#" class="btn btn-primary">See More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Blog Title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="#" class="btn btn-primary">See More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Blog Title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="#" class="btn btn-primary">See More</a>
+            <!--=============LANDING PLANE IMAGE========-->
+            <div class="row row-first">
+                <div class="hero-image">
+
+
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="images/1.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block " src="images/2.jpg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/3.jpg" alt="Third slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/4.jpg" alt="Third slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/5.jpg" alt="Third slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/8.jpeg" alt="Third slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/7.jpg" alt="Third slide">
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
+                <div class="hero-text">
+                    <h1>Where BucketList's become Memories</h1>
+                </div>
             </div>
+
+
+            <!--============PAGE CONTENT=============-->
+            <div class="contentContainer">
+                <div class="row">
+
+
+                    <div class="card-deck">
+                        <div class="card">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Blog Title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <a href="#" class="btn btn-primary">See More</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Blog Title</h5>
+                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <a href="#" class="btn btn-primary">See More</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Blog Title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <a href="#" class="btn btn-primary">See More</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
         </div>
-
-
 
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

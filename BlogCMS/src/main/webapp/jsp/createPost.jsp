@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addPost
-    Created on : Jun 1, 2018, 5:43:21 PM
-    Author     : laptop
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -88,9 +83,9 @@
 
             <!-- Modal Content -->
             <form role="form" class="modal-content animate" action="j_spring_security_check" method="POST">
-                <div class="imgcontainer">
+<!--                <div class="imgcontainer">
                     <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                </div>
+                </div>-->
 
                 <div class="container form-group">
                     <c:if test="${param.login_error == 1}">
@@ -276,7 +271,7 @@
                     </div>
 
                     <!--========ADD CATEGORY BUTTON=========-->
-                    <a href="${pageContext.request.contextPath}/addCategory" data-toggle="modal" data-target="#addCatModal" onclick="document.getElementById('addCatModal').style.display = 'block'">
+                    <a href="#" data-toggle="modal" data-target="#addCatModal" onclick="document.getElementById('addCatModal').style.display = 'block'">
                         <button type="submit" class="addCatBtn" value="Update Cattegory">Add Category </button>
                     </a>
 
@@ -285,16 +280,16 @@
                         <span onclick="document.getElementById('addCatModal').style.display = 'none'" 
                               class="close" title="Close Modal">&times;</span>
                         <!--Modal Content-->
-                        <form role="form" class="modal-content animate" action="submitCategory" method="POST">
+                        <div class="modal-content animate">
                             <div class="container form-group">
                                 <label for="categoryName" class="col-md-4 control-label">Category Name:</label>
-                                <input type="text" class=" col-md-8 form-control" name="categoryName" placeholder="${c}" maxlength="45" required>
-                                <button type="submit" class="addCatBtn" id="addCat-btn" value="Add Category">Submit</button>
+                                <input type="text" class=" col-md-8 form-control" id="categoryName" name="categoryName" placeholder="${c}" maxlength="45" required>
+                                <button class="addCatBtn" id="addCat-btn" value="Add Category">Submit</button>
                             </div>
                             <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                                 <button type="button" onclick="document.getElementById('addCatModal').style.display = 'none'" class="cancelbtn">Cancel</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                     <!--============UPDATE CATEGORY MODAL===========-->
@@ -302,15 +297,15 @@
                         <span onclick="document.getElementById('updateCatModal').style.display = 'none'" 
                               class="close" title="Close Modal">&times;</span>
                         <!--Modal Content--> 
-                        <sf:form role="form" class="modal-content animate" action="updateCategory" method="POST">
+                        <form role="form" class="modal-content animate" action="updateCategory" method="POST">
                                 <label for="categoryName" class="col-md-4 control-label">Category Name:</label>
-                                <sf:input type="text" class=" col-md-8 form-control" id="add-category" name="categoryName" placeholder="Category Name" maxlength="45" path="categoryName"/>
+                                <input type="text" class=" col-md-8 form-control" id="category-name" name="categoryName" placeholder="Category Name" maxlength="45"/>
                                 <button type="submit" class="updateCatBtn" id="updateCat-btn" value="updateCattegory">Submit</button>
                             
                             <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                                 <button type="button" onclick="document.getElementById('updateCatModal').style.display = 'none'" class="cancelbtn">Cancel</button>
                             </div>
-                        </sf:form>
+                        </form>
                     </div>
                     <!-- ******************Category Selection************************-->
 
@@ -364,10 +359,11 @@
 
 
             <!-- Placed at the end of the document so the pages load faster -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+            <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
+            <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
     </body>
 </html>

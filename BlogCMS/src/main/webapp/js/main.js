@@ -170,88 +170,88 @@
 // 		css.transition = ``;
 // 	}, interval);
 // }
+//======================
+//STYLE
+//==================
+
+$('.carousel').carousel({
+  interval: 200,
+  pause: "false",
+  wrap: "true"
+});
 
 
-function addCategory() {
-    var catInput = $('#categoryName');
-    console.log(catInput);
-}
+
+
+
+
+
+
 $('#addCat-btn').click(function (event) {
-    function performAjaxCall(endpoint, extraParameter) {
-        var returnData;
-        $.ajax({
-            async: false,
-            type: 'POST',
-            url: `http://localhost:8080/Blogcms/${endpoint}/${extraParameter}`,
-            data: JSON.stringify({
-                categoryName: $('#add-category').val()
+performAjaxCall('category', '', 'POST');
+});
+
+$('#updateCat-btn').click(function (event) {
+performAjaxCall('category', '', 'PUT');
+});
+
+function performAjaxCall(endpoint, extraParameter, ajaxType) {
+    var returnData;
+
+    $.ajax({
+        async: false,
+        type: ajaxType,
+        url: `http://localhost:8080/BlogCMS/${endpoint}/${extraParameter}`,
+        data: JSON.stringify({
+            
+                categoryName: $('#categoryName').val()
             }),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            'dataType': 'json',
-            success: function (data, status) {
-                returnData = data;
-            },
-            error: function () {
-                returnData = null;
-            }
-        });
-        return returnData;
-    }
-},
-        $('#updateCat-btn').click(function (event) {
-    function performAjaxCall(endpoint, extraParameter) {
-        var returnData;
-        $.ajax({
-            type: 'PUT',
-            url: `http://localhost:8080/Blogcms/${endpoint}/${extraParameter}`,
-            data: JSON.stringify({
-                categoryId: $('#edit-category-id').val(),
-                categoryName: $('#edit-category-name').val()
-            }),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            'dataType': 'json',
-            success: function (data, status) {
-                returnData = data;
-            },
-            error: function () {
-                returnData = null;
-            }
-        });
-    }
-},
-// Travz Users Code
-        function toggleItem(item) {
+        
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (data, status) {
+            console.log(data);
+            returnData = data;
+        },
+        error: function () {
+            console.log("travon");
 
-            var summary = $(item).find('.itemBrief');
-            var buttons = $(item).find('.itemOptions');
-
-            if ($(item).hasClass('toggled')) {
-                $(item).removeClass('toggled');
-            } else {
-                $(item).addClass('toggled');
-
-            }
-
-            summary.each((index, element) => {
-                $(element).toggle();
-                $(element).addClass('toggled');
-            });
-
-            buttons.each((index, element) => {
-                $(element).toggle(
-                        function () {
-                            $(element).addClass('toggled');
-                        },
-                        function () {
-                            $(element).removeClass('toggled');
-                        }
-                );
-
-            });
+            returnData = null;
         }
+    });
+    return returnData;
+}
+
+// Travz Users Code
+function toggleItem(item) {
+
+    var summary = $(item).find('.itemBrief');
+    var buttons = $(item).find('.itemOptions');
+
+    if ($(item).hasClass('toggled')) {
+        $(item).removeClass('toggled');
+    } else {
+        $(item).addClass('toggled');
+
+    }
+
+    summary.each((index, element) => {
+        $(element).toggle();
+        $(element).addClass('toggled');
+    });
+
+    buttons.each((index, element) => {
+        $(element).toggle(
+                function () {
+                    $(element).addClass('toggled');
+                },
+                function () {
+                    $(element).removeClass('toggled');
+                }
+        );
+
+    });
+}
