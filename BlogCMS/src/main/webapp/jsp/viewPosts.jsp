@@ -164,9 +164,9 @@
                                     <c:choose>
                                         <c:when test = "${myPost.tag.size() > 0}">
 
-                                            <span class = "postTitle"> Tag(s):  </span>
+                                            <span class = "postTags"> Tag(s):  </span>
                                             <br>
-                                            <span class = "outputtedTitle">
+                                            <span class = "outputtedTags">
 
                                                 <c:forEach items="${myPost.tag}" var = "tag">
                                                     <c:out value="${tag.tagName}"></c:out> 
@@ -203,9 +203,7 @@
                                         </c:otherwise>
 
                                     </c:choose>
-
-
-                                    <!-- Update later to get all tags-->
+ 
                                 </li>
 
                                 <li>
@@ -230,7 +228,7 @@
                                     <li>
                                         <span>
                                             <br>
-                                            <span class ="postDate"> Body: </span>
+                                            <span class ="postBody"> Body: </span>
                                             <br>
 
                                         <c:out value = "${myPost.postBody}"></c:out>
@@ -243,7 +241,7 @@
                         </div> 
                         
                         
-                        <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${myPost.postId}" class ="btn btn-warning">EDIT</a>
+                    <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${myPost.postId}" class ="btn btn-warning">EDIT</a>
 
                 </c:when>
 
@@ -333,7 +331,7 @@
 
 
                                         <h4>
-                                            Select Category.....:
+                                            Select Category:
                                         </h4>
                                         <c:forEach items = "${allCategories}" var = "category">
 
@@ -377,9 +375,17 @@
 
                                 <div class="form-group row justify-content-center">
                                     <div class="col-xs-offset-4 col-xs-8">
-                                        <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Submit</button>
-                                        <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
+                                        <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Update</button>
+                                        <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=${myPost.postId}"></a>
+                                        
+                                        <div>
+                                            
+                                        <button name="cancel" type="cancel" class="btn btn-danger">Cancel</button>
+                                        <a href="${pageContext.request.contextPath}/viewPosts"></a>
+                                        </div>
                                     </div>
+                                    
+                                    
                                 </div>
 
                             </form> 
@@ -392,8 +398,10 @@
 
                 </c:when>
 
-                <c:otherwise >
+                <c:otherwise > <!-- This otherwise is saying if it's not a single post you want, i'm going to display all the posts. It's like saying when test="{display == 'viewAllThePosts'}" or if there is no display value-->
 
+                    <!--Asher to set the width to display 4 cards per row-->
+                    
                     <div class = "entireCard">
                         <div class="card-deck">
                             <c:forEach var = "currentPost" begin="0" end="3"  >
@@ -413,7 +421,7 @@
                                     <input id="userId" name="userId" value = "${posts[currentPost].user.userId}" type = "hidden">
                                     <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class ="btn btn-warning">EDIT</a>
                                     
-                                </div>Ï
+                                </div>
 
                             </c:forEach>
                         </div>

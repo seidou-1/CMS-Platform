@@ -60,8 +60,7 @@ public class PostController {
     @RequestMapping(value = {"/viewSinglePost"}, method = RequestMethod.GET)
     public String getSinglePost(HttpServletRequest request, Model model){
         
-        String display = (request.getParameter("display"));
-        model.addAttribute("display", display);
+        model.addAttribute("display", "viewSinglePost");
 
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post myPost = postService.getPostById(postId);
@@ -97,28 +96,38 @@ public class PostController {
     @RequestMapping(value = {"/choosePostToEdit"}, method = RequestMethod.GET)
     public String choosePostToEdit (HttpServletRequest request, Model model){
         
+        /*
+        The Controller probes the URL for the endpoint choosePostToEdit. When 
+        it detects this end point, it talks to whichever JSP is requesting it
+        and enables it to make use of everything below
+        */
         String display = (request.getParameter("display"));
         model.addAttribute("display", display);
 
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post myPost = postService.getPostById(postId);
-        // remove all Post_Tag abrdige relationships ... postService.removeAllPostTag(myPost);
+        // For update tags.... later on .. remove all Post_Tag abrdige relationships ... postService.removeAllPostTag(myPost);
         
+        /*
+        Here i am allowing the JSP to access all of the list elements within:
+        Category, Tag, and specifically.. the postId within the Post object
+        */
         List<Category> allCategories = categoryService.getAllCategories();
         List<Tag> allTags = tagService.getAllTags();
+   
         
-        
-        
-        
-        
+        /*
+        I'm packaging all of the stuff above and adding it to the model. The model
+        is like a cargo ship that contains all the stuff that will be used
+        */
         
         model.addAttribute("allCategories", allCategories);
-        model.addAttribute("allTags", allTags);
-        
-        
-        
+        model.addAttribute("allTags", allTags); 
         model.addAttribute("myPost", myPost);
         
+        /*
+        It then sends it to the vewPosts JSP
+        */
         return "viewPosts";
   
     }
@@ -143,7 +152,7 @@ public class PostController {
         
        postService.updatePost(myPost.getUserId(), myPost); //Update this method to replace the first parameter with userId
        
-       return "redirect:viewPosts/"; //edit later`
+       return "redirect:viewSinglePost"; //edit later`
     }
     
     /*
