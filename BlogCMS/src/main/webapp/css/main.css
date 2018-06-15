@@ -60,6 +60,9 @@ button:hover {
 p{
     font-size: 36px;
 }
+p.mine {
+    font-size: 14px;
+}
 
 
 /*==============LANDING IMAGE================*/
@@ -243,6 +246,7 @@ div#filters {
     border-top: 1px solid whitesmoke;
     border-bottom: 1px solid whitesmoke;
     height: 65px;
+    position: relative;
 }
 
 .viewItem:first-of-type {
@@ -364,10 +368,18 @@ div.windowMenu {
     font-size: 0.5rem;
     margin: 5px auto;
     border-radius: 0px;
-    color: #474141;
-    background: rgb(177, 182, 177);
+    color: white;
+    background: rgb(51, 50, 61);
+    list-style: none;
 }
 
+#idealo {
+    border: 1px solid white;
+    width: 80%;
+    margin: 1 auto;
+    padding: 10px;
+
+}
 #idealo > label {
     display: inline;
     font-size: 15px;
@@ -377,8 +389,20 @@ div.windowMenu {
 
 input[type=text].sm-form, input[type=password].sm-form {
     width: 200px;
+    padding: 0;
     margin: 8px 0;
     display: inline-block;
+}
+
+.windowMenu .menuInstructions > li {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    width: 100%;;
+}
+
+.windowMenu .menuInstructions > li:last-of-type {
+    color: azure;
 }
 
 /*=================TAGS ====================*/

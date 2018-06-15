@@ -96,20 +96,6 @@
                                                     </li>
                                                 </ul>
                                             </nav>
-                                            <div id="windowOptions">
-                                                <!-- <div class="dropdown show" id="dropdownDiv">
-                                                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Filters
-                                                    </a>
-
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <a class="dropdown-item" href="#">Users</a>
-                                                        <a class="dropdown-item" href="#">Posts</a>
-                                                        <a class="dropdown-item" href="#">Categories</a>
-                                                        <a class="dropdown-item" href="#">Tags</a>
-                                                    </div>
-                                                </div> -->
-                                            </div>
                                             <div id="viewItems">
 
                                                 <c:choose>
@@ -119,10 +105,14 @@
                                                                 <h4 class="heading1">Notification Menu</h4>
                                                                 <ul class="list-group placementMenu">
                                                                     <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                        My Notifications
+                                                                        <a href="${pageContext.request.contextPath}/userDashboard?view=notification&mode=notifications"> My Notifications</a>
+
                                                                     </li>
                                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                        Pending
+                                                                        <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications')">Filter Notifications </a>
+                                                                    </li>
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                        <a href="${pageContext.request.contextPath}/userDashboard?view=notification&mode=pending"> Pending / Watching</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -148,17 +138,17 @@
                                                                             </div>
                                                                             <div class="col-md-5 options">
                                                                                 <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
-                                                                                    <button type="button" class="btn btn-success">View</button>
-                                                                                    <button type="button" class="btn btn-primary">Approve</button>
+                                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-success" onclick="populateModal('notifications_view', `${notifications[i].notificationID}`)">View </a>
+                                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-primary" onclick="populateModal('notifications_approve', `${notifications[i].notificationID}`)">Approve </a>
 
                                                                                     <div class="btn-group" role="group">
-                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true"
                                                                                             aria-expanded="false">
                                                                                             Deny
                                                                                         </button>
                                                                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                            <a class="dropdown-item" href="#">Request Edits</a>
-                                                                                            <a class="dropdown-item" href="#">Vanquish</a>
+                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications_request_edit', `${notifications[i].notificationID}`)">Request Edits </a>
+                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications_vanquish', `${notifications[i].notificationID}`)">Vanquish </a>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -186,14 +176,12 @@
                                                             <div class="col-md-3 windowMenu">
                                                                 <h4 class="heading1">User Menu</h4>
                                                                 <ul class="list-group placementMenu">
-                                                                    <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                        Manage Users
+                                                                 
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                            <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_pending')"> My Pending Users </a>
                                                                     </li>
                                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                            Filter Users
-                                                                        </li>
-                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                        My Settings
+                                                                        <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_settings')">My Settings </a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -206,14 +194,16 @@
                                                                             <div class="col-md-11 itemDate">
                                                                                 <span>
                                                                                     Last Active: ${users[i].lastActive}
-                                                                                    <br> Posts: 31 &nbsp; | &nbsp; Categories: 3 &nbsp; | &nbsp; Tags: 3
+                                                                                    <br> Posts: 31 &nbsp; | &nbsp; Categories:
+                                                                                    3 &nbsp; | &nbsp; Tags: 3
                                                                                 </span>
                                                                             </div>
                                                                             <div class="col-md-1 itemToggle">
                                                                                 <i class="fas fa-angle-double-down"></i>
                                                                             </div>
                                                                             <div class="col-md-7 itemSummary">
-                                                                                <span> User: ${users[i].username} &nbsp; | &nbsp; Admin </span>
+                                                                                <span> User: ${users[i].username} &nbsp; | &nbsp;
+                                                                                    Admin </span>
                                                                                 <p class="itemBrief">This user has 1 post, 2 tags, 42 categories
                                                                                     pending
                                                                                 </p>
@@ -261,7 +251,8 @@
                                                                 <h4 class="heading1">Post Bench</h4>
                                                                 <ul class="list-group placementMenu">
                                                                     <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                        Post Notifications
+
+                                                                        <a href="${pageContext.request.contextPath}/userDashboard?view=users&mode=settings"> Post Notifications</a>
                                                                     </li>
 
                                                                     <li class="list-group-item d-flex justify-content-between align-items-center ">
@@ -470,6 +461,26 @@
                                                     </c:when>
                                                 </c:choose>
 
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="generalModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="generalModalLabel"></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body"  id="generalModalBody">
+                                                    </div>
+                                                    <div class="modal-footer" id="generalModalFooter">
+                                                        
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

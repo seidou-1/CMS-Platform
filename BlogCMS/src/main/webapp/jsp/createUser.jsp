@@ -105,12 +105,18 @@
                                                 <section class="row" id="placement">
                                                     <div class="col-md-3 windowMenu">
                                                         <h4 class="heading1">Instructions</h4>
-                                                        <ul class=" placementMenu">
+                                                        <ul class="menuInstructions placementMenu">
                                                             <li>
-                                                                1. Enter a valid username
+                                                                1. Type a username
                                                             </li>
                                                             <li>
-                                                                2. Enter a valid email
+                                                                2. Type an email
+                                                            </li>
+                                                            <li>
+                                                                3. Select the users type
+                                                            </li>
+                                                            <li>
+                                                                4. Click Submit
                                                             </li>
                                                             <li>
                                                                 Please Note: Password defaults to 12345
@@ -122,7 +128,7 @@
                                                     <div class="col-md-9 windowDisplay">
                                                         <h4 class="heading1">Create a new User</h4>
                                                         <form action="addUser" method="POST">
-                                                            
+
                                                             <div class="form-group" id="idealo">
                                                                 <label for="userName">User Name: </label>
                                                                 <input type="text" name="userName" id="userName" class="sm-form" value="mad">
@@ -131,17 +137,19 @@
                                                                 <input type="text" name="userEmail" id="userEmail" class="sm-form" value="madlife@shinobilife.com">
                                                                 <br>
                                                                 <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                                    <label class="form-check-label" for="inlineRadio1">Administrator</label>
+                                                                    <input class="form-check-input" type="radio" name="userAuthority" id="StandardAuth" value="2" checked>
+                                                                    <label class="form-check-label" for="StandardAuth">Standard User</label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                                    <label class="form-check-label" for="inlineRadio2">Standard User</label>
-                                                                </div> 
-                                                            </div>
-                                                            <div class="form-group" style="width: 100%; text-align: right;">
+                                                                    <input class="form-check-input" type="radio" name="userAuthority" id="adminAuth" value="1">
+                                                                    <label class="form-check-label" for="adminAuth">Administrator</label>
+                                                                </div>
+
+                                                                <div class="form-group" style="width: 100%;">
                                                                     <button name="submit" type="submit" class="btn btn-success" id="createUser">Submit User</button>
                                                                 </div>
+                                                            </div>
+
                                                         </form>
                                                     </div>
                                                 </section>
