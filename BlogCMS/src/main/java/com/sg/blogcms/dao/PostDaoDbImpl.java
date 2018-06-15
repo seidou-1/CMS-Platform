@@ -160,6 +160,18 @@ public class PostDaoDbImpl implements PostDAOInterface {
                 post.getCategoryId(),
                 post.getUserId(),
                 post.getPostId());
+        
+        
+        
+        
+//        if(!post.getTag().isEmpty()){
+//            for(Tag tag: post.getTag()){
+//
+//                jdbcTemplate.update(SQL_INSERT_POST_TAG,
+//                        post.getPostId(),
+//                        tag.getTagId());
+//            }
+//        }
 
     }
 

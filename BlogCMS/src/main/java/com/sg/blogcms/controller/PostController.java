@@ -102,6 +102,7 @@ public class PostController {
 
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post myPost = postService.getPostById(postId);
+        // remove all Post_Tag abrdige relationships ... postService.removeAllPostTag(myPost);
         
         List<Category> allCategories = categoryService.getAllCategories();
         List<Tag> allTags = tagService.getAllTags();

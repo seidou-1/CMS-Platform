@@ -119,7 +119,7 @@
 
                 <c:when test="${display == 'viewSinglePost'}">
                     <div class ="row">
-                        <input id="userId" name="userId" value = "${myPost.user.userId}" type = "hidden">
+                        
                         <div class="col-md-6 col-xs-12">
                             
                             <ul class ="displayPostDetails" style="list-style-type: none;">
@@ -243,7 +243,7 @@
                         </div> 
                         
                         
-                        <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class ="btn btn-warning">EDIT</a>
+                        <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${myPost.postId}" class ="btn btn-warning">EDIT</a>
 
                 </c:when>
 
