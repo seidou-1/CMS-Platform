@@ -14,6 +14,7 @@ import com.sg.blogcms.service.PostServiceInterface;
 import com.sg.blogcms.service.TagServiceInterface;
 import com.sg.blogcms.service.UserServiceInterface;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -64,6 +65,28 @@ public class PostController {
 
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post myPost = postService.getPostById(postId);
+        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagName());
+        System.out.println("SEARCH THIS: " + myPost.getTag().size());
+        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagId());
+        
+        for(Tag tag: tagService.getAllTags()){
+            if(myPost.getTag().get(0).getTagName() == tag.getTagName()){
+                System.out.println("SEARCH THIS TOO: null must be a tag?" );
+            }
+        }
+        
+        if(myPost.getTag().get(0).getTagId() == 0){ //Why is the tagId 0?.. shuold just be null
+            myPost.setTag(null);
+        }
+        
+
+
+        if(myPost.getTag() == null){ //Why is the tagId 0?.. shuold just be null
+            System.out.println("THE TAG LIST IS NULL");
+        }
+        
+        
+        
         
         model.addAttribute("myPost", myPost);
         
@@ -79,6 +102,19 @@ public class PostController {
 
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post myPost = postService.getPostById(postId);
+        
+        List<Category> allCategories = categoryService.getAllCategories();
+        List<Tag> allTags = tagService.getAllTags();
+        
+        
+        
+        
+        
+        
+        model.addAttribute("allCategories", allCategories);
+        model.addAttribute("allTags", allTags);
+        
+        
         
         model.addAttribute("myPost", myPost);
         
@@ -145,10 +181,21 @@ public class PostController {
         
         String [] temp = request.getParameterValues("tags");
         
+        /*
+        ParameterValues returns an array of TagIds (in strings). So we loop through
+        that Array get the corresponding Tag and add that to our temporary tagList.
+        After we are done looping we set the blogs tag list as our newly created Tag
+        List. This is needed so that we can update the abridged table in our Database.
+        */
+        
+        List<Tag> tagList = new ArrayList<Tag>();
+        
         for (String tagId  : temp){
             Tag tag = tagService.getTagById(Integer.parseInt(tagId));
-            myPost.addTag(tag);
+            tagList.add(tag);
         }
+        
+        myPost.setTag(tagList);
         
         
 ////        myPost.setTag(request.getParameterValues("tags") );

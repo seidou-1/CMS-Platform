@@ -119,11 +119,13 @@
 
                 <c:when test="${display == 'viewSinglePost'}">
                     <div class ="row">
+                        <input id="userId" name="userId" value = "${myPost.user.userId}" type = "hidden">
                         <div class="col-md-6 col-xs-12">
+                            
                             <ul class ="displayPostDetails" style="list-style-type: none;">
 
                                 <li>
-                                    <span class = "postTitle"> Post Title </span>
+                                    <span class = "postTitle"> Post Title: </span>
                                     <br>
                                     <span class = "outputtedTitle">
                                         <c:out value="${myPost.postTitle}"></c:out>
@@ -133,7 +135,8 @@
                                     <li>
                                         <span>
                                             <br>
-                                            <span class ="postDate"> Post Date </span>
+                                            <span class ="postDate"> Post Date: </span>
+                                            <br>
                                         <c:out value = "${myPost.postDate}"></c:out>
                                         </span>
                                     </li>
@@ -142,6 +145,8 @@
                                         <span>
                                             <br>
                                             <span class ="postDate"> Category: </span>
+                                            <br>
+
                                         <c:out value = "${myPost.category.categoryName}"></c:out>
                                         </span>
                                     </li>
@@ -155,17 +160,60 @@
                                 <ul class ="displayPostDetails" style="list-style-type: none;">
 
                                     <li>
-                                        <span class = "postTitle"> Tags </span>
-                                        <br>
-                                        <span class = "outputtedTitle">
-                                        <c:out value="${myPost.tag[0].tagName}"></c:out> <!-- Update later to get all tags-->
-                                        </span>
-                                    </li>
 
-                                    <li>
-                                        <span>
+                                    <c:choose>
+                                        <c:when test = "${myPost.tag.size() > 0}">
+
+                                            <span class = "postTitle"> Tag(s):  </span>
                                             <br>
-                                            <span class ="postDate"> Expiration Date </span>
+                                            <span class = "outputtedTitle">
+
+                                                <c:forEach items="${myPost.tag}" var = "tag">
+                                                    <c:out value="${tag.tagName}"></c:out> 
+                                                        <br>
+                                                </c:forEach>
+                                            </span>
+
+                                        </c:when>
+
+
+                                        <c:when test = "${myPost.tag == null}">
+
+                                            <span class = "postTitle"> Tag(s):  </span>
+                                            <br>
+                                            <span class = "outputtedTitle">
+
+                                                This post had no associated tags selected
+
+                                            </span>
+
+                                        </c:when>
+
+                                        <c:otherwise>
+
+
+                                            <span class = "postTitle"> Tag(s):  </span>
+                                            <br>
+                                            <span class = "outputtedTitle">
+
+                                                This post had no associated tags selected
+
+                                            </span>
+
+                                        </c:otherwise>
+
+                                    </c:choose>
+
+
+                                    <!-- Update later to get all tags-->
+                                </li>
+
+                                <li>
+                                    <span>
+                                        <br>
+                                        <span class ="postDate"> Expiration Date: </span>
+                                        <br>
+
                                         <c:out value = "${myPost.expirationDate}"></c:out>
                                         </span>
                                     </li>
@@ -183,6 +231,8 @@
                                         <span>
                                             <br>
                                             <span class ="postDate"> Body: </span>
+                                            <br>
+
                                         <c:out value = "${myPost.postBody}"></c:out>
                                         </span>
                                     </li>
@@ -190,11 +240,14 @@
                                 </ul>
                             </div>
 
-                        </div>            
+                        </div> 
+                        
+                        
+                        <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class ="btn btn-warning">EDIT</a>
 
                 </c:when>
 
-                <c:when test="${display == 'choosePostToEdit'}">
+                <c:when test="${display == 'choose'}">
 
 
                     <!-- Form Starts -->
@@ -205,7 +258,7 @@
                                 <div class="form-group">
                                     <label for="postTitle" class="control-label col-xs-4">Title</label> 
                                     <div class="col-xs-8">
-                                        <input id="postTitle" value = "${post.postTitle}" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                                        <input id="postTitle" value = "${myPost.postTitle}" name="postTitle" placeholder="Post 2 Title" type="text" class="form-control">
                                     </div>
                                 </div>
 
@@ -219,10 +272,9 @@
 
                                     <label for="postBody" class="control-label col-xs-4">Body</label> <!--How to get the textarea value -->
                                     <div class="col-xs-8">
-                                        <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" 
-                                                  placeholder="">
-
+                                        <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" placeholder="">
                                             ${myPost.postBody}
+                                            
 
                                         </textarea>
                                     </div>
@@ -276,13 +328,24 @@
                                 <!-- ******************Category Selection************************-->
 
                                 <div class="form-group">
-                                    <label for="category" class="control-label col-xs-4">Category</label> 
+                                    <!--<label for="category" class="control-label col-xs-4"></label>--> 
                                     <div class="col-xs-8">
-                                        <input id="categoryId" value = "${myPost.category.categoryName}" name="categoryName" placeholder="1" type="text" class="form-control">
-                                        <input id="categoryId" name="categoryId" value = "${myPost.category.categoryId}" type = "hidden">
 
-                                        <!-- Asher to add Category logic here. Replace static value-->
-                                                    
+
+                                        <h4>
+                                            Select Category.....:
+                                        </h4>
+                                        <c:forEach items = "${allCategories}" var = "category">
+
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="category" value="${category.categoryId}">
+
+
+                                                ${category.categoryName}
+                                            </label>
+
+
+                                        </c:forEach>
                                     </div>
                                 </div>
 
@@ -292,28 +355,24 @@
                                 <!-- ******************Tag Selection************************-->
                                 <div class="form-group"> 
 
-                                    <!-- Matt to replace hard coded code below with Tag code-->
 
-                                    <label for="tags" class="control-label col-xs-4">Tags</label> 
+                                    <h4> Select Tag(s): </h4>
                                     <div class="col-xs-8">
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" name="tags" value="Programming" checked>
-                                            Programming
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" name="tags" value="Ice Cream">
-                                            Ice Cream
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" name="tags" value="Mountains">
-                                            Mountains
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" name="tags" value="Fishing">
-                                            Fishing
-                                        </label>
+
+                                        <c:forEach items = "${allTags}" var = "tags">
+
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="tags" value="${tags.tagId}">
+
+
+                                                ${tags.tagName}
+                                            </label>
+
+
+                                        </c:forEach>
+
                                     </div>
-                                </div> 
+                                </div>  
                                 <!-- ******************Tag Selection************************-->
 
                                 <div class="form-group row justify-content-center">
@@ -351,6 +410,9 @@
                                     <div class="card-footer cardPostDate">
                                         <small class="text-muted">Post Date:  <c:out value = "${posts[currentPost].postDate}"/> </small>
                                     </div>
+                                    <input id="userId" name="userId" value = "${posts[currentPost].user.userId}" type = "hidden">
+                                    <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class ="btn btn-warning">EDIT</a>
+                                    
                                 </div>Ï
 
                             </c:forEach>

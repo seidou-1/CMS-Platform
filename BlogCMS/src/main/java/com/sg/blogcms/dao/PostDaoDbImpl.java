@@ -96,6 +96,12 @@ public class PostDaoDbImpl implements PostDAOInterface {
             + "LEFT  JOIN POSTS_TAGS ON POSTS.POSTID = POSTS_TAGS.POSTID\n"
             + "\n"
             + "LEFT JOIN TAGS ON TAGS.TAGID = POSTS_TAGS.TAGID";
+    
+    private static final String SQL_INSERT_POST_TAG
+            = "INSERT INTO`POSTS_TAGS` (PostID, TagID)\n"
+            + "VALUES (?, ?)";
+    
+    
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -123,6 +129,17 @@ public class PostDaoDbImpl implements PostDAOInterface {
         post.setPostId(newId);
         
         //Iterate through Tags and insert those into the post
+        if(!post.getTag().isEmpty()){
+            for(Tag tag: post.getTag()){
+
+                jdbcTemplate.update(SQL_INSERT_POST_TAG,
+                        post.getPostId(),
+                        tag.getTagId());
+            }
+        }
+            
+            
+        
         return post;
 
         //Pick up here.. UnitTest this method
