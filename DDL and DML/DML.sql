@@ -41,7 +41,9 @@ INSERT INTO`POSTS` (PostTitle,  PostDate, ExpirationDate, FeatureImage, Category
 VALUES 
 ('Adventerous Views', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Beach Vibes', '2', '2', 'I look at all types of Adventerous Views'),
 ('Scenes from the streams', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Image of the sky', '3', '1', 'I look at all types of scenes'),
-('Night and Day Meals', '2016-05-10 20:59:59', '2013-03-15 11:00:12', 'Image of the sky', '2', '1', 'I look at all types of day and night meals')
+('Night and Day Meals', '2016-05-10 20:59:59', '2013-03-15 11:00:12', 'Image of the sky', '2', '1', 'I look at all types of day and night meals'),
+('Responsibilities of an adult', '2018-06-13 10:12:32', '2020-05-11 10:10:17', 'Adulthood', '1', '1', 'When i started adulting it was tough. Its still tough'),
+('Memories of the young', '2018-04-19 04:05:42', '2020-07-11 03:16:12', 'Dreams', '3', '1', 'I would never imagine when i was a child how life works. Still cant find the manual')
 ;
 
 INSERT INTO `TAGS` (TagName)
@@ -94,6 +96,4 @@ VALUES
 ('delete','2018-04-20 12:30:30', 'tag', 'travzlife', 1, 'Ice Cream') 
 ;
 
- 
-select * from `notifications`;
 

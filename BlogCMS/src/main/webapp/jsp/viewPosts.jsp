@@ -112,49 +112,274 @@
             </div>
 
             <br> <!-- Seperation-->
-        </div>
-        <div class ="row">
-
-
-            <!--<span class ="font-size: 24px; padding: 10px 0; font-weight: bold;"> All Blogs</span>-->
-
-            <!--<div class="col-md-12">-->
 
 
 
+            <c:choose>
 
-            <div class = "entireCard">
-            <div class="card-deck">
-                <c:forEach var = "currentPost" begin="0" end="2"  >
-                    <!--items= "${posts} "-->
-                    
-                    <a href="${pageContext.request.contextPath}/viewPost?postId=${posts[currentPost].postId}"></a>
-                    <div class="card">
-                        <div class="card-header cardPostTitle">
-                            <h3> <c:out value = "${posts[currentPost].postTitle}"/> </h3>
+                <c:when test="${display == 'viewSinglePost'}">
+                    <div class ="row">
+                        <div class="col-md-6 col-xs-12">
+                            <ul class ="displayPostDetails" style="list-style-type: none;">
+
+                                <li>
+                                    <span class = "postTitle"> Post Title </span>
+                                    <br>
+                                    <span class = "outputtedTitle">
+                                        <c:out value="${myPost.postTitle}"></c:out>
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span>
+                                            <br>
+                                            <span class ="postDate"> Post Date </span>
+                                        <c:out value = "${myPost.postDate}"></c:out>
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span>
+                                            <br>
+                                            <span class ="postDate"> Category: </span>
+                                        <c:out value = "${myPost.category.categoryName}"></c:out>
+                                        </span>
+                                    </li>
+
+
+
+
+                                </ul> 
+                            </div>
+                            <div class = "col-md-6 col-xs-12">
+                                <ul class ="displayPostDetails" style="list-style-type: none;">
+
+                                    <li>
+                                        <span class = "postTitle"> Tags </span>
+                                        <br>
+                                        <span class = "outputtedTitle">
+                                        <c:out value="${myPost.tag[0].tagName}"></c:out> <!-- Update later to get all tags-->
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span>
+                                            <br>
+                                            <span class ="postDate"> Expiration Date </span>
+                                        <c:out value = "${myPost.expirationDate}"></c:out>
+                                        </span>
+                                    </li>
+
+
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text cardPostBody"> <c:out value = "${posts[currentPost].postBody}"/> </p>
-                            
-                        </div>
-                        <div class="card-footer cardPostDate">
-                            <small class="text-muted">Post Date: <c:out value = "${posts[currentPost].postDate}"/></small>
-                        </div>
-                    </div>Ï
-                </c:forEach>
-            </div>
 
-            
-            </div>
+                        <div class = "row">
+                            <div class="col-md-12">
+                                <ul style="list-style-type: none;">
+
+                                    <li>
+                                        <span>
+                                            <br>
+                                            <span class ="postDate"> Body: </span>
+                                        <c:out value = "${myPost.postBody}"></c:out>
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>            
+
+                </c:when>
+
+                <c:when test="${display == 'choosePostToEdit'}">
+
+
+                    <!-- Form Starts -->
+                    <div class="row justify-content-center">
+                        <div class ="choosePostToEdit col-md-8  ">
+                            <form action ="editPost" class ="displayForm" method ="PUT" id="userForm"  >
+
+                                <div class="form-group">
+                                    <label for="postTitle" class="control-label col-xs-4">Title</label> 
+                                    <div class="col-xs-8">
+                                        <input id="postTitle" value = "${post.postTitle}" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+
+
+                                <br> <!-- Separation-->
+
+                                <div class="form-group">
+
+                                    <br> <!-- Separation-->
+
+                                    <label for="postBody" class="control-label col-xs-4">Body</label> <!--How to get the textarea value -->
+                                    <div class="col-xs-8">
+                                        <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" 
+                                                  placeholder="">
+
+                                            ${myPost.postBody}
+
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <br> <!-- Seperation-->
+
+
+
+                                <div class="form-group">
+                                    <br> <!-- Seperation-->
+
+                                    <label for="postDate" class="control-label col-xs-4">Post Date</label> <!-- Change this calendar to be a selection type-->
+                                    <div class="col-xs-8">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div> 
+                                            <input id="text" name="postDate" value = "${myPost.postDate}" placeholder="i.e. 2018-03-20" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br> <!-- Seperation-->
+
+                                <div class="form-group">
+
+                                    <br> <!-- Seperation-->
+
+                                    <label for="expirationDate" class="control-label col-xs-4">Post Expiration Date</label> 
+                                    <div class="col-xs-8">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div> 
+                                            <input id="expirationDate" name="expirationDate" value = "${myPost.expirationDate}" placeholder="i.e. 12/31/2022" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br> <!-- Seperation-->
+
+                                <div class="form-group">
+                                    <input id="userId" name="userId" value = "${myPost.user.userId}" type = "hidden">
+
+                                </div> 
+
+
+                                <br> <!-- Seperation-->
+
+
+                                <!-- ******************Category Selection************************-->
+
+                                <div class="form-group">
+                                    <label for="category" class="control-label col-xs-4">Category</label> 
+                                    <div class="col-xs-8">
+                                        <input id="categoryId" value = "${myPost.category.categoryName}" name="categoryName" placeholder="1" type="text" class="form-control">
+                                        <input id="categoryId" name="categoryId" value = "${myPost.category.categoryId}" type = "hidden">
+
+                                        <!-- Asher to add Category logic here. Replace static value-->
+                                                    
+                                    </div>
+                                </div>
+
+                                <!-- ******************Category Selection************************-->
+
+
+                                <!-- ******************Tag Selection************************-->
+                                <div class="form-group"> 
+
+                                    <!-- Matt to replace hard coded code below with Tag code-->
+
+                                    <label for="tags" class="control-label col-xs-4">Tags</label> 
+                                    <div class="col-xs-8">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="tags" value="Programming" checked>
+                                            Programming
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="tags" value="Ice Cream">
+                                            Ice Cream
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="tags" value="Mountains">
+                                            Mountains
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="tags" value="Fishing">
+                                            Fishing
+                                        </label>
+                                    </div>
+                                </div> 
+                                <!-- ******************Tag Selection************************-->
+
+                                <div class="form-group row justify-content-center">
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Submit</button>
+                                        <button name="cancel" type="submit" class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </form> 
+                        </div>
+                    </div>
+
+
+                    <!-- Form Ends -->
+
+
+                </c:when>
+
+                <c:otherwise >
+
+                    <div class = "entireCard">
+                        <div class="card-deck">
+                            <c:forEach var = "currentPost" begin="0" end="3"  >
+                                <!--items= "${posts} "-->
+
+                                <div class="card">
+                                    <div class="card-header cardPostTitle">
+                                        <h3>  <c:out value = "${posts[currentPost].postTitle}"/></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text cardPostBody"> <c:out value = "${posts[currentPost].postBody}"/> </p>
+                                        <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=${posts[currentPost].postId}" class ="btn btn-success">VIEW</a>
+                                    </div>
+                                    <div class="card-footer cardPostDate">
+                                        <small class="text-muted">Post Date:  <c:out value = "${posts[currentPost].postDate}"/> </small>
+                                    </div>
+                                </div>Ï
+
+                            </c:forEach>
+                        </div>
+
+
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
         </div> <!--End of row -->
 
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </div> <!--End of container -->
 
-    </body>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+</body>
 
 
 </html>
+<c:choose>
+    <c:when test = "${display == 'view'}">
+
+    </c:when> 
+    <c:otherwise>
+
+    </c:otherwise>
+</c:choose>
+
