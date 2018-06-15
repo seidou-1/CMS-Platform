@@ -83,11 +83,6 @@ button:hover {
     opacity: 0.8;
 }
 
-p{
-    font-size: 36px;
-}
-
-
 /*==============
 LANDING IMAGE
 ================*/
@@ -97,14 +92,19 @@ LANDING IMAGE
 .hero-image {
     /*    background-image: url("../images/bossPlane.jpg");*/
     width: 100%;
-    height: 50%;
-    background-position: center;
+    /*height: auto;*/
+    background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
     /*position: relative;*/
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
+.d-block.w-100{
+    width: 10px;
+    position: relative;
+    
+}
 .row-first{
     height: 10%;
     margin-bottom: 40px;
@@ -112,6 +112,7 @@ LANDING IMAGE
 
 .hero-text {
     color: white;
+    text-shadow: 2px 2px RGBA(23, 62, 67, 1.00);
     text-align: center;
     position: absolute;
     top: 50%;
@@ -132,8 +133,7 @@ LANDING IMAGE
 .user-image-text {
     text-align: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 20%;
 }
 /*=========================
         MODAL
@@ -231,10 +231,11 @@ img.avatar {
 /*=================MAIN CONTENT====================*/
 .contentContainer{
     margin: 40px;
+    
 }
-
-
-
+.card-body p{
+    font-size: 18px;
+}
 
 /*==============
 Users

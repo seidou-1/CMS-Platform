@@ -37,7 +37,6 @@ public class CategoryController {
 //        return "categories";
 //
 //    }
-
     @RequestMapping(value = {"/addCategory"}, method = RequestMethod.GET)
     public String addCategoryPage(HttpServletRequest request) {
 
@@ -78,10 +77,12 @@ public class CategoryController {
     @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
     public String updateCategory(HttpServletRequest request) {
 
-        Category cat = categoryService.getCategoryById(Integer.parseInt("category"));
+        Category cat = categoryService.getCategoryById(Integer.parseInt(request.getParameter("categoryId")));
+        
+        cat.setCategoryName(request.getParameter("categoryName"));
 
         String[] categoryIds = request.getParameterValues("categoryName");
-        
+
         List<Category> categoryList = new ArrayList();
 
         if (categoryIds != null) {
@@ -91,6 +92,8 @@ public class CategoryController {
             }
         }
 //        need to persist updated category from form
+
+        categoryService.updateCategory(0, cat);
 
         return "redirect:?addPost";
 
@@ -107,7 +110,6 @@ public class CategoryController {
 //
 //        return "redirect:?addPost";
 //    }
-    
     @RequestMapping(value = {"/deleteCategory"}, method = RequestMethod.GET)
     public String deleteCategory(HttpServletRequest request) {
         categoryService.deleteCategory(0, 0);

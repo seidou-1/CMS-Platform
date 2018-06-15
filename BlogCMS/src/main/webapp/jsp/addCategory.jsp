@@ -16,9 +16,7 @@
     </head>
     <body>
         
-        <!--=============NAVBAR=============-->
-
-        <!--===========BRAND NAME BUTTON==========-->
+       <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
 
@@ -35,16 +33,22 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
+
+                    <li class ="nav-item">
+                        <a class ="nav-link" href="${pageContext.request.contextPath}/viewPosts">View Posts</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Add Post</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">About Us</a>
                     </li>
 
                     <!--==========DROPDOWN==========-->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -55,14 +59,6 @@
                 </ul>
             </div>
         </nav>
-        <hr>
-
-        <!--=============LANDING PLANE IMAGE========-->
-        <div class="hero-image">
-            <div class="hero-text">
-                <h1>Where BucketList's become Memories</h1>
-            </div>
-        </div>
 
         <!--===========LOGIN MODAL===========-->
         <div id="loginModal" class="modal">
@@ -71,9 +67,9 @@
 
             <!-- Modal Content -->
             <form role="form" class="modal-content animate" action="j_spring_security_check" method="POST">
-                <div class="imgcontainer">
-                    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                </div>
+                <!--                <div class="imgcontainer">
+                                    <img src="../images/get-buckets.png" alt="Avatar" class="avatar">
+                                </div>-->
 
                 <div class="container form-group">
                     <c:if test="${param.login_error == 1}">
@@ -90,20 +86,25 @@
                     <label for="j_password" class="col-md-4 control-label">Password:</label>
                     <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
 
-                    <button type="submit" class="loginBtn" id="search-button" value="Sign In">Login</button
+                    <button type="submit" class="loginBtn" id="search-" value="Sign In">Login</button
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
                 </div>
-
-
 
                 <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                     <button type="button" onclick="document.getElementById('loginModal').style.display = 'none'" class="cancelbtn">Cancel</button>
                 </div>
             </form>
         </div>
-
+        
+        <hr>
+        <!--=============LANDING PLANE IMAGE========-->
+        <div class="hero-image">
+            <div class="hero-text">
+                <h1>Where BucketList's become Memories</h1>
+            </div>
+        </div>
 
 
     <!--=======ADD CATEGORY FORM==========-->

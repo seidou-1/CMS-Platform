@@ -177,6 +177,7 @@
 $('.carousel').carousel({
   interval: 200,
   pause: "false",
+  pauseOnHover: "false",
   wrap: "true"
 });
 

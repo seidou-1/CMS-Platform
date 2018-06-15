@@ -17,7 +17,6 @@
 
     </head>
     <body>
-
         <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
@@ -45,11 +44,27 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">About Us</a>
                     </li>
 
                     <!--==========DROPDOWN==========-->
                     <li class="nav-item dropdown">
+
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <p>${pageContext.request.userPrincipal.name}
+                                | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </p>
+
+                            <a class="nav-link dropdown-toggle loginButton" href="${pageContext.request.contextPath}/usersDashboard?view=users" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ${pageContext.request.userPrincipal.name}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </div>
+
+                        </c:if>
+
+
                         <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
                         </a>
@@ -69,9 +84,9 @@
 
             <!-- Modal Content -->
             <form role="form" class="modal-content animate" action="j_spring_security_check" method="POST">
-<!--                <div class="imgcontainer">
-                    <img src="../images/get-buckets.png" alt="Avatar" class="avatar">
-                </div>-->
+                <!--                <div class="imgcontainer">
+                                    <img src="../images/get-buckets.png" alt="Avatar" class="avatar">
+                                </div>-->
 
                 <div class="container form-group">
                     <c:if test="${param.login_error == 1}">
@@ -100,43 +115,41 @@
             </form>
         </div>
 
+        <hr>
+
         <div class="conatiner-fluid">
 
-            <hr>
-
-
-            <!--=============LANDING PLANE IMAGE========-->
+            <!--=============LANDING IMAGE========-->
             <div class="row row-first">
                 <div class="hero-image">
 
-
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" class="carousel slide" data-ride="carousel" role="listbox" style=" width:100%; height: 500px !important;">
                         <div class="carousel-inner">
+                           
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="images/1.jpg" alt="First slide">
+                                <img class="d-block w-100" src="images/1.jpg" alt="1st">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block " src="images/2.jpg" alt="Second slide">
+                                <img class="d-block w-100" src="images/2.jpg" alt="2nd">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="images/3.jpg" alt="Third slide">
+                                <img class="d-block w-100" src="images/3.jpg" alt="3rd">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="images/4.jpg" alt="Third slide">
+                                <img class="d-block w-100" src="images/4.jpg" alt="4th ">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="images/5.jpg" alt="Third slide">
+                                <img class="d-block w-100" style="top: -200px" src="images/5.jpg" alt="5th">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="images/8.jpeg" alt="Third slide">
+                                <img class="d-block w-100" src="images/8.jpg" alt="6th">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="images/7.jpg" alt="Third slide">
+                                <img class="d-block w-100" src="images/7.jpg" alt="7th"
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="hero-text">
                     <h1>Where BucketList's become Memories</h1>
@@ -147,7 +160,6 @@
             <!--============PAGE CONTENT=============-->
             <div class="contentContainer">
                 <div class="row">
-
 
                     <div class="card-deck">
                         <div class="card">
