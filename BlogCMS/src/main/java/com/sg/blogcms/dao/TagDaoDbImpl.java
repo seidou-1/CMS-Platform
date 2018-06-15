@@ -29,18 +29,23 @@ public class TagDaoDbImpl implements TagDAOInterface {
     }
 
     private static final String SQL_INSERT_TAG
-            = "INSERT INTO TAGS (TagName. Tag, TagID, UserID, Category)\n"
-            + "VALUES (?, ? ,? , ?, ?)";
+//            = "INSERT INTO TAGS (TagName. Tag, TagID, UserID, Category)\n"
+            = "INSERT INTO TAGS (PostID, TagID)\n"
+            + "VALUES (?, ? )";
 
     private static final String SQL_DELETE_TAG
             = "DELETE FROM 'TAGS' WHERE TAGID = ?";
 
     //Select the Tags from
     private static final String SQL_SELECT_TAG_BY_TAGID
-            = "Select TagID, TagName from tags where tagID = '?'";
+//            = "Select TagID, TagName from tags where tagID = '?'"; Mo: BRUHHH............ WHY??? CRYING FACE?? HOURS OF LOGSSS
+            = "Select * from TAGS where tagID = ?"; 
+
+
 
     private static final String SQL_UPDATE_TAG
-            = "UPDATE `Tags` SET TagName = 'New Title' WHERE TagID = '?'";
+//            = "UPDATE `Tags` SET TagName = 'New Title' WHERE TagID = '?'";
+            = "UPDATE `Tags` SET TagName = '?' WHERE TagID = '?'";
 
     private static final String SQL_SELECT_ALL_TAGS
             = "SELECT * FROM TAGS ";
@@ -77,7 +82,7 @@ public class TagDaoDbImpl implements TagDAOInterface {
 
     @Override
     public Tag getTagById(int tagId) {
-        jdbcTemplate.update(SQL_DELETE_TAG, tagId);
+//        jdbcTemplate.update(SQL_DELETE_TAG, tagId); Mo: BRUHHH............ WHY??? CRYING FACE?? HOURS OF LOGSSS
 
         try {
             return jdbcTemplate.queryForObject(SQL_SELECT_TAG_BY_TAGID,

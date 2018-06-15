@@ -37,6 +37,9 @@ public class UserDaoDbImpl implements UserDAOInterface {
 
     private static final String SQL_SELECT_USER
             = "select * from `Users` where UserID = ?";
+    
+    private static final String SQL_SELECT_USER_BY_USERNAME
+            = "select * from `Users` where username = ?";
 
     private static final String SQL_SELECT_ALL_USERS
             = "select * from `Users`";
@@ -111,6 +114,18 @@ public class UserDaoDbImpl implements UserDAOInterface {
     public List<User> getAllUsers() {
         return jdbcTemplate.query(SQL_SELECT_ALL_USERS,
                 new UsersMapper());
+    }
+    
+    @Override
+    public User getUserByUsername(String username){
+        try {
+            return jdbcTemplate.queryForObject(SQL_SELECT_USER_BY_USERNAME,
+                    new UsersMapper(), username);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+
+        }
+        
     }
 
     private static final class UsersMapper implements RowMapper<User> {
