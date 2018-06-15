@@ -28,6 +28,8 @@ public class Post {
     //Might delete Category category and User user in place of:
     int categoryId;
     int userId;
+    
+    
 
     public String getPostBody() {
         return postBody;
@@ -118,6 +120,9 @@ public class Post {
         this.user = user;
     }
     
+    public void addTag(Tag tag){
+        this.tag.add(tag);
+    }
     
     
 }

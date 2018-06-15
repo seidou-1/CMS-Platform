@@ -106,9 +106,13 @@ public class PostController {
         
        postService.updatePost(myPost.getUserId(), myPost); //Update this method to replace the first parameter with userId
        
-       return "redirect:viewPosts/"; //edit later
+       return "redirect:viewPosts/"; //edit later`
     }
     
+    /*
+        In order to use the attribute for this respective end point, we have to include
+        the attribute for this end point below:
+        */
     @RequestMapping (value = {"/createPost"}, method = RequestMethod.GET)
     public String displyCreatePostPage(HttpServletRequest request, Model model) {
                 //Getting all Posts from the dao
@@ -138,7 +142,21 @@ public class PostController {
         myPost.setFeatureImage(request.getParameter("featuredImage"));
         myPost.setCategoryId(Integer.parseInt(request.getParameter("category")));
         
-
+        
+        String [] temp = request.getParameterValues("tags");
+        
+        for (String tagId  : temp){
+            Tag tag = tagService.getTagById(Integer.parseInt(tagId));
+            myPost.addTag(tag);
+        }
+        
+        
+////        myPost.setTag(request.getParameterValues("tags") );
+//        postService.addTagsAndPostToDatbase(temp,myPost);
+//        dao.addTagAndPostToDatabse(temp,myPost);
+//        addTagAndPostToDatabase{
+//            for()
+//        }
         
         User user = userService.getUserByUsername(username);
         
@@ -155,11 +173,7 @@ public class PostController {
 //Above method was the lazy way to stream the username and then get the user by id. Just created a prepared statement
         
         postService.addPost(user.getUserId(), myPost);
-        
-        /*
-        In order to use the attribute for this respective end point, we have to include
-        the attribute for this end point
-        */
+         
         
         //Getting all Posts from the dao
         List<Post> allPosts = postService.getAllPosts();

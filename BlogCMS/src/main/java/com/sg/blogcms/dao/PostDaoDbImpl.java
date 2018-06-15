@@ -121,6 +121,8 @@ public class PostDaoDbImpl implements PostDAOInterface {
 
         //This sets the new id value on the Post object and returns it
         post.setPostId(newId);
+        
+        //Iterate through Tags and insert those into the post
         return post;
 
         //Pick up here.. UnitTest this method
