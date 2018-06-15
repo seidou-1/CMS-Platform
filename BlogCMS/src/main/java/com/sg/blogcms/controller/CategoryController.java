@@ -30,23 +30,22 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = {"/categories"}, method = RequestMethod.GET)
-    public String category(Model model, HttpServletRequest request) {
-        List<Category> categoryList = categoryService.getAllCategories();
-        model.addAttribute("categoryList", categoryList);
-        return "categories";
-
-    }
-    
-//    Gets you to the addCategoryForm
-    @RequestMapping(value = {"/displayAddCategoryPage"}, method = RequestMethod.GET)
-    public String displayCatPage(HttpServletRequest request) {
-
-        return "addCategory";
-    }
-    
+//    @RequestMapping(value = {"/categories"}, method = RequestMethod.GET)
+//    public String category(Model model, HttpServletRequest request) {
+//        List<Category> categoryList = categoryService.getAllCategories();
+//        model.addAttribute("categoryList", categoryList);
+//        return "categories";
+//
+//    }
 
     @RequestMapping(value = {"/addCategory"}, method = RequestMethod.GET)
+    public String addCategoryPage(HttpServletRequest request) {
+
+        //fill correct page here
+        return "addCategory";
+    }
+
+    @RequestMapping(value = {"/addCategory"}, method = RequestMethod.POST)
     public String addCategory(HttpServletRequest request) {
 //      get values from a form to make a new contact
         Category category = new Category();
@@ -59,8 +58,8 @@ public class CategoryController {
         return "addCategory";
     }
 
-    @RequestMapping(value = {"/submitCategory"}, method = RequestMethod.GET)
-    public String sumbitCategory(HttpServletRequest request, Model model) {
+    @RequestMapping(value = {"/submitCategory"}, method = RequestMethod.POST)
+    public void sumbitCategory(HttpServletRequest request, Model model) {
 
 //      making a new category
         Category currentCategory = new Category();
@@ -70,9 +69,10 @@ public class CategoryController {
 
 //      persist the values
         categoryService.addCategory(0, currentCategory);
+        System.out.println(14324 + " " + currentCategory);
 
 //      go back to the blog post page
-        return "redirect:/addPost";
+//        return "redirect:/addPost";
     }
 
     @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
@@ -81,7 +81,7 @@ public class CategoryController {
         Category cat = categoryService.getCategoryById(Integer.parseInt("category"));
 
         String[] categoryIds = request.getParameterValues("categoryName");
-
+        
         List<Category> categoryList = new ArrayList();
 
         if (categoryIds != null) {
@@ -95,8 +95,7 @@ public class CategoryController {
         return "redirect:?addPost";
 
     }
-    
-    
+
 //    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
 //    public String updateCategory(@Valid @ModelAttribute("category") Category category, BindingResult result) {
 //
@@ -108,7 +107,7 @@ public class CategoryController {
 //
 //        return "redirect:?addPost";
 //    }
-
+    
     @RequestMapping(value = {"/deleteCategory"}, method = RequestMethod.GET)
     public String deleteCategory(HttpServletRequest request) {
         categoryService.deleteCategory(0, 0);

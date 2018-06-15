@@ -26,7 +26,6 @@
     <body>
 
         <!--=============NAVBAR=============-->
-
         <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
@@ -47,7 +46,7 @@
                 <ul class="navbar-nav">
 
                     <ul class="navbar-nav">
-                        
+
                         <li class ="nav-item">
                             <a class ="nav-link" href="${pageContext.request.contextPath}/viewPosts">View Posts</a>
                         </li>
@@ -113,8 +112,6 @@
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
                 </div>
-
-
 
                 <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                     <button type="button" onclick="document.getElementById('loginModal').style.display = 'none'" class="cancelbtn">Cancel</button>
@@ -215,20 +212,6 @@
                         <br> <!-- Seperation-->
 
 
-                        <!-- ******************Category Selection************************-->
-
-                        <div class="form-group">
-                            <label for="category" class="control-label col-xs-4">Category</label> 
-                            <div class="col-xs-8">
-                                <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
-
-                                <!-- Asher to add Category logic here. Replace static value-->
-
-                            </div>
-                        </div>
-
-                        <!-- ******************Category Selection************************-->
-
                         <div class="form-group row">
                             <div class="col-xs-offset-4 col-xs-8">
                                 <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Publish</button>
@@ -276,84 +259,63 @@
                     <!-- ******************Tag Selection************************-->
 
 
-<!--                    <div class="form-group">
-                        <label for="category" class="control-label col-xs-4">Category</label> 
-                        <div class="col-xs-8">
-                            <input id="categoryId" value = "1" name="categoryId" placeholder="1" type="text" class="form-control">
-
-                             Asher to add Category logic here. Replace static value
-
-                        </div>
-                    </div>
-
-
-                    <div class=" col-md-2">
+                    <!-- ******************Category Selection************************-->
+                    <div class=" col-md-12">
                         <ul class="nav nav-pills nav-stacked categoryList">
-                            <c:forEach var="catItem" items="${categoryList}">
+                            <c:forEach  items="${categoryList}" var="category">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">${category.categoryName}</a>
-
-                                    <a href="${pageContext.request.contextPath}/editCategory" data-toggle="modal" data-target="#updateCatModal" onclick="document.getElementById('updateCatModal').style.display = 'block'">
-                                        <button type="submit" class="updateCatBtn" value="Update Cattegory"> Edit </button>
-                                    </a>
+                                    <span>
+                                        <a class="nav-link" href="#">${category.categoryName}</a>                                  
+                                        <a href="${pageContext.request.contextPath}/editCategory" data-toggle="modal" data-target="#updateCatModal" onclick="document.getElementById('updateCatModal').style.display = 'block'">
+                                        Edit 
+                                        </a>
+                                    </span>
                                 </li>
                             </c:forEach>
                         </ul>
                     </div>
 
-                    ========ADD CATEGORY BUTTON=========
+                    <!--========ADD CATEGORY BUTTON=========-->
                     <a href="${pageContext.request.contextPath}/addCategory" data-toggle="modal" data-target="#addCatModal" onclick="document.getElementById('addCatModal').style.display = 'block'">
                         <button type="submit" class="addCatBtn" value="Update Cattegory">Add Category </button>
                     </a>
 
-                    ============ADD CATEGORY MODAL===========
+                    <!--============ADD CATEGORY MODAL===========-->
                     <div id="addCatModal" class="modal">
                         <span onclick="document.getElementById('addCatModal').style.display = 'none'" 
                               class="close" title="Close Modal">&times;</span>
-
-                         Modal Content 
-                        <form role="form" class="modal-content animate" action="addCategory" method="POST">
-
+                        <!--Modal Content-->
+                        <form role="form" class="modal-content animate" action="submitCategory" method="POST">
                             <div class="container form-group">
                                 <label for="categoryName" class="col-md-4 control-label">Category Name:</label>
-                                <input type="text" class=" col-md-8 form-control" name="categoryName" placeholder="Category Name " maxlength="45" required>
-
-                                <button type="submit" class="addCatBtn" value="Add Cattegory">Submit</button>
+                                <input type="text" class=" col-md-8 form-control" name="categoryName" placeholder="${c}" maxlength="45" required>
+                                <button type="submit" class="addCatBtn" id="addCat-btn" value="Add Category">Submit</button>
                             </div>
-
                             <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                                 <button type="button" onclick="document.getElementById('addCatModal').style.display = 'none'" class="cancelbtn">Cancel</button>
                             </div>
                         </form>
                     </div>
 
-                    ============UPDATE CATEGORY MODAL===========
+                    <!--============UPDATE CATEGORY MODAL===========-->
                     <div id="updateCatModal" class="modal">
                         <span onclick="document.getElementById('updateCatModal').style.display = 'none'" 
                               class="close" title="Close Modal">&times;</span>
-
-                         Modal Content 
-                        <form role="form" class="modal-content animate" action="updateCategory" method="POST">
-
-                            <div class="container form-group">
-                                // have it prepopulate the category name
+                        <!--Modal Content--> 
+                        <sf:form role="form" class="modal-content animate" action="updateCategory" method="POST">
                                 <label for="categoryName" class="col-md-4 control-label">Category Name:</label>
-                                <input type="text" class=" col-md-8 form-control" name="categoryName" placeholder="Category Name " maxlength="45" required>
-
-                                <button type="submit" class="addCatBtn" value="Edit Cattegory">Submit</button>
-                            </div>
-
+                                <sf:input type="text" class=" col-md-8 form-control" id="add-category" name="categoryName" placeholder="Category Name" maxlength="45" path="categoryName"/>
+                                <button type="submit" class="updateCatBtn" id="updateCat-btn" value="updateCattegory">Submit</button>
+                            
                             <div class="container modalContainer" style="background-color: RGBA(47, 52, 54, 0.6);">
                                 <button type="button" onclick="document.getElementById('updateCatModal').style.display = 'none'" class="cancelbtn">Cancel</button>
                             </div>
-                        </form>
-                    </div>-->
-
-
-
-
+                        </sf:form>
+                    </div>
                     <!-- ******************Category Selection************************-->
 
+                    
+                    
                     <!-- ******************Previous Posts************************-->
 
                     <div class ="scrollable"> <!-- Contains for each data-->

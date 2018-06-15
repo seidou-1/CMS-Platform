@@ -29,8 +29,8 @@ a{
     text-decoration: none;
 }
 a:hover{
-  font-style: oblique;
-  color: RGBA(193, 193, 194, 1.00);
+    font-style: oblique;
+    color: RGBA(193, 193, 194, 1.00);
 }
 
 hr {
@@ -211,16 +211,18 @@ div#mainUserWindow > nav .active .nav-link {
 
 #mainUserWindowPic {
     background: url('../images/get-buckets.png');
+    background-position: center;
+    background-repeat: no-repeat;
 
     width: 100%;
     height: 100px;
 }
 
 #dropdownMenuLink {
-     color: rgb(255, 255, 255);
-     font-weight: bold;
-     font-size: 10px; 
-    
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 10px; 
+
 }
 
 #dropdownDiv {
@@ -244,7 +246,7 @@ div#filters {
     border-bottom: 3px solid whitesmoke;
     height: 65px;
 }
- 
+
 
 .itemSummary .itemBrief { 
     display: none;
@@ -334,116 +336,116 @@ ul#inner.navbar-nav {
 
 /* Example CSS */
 
-  .tagging {
-	border: 1px solid #CCCCCC;
-	font-size: 1em;
-	height: auto;
-	padding: 10px 10px 15px;
+.tagging {
+    border: 1px solid #CCCCCC;
+    font-size: 1em;
+    height: auto;
+    padding: 10px 10px 15px;
 }
 
 .tagging.editable {
-	cursor: text;
+    cursor: text;
 }
 
 .taggable-container {
-	width: 600px;
-	border: 2px solid green;
-	border-radius: 5px;
-	height: auto;
-	padding: 5px;
-	box-sizing: border-box;
+    width: 600px;
+    border: 2px solid green;
+    border-radius: 5px;
+    height: auto;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .taggable-tags {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 
-.tag span {
-	background: none repeat scroll 0 0 #D66806;
-	border-radius: 2px 0 0 2px;
-	margin-right: 5px;
-	padding: 5px 10px 5px;
-}
+    .tag span {
+        background: none repeat scroll 0 0 #D66806;
+        border-radius: 2px 0 0 2px;
+        margin-right: 5px;
+        padding: 5px 10px 5px;
+    }
 
-.tag .tag-i {
-	color: white;
-	cursor: pointer;
-	font-size: 1.3em;
-	height: 0;
-	line-height: 0.1em;
-	position: absolute;
-	right: 5px;
-	top: 0.7em;
-	text-align: center;
-	width: 10px;
-}
- 
-.taggable-tag {
-	list-style: none;
-	float: left;
-	border: 2px solid green;
-	border-radius: 5px;	
-	padding: 6px 36px 6px 12px;
-	margin: 0 10px 0 0;
-	position: relative;
-	
-	transition-property: border-color;
-	
+    .tag .tag-i {
+        color: white;
+        cursor: pointer;
+        font-size: 1.3em;
+        height: 0;
+        line-height: 0.1em;
+        position: absolute;
+        right: 5px;
+        top: 0.7em;
+        text-align: center;
+        width: 10px;
+    }
 
-	animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-	
-	&.adding {
-		animation-duration: 400ms;
-		animation-name: bounceIn;
-	}	
-	
-	&.deleting {
-		animation-duration: 300ms;
-		animation-name: bounceOut;
-	}
-	
-	&:hover {
+    .taggable-tag {
+        list-style: none;
+        float: left;
+        border: 2px solid green;
+        border-radius: 5px;	
+        padding: 6px 36px 6px 12px;
+        margin: 0 10px 0 0;
+        position: relative;
 
-	}	
-}
+        transition-property: border-color;
 
-.taggable-text {
-	 float: left;
-}
 
-.taggable-remove {
-	position: absolute;
-	right: 0px;
-	top: 0;
-	border: 0;
-	width: 32px;
-	height: 32px;
-	cursor: pointer;
-	padding: 0;
-        
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+        &.adding {
+            animation-duration: 400ms;
+            animation-name: bounceIn;
+        }	
+
+        &.deleting {
+            animation-duration: 300ms;
+            animation-name: bounceOut;
         }
-.tag .tag-i:hover {
-	color: black;
-	text-decoration: underline;
-}
 
-.type-zone {
-	border: 0 none;
-	height: auto;
-	width: auto;
-	min-width: 20px;
-	display: inline-block;
-}
+        &:hover {
 
-.type-zone:focus {
-	outline: none;
-}
+        }	
+    }
+
+    .taggable-text {
+        float: left;
+    }
+
+    .taggable-remove {
+        position: absolute;
+        right: 0px;
+        top: 0;
+        border: 0;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        padding: 0;
+
+    }
+    .tag .tag-i:hover {
+        color: black;
+        text-decoration: underline;
+    }
+
+    .type-zone {
+        border: 0 none;
+        height: auto;
+        width: auto;
+        min-width: 20px;
+        display: inline-block;
+    }
+
+    .type-zone:focus {
+        outline: none;
+    }
 
 }
 
 /*====================CATEGORIES=============*/
 .categoryList {
-  height:150px;
-  overflow-y: scroll;
+    height:150px;
+    overflow-y: scroll;
 }
 

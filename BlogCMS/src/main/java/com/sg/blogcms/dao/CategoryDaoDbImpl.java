@@ -43,10 +43,10 @@ public class CategoryDaoDbImpl implements CategoryDAOInterface {
             "SELECT * FROM `Categories` WHERE CategoryID = ?";
     
     private static final String SQL_SELECT_ALL_CATEGORIES = 
-            "SELECT FROM `Categories` ";
+            "SELECT * FROM `Categories` ";
     
     
-//    ==========METHODS==============
+//    ============METHODS==============
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Category addCategory(Category category) {
@@ -87,7 +87,7 @@ public class CategoryDaoDbImpl implements CategoryDAOInterface {
         return jdbcTemplate.query(SQL_SELECT_ALL_CATEGORIES, new CategoryMapper());
     }
     
-//    ====================MAPPER=========
+//    ====================MAPPER==================
     private static final class CategoryMapper implements RowMapper<Category>{
         
         @Override
