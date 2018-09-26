@@ -142,7 +142,7 @@
                                                                                     <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-primary" onclick="populateModal('notifications_approve', `${notifications[i].notificationID}`)">Approve </a>
 
                                                                                     <div class="btn-group" role="group">
-                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true"
+                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                                                                             aria-expanded="false">
                                                                                             Deny
                                                                                         </button>
@@ -176,9 +176,9 @@
                                                             <div class="col-md-3 windowMenu">
                                                                 <h4 class="heading1">User Menu</h4>
                                                                 <ul class="list-group placementMenu">
-                                                                 
+
                                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                            <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_pending')"> My Pending Users </a>
+                                                                        <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_pending')"> My Pending Users </a>
                                                                     </li>
                                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                                         <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_settings')">My Settings </a>
@@ -203,25 +203,25 @@
                                                                             </div>
                                                                             <div class="col-md-7 itemSummary">
                                                                                 <span> User: ${users[i].username} &nbsp; | &nbsp;
-                                                                                    Admin </span>
+                                                                                    Admin &nbsp; | &nbsp; Active</span>
                                                                                 <p class="itemBrief">This user has 1 post, 2 tags, 42 categories
                                                                                     pending
                                                                                 </p>
                                                                             </div>
                                                                             <div class="col-md-5 options">
                                                                                 <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
-                                                                                    <button type="button" class="btn btn-success">Stats</button>
-                                                                                    <button type="button" class="btn btn-warning">Edit</button>
+                                                                                    <a class="btn btn-success" data-target="#exampleModal" href="#"> View Posts </a>
+
+                                                                                    <a class="btn btn-warning" data-target="#exampleModal" href="#"> Edit </a>
 
                                                                                     <div class="btn-group" role="group">
-                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                                                                             aria-expanded="false">
-                                                                                            Disable
+                                                                                            Options
                                                                                         </button>
                                                                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                            <a class="dropdown-item" href="#">Ban for week</a>
-                                                                                            <a class="dropdown-item" href="#">Ban until </a>
-                                                                                            <a class="dropdown-item" href="#">Delete User </a>
+                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_ban')">Ban User</a>
+                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_delete')">Vanquish User</a>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -475,10 +475,10 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body"  id="generalModalBody">
+                                                    <div class="modal-body" id="generalModalBody">
                                                     </div>
                                                     <div class="modal-footer" id="generalModalFooter">
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>

@@ -336,5 +336,65 @@ function populateModal(type, secondary) {
 	  `);
 	}
 
+	if (type == 'users_stats') {
+		label.html("User Statistics");
+		body.html(`<h5>Information</h5>
+		<div style="text-align: left"> 
+		 	<p class="mine"> Top Post : All about greece, 50 likes <a href="#"> See all posts >>  </a> </p>
+		 	<p class="mine"> Top Category: All about greece, 50 likes <a href="#"> See all posts >>  </a> </p>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  `);
+	}
+
+	if (type == 'users_ban') {
+		label.html("User Ban Confirmation");
+		body.html(`<h5>Are you sure you want to ban that user?</h5>
+		<div style="text-align: left"> 
+		<h6>Choose a reason for the ban request</h6>
+		<div class="checkbox">
+		<label><input type="checkbox" value="disrespect">Disrespectful User</label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" value="fired">User don't work here anymore</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="misc">I just, don't like you bro (Default) </label>
+		</div>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  <a href="#" class="btn btn-success"> Finalize Ban</a> 
+	  `);
+	}
+
+	if (type == 'users_delete') {
+		label.html("User Delete Confirmation");
+		body.html(`<h5>Are you sure you want to delete that user?</h5>
+		<div style="text-align: left"> 
+		<h6>Choose a reason for the ban request</h6>
+		<div class="checkbox">
+		<label><input type="checkbox" value="disrespect">Disrespectful User</label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" value="fired">User don't work here anymore</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="misc">I just, don't like you bro (Default) </label>
+		</div>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  <a href="#" class="btn btn-success"> Finalize delete</a> 
+	  `);
+	}
+
+ 
+
+
 
 }
