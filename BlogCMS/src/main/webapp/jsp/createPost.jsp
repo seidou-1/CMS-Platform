@@ -125,17 +125,17 @@
 
             <div class="row">
 
-                <div class="col-md-7"> <!-- For form to be a certain width-->
+                <div class="col-md-7 justify-content-center"> <!-- For form to be a certain width-->
 
 
                     <!-- Form Starts -->
-
                     <form action ="createPost" class ="displayForm" method ="POST" id="userForm"  >
+
 
                         <div class="form-group">
                             <label for="postTitle" class="control-label col-xs-4">Title</label> 
                             <div class="col-xs-8">
-                                <input id="postTitle" value = "${post.postTitle}" name="postTitle" placeholder="Post Title" type="text" class="form-control">
+                                <input id="postTitle"  name="postTitle" placeholder="Post Title" type="text" class="form-control">
                             </div>
                         </div>
 
@@ -151,12 +151,9 @@
                             <div class="col-xs-8">
                                 <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" 
                                           placeholder="
-                                          Lorem Khaled Ipsum is a major key to success. 
-                                          To be successful you’ve got to work hard, to make history, 
-                                          simple, you’ve got to make it. Mogul talk. The key is to drink coconut, 
-                                          fresh coconut, trust me. Cloth talk.">
+                                          Post Body Content Here">
 
-                                    cloth talk.
+
 
                                 </textarea>
                             </div>
@@ -174,7 +171,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div> 
-                                    <input id="text" name="postDate" value = "2018-03-20" placeholder="i.e. 2018-03-20" type="text" class="form-control">
+                                    <input id="text" name="postDate"  placeholder="i.e. 2018-03-20" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -191,7 +188,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div> 
-                                    <input id="expirationDate" name="expirationDate" value = "2018-03-20" placeholder="i.e. 12/31/2022" type="text" class="form-control">
+                                    <input id="expirationDate" name="expirationDate"  placeholder="i.e. 12/31/2022" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -199,12 +196,12 @@
                         <br> <!-- Seperation-->
 
                         <div class="form-group">
-                            <input id="userId" name="userId" value = "1" type = "hidden">
+                            <input id="userId" name="username" value = "${pageContext.request.userPrincipal.name}" type = "hidden">
 
                         </div> 
 
 
-                        <br> <!-- Seperation-->
+                        <!-- ******************Category Selection************************-->
 
 
                         <div class="form-group row">
@@ -214,45 +211,63 @@
                             </div>
                         </div>
 
-                    </form> 
+                        <div class="form-group ">
+                            <div class="col-xs-8">
+                                <h4>
+                                    Select Category:
+                                </h4>
+                                <c:forEach items = "${allCategories}" var = "category">
+
+                                    <label class="checkbox-inline">
+                                        <input type="radio" name="category" value="${category.categoryId}">
 
 
-                    <!-- Form Ends -->
+                                        ${category.categoryName}
+                                    </label>
+
+
+                                </c:forEach>
+
+                            </div>
+                        </div>
+
+                        <!-- ******************Category Selection************************-->
+
+
+                        <!-- ******************Tag Selection************************-->
+                        <div class="form-group"> 
+
+                            <!-- Matt to replace hard coded code below with Tag code-->
+
+                            <h4> Select Tag(s): </h4>
+                            <div class="col-xs-8">
+
+                                <c:forEach items = "${allTags}" var = "tags">
+
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="tags" value="${tags.tagId}">
+
+
+                                        ${tags.tagName}
+                                    </label>
+
+
+                                </c:forEach>
+
+                            </div>
+                        </div> 
+
+                        <!-- ******************Tag Selection************************-->
+
+
+                        <div class="form-group  ">
+                            <div class="">
+                                <button name="submit" type="submit" class="btn btn-primary" id ="createPost">Submit</button>
+
+                            </div>
+                        </div>
 
                 </div> <!-- div class col-md-7 ends-->
-
-                <div class = "col-md-5"> <!-- div class col-md-5 starts-->
-
-                    <!-- Previous posts\Categories\Tags will display here-->
-
-
-                    <!-- ******************Tag Selection************************-->
-                    <div class="form-group"> 
-
-                        <!-- Matt to replace hard coded code below with Tag code-->
-
-                        <label for="tags" class="control-label col-xs-4">Tags</label> 
-                        <div class="col-xs-8">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="tags" value="Programming" checked>
-                                Programming
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="tags" value="Ice Cream">
-                                Ice Cream
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="tags" value="Mountains">
-                                Mountains
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="tags" value="Fishing">
-                                Fishing
-                            </label>
-                        </div>
-                    </div> 
-                    <!-- ******************Tag Selection************************-->
-
 
                     <!-- ******************Category Selection************************-->
                     <div class=" col-md-12">
@@ -312,7 +327,13 @@
                     
                     
                     <!-- ******************Previous Posts************************-->
+                <div class = "col-md-5"> <!-- div class col-md-5 starts-->
 
+
+
+                    <!-- Previous posts\Categories\Tags will display here-->
+
+                    <!-- ******************Previous Posts************************-->
                     <div class ="scrollable"> <!-- Contains for each data-->
                         <h4>Latest Posts</h4>
                         <table class ="table displayTable text-center">
@@ -327,7 +348,7 @@
                             </thead>
 
                             <tbody>
-                                <c:forEach items="${posts}" var = "post" >
+                                <c:forEach items="${allPosts}" var = "post" >
 
                                     <tr>
                                         <td>
@@ -347,14 +368,17 @@
 
                     </div> <!-- Scrollable class ends-->
 
-
-
                     <!-- ******************Previous Posts************************-->
 
-
                 </div>
+
+
+
+                </form>
+
             </div>
 
+        </div>
 
 
 
