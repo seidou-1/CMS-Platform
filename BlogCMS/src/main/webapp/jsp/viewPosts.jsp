@@ -25,7 +25,6 @@
 
 
     <body>
-
         <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
@@ -38,28 +37,43 @@
             <div id="navbarResponsive" class="navbar-collapse collapse">
                 <!--===========FLOATS RIGHT=========-->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/index"> </a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/index"> <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                    
                 <ul class="navbar-nav">
-                    <li class ="nav-item active">
+
+                    <li class ="nav-item">
                         <a class ="nav-link" href="${pageContext.request.contextPath}/viewPosts">View Posts</a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Add Post</a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">About Us</a>
                     </li>
-                    
 
                     <!--==========DROPDOWN==========-->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <p>${pageContext.request.userPrincipal.name}
+                                | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </p>
+
+                            <a class="nav-link dropdown-toggle loginButton" href="${pageContext.request.contextPath}/usersDashboard?view=users" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ${pageContext.request.userPrincipal.name}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </div>
+
+                        </c:if>
+
+
+                        <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -70,9 +84,6 @@
                 </ul>
             </div>
         </nav>
-        <hr>
-
-
 
         <!--===========LOGIN MODAL===========-->
         <div id="loginModal" class="modal">
@@ -80,19 +91,27 @@
                   class="close" title="Close Modal">&times;</span>
 
             <!-- Modal Content -->
-            <form class="modal-content animate" action="#">
-                <div class="imgcontainer">
-                    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                </div>
+            <form role="form" class="modal-content animate" action="j_spring_security_check" method="POST">
+                <!--                <div class="imgcontainer">
+                                    <img src="../images/get-buckets.png" alt="Avatar" class="avatar">
+                                </div>-->
 
-                <div class="container">
-                    <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
+                <div class="container form-group">
+                    <c:if test="${param.login_error == 1}">
+                        <h3>Wrong id or password!</h3>
+                    </c:if>
 
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <c:if test="${param.login_error == 2}">
+                        <h3>${param.login_error}</h3>
+                    </c:if>
 
-                    <button type="submit" class="loginBtn">Login</button>
+                    <label for="j_username" class="col-md-4 control-label">Username:</label>
+                    <input type="text" class=" col-md-8 form-control" name="j_username" placeholder="Username Here " maxlength="45" required>
+
+                    <label for="j_password" class="col-md-4 control-label">Password:</label>
+                    <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
+
+                    <button type="submit" class="loginBtn" id="search-" value="Sign In">Login</button
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
@@ -103,6 +122,8 @@
                 </div>
             </form>
         </div>
+
+        <hr>
 
 
         <!--============PAGE CONTENT=============-->

@@ -5,8 +5,12 @@
  */
 package com.sg.blogcms.controller;
 
+import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.dto.Post;
+import com.sg.blogcms.service.CategoryServiceInterface;
 import com.sg.blogcms.service.PostServiceInterface;
+import com.sg.blogcms.service.TagServiceInterface;
+import com.sg.blogcms.service.UserServiceInterface;
 import java.sql.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -23,17 +27,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author laptop
  */
-
 // Changed from Controller to PostController -  keyword
 @Controller
 public class PostController {
-    
+
     //Mo: might move this to it's own controller if needed. We'll see how things go.
     PostServiceInterface postService;
+    CategoryServiceInterface categoryService;
+    TagServiceInterface tagService;
+    UserServiceInterface userService;
 
     @Inject
-    public PostController (PostServiceInterface postService){
+    public PostController(PostServiceInterface postService, CategoryServiceInterface categoryService) {
         this.postService = postService;
+        this.categoryService = categoryService;
+        this.tagService = tagService;
+        this.userService = userService;
+
     }
 
     @RequestMapping(value = {"/viewPosts"}, method = RequestMethod.GET)
@@ -41,11 +51,10 @@ public class PostController {
 
         //Getting all Posts from the dao
         List<Post> allPosts = postService.getAllPosts();
-        
+
 //        Post myPost = new Post();
 //        
 //        myPost
-
         //Adding List of Posts into the Model  
         model.addAttribute("posts", allPosts);
         return "viewPosts"; //returning the logical view - the posts.jsp page
@@ -62,33 +71,26 @@ public class PostController {
         myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
         myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
         postService.addPost(1, myPost);
-        
+
         /*
         In order to use the attribute for this respective end point, we have to include
         the attribute for this end point
-        */
-        
+         */
         //Getting all Posts from the dao
         List<Post> allPosts = postService.getAllPosts();
-        
+
         model.addAttribute("posts", allPosts);
-        
+
         return "redirect: createPost";
     }
-    
+
     @RequestMapping(value = {"/createPost"}, method = RequestMethod.GET)
     public String addPost(HttpServletRequest request, Model model) {
 
         model.addAttribute("posts", postService.getAllPosts());
         
-//        Post myPost = new Post();
-//        myPost.setPostTitle(request.getParameter("postTitle"));
-//        myPost.setPostTitle(request.getParameter("postBody"));
-//        myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
-//        myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
-//        myPost.setFeatureImage(request.getParameter("featuredImage"));
-//        myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
-//        myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
+        List<Category> categoryList = categoryService.getAllCategories();
+        model.addAttribute("categoryList", categoryList);
 
         return "createPost";
     }
@@ -101,22 +103,22 @@ public class PostController {
         return "redirect:viewPosts";
     }
 
-    @RequestMapping (value = {"/displayEditPostForm"}, method = RequestMethod.GET)
-    public String displayEditPostForm (HttpServletRequest request, Model model){
-        String postIdParameter = request.getParameter("postId");       
+    @RequestMapping(value = {"/displayEditPostForm"}, method = RequestMethod.GET)
+    public String displayEditPostForm(HttpServletRequest request, Model model) {
+        String postIdParameter = request.getParameter("postId");
         int postIdConverted = Integer.parseInt(postIdParameter);
         return "editPost";
     }
-    
-    @RequestMapping (value = {"/editPost"}, method = RequestMethod.POST)
-    public String editPost (@Valid @ModelAttribute("contact") Post post, BindingResult result) {
-        
+
+    @RequestMapping(value = {"/editPost"}, method = RequestMethod.POST)
+    public String editPost(@Valid @ModelAttribute("contact") Post post, BindingResult result) {
+
         if (result.hasErrors()) {
             return "editPost";
         }
-        
-       postService.updatePost(0, post); //Update this method to replace the first parameter with userId
-       
-       return "redirect:viewPosts";
+
+        postService.updatePost(0, post); //Update this method to replace the first parameter with userId
+
+        return "redirect:viewPosts";
     }
 }

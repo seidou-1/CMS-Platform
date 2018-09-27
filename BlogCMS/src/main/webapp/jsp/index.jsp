@@ -17,7 +17,6 @@
 
     </head>
     <body>
-
         <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
@@ -45,12 +44,28 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact Us</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contact">About Us</a>
                     </li>
 
                     <!--==========DROPDOWN==========-->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <p>${pageContext.request.userPrincipal.name}
+                                | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </p>
+
+                            <a class="nav-link dropdown-toggle loginButton" href="${pageContext.request.contextPath}/usersDashboard?view=users" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ${pageContext.request.userPrincipal.name}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </div>
+
+                        </c:if>
+
+
+                        <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -61,14 +76,6 @@
                 </ul>
             </div>
         </nav>
-        <hr>
-
-        <!--=============LANDING PLANE IMAGE========-->
-        <div class="hero-image">
-            <div class="hero-text">
-                <h1>Where BucketList's become Memories</h1>
-            </div>
-        </div>
 
         <!--===========LOGIN MODAL===========-->
         <div id="loginModal" class="modal">
@@ -76,19 +83,27 @@
                   class="close" title="Close Modal">&times;</span>
 
             <!-- Modal Content -->
-            <form class="modal-content animate" action="#">
-                <div class="imgcontainer">
-                    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                </div>
+            <form role="form" class="modal-content animate" action="j_spring_security_check" method="POST">
+                <!--                <div class="imgcontainer">
+                                    <img src="../images/get-buckets.png" alt="Avatar" class="avatar">
+                                </div>-->
 
-                <div class="container">
-                    <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
+                <div class="container form-group">
+                    <c:if test="${param.login_error == 1}">
+                        <h3>Wrong id or password!</h3>
+                    </c:if>
 
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <c:if test="${param.login_error == 2}">
+                        <h3>${param.login_error}</h3>
+                    </c:if>
 
-                    <button type="submit" class="loginBtn">Login</button>
+                    <label for="j_username" class="col-md-4 control-label">Username:</label>
+                    <input type="text" class=" col-md-8 form-control" name="j_username" placeholder="Username Here " maxlength="45" required>
+
+                    <label for="j_password" class="col-md-4 control-label">Password:</label>
+                    <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
+
+                    <button type="submit" class="loginBtn" id="search-" value="Sign In">Login</button
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
@@ -100,53 +115,93 @@
             </form>
         </div>
 
+        <hr>
 
-        <!--============PAGE CONTENT=============-->
-        <div class="conatiner contentContainer">
-            <div class="row">
+        <div class="conatiner-fluid">
 
+            <!--=============LANDING IMAGE========-->
+            <div class="row row-first">
+                <div class="hero-image">
 
-                <div class="card-deck">
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Blog Title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="#" class="btn btn-primary">See More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Blog Title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="#" class="btn btn-primary">See More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Blog Title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        </div>
-                        <div class="card-footer">
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="#" class="btn btn-primary">See More</a>
+                    <div class="carousel-inner" class="carousel slide" data-ride="carousel" role="listbox" style=" width:100%; height: 500px !important;">
+                        <div class="carousel-inner">
+                           
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="images/1.jpg" alt="1st">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/2.jpg" alt="2nd">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/3.jpg" alt="3rd">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/4.jpg" alt="4th ">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" style="top: -200px" src="images/5.jpg" alt="5th">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/8.jpg" alt="6th">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="images/7.jpg" alt="7th"
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
+                <div class="hero-text">
+                    <h1>Where BucketList's become Memories</h1>
+                </div>
             </div>
+
+
+            <!--============PAGE CONTENT=============-->
+            <div class="contentContainer">
+                <div class="row">
+
+                    <div class="card-deck">
+                        <div class="card">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Blog Title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <a href="#" class="btn btn-primary">See More</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Blog Title</h5>
+                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <a href="#" class="btn btn-primary">See More</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Blog Title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <a href="#" class="btn btn-primary">See More</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
         </div>
-
-
 
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

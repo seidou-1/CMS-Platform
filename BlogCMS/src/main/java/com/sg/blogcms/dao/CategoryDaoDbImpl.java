@@ -30,23 +30,23 @@ public class CategoryDaoDbImpl implements CategoryDAOInterface {
 //    ==============PREPARED STATEMENTS============
 
     private static final String SQL_INSERT_CATEGORIES = 
-            "INSERT INTO `CATEGORIES` (CategoryName) VALUES (?)";
+            "INSERT INTO `Categories` (CategoryName)" + "VALUES (?)";
     
     private static final String SQL_DELETE_CATEGORIES =
-            "DELETE FROM `CATEGORIES` WHERE CategoryId = ?";
+            "DELETE FROM `Categories` WHERE CategoryID = ?";
     
     private static final String SQL_UPDATE_CATEGORIES = 
-            "UPDATE `CATEGORIES` SET CategoryName = ?"
-            + " WHERE CategoryId = ?";
+            "UPDATE `Categories` SET CategoryName = ?"
+            + " WHERE CategoryID = ?";
     
     private static final String SQL_SELECT_CATEGORIES =
-            "SELECT * FROM `CATEGORIES` WHERE CategoryId = ?";
+            "SELECT * FROM `Categories` WHERE CategoryID = ?";
     
     private static final String SQL_SELECT_ALL_CATEGORIES = 
-            "SELECT * FROM `CATEGORIES` ";
+            "SELECT * FROM `Categories` ";
     
     
-//    ==========METHODS==============
+//    ============METHODS==============
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Category addCategory(Category category) {
@@ -87,7 +87,7 @@ public class CategoryDaoDbImpl implements CategoryDAOInterface {
         return jdbcTemplate.query(SQL_SELECT_ALL_CATEGORIES, new CategoryMapper());
     }
     
-//    ====================MAPPER=========
+//    ====================MAPPER==================
     private static final class CategoryMapper implements RowMapper<Category>{
         
         @Override

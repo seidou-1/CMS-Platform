@@ -10,28 +10,52 @@ and open the template in the editor.
 body, html{
     height: 100%;
 }
+
+.container-fluid{
+    height: 100%;
+}
+
+.btn{
+    size: auto;
+}
 body{
-    background-color: RGBA(0, 0, 0, 1.00);
-    color: RGBA(209, 213, 205, 1.00);
-    /* font-size: 24px; Might be  a little too big there*/ 
+    background-color: RGBA(240, 236, 235, 1.00);
+    color:RGBA(23, 62, 67, 1.00);
+    font-size: 24px;
     text-align: center;
 }
 
-.nav {
+.navbar {
     /*    display:flex;
         justify-content: space-around;
         flex-wrap: wrap;*/
-    color: white;
+    background-color: RGBA(240, 236, 235, 1.00);
+    color: RGBA(23, 62, 67, 1.00);
 }
 
 a{
-    color:white;
+    color: RGBA(23, 62, 67, 1.00);
     text-decoration: none;
 }
+/*a:hover{
+    font-style: oblique;
+    color: RGBA(193, 193, 194, 1.00);
+    border-color: RGBA(134, 207, 214, 1.00);
+    border-radius: 2px;
+}*/
+.nav-bar li{
+    font-style: oblique;
+    /*color: RGBA(193, 193, 194, 1.00);*/
+    border-color: RGBA(134, 207, 214, 1.00);
+    border-radius: 2px;
+}
 
-a:hover{
-  font-style: oblique;
-  color: RGBA(193, 193, 194, 1.00);
+.loginButton{
+    background-color: RGBA(134, 207, 214, 1.00);
+}
+
+.loginButton:hove{
+    color: RGBA(240, 236, 235, 1.00);
 }
 
 hr {
@@ -57,34 +81,58 @@ button:hover {
     opacity: 0.8;
 }
 
-p{
-    font-size: 36px;
-}
-p.mine {
-    font-size: 14px;
-}
+/*==============
+LANDING IMAGE
+================*/
 
-
-/*==============LANDING IMAGE================*/
+/*=========INDEX===========*/
 
 .hero-image {
-    background-image: url("../images/bossPlane.jpg");
+    /*    background-image: url("../images/bossPlane.jpg");*/
     width: 100%;
-    height: 50%;
+    /*height: auto;*/
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*position: relative;*/
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.d-block.w-100{
+    width: 10px;
+    position: relative;
+    
+}
+.row-first{
+    height: 10%;
+    margin-bottom: 40px;
+}
+
+.hero-text {
+    color: white;
+    text-shadow: 2px 2px RGBA(23, 62, 67, 1.00);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+}
+
+/*========USER============*/
+.user-image{
+    background-color: RGBA(134, 207, 214, 1.00);
+    width: 100%;
+    height: 25%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
-
-.hero-text {
+.user-image-text {
     text-align: center;
     position: absolute;
-    top: 2%;
-    left: 20%;
+    top: 20%;
 }
-
 /*=========================
         MODAL
 =========================*/
@@ -101,6 +149,7 @@ p.mine {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); 
     padding-top: 60px;
+    color:RGBA(240, 236, 235, 1.00);
 }
 
 .modal-backdrop {
@@ -148,24 +197,8 @@ displayForm {
     align-items: center;
 }
 
-/*======THE CLOSE (X) BUTTON IN IMG CONTAINER==========*/
-.close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: white;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
-
 /*==========AVATAR CONTAINER==========*/
-.imgcontainer {
+/*.imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
     position: relative;
@@ -174,7 +207,7 @@ displayForm {
 img.avatar {
     width: 40%;
     border-radius: 50%;
-}
+}*/
 
 /* Add Zoom Animation */
 .animate {
@@ -196,13 +229,23 @@ img.avatar {
 /*=================MAIN CONTENT====================*/
 .contentContainer{
     margin: 40px;
+    
+}
+.card-body p{
+    font-size: 18px;
 }
 
-/*==============Users================*/
+/*==============
+Users
+================*/
 div#mainUserWindow {
-    background: #474141;
+    background-color: RGBA(240, 236, 235, 1.00);
+    border: 1px solid;
+    border-color: RGBA(23, 62, 67, 1.00);
     width: 100%;
-    height: 600px;
+    height: 400px;
+    overflow-y: scroll;
+    margin-top: 40px;
 }
 
 div#mainUserWindow > nav .active .nav-link {
@@ -211,18 +254,20 @@ div#mainUserWindow > nav .active .nav-link {
 }
 
 
-#mainUserWindowPic {
+/*#mainUserWindowPic {
     background: url('../images/get-buckets.png');
+    background-position: center;
+    background-repeat: no-repeat;
 
     width: 100%;
     height: 100px;
-}
+}*/
 
 #dropdownMenuLink {
-     color: rgb(255, 255, 255);
-     font-weight: bold;
-     font-size: 10px; 
-    
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 10px; 
+
 }
 
 #dropdownDiv {
@@ -247,12 +292,6 @@ div#filters {
     border-bottom: 1px solid whitesmoke;
     height: 65px;
     position: relative;
-}
-
-.viewItem:first-of-type {
-    padding-top: 10px;
-    border-top: none;
-    height: 65px;
 }
 
 
@@ -289,7 +328,7 @@ div#filters {
 
 .viewItem:hover {
     cursor: pointer;
-    background: whitesmoke;
+    background: RGBA(250, 229, 150, 1.00);
     color: #474141;
 }
 
@@ -315,17 +354,18 @@ div#filters {
 }
 
 nav#mainUserNav {
-    background: #474141;
+    background-color: RGBA(134, 207, 214, 1.00);
     display: flex;
     width: 100%;
+
 }
 
-nav#mainUserNav {
+/*nav#mainUserNav {
     background: #474141;
-}
+}*/
 
 nav#mainUserNav a.nav-link {
-    color: whitesmoke;
+    color: RGBA(23, 62, 67, 1.00);
     font-size: 12px;
     font-weight: bold;
     padding: 0;
@@ -333,6 +373,7 @@ nav#mainUserNav a.nav-link {
 }
 
 ul#inner.navbar-nav {
+    color: RGBA(23, 62, 67, 1.00);
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -409,110 +450,116 @@ input[type=text].sm-form, input[type=password].sm-form {
 
 /* Example CSS */
 
-  .tagging {
-	border: 1px solid #CCCCCC;
-	font-size: 1em;
-	height: auto;
-	padding: 10px 10px 15px;
+.tagging {
+    border: 1px solid #CCCCCC;
+    font-size: 1em;
+    height: auto;
+    padding: 10px 10px 15px;
 }
 
 .tagging.editable {
-	cursor: text;
+    cursor: text;
 }
 
 .taggable-container {
-	width: 600px;
-	border: 2px solid green;
-	border-radius: 5px;
-	height: auto;
-	padding: 5px;
-	box-sizing: border-box;
+    width: 600px;
+    border: 2px solid green;
+    border-radius: 5px;
+    height: auto;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .taggable-tags {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 
-.tag span {
-	background: none repeat scroll 0 0 #D66806;
-	border-radius: 2px 0 0 2px;
-	margin-right: 5px;
-	padding: 5px 10px 5px;
-}
+    .tag span {
+        background: none repeat scroll 0 0 #D66806;
+        border-radius: 2px 0 0 2px;
+        margin-right: 5px;
+        padding: 5px 10px 5px;
+    }
 
-.tag .tag-i {
-	color: white;
-	cursor: pointer;
-	font-size: 1.3em;
-	height: 0;
-	line-height: 0.1em;
-	position: absolute;
-	right: 5px;
-	top: 0.7em;
-	text-align: center;
-	width: 10px;
-}
- 
-.taggable-tag {
-	list-style: none;
-	float: left;
-	border: 2px solid green;
-	border-radius: 5px;	
-	padding: 6px 36px 6px 12px;
-	margin: 0 10px 0 0;
-	position: relative;
-	
-	transition-property: border-color;
-	
+    .tag .tag-i {
+        color: white;
+        cursor: pointer;
+        font-size: 1.3em;
+        height: 0;
+        line-height: 0.1em;
+        position: absolute;
+        right: 5px;
+        top: 0.7em;
+        text-align: center;
+        width: 10px;
+    }
 
-	animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-	
-	&.adding {
-		animation-duration: 400ms;
-		animation-name: bounceIn;
-	}	
-	
-	&.deleting {
-		animation-duration: 300ms;
-		animation-name: bounceOut;
-	}
-	
-	&:hover {
+    .taggable-tag {
+        list-style: none;
+        float: left;
+        border: 2px solid green;
+        border-radius: 5px;	
+        padding: 6px 36px 6px 12px;
+        margin: 0 10px 0 0;
+        position: relative;
 
-	}	
-}
+        transition-property: border-color;
 
-.taggable-text {
-	 float: left;
-}
 
-.taggable-remove {
-	position: absolute;
-	right: 0px;
-	top: 0;
-	border: 0;
-	width: 32px;
-	height: 32px;
-	cursor: pointer;
-	padding: 0;
-        
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+        &.adding {
+            animation-duration: 400ms;
+            animation-name: bounceIn;
+        }	
+
+        &.deleting {
+            animation-duration: 300ms;
+            animation-name: bounceOut;
         }
-.tag .tag-i:hover {
-	color: black;
-	text-decoration: underline;
+
+        &:hover {
+
+        }	
+    }
+
+    .taggable-text {
+        float: left;
+    }
+
+    .taggable-remove {
+        position: absolute;
+        right: 0px;
+        top: 0;
+        border: 0;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        padding: 0;
+
+    }
+    .tag .tag-i:hover {
+        color: black;
+        text-decoration: underline;
+    }
+
+    .type-zone {
+        border: 0 none;
+        height: auto;
+        width: auto;
+        min-width: 20px;
+        display: inline-block;
+    }
+
+    .type-zone:focus {
+        outline: none;
+    }
+
 }
 
-.type-zone {
-	border: 0 none;
-	height: auto;
-	width: auto;
-	min-width: 20px;
-	display: inline-block;
-}
-
-.type-zone:focus {
-	outline: none;
-}
-
+/*====================CATEGORIES=============*/
+.categoryList {
+    height:150px;
+    overflow-y: scroll;
 }
 

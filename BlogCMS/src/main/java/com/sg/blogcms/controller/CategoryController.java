@@ -5,7 +5,6 @@
  */
 package com.sg.blogcms.controller;
 
-import com.sg.blogcms.dao.CategoryDAOInterface;
 import com.sg.blogcms.dto.Category;
 import com.sg.blogcms.service.CategoryServiceInterface;
 import java.util.ArrayList;
@@ -31,30 +30,35 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = {"/categories"}, method = RequestMethod.GET)
-    public String category(Model model, HttpServletRequest request) {
-        List<Category> categoryList = categoryService.getAllCategories();
-        model.addAttribute("categoryList", categoryList);
-        return "categories";
+//    @RequestMapping(value = {"/categories"}, method = RequestMethod.GET)
+//    public String category(Model model, HttpServletRequest request) {
+//        List<Category> categoryList = categoryService.getAllCategories();
+//        model.addAttribute("categoryList", categoryList);
+//        return "categories";
+//
+//    }
+    @RequestMapping(value = {"/addCategory"}, method = RequestMethod.GET)
+    public String addCategoryPage(HttpServletRequest request) {
 
+        //fill correct page here
+        return "addCategory";
     }
 
-    @RequestMapping(value = {"/addCategory"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/addCategory"}, method = RequestMethod.POST)
     public String addCategory(HttpServletRequest request) {
 //      get values from a form to make a new contact
         Category category = new Category();
         category.setCategoryName(request.getParameter("categoryName"));
-
+//        category.setCategoryName("Ultimate Frisbee");
 //      persist the values
         categoryService.addCategory(1, category);
 
         //fill correct page here
-        return "redirect:/index";
-
+        return "addCategory";
     }
 
-    @RequestMapping(value = {"/submitCategory"}, method = RequestMethod.GET)
-    public String sumbitCategory(HttpServletRequest request, Model model) {
+    @RequestMapping(value = {"/submitCategory"}, method = RequestMethod.POST)
+    public void sumbitCategory(HttpServletRequest request, Model model) {
 
 //      making a new category
         Category currentCategory = new Category();
@@ -64,33 +68,37 @@ public class CategoryController {
 
 //      persist the values
         categoryService.addCategory(0, currentCategory);
+        System.out.println(14324 + " " + currentCategory);
 
 //      go back to the blog post page
-        return "redirect:/addPost";
+//        return "redirect:/addPost";
     }
 
-//    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
-//    public String updateCategory(HttpServletRequest request) {
-//
-//        Category cat = categoryDao.getCategoryById(Integer.parseInt("category"));
-//
-//        String[] categoryIds = request.getParameterValues("categoryName");
-//
-//        List<Category> categoryList = new ArrayList();
-//
-//        if (categoryIds != null) {
-//            for (String categoryId : categoryIds) {
-//                Category c = categoryDao.getCategoryById(Integer.parseInt(categoryId));
-//                categoryList.add(c);
-//            }
-//        }
-////        need to persist updated category from form
-//
-//        return "redirect:?addPost";
-//
-//    }
-    
-    
+    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
+    public String updateCategory(HttpServletRequest request) {
+
+        Category cat = categoryService.getCategoryById(Integer.parseInt(request.getParameter("categoryId")));
+        
+        cat.setCategoryName(request.getParameter("categoryName"));
+
+        String[] categoryIds = request.getParameterValues("categoryName");
+
+        List<Category> categoryList = new ArrayList();
+
+        if (categoryIds != null) {
+            for (String categoryId : categoryIds) {
+                Category c = categoryService.getCategoryById(Integer.parseInt(categoryId));
+                categoryList.add(c);
+            }
+        }
+//        need to persist updated category from form
+
+        categoryService.updateCategory(0, cat);
+
+        return "redirect:?addPost";
+
+    }
+
 //    @RequestMapping(value = {"/updateCategory"}, method = RequestMethod.POST)
 //    public String updateCategory(@Valid @ModelAttribute("category") Category category, BindingResult result) {
 //
@@ -102,7 +110,6 @@ public class CategoryController {
 //
 //        return "redirect:?addPost";
 //    }
-
     @RequestMapping(value = {"/deleteCategory"}, method = RequestMethod.GET)
     public String deleteCategory(HttpServletRequest request) {
         categoryService.deleteCategory(0, 0);

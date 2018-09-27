@@ -117,6 +117,7 @@
         <!--*******************REST ENDPOINTS********************-->
       
     </http> 
+    
     <authentication-manager>
         <authentication-provider>
             <!--<password-encoder ref="encoder"/>-->
