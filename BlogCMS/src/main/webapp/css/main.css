@@ -3,58 +3,90 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
+
 /* 
     Created on : May 31, 2018, 11:31:19 AM
     Author     : darthvader
 */
-body, html{
+
+body,
+html {
     height: 100%;
 }
 
-.container-fluid{
-    height: 100%;
-}
+.container-fluid {}
 
-.btn{
+.btn {
     size: auto;
 }
-body{
+
+#mylogo {
+    margin-left: 50px;
+}
+
+body {
     background-color: RGBA(240, 236, 235, 1.00);
-    color:RGBA(23, 62, 67, 1.00);
+    color: RGBA(23, 62, 67, 1.00);
     font-size: 24px;
     text-align: center;
+    width: 100vw;
 }
 
 .navbar {
     /*    display:flex;
         justify-content: space-around;
         flex-wrap: wrap;*/
-    background-color: RGBA(240, 236, 235, 1.00);
+    /* background-color: RGBA(240, 236, 235, 1.00); */
     color: RGBA(23, 62, 67, 1.00);
 }
 
-a{
+a {
     color: RGBA(23, 62, 67, 1.00);
     text-decoration: none;
 }
-/*a:hover{
+
+#mainNav a {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#mainNav a.active {
+    color: rgb(175, 223, 247);
+}
+
+#mainNav a:hover {
     font-style: oblique;
     color: RGBA(193, 193, 194, 1.00);
     border-color: RGBA(134, 207, 214, 1.00);
     border-radius: 2px;
-}*/
-.nav-bar li{
+}
+
+#user-option {
+    margin-top: 10px;
+}
+
+.username {
+    margin-left: 10px;
+    color: rgb(13, 253, 245);
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.nav-bar li {
     font-style: oblique;
     /*color: RGBA(193, 193, 194, 1.00);*/
     border-color: RGBA(134, 207, 214, 1.00);
     border-radius: 2px;
 }
 
-.loginButton{
+.loginButton {
     background-color: RGBA(134, 207, 214, 1.00);
 }
 
-.loginButton:hove{
+.loginButton:hove {
     color: RGBA(240, 236, 235, 1.00);
 }
 
@@ -81,6 +113,25 @@ button:hover {
     opacity: 0.8;
 }
 
+#navMenu {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 30vh;
+    background: transparent;
+    position: relative;
+    z-index: 1000;
+}
+
+#curved_window {
+    position: absolute;
+    left: 0;
+}
+
+#curved_window path {
+    fill: rgba(17, 44, 106, 0.592);
+}
+
 /*==============
 LANDING IMAGE
 ================*/
@@ -95,17 +146,19 @@ LANDING IMAGE
     background-repeat: no-repeat;
     background-size: cover;
     /*position: relative;*/
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.d-block.w-100{
+.d-block.w-100 {
     width: 10px;
     position: relative;
-    
 }
-.row-first{
+
+.row-first {
+    background: transparent;
     height: 10%;
     margin-bottom: 40px;
+    margin-top: -200px;
 }
 
 .hero-text {
@@ -117,8 +170,30 @@ LANDING IMAGE
     left: 20%;
 }
 
+footer { 
+    background: rgb(3, 32, 90);
+    padding: 1rem; 
+    text-align: center;
+}
+
+#creators {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#creators img {
+    border-radius: 50%;
+}
+
+#creators h4 {
+    color: rgb(59, 204, 252);
+}
+
+
 /*========USER============*/
-.user-image{
+
+.user-image {
     background-color: RGBA(134, 207, 214, 1.00);
     width: 100%;
     height: 25%;
@@ -126,30 +201,34 @@ LANDING IMAGE
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .user-image-text {
     text-align: center;
     position: absolute;
     top: 20%;
 }
+
 /*=========================
         MODAL
 =========================*/
 
 /*=======MODAL BACKGROUND======*/
+
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); 
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
-    color:RGBA(240, 236, 235, 1.00);
+    color: RGBA(240, 236, 235, 1.00);
 }
 
 .modal-backdrop {
@@ -157,15 +236,20 @@ LANDING IMAGE
 }
 
 /*=========MODAL CONTENT==========*/
+
 .modal-content {
     background-color: RGBA(47, 52, 54, 0.6);
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
 
 /*======INPUT FEILDS=====*/
-input[type=text], input[type=password] {
+
+input[type=text],
+input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -176,10 +260,13 @@ input[type=text], input[type=password] {
 
 /*body {
 }*/
+
 displayForm {
     display: inline-block;
 }
+
 /*========BUTTONS========*/
+
 .loginBtn {
     width: 100%;
     padding: 10px 18px;
@@ -198,6 +285,7 @@ displayForm {
 }
 
 /*==========AVATAR CONTAINER==========*/
+
 /*.imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
@@ -211,34 +299,44 @@ img.avatar {
 }*/
 
 /* Add Zoom Animation */
+
 .animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
 }
 
 @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
+    from {
+        -webkit-transform: scale(0)
+    }
+    to {
+        -webkit-transform: scale(1)
+    }
 }
 
 @keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
 }
-
 
 /*=================MAIN CONTENT====================*/
-.contentContainer{
+
+.contentContainer {
     margin: 40px;
-    
 }
-.card-body p{
+
+.card-body p {
     font-size: 18px;
 }
 
 /*==============
 Users
 ================*/
+
 div#mainUserWindow {
     background-color: RGBA(240, 236, 235, 1.00);
     border: 1px solid;
@@ -249,11 +347,10 @@ div#mainUserWindow {
     margin-top: 40px;
 }
 
-div#mainUserWindow > nav .active .nav-link {
+div#mainUserWindow>nav .active .nav-link {
     color: rgb(233, 227, 224);
     text-decoration: underline;
 }
-
 
 /*#mainUserWindowPic {
     background: url('../images/get-buckets.png');
@@ -267,8 +364,7 @@ div#mainUserWindow > nav .active .nav-link {
 #dropdownMenuLink {
     color: rgb(255, 255, 255);
     font-weight: bold;
-    font-size: 10px; 
-
+    font-size: 10px;
 }
 
 #dropdownDiv {
@@ -282,7 +378,6 @@ div#mainUserWindow > nav .active .nav-link {
     height: 430px;
 }
 
-
 div#filters {
     display: inline;
 }
@@ -295,21 +390,19 @@ div#filters {
     position: relative;
 }
 
-
-.itemSummary .itemBrief { 
+.itemSummary .itemBrief {
     display: none;
 }
 
-.options .itemOptions { 
+.options .itemOptions {
     display: none;
 }
 
-
-.viewItem.toggled { 
+.viewItem.toggled {
     height: 100px;
 }
 
-.itemSummary .itemBrief.toggled { 
+.itemSummary .itemBrief.toggled {
     font-size: 14px;
     font-weight: normal;
     height: 40px;
@@ -317,13 +410,13 @@ div#filters {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    -webkit-box-orient: vertical; 
-    box-orient: vertical; 
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
     text-overflow: ellipsis;
     text-transform: capitalize;
 }
 
-.options .itemOptions.toggled { 
+.options .itemOptions.toggled {
     display: inline-block;
 }
 
@@ -355,10 +448,9 @@ div#filters {
 }
 
 nav#mainUserNav {
-    background-color: RGBA(134, 207, 214, 1.00);
+    background-color: rgba(134, 207, 214, 1.00);
     display: flex;
     width: 100%;
-
 }
 
 /*nav#mainUserNav {
@@ -370,30 +462,25 @@ nav#mainUserNav a.nav-link {
     font-size: 12px;
     font-weight: bold;
     padding: 0;
-
 }
 
 ul#inner.navbar-nav {
     color: RGBA(23, 62, 67, 1.00);
-    display: flex;
+    ba display: flex;
     width: 100%;
     justify-content: space-around;
 }
 
-ul#inner.nav-btn  {
+ul#inner.nav-btn {
     display: block;
     width: 100%;
     text-align: right;
 }
 
-
-
-
 #placement {
     display: flex;
 }
 
- 
 div.windowMenu {
     width: 100px;
 }
@@ -405,7 +492,7 @@ div.windowMenu {
     border-bottom: 1px solid wheat;
 }
 
-.windowMenu > ul > li {
+.windowMenu>ul>li {
     width: 80%;
     font-size: 0.5rem;
     margin: 5px auto;
@@ -420,30 +507,31 @@ div.windowMenu {
     width: 80%;
     margin: 1 auto;
     padding: 10px;
-
 }
-#idealo > label {
+
+#idealo>label {
     display: inline;
     font-size: 15px;
     margin: 0 5px;
 }
 
-
-input[type=text].sm-form, input[type=password].sm-form {
+input[type=text].sm-form,
+input[type=password].sm-form {
     width: 200px;
     padding: 0;
     margin: 8px 0;
     display: inline-block;
 }
 
-.windowMenu .menuInstructions > li {
+.windowMenu .menuInstructions>li {
     padding: 10px;
     font-weight: bold;
     font-size: 12px;
-    width: 100%;;
+    width: 100%;
+    ;
 }
 
-.windowMenu .menuInstructions > li:last-of-type {
+.windowMenu .menuInstructions>li:last-of-type {
     color: azure;
 }
 
@@ -474,14 +562,12 @@ input[type=text].sm-form, input[type=password].sm-form {
 .taggable-tags {
     padding: 0;
     margin: 0;
-
     .tag span {
         background: none repeat scroll 0 0 #D66806;
         border-radius: 2px 0 0 2px;
         margin-right: 5px;
         padding: 5px 10px 5px;
     }
-
     .tag .tag-i {
         color: white;
         cursor: pointer;
@@ -494,40 +580,29 @@ input[type=text].sm-form, input[type=password].sm-form {
         text-align: center;
         width: 10px;
     }
-
     .taggable-tag {
         list-style: none;
         float: left;
         border: 2px solid green;
-        border-radius: 5px;	
+        border-radius: 5px;
         padding: 6px 36px 6px 12px;
         margin: 0 10px 0 0;
         position: relative;
-
         transition-property: border-color;
-
-
         animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-
         &.adding {
             animation-duration: 400ms;
             animation-name: bounceIn;
-        }	
-
+        }
         &.deleting {
             animation-duration: 300ms;
             animation-name: bounceOut;
         }
-
-        &:hover {
-
-        }	
+        &:hover {}
     }
-
     .taggable-text {
         float: left;
     }
-
     .taggable-remove {
         position: absolute;
         right: 0px;
@@ -537,13 +612,11 @@ input[type=text].sm-form, input[type=password].sm-form {
         height: 32px;
         cursor: pointer;
         padding: 0;
-
     }
     .tag .tag-i:hover {
         color: black;
         text-decoration: underline;
     }
-
     .type-zone {
         border: 0 none;
         height: auto;
@@ -551,39 +624,32 @@ input[type=text].sm-form, input[type=password].sm-form {
         min-width: 20px;
         display: inline-block;
     }
-
     .type-zone:focus {
         outline: none;
     }
-
 }
 
 /*====================CATEGORIES=============*/
+
 .categoryList {
-    height:150px;
+    height: 150px;
     overflow-y: scroll;
 }
 
 /*============Mo's viewPosts page.. Asher plz hallp Style========*/
-.entireCard{
+
+.entireCard {
     margin-left: 25px;
     margin-right: 25px;
 }
 
-.cardPostTitle{
-    
-}
+.cardPostTitle {}
 
-.cardPostBody{
-    
-}
+.cardPostBody {}
 
-.cardPostDate{
-    
-}
+.cardPostDate {}
 
-.choosePostToEdit{
-  margin-left: 25px;
-      margin-right: 25px;
+.choosePostToEdit {
+    margin-left: 25px;
+    margin-right: 25px;
 }
-
