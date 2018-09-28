@@ -16,4 +16,10 @@ public class IndexController {
         model.put("message", "Hello from the controller" );
         return "index";
     }
+    
+        
+    @RequestMapping(value={"/about"}, method=RequestMethod.GET)
+    public String seeAbout(Map<String, Object> model) { 
+        return "about";
+    }
 }

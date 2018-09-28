@@ -60,11 +60,11 @@
                                                 </li>
 
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="${pageContext.request.contextPath}/createPost">Users</a>
+                                                    <a class="nav-link" href="${pageContext.request.contextPath}/userDashboard?view=notifications">Users</a>
                                                 </li>
 
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="${pageContext.request.contextPath}/contact">About</a>
+                                                    <a class="nav-link" href="${pageContext.request.contextPath}/about">About</a>
                                                 </li>
 
                                                 <!--==========DROPDOWN==========-->

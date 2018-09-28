@@ -284,6 +284,32 @@ displayForm {
     align-items: center;
 }
 
+#filterMe {
+    padding-top: 15px;
+
+   
+}
+ 
+
+#filterMe div{ 
+    width: 75%;
+    font-size: 12px;
+     border: 2px solid black;
+    height: 75px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 15px auto;
+    text-align: justify;
+    padding-left: 20px;
+}
+
+#filterMe div h5 { 
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
+
+
 /*==========AVATAR CONTAINER==========*/
 
 /*.imgcontainer {
