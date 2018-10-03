@@ -61,18 +61,21 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
 CREATE TABLE IF NOT EXISTS `Categories` (
  `CategoryID` INT NOT NULL AUTO_INCREMENT,
  `CategoryName` VARCHAR(100) NOT NULL,
+ `CategoryStatus` VARCHAR(100) NOT NULL,
  PRIMARY KEY (`CategoryID`));
  
  -- Tags Table--
 CREATE TABLE IF NOT EXISTS `Tags` (
  `TagID` INT NOT NULL AUTO_INCREMENT,
  `TagName` VARCHAR(100) NOT NULL,
+  `TagStatus` VARCHAR(100) NOT NULL,
  PRIMARY KEY (`TagID`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
  -- Posts --
 CREATE TABLE IF NOT EXISTS `Posts` (
  `PostID` INT NOT NULL AUTO_INCREMENT,
  `PostTitle` VARCHAR(100) NOT NULL,
+ `PostStatus` VARCHAR(100) NOT NULL,
  `PostBody` LONGTEXT NOT NULL,
  
  -- Mo: Changed data types of dates below from VARCHAR(100) to DATETIME
@@ -80,6 +83,9 @@ CREATE TABLE IF NOT EXISTS `Posts` (
  `ExpirationDate` DATETIME NOT NULL,
  
  `FeatureImage` VARCHAR(100) NULL,
+ `Likes` INT NULL,
+ `Dislikes` INT NULL,
+ `Shares` INT NULL,
  `CategoryID` INT NOT NULL,
  `UserID` INT NOT NULL,
  PRIMARY KEY (`PostID`),
@@ -118,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `Notifications` (
 `NotificationDate` DATETIME NOT NULL,
 `NotificationType` VARCHAR(20) NOT NULL,
 `NotificationBrief` LONGTEXT NOT NULL,
+`NotificationStatus` LONGTEXT NOT NULL,
 `Username` VARCHAR(20) NOT NULL,
 `ID` INT NOT NULL,
  PRIMARY KEY (`NotificationID`),

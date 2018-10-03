@@ -9,7 +9,7 @@
                             <html>
 
                             <head>
-                                <title>BBLT</title>
+                                <title>Home</title>
                                 <!-- Bootstrap core CSS -->
                                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
                                     crossorigin="anonymous">
@@ -155,7 +155,7 @@
                                     <div class="row row-first">
                                         <div class="hero-image">
 
-                                            <div class="carousel-inner" class="carousel slide" data-ride="carousel" role="listbox" style=" width:100%; height: 500px !important;">
+                                            <div  class="carousel-inner carousel slide" data-ride="carousel" role="listbox" style=" width:100%; height: 500px !important;">
                                                 <div class="carousel-inner">
 
                                                     <div class="carousel-item active">
@@ -180,18 +180,19 @@
                                                         <img class="d-block w-100" src="images/7.jpg" alt="7th" </div>
                                                     </div>
                                                 </div>
+                                                
+                                            <div class="hero-text">
+                                                    <h1>Where BucketList's become Memories</h1>
+                                                </div>
                                             </div>
 
-                                            <div class="hero-text">
-                                                <h1>Where BucketList's become Memories</h1>
-                                            </div>
                                         </div>
 
+                                        </div>
 
                                         <!--============PAGE CONTENT=============-->
-                                        <div class="container">
-                                            <br>
-                                            <br>
+                                        <div class="container" style="margin-top: 350px">
+                                             
                                             <div class="row">
 
                                                 <div class="card-deck">
@@ -275,8 +276,7 @@
 
 
 
-
-                                </div>
+ 
 
                                 <footer>
                                     <h5 style="color:white">This blog was brought to you by the loving arms of the following people</h5>

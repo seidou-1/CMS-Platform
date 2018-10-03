@@ -63,13 +63,13 @@ public class PostController {
 
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post myPost = postService.getPostById(postId);
-        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagName());
-        System.out.println("SEARCH THIS: " + myPost.getTag().size());
-        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagId());
+//        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagName());
+//        System.out.println("SEARCH THIS: " + myPost.getTag().size());
+//        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagId());
         
         for(Tag tag: tagService.getAllTags()){
             if(myPost.getTag().get(0).getTagName() == tag.getTagName()){
-                System.out.println("SEARCH THIS TOO: null must be a tag?" );
+//                System.out.println("SEARCH THIS TOO: null must be a tag?" );
             }
         }
         
