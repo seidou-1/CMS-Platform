@@ -171,7 +171,7 @@
                                                         <img class="d-block w-100" src="images/4.jpg" alt="4th ">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block w-100" style="top: -200px" src="images/5.jpg" alt="5th">
+                                                        <img class="d-block w-100"   src="images/5.jpg" alt="5th">
                                                     </div>
                                                     <div class="carousel-item">
                                                         <img class="d-block w-100" src="images/8.jpg" alt="6th">
@@ -214,7 +214,7 @@
                                                                         35</i>
                                                                 </p>
                                                             </p>
-                                                            <a href="#" class="btn btn-primary">Read Now!</a>
+                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=1" class="btn btn-primary">Read Now!</a>
                                                         </div>
                                                     </div>
                                                     <div class="card">
@@ -236,7 +236,7 @@
                                                                         140</i>
                                                                 </p>
                                                             </p>
-                                                            <a href="#" class="btn btn-primary">Read Now!</a>
+                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=2" class="btn btn-primary">Read Now!</a>
                                                         </div>
                                                     </div>
                                                     <div class="card">
@@ -257,7 +257,7 @@
                                                                         432</i>
                                                                 </p>
                                                             </p>
-                                                            <a href="#" class="btn btn-primary">Read Now!</a>
+                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=3" class="btn btn-primary">Read Now!</a>
                                                         </div>
                                                     </div>
                                                 </div>

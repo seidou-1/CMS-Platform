@@ -149,6 +149,7 @@ public class PostController {
         myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
         myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
         
+        
        postService.updatePost(myPost.getUserId(), myPost); //Update this method to replace the first parameter with userId
        
        return "redirect:viewSinglePost"; //edit later`

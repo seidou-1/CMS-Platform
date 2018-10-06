@@ -174,6 +174,63 @@ LANDING IMAGE
     left: 20%;
 }
 
+.post-details {
+    display: flex;
+    flex-wrap: nowrap;
+  
+}
+
+#postView {
+    width: 600px; 
+    padding-top: 15px;
+    margin: 0 auto;
+    margin-top: -10px;
+    border-radius: 5px;
+    background: #00000084;
+    color: white;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+
+
+#postView a {
+    color: azure;
+}
+
+#postView a:hover {
+    color: rgb(143, 245, 245);
+    text-decoration: none;
+} 
+
+#postView img {
+    width: 75px;
+    border-radius: 50%;
+}
+
+.cardPostDate { 
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+
+.post-details div {
+    padding: 15px;
+}
+
+.post-details img {
+    width: 50% !important;
+    height: 400px;
+
+    border-right: 1px solid grey;
+}
+
+.post-details span {
+    font-size: 0.75em;
+}
+
+
 
 #postForm {
     background: rgb(226, 237, 248);
@@ -220,9 +277,27 @@ footer {
     list-style-type: none;
 }
 
-#subPost { 
+.myBody {
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: rgb(98, 96, 96);
+    border-radius: 10px;
+    text-align: justify;
+    width: 80%;
+    padding: 15px; 
+    margin: 0 auto;
 }
 
+
+
+.postTitle {
+    color: rgb(83, 25, 39); 
+    padding-top: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
 
 
 
@@ -342,17 +417,15 @@ displayForm {
 }
 
 #filterMe {
-    padding-top: 15px;
-
-   
+    padding-top: 15px; 
 }
  
 
 #filterMe div{ 
     width: 75%;
     font-size: 12px;
-     border: 2px solid black;
-    height: 75px;
+
+    height: 100px;
     overflow-y: auto;
     overflow-x: hidden;
     margin: 15px auto;
@@ -429,7 +502,7 @@ div#mainUserWindow {
 }
 
 div#mainUserWindow>nav .active .nav-link {
-    color: rgb(233, 227, 224);
+    color: rgb(211, 7, 7);
     text-decoration: underline;
 }
 
@@ -486,11 +559,31 @@ div#mainUserWindow>nav .active .nav-link {
     border-color: rgba(23, 62, 67, 1.00);
 }
 
-#navScroll {
+.navScroll {
     /* background: #f44336; */
     overflow-y: auto;
     overflow-x: hidden;
-    height: 300px;
+    height: 250px;
+}
+
+.testimony {
+    display: flex;
+    width: 75%;
+    justify-content: center;
+    margin: 5px auto;
+    border: 1px solid grey;
+
+}
+
+.testimony h6 {
+    display: inline;
+    width: 400px; 
+    padding: 20px;
+    margin: 0 20px;
+}
+
+.testimony img { 
+    margin: 10px;
 }
 
 
@@ -599,7 +692,7 @@ ul#inner.navbar-nav {
 ul#inner.nav-btn {
     display: block;
     width: 100%;
-    text-align: right;
+    text-align: s;
 }
 
 #placement {
@@ -702,4 +795,8 @@ input[type=password].sm-form {
 .choosePostToEdit {
     margin-left: 25px;
     margin-right: 25px;
+}
+
+.card {
+    border: 1px solid rgb(96, 92, 92);
 }

@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS `Users` (
  KEY `UserName` (`UserName`)
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
  
+ 
+ 
 
  
 -- Authorities table
@@ -60,31 +62,47 @@ CREATE TABLE IF NOT EXISTS `Permissions` (
 -- Categories Table--
 CREATE TABLE IF NOT EXISTS `Categories` (
  `CategoryID` INT NOT NULL AUTO_INCREMENT,
+ `CategoryDesc` VARCHAR(500) NULL,
  `CategoryName` VARCHAR(100) NOT NULL,
  `CategoryStatus` VARCHAR(100) NOT NULL,
- PRIMARY KEY (`CategoryID`));
+ `ApprovedBy` INT NULL,
+ `CreatedBy` INT NULL,
+  PRIMARY KEY (`CategoryID`),
+  CONSTRAINT `fk_Cat_Approved`
+   FOREIGN KEY (`ApprovedBy`)
+   REFERENCES `Users` (`UserID`)
+   ON DELETE NO ACTION,
+     CONSTRAINT `fk_Cat_Create`
+   FOREIGN KEY (`CreatedBy`)
+   REFERENCES `Users` (`UserID`)
+   ON DELETE NO ACTION
+);
  
+  
  -- Tags Table--
 CREATE TABLE IF NOT EXISTS `Tags` (
  `TagID` INT NOT NULL AUTO_INCREMENT,
  `TagName` VARCHAR(100) NOT NULL,
   `TagStatus` VARCHAR(100) NOT NULL,
+   `CreatedBy` INT NULL,
  PRIMARY KEY (`TagID`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- 
+  
  -- Posts --
 CREATE TABLE IF NOT EXISTS `Posts` (
  `PostID` INT NOT NULL AUTO_INCREMENT,
  `PostTitle` VARCHAR(100) NOT NULL,
  `PostStatus` VARCHAR(100) NOT NULL,
  `PostBody` LONGTEXT NOT NULL,
+ `PostDesc` LONGTEXT NOT NULL,
+ 
  
  -- Mo: Changed data types of dates below from VARCHAR(100) to DATETIME
  `PostDate` DATETIME NOT NULL,
- `ExpirationDate` DATETIME NOT NULL,
+ `ExpirationDate` DATETIME NULL,
  
- `FeatureImage` VARCHAR(100) NULL,
+ `FeatureImage` VARCHAR(200) NULL,
  `Likes` INT NULL,
- `Dislikes` INT NULL,
+ `Readers` INT NULL,
  `Shares` INT NULL,
  `CategoryID` INT NOT NULL,
  `UserID` INT NOT NULL,

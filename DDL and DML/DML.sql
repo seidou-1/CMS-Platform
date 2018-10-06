@@ -1,10 +1,25 @@
 USE `BBLTravels`;
 
-INSERT INTO `CATEGORIES` (CategoryName)
+INSERT INTO `CATEGORIES` (CategoryName, CategoryDesc, CategoryStatus, ApprovedBy, CreatedBy)
 VALUES 
-('Beaches'),
-('Sky Scrapers'),
-('Views')
+('Sky', 'This category deals with the sky and its beautiful features', 'Approved', 1, 3),
+('Technology', 'This category deals everything that has to do with tech', 'Approved', 2, 3),
+('Computers', 'Everything that computers have to do in this world', 'Approved', 3, 2),
+('Planes', 'Where did planes come from?', 4, 2),
+('Animals', 'Are animals really tasty?', 1, 4),
+('Creatures', 'What kind of creatures come fro beneath the earth', 2, 4),
+('Adventure', 'What kind of spooky adventures did we get into today!', 'Approved', 3, 1),
+('Vehicles', 'Look at us repair vehicles and talk fast cars',  'Approved', 4, 1),
+('Peanuts', 'Do you like nuts as much as the other guy?', 'Approved', 1, 3),
+('Money', 'No time for broke mofos. Lets get this cash!', 'Approved', 2, 3),
+('US Dollars', 'Lets explore the economy together', 'Approved', 3, 4),
+('Stocks', 'My stocks or your stocks, which one is better', 'Approved', 4, 2),
+('List', 'I have a list that one day the world will no longer be flat', 'Approved', 1, 2),
+('Fear', 'Watch us abandon our fears and talk to the most attractive sharks out there', 'Approved', 3, 2),
+('Life', 'Important life lessons taught by a two hyear old', 'Approved', 2, 1),
+('Girls', 'Only bad chicks allowed', 'Approved', 4, 1),
+('Soap', 'The benefits of bathing with soap',  4, 4),
+('Fans', 'This category makes all the fans happy', 1, 4)
 ;
 
 
@@ -37,14 +52,7 @@ VALUES
 ('ROLE_ADMIN', '1', '1', '1', '1', '1', '1', '1') -- Admin
 ;
  
-INSERT INTO`POSTS` (PostTitle,  PostDate, ExpirationDate, FeatureImage, CategoryID, UserID, PostBody)
-VALUES 
-('Adventerous Views', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Beach Vibes', '2', '2', 'I look at all types of Adventerous Views'),
-('Scenes from the streams', '2018-03-20 23:59:59', '2018-03-20 23:59:59', 'Image of the sky', '3', '1', 'I look at all types of scenes'),
-('Night and Day Meals', '2016-05-10 20:59:59', '2013-03-15 11:00:12', 'Image of the sky', '2', '1', 'I look at all types of day and night meals'),
-('Responsibilities of an adult', '2018-06-13 10:12:32', '2020-05-11 10:10:17', 'Adulthood', '1', '1', 'When i started adulting it was tough. Its still tough'),
-('Memories of the young', '2018-04-19 04:05:42', '2020-07-11 03:16:12', 'Dreams', '3', '1', 'I would never imagine when i was a child how life works. Still cant find the manual')
-;
+
 
 INSERT INTO `TAGS` (TagName)
 VALUES

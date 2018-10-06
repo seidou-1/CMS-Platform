@@ -60,10 +60,9 @@ public class PostDaoDbImpl implements PostDAOInterface {
 
     private static final String SQL_SELECT_POST_BY_USER
             = "SELECT USERNAME, USEREMAIL, POSTTITLE, POSTDATE FROM `USERS` RIGHT JOIN `POSTS` ON POSTS.POSTID = USERS.USERID";
-    
+
 //    private static final String SQL_SELECT_POST_BY_USER
 //            = "SELECT * FROM `POSTS` WHERE `POSTDATE` = ?";
-
     private static final String SQL_SELECT_POST_BY_CATEGORY
             = "SELECT CATEGORYNAME, POSTTITLE, POSTDATE FROM `CATEGORIES` \n"
             + "\n"
@@ -96,12 +95,10 @@ public class PostDaoDbImpl implements PostDAOInterface {
             + "LEFT  JOIN POSTS_TAGS ON POSTS.POSTID = POSTS_TAGS.POSTID\n"
             + "\n"
             + "LEFT JOIN TAGS ON TAGS.TAGID = POSTS_TAGS.TAGID";
-    
+
     private static final String SQL_INSERT_POST_TAG
             = "INSERT INTO`POSTS_TAGS` (PostID, TagID)\n"
             + "VALUES (?, ?)";
-    
-    
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -127,19 +124,17 @@ public class PostDaoDbImpl implements PostDAOInterface {
 
         //This sets the new id value on the Post object and returns it
         post.setPostId(newId);
-        
+
         //Iterate through Tags and insert those into the post
-        if(!post.getTag().isEmpty()){
-            for(Tag tag: post.getTag()){
+        if (!post.getTag().isEmpty()) {
+            for (Tag tag : post.getTag()) {
 
                 jdbcTemplate.update(SQL_INSERT_POST_TAG,
                         post.getPostId(),
                         tag.getTagId());
             }
         }
-            
-            
-        
+
         return post;
 
         //Pick up here.. UnitTest this method
@@ -160,10 +155,7 @@ public class PostDaoDbImpl implements PostDAOInterface {
                 post.getCategoryId(),
                 post.getUserId(),
                 post.getPostId());
-        
-        
-        
-        
+
 //        if(!post.getTag().isEmpty()){
 //            for(Tag tag: post.getTag()){
 //
@@ -172,7 +164,6 @@ public class PostDaoDbImpl implements PostDAOInterface {
 //                        tag.getTagId());
 //            }
 //        }
-
     }
 
     @Override
@@ -187,15 +178,15 @@ public class PostDaoDbImpl implements PostDAOInterface {
         try {
             String SQLselect = SQL_SELECT_ALL_POSTS + "\n where POSTS.PostID = ?";
 //            return jdbcTemplate.queryForObject(SQL_SELECT_POST, //This will mimic Select all posts but put a where in there. Use the same extractor
-            List <Post> myPosts = jdbcTemplate.query(SQLselect, //This will mimic Select all posts but put a where in there. Use the same extractor
+            List<Post> myPosts = jdbcTemplate.query(SQLselect, //This will mimic Select all posts but put a where in there. Use the same extractor
                     new PostMapExtractor(), postId);
-            if (myPosts.size()== 0) {
+            if (myPosts.size() == 0) {
                 return null;
             }
             return myPosts.get(0); //Grab the only one in the index... 0
         } catch (EmptyResultDataAccessException ex) {
 
-            return null; 
+            return null;
         }
     }
 
@@ -272,9 +263,9 @@ public class PostDaoDbImpl implements PostDAOInterface {
                 Post myPost = results.get(postId); //This checks our map to see if we already have that postId
 
                 if (myPost == null) { //Meaning we haven't ran into this postId yet
-                    
+
                     myPost = new Post();
-                    
+
                     Category myCategory = new Category();
                     myCategory.setCategoryId(rs.getInt("CategoryID"));
                     myCategory.setCategoryName(rs.getString("CategoryName"));
@@ -294,6 +285,10 @@ public class PostDaoDbImpl implements PostDAOInterface {
                     myPost.setFeatureImage((rs.getString("FeatureImage")));
                     myPost.setCategoryId((rs.getInt("CategoryID")));
                     myPost.setUserId((rs.getInt("UserID")));
+                    myPost.setPostDescription((rs.getString("PostDesc")));
+                    myPost.setLikes(rs.getInt("Likes"));
+                    myPost.setReaders(rs.getInt("Readers"));
+                    myPost.setShares(rs.getInt("Shares"));
 
                     //Now associate the Category and User with the Post
                     myPost.setCategory(myCategory);
@@ -356,7 +351,10 @@ public class PostDaoDbImpl implements PostDAOInterface {
             myPost.setFeatureImage((rs.getString("FeatureImage")));
             myPost.setCategoryId((rs.getInt("CategoryID")));
             myPost.setUserId((rs.getInt("UserID")));
-
+            myPost.setPostDescription((rs.getString("PostDesc")));
+            myPost.setLikes(rs.getInt("Likes"));
+            myPost.setReaders(rs.getInt("Readers"));
+            myPost.setShares(rs.getInt("Shares"));
             return myPost;
         }
 

@@ -15,7 +15,7 @@
                                 <html>
 
                                 <head>
-                                    <title>View All Posts</title>
+                                    <title>About Us</title>
                                     <!-- Bootstrap core CSS -->
                                     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
                                         crossorigin="anonymous">
@@ -146,45 +146,54 @@
                                     <!--============PAGE CONTENT=============-->
                                     <div class="container-fluid">
                                         <div id="imageGallery">
-                                            <img src="https://randomuser.me/api/portraits/men/3.jpg">
+                                            <h4>Shout out to all of our fans all over the world.</h4>
+                                            <img src="https://randomuser.me/api/portraits/men/13.jpg">
                                             <img src="https://randomuser.me/api/portraits/women/45.jpg">
                                             <img src="https://randomuser.me/api/portraits/men/12.jpg">
                                             <img src="https://randomuser.me/api/portraits/women/53.jpg">
                                             <img src="https://randomuser.me/api/portraits/men/34.jpg">
                                             <img src="https://randomuser.me/api/portraits/women/23.jpg">
-                                            <img src="https://randomuser.me/api/portraits/men/15.jpg">
+
                                             <img src="https://randomuser.me/api/portraits/women/65.jpg">
                                         </div>
                                     </div>
 
                                     <div class="container">
-                                        <h4>We are we?</h4>
+                                        <br>  <br>
+                                        <h4>Who we are.</h4>
                                         <h5>We are 4 developers who love to code and create. We realized that there was a huge
                                             opportunity to create something that was beaufiful and creative and this is what
                                             we came up with! So enjoy!</h5>
 
+
                                         <hr>
-                                        <h4>Testimonials</h4>
-                                        <div class="testimony-left">
-                                            <img src="https://randomuser.me/api/portraits/women/93.jpg" alt="Asher D">
-                                            <h4>Hi, My name is and I am very cute</h4>
+                                        <br><br>
+                                        <h4>A message from the developers</h4>
+                                        <div class="testimony">                                            <img src="https://randomuser.me/api/portraits/women/93.jpg" alt="Asher D">
+                                            <h6>Hi, I am an all-round great person. Coding is my middle name and I am out to change
+                                                the world. With my wit and my creativity I will create content that blows your mind. <br><br>
+                                                <span> - AsherLife</span>
+                                            </h6>
                                         </div>
 
-                                        <div class="testimony-right">
-                                            <img src="hhttps://randomuser.me/api/portraits/men/3.jpg" alt="Asher D">
-                                            <h4>Hey there I am Matthew. When I am not asleep, I code brillaint applications from
-                                                scratch</h4>
+                                        <div class="clr-left"></div>
+                                        <div class="testimony">
+                                            <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Matthew W">
+                                            <h6>Hey there I am Matthew. I love coding, even in my sleep. Stick around for some
+                                                awesome posts and projects. I have whole lot of cool ideas to share with you. <br><br>
+                                                <span> - MattLife</span></h6>
                                         </div>
-
-                                        <div class="testimony-left">
-                                                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Asher D">
-                                                <h4>My name is Mo. Or Mo Life. I'm busy creating tomorrow so I have no time to write something cool</h4>
-                                            </div>
-    
-                                            <div class="testimony-right">
-                                                <img src="https://randomuser.me/api/portraits/men/7.jp" alt="Asher D">
-                                                <h4>You don't need to know my name. Just know I'm a very cool Mofo</h4>
-                                            </div>
+                                        <div class="clr-right"></div>
+                                        <div class="testimony">                                            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Mo">
+                                            <h6>My name is Mo. Or MoLife. Hehehe. I'm busy creating tomorrow so I have no time to write
+                                                something cool. But for gram, I'll say is that Me ah the only man she wah. <br> <br>  <span> - MoLife</span> </h6>
+                                        </div>
+                                        <div class="clr-left"></div>
+                                        <div class="testimony">
+                                            <img src="https://randomuser.me/api/portraits/men/15.jpg">
+                                            <h6>Hi, I'm Travon. I'm a cool mofo   <br> <br> <span> - TravzLife</span></h6>
+                                        </div>
+                                        <div class="clr"></div>
 
 
                                     </div>

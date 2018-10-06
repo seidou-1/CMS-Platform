@@ -150,69 +150,49 @@
                                         <c:choose>
 
                                             <c:when test="${display == 'viewSinglePost'}">
-                                                <div class="row">
+                                                <div class="row" id="postView">
 
-                                                    <div class="col-md-6 col-xs-12">
+                                                    <div class="col-md-3 col-xs-12" style="text-align: center">
 
+                                                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Mohamed B">  
+                                                        <p><c:out value="${myPost.user.username}"></c:out></p>
+                                                    </div>
+                                                    <div class="col-md-9 col-xs-12">
                                                         <ul class="displayPostDetails" style="list-style-type: none;">
-
                                                             <li>
-                                                                <span class="postTitle"> Post Title: </span>
-                                                                <br>
-                                                                <span class="outputtedTitle">
-                                                                    <c:out value="${myPost.postTitle}"></c:out>
-                                                                </span>
-                                                            </li>
-
-                                                            <li>
-                                                                <span>
-                                                                    <br>
-                                                                    <span class="postDate"> Post Date: </span>
-                                                                    <br>
+                                                                <span class="postDate"> Date:
                                                                     <c:out value="${myPost.postDate}"></c:out>
                                                                 </span>
                                                             </li>
 
                                                             <li>
                                                                 <span>
-                                                                    <br>
-                                                                    <span class="postDate"> Category: </span>
-                                                                    <br>
-
+                                                                    Category:
                                                                     <c:out value="${myPost.category.categoryName}"></c:out>
                                                                 </span>
                                                             </li>
-
-
-
-
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-6 col-xs-12">
-                                                        <ul class="displayPostDetails" style="list-style-type: none;">
-
                                                             <li>
 
                                                                 <c:choose>
                                                                     <c:when test="${myPost.tag.size() > 0}">
 
                                                                         <span class="postTags"> Tag(s): </span>
-                                                                        <br>
-                                                                        <span class="outputtedTags">
 
+                                                                        <span class="outputtedTags">
                                                                             <c:forEach items="${myPost.tag}" var="tag">
-                                                                                <c:out value="${tag.tagName}"></c:out>
-                                                                                <br>
+                                                                                |
+                                                                                <a href="#">
+                                                                                    <c:out value="${tag.tagName}"></c:out>
+                                                                                </a>
                                                                             </c:forEach>
                                                                         </span>
-
+                                                                        |
                                                                     </c:when>
 
 
                                                                     <c:when test="${myPost.tag == null}">
 
                                                                         <span class="postTitle"> Tag(s): </span>
-                                                                        <br>
                                                                         <span class="outputtedTitle">
 
                                                                             This post had no associated tags selected
@@ -225,7 +205,6 @@
 
 
                                                                         <span class="postTitle"> Tag(s): </span>
-                                                                        <br>
                                                                         <span class="outputtedTitle">
 
                                                                             This post had no associated tags selected
@@ -238,31 +217,24 @@
 
                                                             </li>
 
-                                                            <li>
-                                                                <span>
-                                                                    <br>
-                                                                    <span class="postDate"> Expiration Date: </span>
-                                                                    <br>
-
-                                                                    <c:out value="${myPost.expirationDate}"></c:out>
-                                                                </span>
+                                                            <li style="text-align: right;">
+                                                                <a href="${pageContext.request.contextPath}/viewPosts" class="btn btn-primary" style="margin-top: 5px; padding:5px;">  <i class="fas fa-chevron-left"></i> See all Posts</a>
                                                             </li>
-
+ 
 
                                                         </ul>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
+                                                    <h5 class="postTitle" > <c:out value="${myPost.postTitle}"></c:out>  </h5>
+
                                                     <div class="col-md-12">
                                                         <ul style="list-style-type: none;">
 
-                                                            <li>
-                                                                <span>
-                                                                    <br>
-                                                                    <span class="postBody"> Body: </span>
-                                                                    <br>
-
+                                                            <li class="myBody">
+                                                        <img src="${myPost.featureImage}" alt="Mohamed B" style="width: 200px; float: left; margin: 10px;">  
+                                                     
                                                                     <c:out value="${myPost.postBody}"></c:out>
                                                                 </span>
                                                             </li>
@@ -305,11 +277,7 @@
                                                                 <label for="postBody" class="control-label col-xs-4">Body</label>
                                                                 <!--How to get the textarea value -->
                                                                 <div class="col-xs-8">
-                                                                    <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" placeholder="">
-                                            ${myPost.postBody}
-                                            
-
-                                        </textarea>
+                                                                    <textarea id="textarea" name="postBody" cols="40" rows="9" class="form-control" placeholder="">${myPost.postBody}</textarea>
                                                                 </div>
                                                             </div>
                                                             <br>
@@ -432,7 +400,7 @@
 
                                                 <!-- Form Ends -->
 
- 
+
                                             </c:when>
 
                                             <c:otherwise>
@@ -441,135 +409,123 @@
                                                 <!--Asher to set the width to display 4 cards per row-->
 
                                                 <div class="row">
-                                                    <div class=" col-md-9">
-                                                        
-                                                    <h3>All Blog Posts</h3>
-                                                        <div class="card-deck">
+                                                    <div class="col-md-9">
+
+                                                        <h3>All Blog Posts</h3>
+
+                                                        <div class="row">
                                                             <c:forEach var="currentPost" begin="0" end="${posts.size() - 1}">
-                                                                <!--items= "${posts} "-->
-    
+
+
                                                                 <div class="card">
-                                                                    <div class="card-header cardPostTitle">
-                                                                        <h3>
-                                                                            <c:out value="${posts[currentPost].postTitle}" />
-                                                                        </h3>
+
+                                                                    <div class="post-details">
+
+                                                                        <img src="${posts[currentPost].featureImage}" alt="My Image">
+                                                                        <div>
+                                                                            <h5>
+                                                                                <c:out value="${posts[currentPost].postTitle}" />
+                                                                            </h5>
+                                                                            <span>
+                                                                                <c:out value="${posts[currentPost].postDescription}" />
+                                                                            </span>
+
+                                                                            <hr>
+                                                                            <br>
+                                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=${posts[currentPost].postId}" class="btn btn-success">Read Post</a>
+
+                                                                        </div>
+                                                                        <div class=></div>
                                                                     </div>
-                                                                    <div class="card-body">
-                                                                        <p class="card-text cardPostBody">
-                                                                            <c:out value="${posts[currentPost].postBody}" /> </p>
-                                                                        <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=${posts[currentPost].postId}" class="btn btn-success">VIEW</a>
-                                                                    </div>
-                                                                    <div class="card-footer cardPostDate">
-                                                                        <small class="text-muted">Post Date:
-                                                                            <c:out value="${posts[currentPost].postDate}"
-                                                                            /> </small>
+                                                                    <div class="card-footer cardPostDate" style="display: flex">
+                                                                        <div>
+                                                                            <h4>Bloggers:
+                                                                                <a href="3/">
+                                                                                    <c:out value="${posts[currentPost].user.username}" />
+                                                                                </a>
+                                                                            </h4>
+                                                                            <small style="font-weight: bold; font-size: 14px;">Post Date:
+                                                                                <c:out value="${posts[currentPost].postDate}" /> </small>
+                                                                        </div>
+                                                                        <div>
+                                                                            <h5>
+                                                                                <i class="fas fa-book-reader"></i>
+                                                                                <c:out value="${posts[currentPost].readers}" /> reads </h5>
+                                                                            <h5>
+                                                                                <i class="fas fa-heart"></i>
+                                                                                <c:out value="${posts[currentPost].likes}" /> likes </h5>
+                                                                            <h5>
+                                                                                <i class="fas fa-share-alt"></i>
+                                                                                <c:out value="${posts[currentPost].shares}" /> shares </h5>
+                                                                        </div>
+
                                                                     </div>
                                                                     <input id="userId" name="userId" value="${posts[currentPost].user.userId}" type="hidden">
-                                                                    <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class="btn btn-warning">EDIT</a>
-    
+                                                                    <!-- <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class="btn btn-warning">EDIT</a> -->
+
                                                                 </div>
-     
+                                                                <br>
+
                                                             </c:forEach>
 
-                                                            
+
                                                         </div>
-
-                                                        <br>
-
-                                                        <div class="card-deck">
-                                                                <c:forEach var="currentPost" begin="0" end="${posts.size() - 1}">
-                                                                    <!--items= "${posts} "-->
-        
-                                                                    <div class="card">
-                                                                        <div class="card-header cardPostTitle">
-                                                                            <h3>
-                                                                                <c:out value="${posts[currentPost].postTitle}" />
-                                                                            </h3>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <p class="card-text cardPostBody">
-                                                                                <c:out value="${posts[currentPost].postBody}" /> </p>
-                                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=${posts[currentPost].postId}" class="btn btn-success">VIEW</a>
-                                                                        </div>
-                                                                        <div class="card-footer cardPostDate">
-                                                                            <small class="text-muted">Post Date:
-                                                                                <c:out value="${posts[currentPost].postDate}"
-                                                                                /> </small>
-                                                                        </div>
-                                                                        <input id="userId" name="userId" value="${posts[currentPost].user.userId}" type="hidden">
-                                                                        <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class="btn btn-warning">EDIT</a>
-        
-                                                                    </div>
-         
-                                                                </c:forEach>
-    
-                                                                
-                                                            </div>
-
-                                                            <br>
-
-                                                            <div class="card-deck">
-                                                                    <c:forEach var="currentPost" begin="0" end="${posts.size() - 1}">
-                                                                        <!--items= "${posts} "-->
-            
-                                                                        <div class="card">
-                                                                            <div class="card-header cardPostTitle">
-                                                                                <h3>
-                                                                                    <c:out value="${posts[currentPost].postTitle}" />
-                                                                                </h3>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <p class="card-text cardPostBody">
-                                                                                    <c:out value="${posts[currentPost].postBody}" /> </p>
-                                                                                <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=${posts[currentPost].postId}" class="btn btn-success">VIEW</a>
-                                                                            </div>
-                                                                            <div class="card-footer cardPostDate">
-                                                                                <small class="text-muted">Post Date:
-                                                                                    <c:out value="${posts[currentPost].postDate}"
-                                                                                    /> </small>
-                                                                            </div>
-                                                                            <input id="userId" name="userId" value="${posts[currentPost].user.userId}" type="hidden">
-                                                                            <a href="${pageContext.request.contextPath}/choosePostToEdit?display=choose&postId=${posts[currentPost].postId}" class="btn btn-warning">EDIT</a>
-            
-                                                                        </div>
-             
-                                                                    </c:forEach>
-        
-                                                                    
-                                                                </div>
-    
-    
                                                     </div>
-    
+
                                                     <div class="col-md-3">
                                                         <div id="filterMe">
-                                                           <h5>Filter Posts</h5>
-                                                           <div>
-                                                                <h5>Select by User</h5>  
-                                                                <input type="checkbox" name="user" id="1" > <span>Asherlife</span> <br>
-                                                                <input type="checkbox" name="user" id="2" > <span>Mattlife</span> <br>
-                                                                <input type="checkbox" name="user" id="3" > <span>Molife</span> <br>
-                                                                <input type="checkbox" name="user" id="4" > <span>Travzlife</span> <br>
-                                                           </div>
+                                                            <h5>Filter Posts</h5>
+                                                            <div>
+                                                                <h5>Select by User</h5>
+                                                                <input type="checkbox" name="user" id="1">
+                                                                <span>Asherlife</span>
+                                                                <br>
+                                                                <input type="checkbox" name="user" id="2">
+                                                                <span>Mattlife</span>
+                                                                <br>
+                                                                <input type="checkbox" name="user" id="3">
+                                                                <span>Molife</span>
+                                                                <br>
+                                                                <input type="checkbox" name="user" id="4">
+                                                                <span>Travzlife</span>
+                                                                <br>
+                                                            </div>
 
-                                                          
-                                                           <div>
+
+                                                            <div>
                                                                 <h5>Select by Category</h5>
-                                                                <input type="checkbox" name="category" id="1" > <span>Life</span> <br>
-                                                                <input type="checkbox" name="category" id="2" > <span>Food</span> <br>
-                                                                <input type="checkbox" name="category" id="3" > <span>Stars</span> <br>
-                                                                <input type="checkbox" name="category" id="4" > <span>Bad Girls</span> <br>
-                                                           </div>
-                                                           <div>
+                                                                <input type="checkbox" name="category" id="1">
+                                                                <span>Life</span>
+                                                                <br>
+                                                                <input type="checkbox" name="category" id="2">
+                                                                <span>Food</span>
+                                                                <br>
+                                                                <input type="checkbox" name="category" id="3">
+                                                                <span>Stars</span>
+                                                                <br>
+                                                                <input type="checkbox" name="category" id="4">
+                                                                <span>Bad Girls</span>
+                                                                <br>
+                                                            </div>
+                                                            <div>
                                                                 <h5>Select by Tag</h5>
-                                                                <input type="checkbox" name="tag" id="1" > <span>Game</span> <br>
-                                                                <input type="checkbox" name="tag" id="2" > <span>Untagged</span> <br>
-                                                                <input type="checkbox" name="tag" id="3" > <span>Burgers</span> <br>
-                                                                <input type="checkbox" name="tag" id="4" > <span>Sky</span> <br>
-                                                           </div>
+                                                                <input type="checkbox" name="tag" id="1">
+                                                                <span>Game</span>
+                                                                <br>
+                                                                <input type="checkbox" name="tag" id="2">
+                                                                <span>Untagged</span>
+                                                                <br>
+                                                                <input type="checkbox" name="tag" id="3">
+                                                                <span>Burgers</span>
+                                                                <br>
+                                                                <input type="checkbox" name="tag" id="4">
+                                                                <span>Sky</span>
+                                                                <br>
+                                                            </div>
 
-                                                           <button>Filter Now</button> <br>
-                                                           <a href="">Reset</a>
+                                                            <button>Filter Now</button>
+                                                            <br>
+                                                            <a href="">Reset</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -579,9 +535,10 @@
                                     </div>
                                     <!--End of row -->
 
-                                    </div> 
-                                    <br><br>
-                                <footer>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <footer>
                                         <h5 style="color:white">This blog was brought to you by the loving arms of the following people</h5>
                                         <hr>
                                         <br>
@@ -598,16 +555,16 @@
                                                 <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Mohamed B">
                                                 <h4>Mohamed B</h4>
                                             </div>
-    
+
                                             <div>
                                                 <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Travon C">
                                                 <h4>Travon C</h4>
                                             </div>
-    
+
                                         </div>
                                     </footer>
-    
-    
+
+
                                     <!--End of container -->
 
                                     <!-- Placed at the end of the document so the pages load faster -->
