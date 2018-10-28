@@ -136,6 +136,8 @@
             <version>3.2.10.RELEASE</version>
             <type>jar</type>
         </dependency>
+        <!--Mo: Sprint Security Dependencies -->
+
     </dependencies>
 
     <build>

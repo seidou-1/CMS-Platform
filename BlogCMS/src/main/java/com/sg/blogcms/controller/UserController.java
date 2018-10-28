@@ -70,7 +70,7 @@ public class UserController {
     @RequestMapping(value = {"/userDashboard"}, method = RequestMethod.GET)
     public String loadUsers(HttpServletRequest request, Model model) {
         List<User> users = userService.getAllUsers();
-        List<Notification> notifications = miscService.getUserNotifications("travzlife");
+        List<Notification> notifications = miscService.getUserNotifications("molife");
         List<Post> posts = postService.getPostsByUser(1);
         List<Category> categories = categoryService.getAllCategories();
         List<Tag> tags = tagService.getAllTags();

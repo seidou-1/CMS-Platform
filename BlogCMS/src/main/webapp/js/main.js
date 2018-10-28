@@ -170,35 +170,285 @@
 // 		css.transition = ``;
 // 	}, interval);
 // }
+//======================
+//STYLE
+//==================
 
+$('.carousel').carousel({
+  interval: 200,
+  pause: "false",
+  pauseOnHover: "false",
+  wrap: "true"
+});
+
+
+
+
+
+
+
+
+$('#addCat-btn').click(function (event) {
+performAjaxCall('category', '', 'POST');
+});
+
+$('#updateCat-btn').click(function (event) {
+performAjaxCall('category', '', 'PUT');
+});
+
+function performAjaxCall(endpoint, extraParameter, ajaxType) {
+    var returnData;
+
+    $.ajax({
+        async: false,
+        type: ajaxType,
+        url: `http://localhost:8080/BlogCMS/${endpoint}/${extraParameter}`,
+        data: JSON.stringify({
+            
+                categoryName: $('#categoryName').val()
+            }),
+        
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        success: function (data, status) {
+            console.log(data);
+            returnData = data;
+        },
+        error: function () {
+            console.log("travon");
+
+            returnData = null;
+        }
+    });
+    return returnData;
+}
 
 // Travz Users Code
 function toggleItem(item) {
-		
+
 	var summary = $(item).find('.itemBrief');
 	var buttons = $(item).find('.itemOptions');
-	
+
 	if ($(item).hasClass('toggled')) {
-		$(item).removeClass('toggled');
+		//$(item).removeClass('toggled');
 	} else {
 		$(item).addClass('toggled');
-		
 	}
 
 	summary.each((index, element) => {
-		$(element).toggle();
 		$(element).addClass('toggled');
 	})
-	
+
 	buttons.each((index, element) => {
-		$(element).toggle(
-			function() {
-				$(element).addClass('toggled');
-			},
-			function() {
-				$(element).removeClass('toggled');
-			}
-		);
-	 
+		$(element).addClass('toggled');
 	})
+}
+
+function populateModal(type, secondary) {
+	
+	var label = $("#generalModalLabel");
+	var body = $("#generalModalBody");
+	var footer = $("#generalModalFooter");
+	label.empty();
+	body.empty();
+	footer.empty();
+
+	if (type == 'notifications') {
+		label.html("Filter Notifications")
+		body.html(`<h5> Filter for: </h5>
+		<div style="text-align: left">
+		<div class="checkbox">
+		<label><input type="checkbox" value="users">Users</label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" value="posts">Posts</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="categories">Categories</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="tags">Tags</label>
+		</div>
+		</div>
+	  `);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  <a href="http://localhost:8080/BlogCMS/userDashboard?view=notifications&filters=users" class="btn btn-primary"> Filter </a>
+	  `);
+	}
+
+	if (type == 'notifications_view') {
+		// Rest controller api call, get particular dto , GET
+		label.html("View Category")
+		body.html(`<h5> Category Details: </h5>
+		<div style="text-align: center">
+			 <p class="mine"> Created by: Username </p>
+			 <input type="text" name="categoryName" value="The name of the category" />
+			 <a href="#" class="btn btn-success"> Edit Category </a> 
+		</div>
+	  `);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  `);
+	}
+
+	if (type == 'notifications_approve') {
+		// Rest controller api call , POST
+		label.html("Category Approval")
+		body.html(`<h4>Successfully Approved Category</h4>`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	  `);
+	}
+
+	if (type == 'notifications_request_edit') {
+		// Rest controller api call , POST
+		label.html("Category Modification Request")
+		body.html(`<h4>That category needs be modified for approval</h4>
+		<div style="text-align: left">
+		<h6>Choose a reason for </h6>
+		<div class="checkbox">
+		<label><input type="checkbox" value="grammar">Grammar Errors</label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" value="irrelevant">Irrelevant Category</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="misc">I just, don't like you bro (Default) </label>
+		</div>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  <a href="#" class="btn btn-success"> Submit Edit Request</a> 
+	  `);
+	}
+
+	if (type == 'notifications_vanquish') {
+		// Rest controller api call , POST
+		label.html("Category Deleted Forever")
+		body.html(`<h4>That category is being deleted</h4>
+		<div style="text-align: left">
+		<h6>Choose a reason for this change: </h6>
+		<div class="checkbox">
+		<label><input type="checkbox" value="nonesensical">Nonsensical category </label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" value="duplicate">Duplicate</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="misc">I just, don't like you bro (Default) </label>
+		</div>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  <a href="#" class="btn btn-success"> Finalize Delete</a> 
+	  `);
+	}
+
+	if (type == 'users_pending') {
+		// get my pending notifications and edit requests
+		label.html("My Users")
+		body.html(`<h5>These are your pending users</h5>
+		<div style="text-align: left">
+		<h6>Edit Requests: </h6>
+		You have 2 users that need approval <br>
+		<a href="#"> John  </a> <a href="#"> Alan  </a>
+		<hr>
+		<h6>Approval Requests: </h6>
+		You have 4 users that need approval <br>
+		<a href="#"> Mary  </a> <a href="#"> Jesus  </a>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	  `);
+	}
+
+	if (type == 'users_settings') {
+		// get my pending notifications and edit requests
+		label.html("My Settings")
+		body.html(`<h5>Change your personalized settings here</h5>
+		<div style="text-align: left"> 
+		<h6>1. Change Password: </h6>
+		<label for="newPassword"> 
+		<input type="password" name="newPassword" id="newPassword" value="mypassword" placeholder="New Password" />
+		<a href="#" class="btn btn-primary" style="margin-bottom: 5px;"> Submit new password </a>  
+		<hr>
+		<h6>2. Change Username: </h6>
+		<label for="newUsername"> 
+		<input type="text" name="newUsername" id="newUsername" value="my username" placeholder="New Username" />
+		<a href="#" class="btn btn-primary"> Submit new password </a> 
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  `);
+	}
+
+	if (type == 'users_stats') {
+		label.html("User Statistics");
+		body.html(`<h5>Information</h5>
+		<div style="text-align: left"> 
+		 	<p class="mine"> Top Post : All about greece, 50 likes <a href="#"> See all posts >>  </a> </p>
+		 	<p class="mine"> Top Category: All about greece, 50 likes <a href="#"> See all posts >>  </a> </p>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  `);
+	}
+
+	if (type == 'users_ban') {
+		label.html("User Ban Confirmation");
+		body.html(`<h5>Are you sure you want to ban that user?</h5>
+		<div style="text-align: left"> 
+		<h6>Choose a reason for the ban request</h6>
+		<div class="checkbox">
+		<label><input type="checkbox" value="disrespect">Disrespectful User</label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" value="fired">User don't work here anymore</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="misc">I just, don't like you bro (Default) </label>
+		</div>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  <a href="#" class="btn btn-success"> Finalize Ban</a> 
+	  `);
+	}
+
+	if (type == 'users_delete') {
+		label.html("User Delete Confirmation");
+		body.html(`<h5>Are you sure you want to delete that user?</h5>
+		<div style="text-align: left"> 
+		<h6>Choose a reason for the ban request</h6>
+		<div class="checkbox">
+		<label><input type="checkbox" value="disrespect">Disrespectful User</label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" value="fired">User don't work here anymore</label>
+		</div>
+		<div class="checkbox">
+		<label><input type="checkbox" value="misc">I just, don't like you bro (Default) </label>
+		</div>
+		</div>
+		`);
+	  footer.html(` 
+	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	  <a href="#" class="btn btn-success"> Finalize delete</a> 
+	  `);
+	}
+
+ 
+
+
+
 }

@@ -27,11 +27,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author laptop
  */
-
 // Changed from Controller to PostController -  keyword
 @Controller
 public class PostController {
-    
+
     //Mo: might move this to it's own controller if needed. We'll see how things go.
     PostServiceInterface postService;
     UserServiceInterface userService;
@@ -64,13 +63,13 @@ public class PostController {
 
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post myPost = postService.getPostById(postId);
-        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagName());
-        System.out.println("SEARCH THIS: " + myPost.getTag().size());
-        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagId());
+//        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagName());
+//        System.out.println("SEARCH THIS: " + myPost.getTag().size());
+//        System.out.println("SEARCH THIS: " + myPost.getTag().get(0).getTagId());
         
         for(Tag tag: tagService.getAllTags()){
             if(myPost.getTag().get(0).getTagName() == tag.getTagName()){
-                System.out.println("SEARCH THIS TOO: null must be a tag?" );
+//                System.out.println("SEARCH THIS TOO: null must be a tag?" );
             }
         }
         
@@ -149,6 +148,7 @@ public class PostController {
         myPost.setFeatureImage(request.getParameter("featuredImage"));
         myPost.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
         myPost.setUserId(Integer.parseInt(request.getParameter("userId")));
+        
         
        postService.updatePost(myPost.getUserId(), myPost); //Update this method to replace the first parameter with userId
        

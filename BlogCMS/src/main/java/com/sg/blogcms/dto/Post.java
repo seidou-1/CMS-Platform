@@ -16,6 +16,42 @@ import java.util.List;
 public class Post {
     int postId;
     String postTitle;
+    String postDescription;
+    int likes;
+    int shares;
+    int readers;
+
+    public String getPostDescription() {
+        return postDescription;
+    }
+
+    public void setPostDescription(String postDescription) {
+        this.postDescription = postDescription;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getShares() {
+        return shares;
+    }
+
+    public void setShares(int shares) {
+        this.shares = shares;
+    }
+
+    public int getReaders() {
+        return readers;
+    }
+
+    public void setReaders(int readers) {
+        this.readers = readers;
+    }
     Date postDate;
     Date expirationDate;
     String featureImage;

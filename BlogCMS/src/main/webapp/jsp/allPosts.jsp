@@ -8,16 +8,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>BBLT</title>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <!-- Main CSS -->        
         <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet"> 
-        <title>Bit Bucket List Travels</title>
     </head>
     <body>
-
-       <!--===========BRAND NAME BUTTON==========-->
+        <!--===========BRAND NAME BUTTON==========-->
         <nav class="navbar navbar-expand-lg navbar-fixed-top">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index">Bit BucketList Travels</a>
 
@@ -49,6 +47,22 @@
 
                     <!--==========DROPDOWN==========-->
                     <li class="nav-item dropdown">
+
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <p>${pageContext.request.userPrincipal.name}
+                                | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </p>
+
+                            <a class="nav-link dropdown-toggle loginButton" href="${pageContext.request.contextPath}/usersDashboard?view=users" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ${pageContext.request.userPrincipal.name}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            </div>
+
+                        </c:if>
+
+
                         <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Login
                         </a>
@@ -98,42 +112,25 @@
                 </div>
             </form>
         </div>
-        
+
         <hr>
 
-        <!--==================LOGIN FORM============-->
 
-        <div class="container">
-
-            <c:if test="${param.login_error == 1}">
-                <h3>Wrong id or password!</h3>
-            </c:if>
-
-            <c:if test="${param.login_error == 2}">
-                <h3>${param.login_error}</h3>
-            </c:if>
-
-            <form  role="form" method="POST" 
-                   action="j_spring_security_check">
-
-                <div class="form-group">
-                    <label for="j_username" class="col-md-4 control-label">Username:</label>
-                    <input type="text" class=" col-md-8 form-control" name="j_username" placeholder="Username Here " maxlength="45" required>
-
-                    <label for="j_password" class="col-md-4 control-label">Password:</label>
-                    <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
-                </div>
-                <!--=============BUTTONS====================-->
-                <input type="submit" class="btn btn-default" id="search-button" value="Sign In"/>
-
-            </form>
-        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-    </body>
+</body>
 </html>

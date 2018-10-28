@@ -110,7 +110,7 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
     private static final class NotificationsMapper implements RowMapper<Notification> {
 
         public Notification mapRow(ResultSet rs, int rowNum) throws SQLException {
-       
+            System.out.println(rs.getString("NotificationType"));
             Notification notify = new Notification();
             notify.setNotificationID(rs.getInt("NotificationID"));
             notify.setNotificationType(rs.getString("NotificationType"));
@@ -119,6 +119,7 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
             notify.setNotificationClass(rs.getString("NotificationClass"));
             notify.setNotificationBrief(rs.getString("NotificationBrief"));
             return notify;
+            
         }
     }
 
