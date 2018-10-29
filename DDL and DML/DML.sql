@@ -198,5 +198,3 @@ VALUES
 ('change','2018-04-20 12:30:30', 'post', 'molife', 1, 'I look at all types of Adventerous View', 'Closed'),
 ('create','2018-04-20 12:30:30', 'category', 'molife', 1, 'Beaches', 'Closed')
 ;
-
-
