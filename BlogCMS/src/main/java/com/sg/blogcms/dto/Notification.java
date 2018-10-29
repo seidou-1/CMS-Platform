@@ -20,6 +20,15 @@ public class Notification {
     private String user;
     private boolean viewed;
     private Date date;
+    private String notificationStatus;
+
+    public String getNotificationStatus() {
+        return notificationStatus;
+    }
+
+    public void setNotificationStatus(String notificationStatus) {
+        this.notificationStatus = notificationStatus;
+    }
 
     public Notification(int notificationID, String notificationType, String notificationBrief, String user, boolean viewed, Date date) {
         this.notificationID = notificationID;

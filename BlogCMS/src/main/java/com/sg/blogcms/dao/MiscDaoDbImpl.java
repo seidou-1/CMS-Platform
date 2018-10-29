@@ -31,7 +31,7 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
 
     // Notifications
     private static final String SQL_INSERT_NOTIFICATION
-            = "insert into `Notifications` (NotificationType, UserName, ID, NotificationBrief,  NotificationDate, NotificationClass) " + "values (?, ?, ?, ?, ?, ?)";
+            = "insert into `Notifications` (NotificationType, UserName, ID, NotificationBrief,  NotificationDate, NotificationClass, NotificationStatus) " + "values (?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_DELETE_NOTIFICATION
             = "delete from `Notifications` where NotificationID = ?";
@@ -54,7 +54,8 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
                 1,
                 notification.getNotificationBrief(),
                 notification.getDate(),
-                notification.getNotificationClass() 
+                notification.getNotificationClass(),
+                "Pending"
         );
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
@@ -118,6 +119,8 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
             notify.setUser(rs.getString("Username"));
             notify.setNotificationClass(rs.getString("NotificationClass"));
             notify.setNotificationBrief(rs.getString("NotificationBrief"));
+            notify.setNotificationStatus(rs.getString("NotificationStatus"));
+            
             return notify;
             
         }

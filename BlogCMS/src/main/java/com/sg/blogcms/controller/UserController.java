@@ -99,15 +99,16 @@ public class UserController {
             user.setEmail(request.getParameter("userEmail"));
             String clearPw = request.getParameter("userPassword");
 //            String hashPw = encoder.encode(clearPw);
-            user.setUserPassword(clearPw);
+            user.setUserPassword("12345");
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             java.sql.Date sqlDate =  new java.sql.Date(Calendar.getInstance().getTime().getTime());
             user.setLastActive(sqlDate);
             
             
-            user.setUserAvatar(request.getParameter("userAvatar"));
-//            user.setLastActive(request.getParameter("userDater"));
+            user.setUserAvatar("defaultAvatar");
+//            user.setUserAvatar(request.getParameter("userAvatar"));
+            
             // All users have ROLE_STANDARD, only add ROLE_ADMIN if the isAdmin box is checked
             user.addAuthority("ROLE_STANDARD");
             if (null != request.getParameter("isAdmin")) {
@@ -122,7 +123,7 @@ public class UserController {
             notify.setNotificationBrief("Created a new user with his/her own unique properties");
             notify.setNotificationClass("create");
             notify.setNotificationType("user");
-            notify.setUser("travzlife");
+            notify.setUser(user.getUsername());
              
             
             miscService.addNotification(notify);

@@ -53,6 +53,9 @@ public class UserDaoDbImpl implements UserDAOInterface {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public User addUser(User user) {
+        
+        System.out.println(user);
+        
         jdbcTemplate.update(SQL_INSERT_USER, 
                 user.getUsername(),
                 user.getEmail(),
