@@ -50,5 +50,10 @@ public class TagServiceImpl implements TagServiceInterface {
     public Tag getTagById(int tagId) {
        return tagDao.getTagById(tagId);
     }
+
+    @Override
+    public List<Tag> getTagsByUser(int userId) {
+        return tagDao.getTagByUser(userId);
+    }
     
 }

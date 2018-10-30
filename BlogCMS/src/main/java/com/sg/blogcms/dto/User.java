@@ -157,7 +157,7 @@ public class User {
 
     @Override
     public String toString() {
-        return this.username;
+        return this.username + " " + this.email + " " + this.userId;
     }
 
 }

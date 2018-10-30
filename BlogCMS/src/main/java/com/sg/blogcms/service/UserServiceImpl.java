@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserServiceInterface {
         return userDao.getAllUsers();
     }
     
-    public User getUserByUsername(String username){
+    public User getUserByUsername(String username){ 
         return userDao.getUserByUsername(username);
     }
 

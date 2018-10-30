@@ -70,13 +70,15 @@
                                                 <li class="nav-item" id="user-option">
 
                                                     <c:if test="${pageContext.request.userPrincipal.name != null}">
-
+                                                    <script>
+                                                 
+                                                    </script>
                                                         <div class="username">
                                                             <p>${pageContext.request.userPrincipal.name}
                                                                 <br>
                                                                 <i class="fas fa-caret-down"></i>
                                                                 <br>
-                                                                <a style="color: orange" href="<c:url value=" /j_spring_security_logout " />"> Logout</a>
+                                                                <a style="color: orange" href="/j_spring_security_logout" />"> Logout</a>
                                                             </p>
 
 
@@ -116,15 +118,32 @@
                                                 <section>
                                                     <ul>
                                                         <li class="userHead">User Details</li>
-                                                        <li>Username: Travzlife</li>
-                                                        <li>Last Active Date: Yesterday</li>
-                                                        <li>Email: travz@shinobilife.com</li>
+                                                        <li>Username:  ${loggedin.username} </li>
+                                                        <li>Last Active Date: ${loggedin.lastActive}</li>
+                                                        <li>Email:  ${loggedin.email}</li>
                                                     </ul>
                                                     <ul>
                                                         <li class="userHead">User Statistics</li>
-                                                        <li>Posts: 3 submits</li>
-                                                        <li>Categories: 2 submits</li>
-                                                        <li>Tags: 10 submits</li>
+                                                        <c:if test="${not empty myPosts}">
+                                                            <li>Posts:  ${myPosts.size() } submits</li>
+                                                        </c:if>
+                                                        <c:if test="${empty myPosts}">
+                                                            <li>Posts:  None yet</li>
+                                                        </c:if>
+
+                                                        <c:if test="${not empty myCategory}">
+                                                            <li>Categories:  ${myCategory.size() } submits</li>
+                                                        </c:if>
+                                                        <c:if test="${empty myCategory}">
+                                                            <li>Categories:  None yet</li>
+                                                        </c:if>
+
+                                                        <c:if test="${not empty myTags}">
+                                                            <li>Tags:  ${myTags.size() } submits</li>
+                                                        </c:if>
+                                                        <c:if test="${empty myTags}">
+                                                            <li>Tags:  None yet</li>
+                                                        </c:if> 
                                                     </ul>
                                                     <ul>
                                                         <li class="userHead">User Settings</li>

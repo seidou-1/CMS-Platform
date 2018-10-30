@@ -1,6 +1,5 @@
 USE `BBLTravels`;
 
-
 INSERT INTO `USERS` (UserName, UserEmail, UserPassword, UserAvatar, Enabled, LastActive)
 VALUES 
 ('molife', 'molife@shinobilife.com', '1', 'smiley face', 1, '2018-02-20 23:59:59'),
