@@ -23,5 +23,7 @@ public interface CategoryServiceInterface {
     public Category getCategoryById (int categoryId);
     
     public List <Category> getAllCategories();
+
+    public List<Category> getCategoriesByUser(int userId);
     
 }
