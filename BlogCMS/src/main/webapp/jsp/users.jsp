@@ -78,7 +78,7 @@
                                                                 <br>
                                                                 <i class="fas fa-caret-down"></i>
                                                                 <br>
-                                                                <a style="color: orange" href="/j_spring_security_logout" />"> Logout</a>
+                                                                <a style="color: orange" href="/j_spring_security_logout" />Logout</a>
                                                             </p>
 
 

@@ -182,6 +182,7 @@ public class PostController {
         String username = (request.getParameter("username"));
         Post myPost = new Post();
         myPost.setPostTitle(request.getParameter("postTitle"));
+        myPost.setPostDescription(request.getParameter("postDescription"));
         myPost.setPostBody(request.getParameter("postBody"));
         myPost.setPostDate(Date.valueOf(request.getParameter("postDate")));
         myPost.setExpirationDate(Date.valueOf(request.getParameter("expirationDate")));
