@@ -19,4 +19,6 @@ public interface TagDAOInterface {
     public List <Tag> getAllTags();
     
     public Tag getTagById (int tagId);
+
+    public List<Tag> getTagByUser(int userId);
 }

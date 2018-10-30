@@ -23,5 +23,7 @@ public interface TagServiceInterface {
     public List <Tag> getAllTags();
     
     public Tag getTagById (int tagId);
+
+    public List<Tag> getTagsByUser(int userId);
     
 }

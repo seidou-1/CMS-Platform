@@ -23,5 +23,7 @@ public interface CategoryDAOInterface {
     public Category getCategoryById (int categoryId);
     
     public List <Category> getAllCategories();
+
+    public List<Category> getCategoryByUser(int userId);
     
 }

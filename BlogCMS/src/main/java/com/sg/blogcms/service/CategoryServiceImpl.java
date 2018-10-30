@@ -16,7 +16,7 @@ import javax.inject.Inject;
  */
 public class CategoryServiceImpl implements CategoryServiceInterface {
 
-    CategoryDAOInterface categoryDao;
+   CategoryDAOInterface categoryDao;
 
     @Inject
     public CategoryServiceImpl(CategoryDAOInterface categoryDao){
@@ -46,5 +46,10 @@ public class CategoryServiceImpl implements CategoryServiceInterface {
     @Override
     public List<Category> getAllCategories() {
         return categoryDao.getAllCategories();
+    }
+
+    @Override
+    public List<Category> getCategoriesByUser(int userId) {
+        return categoryDao.getCategoryByUser(userId);
     }
 }

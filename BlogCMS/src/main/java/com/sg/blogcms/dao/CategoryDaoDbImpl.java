@@ -45,6 +45,9 @@ public class CategoryDaoDbImpl implements CategoryDAOInterface {
     private static final String SQL_SELECT_ALL_CATEGORIES = 
             "SELECT * FROM `Categories` ";
     
+        private static final String SQL_SELECT_USER_CATEGORIES = 
+            "SELECT * FROM `Categories` where CreatedBy = ?";
+    
     
 //    ============METHODS==============
     @Override
@@ -85,6 +88,15 @@ public class CategoryDaoDbImpl implements CategoryDAOInterface {
     @Override
     public List<Category> getAllCategories() {
         return jdbcTemplate.query(SQL_SELECT_ALL_CATEGORIES, new CategoryMapper());
+    }
+
+    @Override
+    public List<Category> getCategoryByUser(int userId) {
+         try{
+            return jdbcTemplate.query(SQL_SELECT_USER_CATEGORIES, new CategoryMapper(), userId);
+        }catch (EmptyResultDataAccessException ex){
+            return null;
+        }
     }
     
 //    ====================MAPPER==================

@@ -61,6 +61,9 @@ public class PostDaoDbImpl implements PostDAOInterface {
     private static final String SQL_SELECT_POST_BY_USER
             = "SELECT USERNAME, USEREMAIL, POSTTITLE, POSTDATE FROM `USERS` RIGHT JOIN `POSTS` ON POSTS.POSTID = USERS.USERID";
 
+    private static final String SQL_SELECT_POST_BY_USERID
+            = "SELECT * FROM `POSTS` where  USERID = ?";
+
 //    private static final String SQL_SELECT_POST_BY_USER
 //            = "SELECT * FROM `POSTS` WHERE `POSTDATE` = ?";
     private static final String SQL_SELECT_POST_BY_CATEGORY
@@ -212,8 +215,8 @@ public class PostDaoDbImpl implements PostDAOInterface {
     @Override
     public List<Post> getPostsByUser(int userId) { //Varify method
         try {
-            return jdbcTemplate.query(SQL_SELECT_POST_BY_USER,
-                    new PostMapper());
+            return jdbcTemplate.query(SQL_SELECT_POST_BY_USERID,
+                    new PostMapper(), userId);
         } catch (DataAccessException ex) {
             return null;
         }

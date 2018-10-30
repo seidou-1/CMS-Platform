@@ -49,6 +49,9 @@ public class TagDaoDbImpl implements TagDAOInterface {
 
     private static final String SQL_SELECT_ALL_TAGS
             = "SELECT * FROM TAGS ";
+    
+    private static final String SQL_SELECT_USER_TAGS
+            = "SELECT * FROM TAGS where createdby = ?";
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -92,6 +95,11 @@ public class TagDaoDbImpl implements TagDAOInterface {
 
             return null;
         }
+    }
+
+    @Override
+    public List<Tag> getTagByUser(int userId) {
+       return jdbcTemplate.query(SQL_SELECT_USER_TAGS, new TagMapper(), userId);
     }
 
     // This creates the Mapper
