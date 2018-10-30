@@ -22,12 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class MiscDaoDbImpl implements MiscDAOInterface {
 
     private JdbcTemplate jdbcTemplate;
-    
-  
+
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-   
 
     // Notifications
     private static final String SQL_INSERT_NOTIFICATION
@@ -45,6 +43,12 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
     private static final String SQL_SELECT_USER_NOTIFICATIONS
             = "select * from `Notifications` where Username = ?";
 
+    private static final String SQL_SELECT_PENDING_NOTIFICATIONS
+            = "select * from `Notifications` where `NotificationStatus` = 'Pending'";
+
+    private static final String SQL_SELECT_CLOSED_NOTIFICATIONS
+            = "select * from `Notifications` where `NotificationStatus` = 'Closed'";
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Notification addNotification(Notification notification) {
@@ -60,7 +64,7 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
 
         int newId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 
-        notification.setNotificationID(newId); 
+        notification.setNotificationID(newId);
         return notification;
 
     }
@@ -74,7 +78,7 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
         // second delete the user
         jdbcTemplate.update(SQL_DELETE_NOTIFICATION, notificationId);
     }
-    
+
     @Override
     public void updateNotification(Notification notification) {
         jdbcTemplate.update(SQL_UPDATE_NOTIFICATION,
@@ -85,7 +89,6 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
                 notification.getNotificationType()
         );
     }
-    
 
     @Override
     public Notification getNotificationById(int notificationId) {
@@ -98,16 +101,28 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
         }
     }
 
-    
     @Override
     public List<Notification> getUserNotifications(String username) {
         List<Notification> notify = jdbcTemplate.query(SQL_SELECT_USER_NOTIFICATIONS,
                 new NotificationsMapper(), username);
-        
+
         return notify;
     }
 
- 
+    @Override
+    public List<Notification> getPendingNotifications() {
+        List<Notification> notify = jdbcTemplate.query(SQL_SELECT_PENDING_NOTIFICATIONS,
+                new NotificationsMapper());
+        return notify;
+    }
+
+    @Override
+    public List<Notification> getClosedNotifications() {
+        List<Notification> notify = jdbcTemplate.query(SQL_SELECT_CLOSED_NOTIFICATIONS,
+                new NotificationsMapper());
+        return notify;
+    }
+
     private static final class NotificationsMapper implements RowMapper<Notification> {
 
         public Notification mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -120,9 +135,9 @@ public class MiscDaoDbImpl implements MiscDAOInterface {
             notify.setNotificationClass(rs.getString("NotificationClass"));
             notify.setNotificationBrief(rs.getString("NotificationBrief"));
             notify.setNotificationStatus(rs.getString("NotificationStatus"));
-            
+
             return notify;
-            
+
         }
     }
 

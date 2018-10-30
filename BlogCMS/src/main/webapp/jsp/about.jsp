@@ -87,7 +87,7 @@
 
                                                     <c:if test="${pageContext.request.userPrincipal.name == null}">
 
-                                                        <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                                        <a href="http://example.com" 
                                                             aria-haspopup="true" aria-expanded="false">
                                                             Login
                                                         </a>

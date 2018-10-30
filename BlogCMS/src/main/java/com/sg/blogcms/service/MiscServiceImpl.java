@@ -47,4 +47,14 @@ public class MiscServiceImpl implements MiscService {
         return miscDao.getUserNotifications(username);
     }
 
+    @Override
+    public List<Notification> getPendingNotifications() {
+        return miscDao.getPendingNotifications();
+    }
+
+    @Override
+    public List<Notification> getClosedNotifications() {
+        return miscDao.getClosedNotifications();
+    }
+
 }

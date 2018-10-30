@@ -86,14 +86,13 @@
 
                                                     <c:if test="${pageContext.request.userPrincipal.name == null}">
 
-                                                        <a class="nav-link dropdown-toggle loginButton" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            Login
+                                                        <a class="nav-link"  href="#" data-toggle="modal" data-target="#loginModal" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-caret-right"></i> Login
                                                         </a>
-                                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                        <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                                             <a class="dropdown-item" href="${pageContext.request.contextPath}/login" data-toggle="modal" data-target="#loginModal" onclick="document.getElementById('loginModal').style.display = 'block'">Login</a>
                                                             <a class="dropdown-item" href="#">Sign Up</a>
-                                                        </div>
+                                                        </div> -->
 
                                                     </c:if>
 
@@ -129,15 +128,23 @@
                                             <c:if test="${param.login_error == 2}">
                                                 <h3>${param.login_error}</h3>
                                             </c:if>
+                                            <h4>Login to your account to make use of all our features and services</h4>
+                                            <hr>
+                                            <br>
+                                            <label for="j_username" class="col-md-12 control-label">Username:</label>
+                                            <input type="text" class=" col-md-5 form-control" name="j_username" placeholder="Enter your username" maxlength="45" required>
 
-                                            <label for="j_username" class="col-md-4 control-label">Username:</label>
-                                            <input type="text" class=" col-md-8 form-control" name="j_username" placeholder="Username Here " maxlength="45" required>
+                                            <label for="j_password" class="col-md-12 control-label">Password:</label>
+                                            <input type="password" class=" col-md-5 form-control" name="j_password" placeholder="Enter your password" maxlength="45" required>
 
-                                            <label for="j_password" class="col-md-4 control-label">Password:</label>
-                                            <input type="password" class=" col-md-8 form-control" name="j_password" placeholder="Username Here " maxlength="45" required>
-
-                                            <button type="submit" class="loginBtn" id="search-" value="Sign In">Login</button <label>
-                                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                                            <div class="col-md-4" style="margin: 0 auto">
+                                                <button type="submit" class="loginBtn" id="search-" value="Sign In">Login</button>
+                                            </div>
+                                            <div style="display: flex; justify-content: center">
+                                                <label for="remember" ><input type="checkbox" checked="checked" name="remember" id="remember" > Remember Me</label>
+                                                &nbsp;&nbsp;  <a href="#" style="color: rgb(250, 183, 183);">Forgot Password</a>
+                                            </div>
+                                            
                                             </label>
                                         </div>
 
@@ -155,7 +162,7 @@
                                     <div class="row row-first">
                                         <div class="hero-image">
 
-                                            <div  class="carousel-inner carousel slide" data-ride="carousel" role="listbox" style=" width:100%; height: 500px !important;">
+                                            <div class="carousel-inner carousel slide" data-ride="carousel" role="listbox" style=" width:100%; height: 500px !important;">
                                                 <div class="carousel-inner">
 
                                                     <div class="carousel-item active">
@@ -171,7 +178,7 @@
                                                         <img class="d-block w-100" src="images/4.jpg" alt="4th ">
                                                     </div>
                                                     <div class="carousel-item">
-                                                        <img class="d-block w-100"   src="images/5.jpg" alt="5th">
+                                                        <img class="d-block w-100" src="images/5.jpg" alt="5th">
                                                     </div>
                                                     <div class="carousel-item">
                                                         <img class="d-block w-100" src="images/8.jpg" alt="6th">
@@ -180,103 +187,102 @@
                                                         <img class="d-block w-100" src="images/7.jpg" alt="7th" </div>
                                                     </div>
                                                 </div>
-                                                
-                                            <div class="hero-text">
+
+                                                <div class="hero-text">
                                                     <h1>Where BucketList's become Memories</h1>
                                                 </div>
                                             </div>
 
                                         </div>
 
-                                        </div>
+                                    </div>
 
-                                        <!--============PAGE CONTENT=============-->
-                                        <div class="container" style="margin-top: 350px">
-                                             
-                                            <div class="row">
+                                    <!--============PAGE CONTENT=============-->
+                                    <div class="container" style="margin-top: 350px">
 
-                                                <div class="card-deck">
-                                                    <div class="card">
-                                                        <img src="https://loremflickr.com/320/240?random=1" />
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Life on edge</h5>
-                                                            <p class="card-text">Have you ever something crazy? Like, really out of this world.
-                                                                How did it feel. Guess what we did this weekend! Find out
-                                                                how we did some crazy stuff and went all the way to the top!
-                                                            </p>
-                                                        </div>
-                                                        <div class="card-footer">
-                                                            <p class="card-text">
-                                                                <p>
-                                                                    <i class="fas fa-book-reader"></i> 1744 &nbsp; | &nbsp;
-                                                                    <i class="fas fa-heart"></i> 645 &nbsp; | &nbsp;
-                                                                    <i class="fas fa-share-alt">
-                                                                        35</i>
-                                                                </p>
-                                                            </p>
-                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=1" class="btn btn-primary">Read Now!</a>
-                                                        </div>
+                                        <div class="row">
+
+                                            <div class="card-deck">
+                                                <div class="card">
+                                                    <img src="https://loremflickr.com/320/240?random=1" />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Life on edge</h5>
+                                                        <p class="card-text">Have you ever something crazy? Like, really out of this world. How
+                                                            did it feel. Guess what we did this weekend! Find out how we
+                                                            did some crazy stuff and went all the way to the top!
+                                                        </p>
                                                     </div>
-                                                    <div class="card">
-                                                        <img src="https://loremflickr.com/320/240?random=2" />
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Technicolor beat</h5>
-                                                            <p class="card-text">Sometimes we have days when life seems to kick us right in the
-                                                                nuts. It's on those days it's important to keep your head
-                                                                up. That was an important lesson for me. Here's 10 facts
-                                                                of life!
+                                                    <div class="card-footer">
+                                                        <p class="card-text">
+                                                            <p>
+                                                                <i class="fas fa-book-reader"></i> 1744 &nbsp; | &nbsp;
+                                                                <i class="fas fa-heart"></i> 645 &nbsp; | &nbsp;
+                                                                <i class="fas fa-share-alt">
+                                                                    35</i>
                                                             </p>
-                                                        </div>
-                                                        <div class="card-footer">
-                                                            <p class="card-text">
-                                                                <p>
-                                                                    <i class="fas fa-book-reader"></i> 340 &nbsp; | &nbsp;
-                                                                    <i class="fas fa-heart"></i> 45 &nbsp; | &nbsp;
-                                                                    <i class="fas fa-share-alt">
-                                                                        140</i>
-                                                                </p>
-                                                            </p>
-                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=2" class="btn btn-primary">Read Now!</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card">
-                                                        <img src="https://loremflickr.com/320/240?random=3" />
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Colouring this life</h5>
-                                                            <p class="card-text">A wise man once said, "Girl, you color my life, like it's all
-                                                                in crayons. You must've come from a magazine". That man is
-                                                                known as the World Boss. Here's why we should strive to paint
-                                                                some more </p>
-                                                        </div>
-                                                        <div class="card-footer">
-                                                            <p class="card-text">
-                                                                <p>
-                                                                    <i class="fas fa-book-reader"></i> 3435 &nbsp; | &nbsp;
-                                                                    <i class="fas fa-heart"></i> 832 &nbsp; | &nbsp;
-                                                                    <i class="fas fa-share-alt">
-                                                                        432</i>
-                                                                </p>
-                                                            </p>
-                                                            <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=3" class="btn btn-primary">Read Now!</a>
-                                                        </div>
+                                                        </p>
+                                                        <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=1" class="btn btn-primary">Read Now!</a>
                                                     </div>
                                                 </div>
-
-
-
+                                                <div class="card">
+                                                    <img src="https://loremflickr.com/320/240?random=2" />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Technicolor beat</h5>
+                                                        <p class="card-text">Sometimes we have days when life seems to kick us right in the nuts.
+                                                            It's on those days it's important to keep your head up. That
+                                                            was an important lesson for me. Here's 10 facts of life!
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="card-text">
+                                                            <p>
+                                                                <i class="fas fa-book-reader"></i> 340 &nbsp; | &nbsp;
+                                                                <i class="fas fa-heart"></i> 45 &nbsp; | &nbsp;
+                                                                <i class="fas fa-share-alt">
+                                                                    140</i>
+                                                            </p>
+                                                        </p>
+                                                        <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=2" class="btn btn-primary">Read Now!</a>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <img src="https://loremflickr.com/320/240?random=3" />
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Colouring this life</h5>
+                                                        <p class="card-text">A wise man once said, "Girl, you color my life, like it's all in
+                                                            crayons. You must've come from a magazine". That man is known
+                                                            as the World Boss. Here's why we should strive to paint some
+                                                            more </p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <p class="card-text">
+                                                            <p>
+                                                                <i class="fas fa-book-reader"></i> 3435 &nbsp; | &nbsp;
+                                                                <i class="fas fa-heart"></i> 832 &nbsp; | &nbsp;
+                                                                <i class="fas fa-share-alt">
+                                                                    432</i>
+                                                            </p>
+                                                        </p>
+                                                        <a href="${pageContext.request.contextPath}/viewSinglePost?display=viewSinglePost&postId=3" class="btn btn-primary">Read Now!</a>
+                                                    </div>
+                                                </div>
                                             </div>
 
 
 
-
                                         </div>
+
+
 
 
                                     </div>
 
 
+                                </div>
 
- 
+
+
+
 
                                 <footer>
                                     <h5 style="color:white">This blog was brought to you by the loving arms of the following people</h5>

@@ -72,6 +72,8 @@ public class UserController {
     public String loadUsers(HttpServletRequest request, Model model) {
 
         String view = request.getParameter("view");
+        String choice = request.getParameter("choice");
+
         Principal myPrincipal = request.getUserPrincipal();
         User userLogged = new User();
         try {
@@ -103,7 +105,11 @@ public class UserController {
 
         // all notifications stuff
         if (view.equals("notifications")) {
+            List<Notification> pendingNotifications = miscService.getPendingNotifications();
+            List<Notification> closedNotifications = miscService.getClosedNotifications();
 
+            model.addAttribute("pendingNotifications", pendingNotifications);
+            model.addAttribute("closedNotifications", closedNotifications);
         }
 
         // all categories stuff
@@ -116,14 +122,15 @@ public class UserController {
 
         }
 
-        List<Notification> notifications = miscService.getUserNotifications(myPrincipal.getName());
+        List<Notification> myNotifications = miscService.getUserNotifications(myPrincipal.getName());
 
         List<Category> categories = categoryService.getAllCategories();
         List<Tag> tags = tagService.getAllTags();
 
         model.addAttribute("loggedin", userLogged);
+        model.addAttribute("notifications", myNotifications);
         model.addAttribute("view", view);
-        model.addAttribute("notifications", notifications);
+        model.addAttribute("choice", choice);
         model.addAttribute("tags", tags);
 
         model.addAttribute("categories", categories);

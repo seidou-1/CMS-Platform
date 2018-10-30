@@ -70,9 +70,9 @@
                                                 <li class="nav-item" id="user-option">
 
                                                     <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                                    <script>
-                                                 
-                                                    </script>
+                                                        <script>
+
+                                                        </script>
                                                         <div class="username">
                                                             <p>${pageContext.request.userPrincipal.name}
                                                                 <br>
@@ -118,32 +118,32 @@
                                                 <section>
                                                     <ul>
                                                         <li class="userHead">User Details</li>
-                                                        <li>Username:  ${loggedin.username} </li>
+                                                        <li>Username: ${loggedin.username} </li>
                                                         <li>Last Active Date: ${loggedin.lastActive}</li>
-                                                        <li>Email:  ${loggedin.email}</li>
+                                                        <li>Email: ${loggedin.email}</li>
                                                     </ul>
                                                     <ul>
                                                         <li class="userHead">User Statistics</li>
                                                         <c:if test="${not empty myPosts}">
-                                                            <li>Posts:  ${myPosts.size() } submits</li>
+                                                            <li>Posts: ${myPosts.size() } submits</li>
                                                         </c:if>
                                                         <c:if test="${empty myPosts}">
-                                                            <li>Posts:  None yet</li>
+                                                            <li>Posts: None yet</li>
                                                         </c:if>
 
                                                         <c:if test="${not empty myCategory}">
-                                                            <li>Categories:  ${myCategory.size() } submits</li>
+                                                            <li>Categories: ${myCategory.size() } submits</li>
                                                         </c:if>
                                                         <c:if test="${empty myCategory}">
-                                                            <li>Categories:  None yet</li>
+                                                            <li>Categories: None yet</li>
                                                         </c:if>
 
                                                         <c:if test="${not empty myTags}">
-                                                            <li>Tags:  ${myTags.size() } submits</li>
+                                                            <li>Tags: ${myTags.size() } submits</li>
                                                         </c:if>
                                                         <c:if test="${empty myTags}">
-                                                            <li>Tags:  None yet</li>
-                                                        </c:if> 
+                                                            <li>Tags: None yet</li>
+                                                        </c:if>
                                                     </ul>
                                                     <ul>
                                                         <li class="userHead">User Settings</li>
@@ -243,392 +243,557 @@
                                                         <div class="col-md-3 windowMenu">
                                                             <h4 class="heading1">Notifications Menu</h4>
                                                             <ul class="list-group placementMenu">
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center active">
-                                                                    <a href="${pageContext.request.contextPath}/userDashboard?view=notification&mode=notifications"> My Notifications</a>
 
-                                                                </li>
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications')">Filter Notifications </a>
-                                                                </li>
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                    <a href="${pageContext.request.contextPath}/userDashboard?view=notification&mode=pending"> Pending / Watching</a>
-                                                                </li>
+                                                                <c:choose>
+                                                                    <c:when test="${choice == 'mine'}">
+                                                                        <li class="menu-option list-group-item d-flex justify-content-between align-items-center active">
+                                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=notifications&choice=mine">
+                                                                                <span class="badge badge-danger">${notifications.size()} </span> My Notifications</a>
+                                                                        </li>
+                                                                    </c:when>
+                                                                    <c:when test="${empty choice}">
+                                                                        <li class="menu-option list-group-item d-flex justify-content-between align-items-center active">
+                                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=notifications&choice=mine">
+                                                                                <span class="badge badge-danger">${notifications.size()} </span> My Notifications</a>
+                                                                        </li>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <li class="menu-option list-group-item d-flex justify-content-between align-items-center">
+                                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=notifications&choice=mine">
+                                                                                <span class="badge badge-danger">${notifications.size()} </span> My Notifications</a>
+                                                                        </li>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+
+                                                                <c:choose>
+                                                                    <c:when test="${choice == 'pending'}">
+                                                                        <li class=" menu-option list-group-item d-flex justify-content-between align-items-center active">
+                                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=notifications&choice=pending">
+                                                                                <span class="badge badge-success">${pendingNotifications.size()} </span> Pending</a>
+                                                                        </li>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <li class=" menu-option list-group-item d-flex justify-content-between align-items-center">
+                                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=notifications&choice=pending">
+                                                                                <span class="badge badge-success">${pendingNotifications.size()} </span> Pending</a>
+                                                                        </li>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+
+
+                                                                <c:choose>
+                                                                    <c:when test="${choice == 'closed'}">
+                                                                        <li class="menu-option list-group-item d-flex justify-content-between align-items-center active">
+                                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=notifications&choice=closed">
+                                                                                <span class="badge badge-info">${closedNotifications.size()} </span> History</a>
+                                                                        </li>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <li class="menu-option list-group-item d-flex justify-content-between align-items-center">
+                                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=notifications&choice=closed">
+                                                                                <span class="badge badge-info">${closedNotifications.size()} </span> History</a>
+                                                                        </li>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+
+
+
+
                                                             </ul>
                                                         </div>
                                                         <div class="col-md-9 windowDisplay">
                                                             <h4 class="heading1">Notifications Display</h4>
+                                                            <div>
+                                                                <ul class="filter">
+                                                                    <li>
+                                                                        <a href="#">Reset Filters</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <label>
+                                                                            <input type="checkbox" checked name="posts" /> Users </label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <label>
+                                                                            <input type="checkbox" checked nae="posts" /> Posts</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <label>
+                                                                            <input type="checkbox" checked name="posts" /> Categories</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <label>
+                                                                            <input type="checkbox" checked name="posts" /> Tags</label>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                             <div class="navScroll">
+                                                                <!-- <c:if test="${choice == 'pending'}">
+                                                                    <p>My salary is:
+                                                                        <c:out value="${choice}" />
+                                                                        <p>
+                                                                </c:if> -->
                                                                 <c:choose>
-                                                                    <c:when test="${empty notifications == false}">
-                                                                        <c:forEach var="i" begin="1" end="${notifications.size()-1}">
-                                                                            <div class="viewItem container-fluid" onclick="toggleItem(this)">
+                                                                    <c:when test="${choice == 'pending'}">
 
-                                                                                <div class="row">
-                                                                                    <div class="col-md-11 itemDate">
-                                                                                        <span>
-                                                                                            Last Status Change: ${notifications[i].date}
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div class="col-md-1 itemToggle">
-                                                                                        <i class="fas fa-angle-double-down"></i>
-                                                                                    </div>
-                                                                                    <div class="col-md-7 itemSummary">
-                                                                                        <span> User: ${notifications[i].user} ${notifications[i].notificationClass}D
-                                                                                            a ${notifications[i].notificationType}</span>
-                                                                                        <p class="itemBrief ">${notifications[i].notificationBrief}
-                                                                                        </p>
-                                                                                        </p>
-                                                                                    </div>
-                                                                                    <div class="col-md-5 options">
-                                                                                        <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
-                                                                                            <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-success" onclick="populateModal('notifications_view', `${notifications[i].notificationID}`)">View </a>
-                                                                                            <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-primary" onclick="populateModal('notifications_approve', `${notifications[i].notificationID}`)">Approve </a>
+                                                                        <c:choose>
+                                                                            <c:when test="${empty pendingNotifications == false}">
+                                                                                <c:forEach var="i" begin="0" end="${pendingNotifications.size()-1}">
+                                                                                    <div class="viewItem container-fluid" onclick="toggleItem(this)">
 
-                                                                                            <div class="btn-group" role="group">
-                                                                                                <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                                                                                    aria-expanded="false">
-                                                                                                    Deny
-                                                                                                </button>
-                                                                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications_request_edit', `${notifications[i].notificationID}`)">Request Edits </a>
-                                                                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications_vanquish', `${notifications[i].notificationID}`)">Vanquish </a>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-11 itemDate">
+                                                                                                <span>
+                                                                                                    Last Status Change: ${pendingNotifications[i].date}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-1 itemToggle">
+                                                                                                <i class="fas fa-angle-double-down"></i>
+                                                                                            </div>
+                                                                                            <div class="col-md-7 itemSummary">
+                                                                                                <span> User: ${pendingNotifications[i].user}
+                                                                                                    ${pendingNotifications[i].notificationClass}D
+                                                                                                    a ${pendingNotifications[i].notificationType}</span>
+                                                                                                <p class="itemBrief ">${pendingNotifications[i].notificationBrief}
+                                                                                                </p>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="col-md-5 options">
+                                                                                                <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
+                                                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-success" onclick="populateModal('notifications_view', `${pendingNotifications[i].notificationID}`)">View </a>
+                                                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-primary" onclick="populateModal('notifications_approve', `${pendingNotifications[i].notificationID}`)">Approve </a>
+
+                                                                                                    <div class="btn-group" role="group">
+                                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                                                                            aria-expanded="false">
+                                                                                                            Deny
+                                                                                                        </button>
+                                                                                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications_request_edit', `${pendingNotifications[i].notificationID}`)">Request Edits
+                                                                                                            </a>
+                                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('notifications_vanquish', `${pendingNotifications[i].notificationID}`)">Vanquish </a>
+                                                                                                        </div>
+                                                                                                    </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+                                                                                </c:forEach>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <div class="viewItem container-fluid">
+                                                                                    <h4>There are no pending notifications.</h4>
                                                                                 </div>
-                                                                            </div>
-                                                                        </c:forEach>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                    </c:when>
+                                                                    <c:when test="${choice == 'closed'}">
+
+                                                                        <c:choose>
+                                                                            <c:when test="${empty closedNotifications == false}">
+                                                                                <c:forEach var="i" begin="0" end="${closedNotifications.size()-1}">
+                                                                                    <div class="viewItem container-fluid" onclick="toggleItem(this)">
+
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-11 itemDate">
+                                                                                                <span>
+                                                                                                    Last Status Change: ${closedNotifications[i].date}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-1 itemToggle">
+                                                                                                <i class="fas fa-angle-double-down"></i>
+                                                                                            </div>
+                                                                                            <div class="col-md-7 itemSummary">
+                                                                                                <span> User: ${closedNotifications[i].user}
+                                                                                                    ${closedNotifications[i].notificationClass}D
+                                                                                                    a ${closedNotifications[i].notificationType}</span>
+                                                                                                <p class="itemBrief ">${closedNotifications[i].notificationBrief}
+                                                                                                </p>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="col-md-5 options">
+                                                                                                <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
+                                                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-success" onclick="populateModal('notifications_view', `${closedNotifications[i].notificationID}`)">View </a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </c:forEach>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <div class="viewItem container-fluid">
+                                                                                    <h4>There are no closed notifications.</h4>
+                                                                                </div>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                        <div class="viewItem container-fluid">
-                                                                            <h4>There are no notifications yet.</h4>
-                                                                        </div>
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </c:when>
 
+                                                                        <c:choose>
+                                                                            <c:when test="${empty notifications == false}">
+                                                                                <c:forEach var="i" begin="0" end="${notifications.size()-1}">
+                                                                                    <div class="viewItem container-fluid" onclick="toggleItem(this)">
 
-
-
-                                                <c:when test="${view == 'users'}">
-                                                    <nav class="navbar navbar-expand-sm" id="mainUserNav">
-                                                        <ul class="navbar-nav nav-btn" id="inner">
-                                                            <a href="${pageContext.request.contextPath}/createUser" class="btn btn-warning navigationButton"> Create New User</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </nav>
-
-                                                    <section class="row" id="placement">
-                                                        <div class="col-md-3 windowMenu">
-                                                            <h4 class="heading1">User Menu</h4>
-                                                            <ul class="list-group placementMenu">
-
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_pending')"> My Pending Users </a>
-                                                                </li>
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_settings')">My Settings </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-md-9 windowDisplay">
-                                                            <h4 class="heading1">Window Display</h4>
-                                                            <div class="navScroll">
-
-                                                                <c:forEach var="i" begin="1" end="${users.size()-1}">
-                                                                    <div class="viewItem container-fluid" onclick="toggleItem(this)">
-
-                                                                        <div class="row">
-                                                                            <div class="col-md-11 itemDate">
-                                                                                <span>
-                                                                                    Last Active: ${users[i].lastActive}
-                                                                                    <br> Posts: 31 &nbsp; | &nbsp; Categories:
-                                                                                    3 &nbsp; | &nbsp; Tags: 3
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="col-md-1 itemToggle">
-                                                                                <i class="fas fa-angle-double-down"></i>
-                                                                            </div>
-                                                                            <div class="col-md-7 itemSummary">
-                                                                                <span> User: ${users[i].username} &nbsp; | &nbsp;
-                                                                                    Admin &nbsp; | &nbsp; Active</span>
-                                                                                <p class="itemBrief">This user has 1 post, 2 tags, 42 categories
-                                                                                    pending
-                                                                                </p>
-                                                                            </div>
-                                                                            <div class="col-md-5 options">
-                                                                                <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
-                                                                                    <a class="btn btn-success" data-target="#exampleModal" href="#"> View Posts </a>
-
-                                                                                    <a class="btn btn-warning" data-target="#exampleModal" href="#"> Edit </a>
-
-                                                                                    <div class="btn-group" role="group">
-                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                                                                            aria-expanded="false">
-                                                                                            Options
-                                                                                        </button>
-                                                                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_ban')">Ban User</a>
-                                                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_delete')">Vanquish User</a>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-11 itemDate">
+                                                                                                <span>
+                                                                                                    Last Status Change: ${notifications[i].date}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-1 itemToggle">
+                                                                                                <i class="fas fa-angle-double-down"></i>
+                                                                                            </div>
+                                                                                            <div class="col-md-7 itemSummary">
+                                                                                                <span> User: ${notifications[i].user}
+                                                                                                    ${notifications[i].notificationClass}D
+                                                                                                    a ${notifications[i].notificationType}</span>
+                                                                                                <p class="itemBrief ">${notifications[i].notificationBrief}
+                                                                                                </p>
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="col-md-5 options">
+                                                                                                <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
+                                                                                                    <a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-success" onclick="populateModal('notifications_view', `${notifications[i].notificationID}`)">Request Review </a>
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </c:forEach>
                                                             </div>
+                                                            </c:forEach>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <div class="viewItem container-fluid">
+                                                                    <h4>You have no notifications yet.</h4>
+                                                                </div>
+                                                            </c:otherwise>
+                                                            </c:choose>
+                                                            </c:otherwise>
+                                                            </c:choose>
+
+
+
                                                         </div>
-                                                    </section>
-
-
-
-
-                                                </c:when>
-                                                <c:when test="${view == 'posts'}">
-                                                    <nav class="navbar navbar-expand-sm" id="mainUserNav">
-                                                        <ul class="navbar-nav" id="inner">
-                                                            <li class="nav-item">
-                                                                <a href="${pageContext.request.contextPath}/createPost" class="btn btn-warning" style="color: red; font-size: bold"> Create New Post</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </nav>
-
-                                                    <section class="row" id="placement">
-                                                        <div class="col-md-3 windowMenu">
-                                                            <h4 class="heading1">Posts Menu</h4>
-                                                            <ul class="list-group placementMenu">
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-
-                                                                    <a href="${pageContext.request.contextPath}/userDashboard?view=users&mode=settings"> Post Notifications</a>
-                                                                </li>
-
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                    My Posts
-                                                                </li>
-
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                    Filter Posts By
-                                                                </li>
-
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                    All Posts
-                                                                </li>
-
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-md-9 windowDisplay">
-                                                            <h4 class="heading1">Posts Display</h4>
-                                                            <div class="navScroll">
-
-                                                                <c:forEach var="i" begin="1" end="${posts.size()-1}">
-                                                                    <div class="viewItem " onclick="toggleItem(this)">
-
-                                                                        <div class="row">
-                                                                            <div class="col-md-11 itemDate">
-                                                                                <span>
-                                                                                    Published Date: ${posts[i].postDate}
-                                                                                    <br> Views: 107 &nbsp; | &nbsp; Edits: 3
-                                                                                    &nbsp; | &nbsp; Ratings: 3.75
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="col-md-1 itemToggle">
-                                                                                <i class="fas fa-angle-double-down"></i>
-                                                                            </div>
-                                                                            <div class="col-md-7 itemSummary">
-                                                                                <span> Title: ${posts[i].postTitle} &nbsp; |&nbsp;
-                                                                                    Creator: ${posts[i].user} </span>
-                                                                                <p class="itemBrief">This post has 2 tags (beaches, bottles) has
-                                                                                    a category of Food.
-                                                                                </p>
-                                                                            </div>
-                                                                            <div class="col-md-5 options">
-                                                                                <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
-                                                                                    <button type="button" class="btn btn-primary">View</button>
-                                                                                    <button type="button" class="btn btn-warning">Edit</button>
-
-                                                                                    <div class="btn-group" role="group">
-                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                                                                            aria-expanded="false">
-                                                                                            Options
-                                                                                        </button>
-                                                                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                            <a class="dropdown-item" href="#">Set Expiration</a>
-                                                                                            <a class="dropdown-item" href="#">Change status </a>
-                                                                                            <hr class="thinHr">
-                                                                                            <a class="dropdown-item text" href="#">Delete Post </a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </c:forEach>
-                                                              
-                                                            </div>
-                                                      
-                                                        </div>
-                                                    </section>
-                                                    <br><br>
-
-                                                </c:when>
-                                                <c:when test="${view == 'categories'}">
-                                                    <nav class="navbar navbar-expand-sm" id="mainUserNav">
-                                                        <ul class="navbar-nav" id="inner">
-                                                            <li class="nav-item">
-                                                                <a href="${pageContext.request.contextPath}/createCategory" class="btn btn-warning" style="color: red; font-size: bold">
-                                                                    Create New Category</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </nav>
-
-                                                    <section class="row" id="placement">
-                                                        <div class="col-md-3 windowMenu">
-                                                            <h4 class="heading1">Category Menu</h4>
-                                                            <ul class="list-group placementMenu">
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                    Category Notifications
-                                                                </li>
-
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                    My Categories
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-md-9 windowDisplay">
-                                                            <h4 class="heading1">Category Display</h4>
-                                                            <div class="navScroll">
-
-                                                                <c:forEach var="i" begin="1" end="${categories.size()-1}">
-                                                                    <div class="viewItem " onclick="toggleItem(this)">
-
-                                                                        <div class="row">
-                                                                            <div class="col-md-11 itemDate">
-                                                                                <span>
-                                                                                    Created: Today
-                                                                                    <!-- ${categories[i]} -->
-                                                                                    <br> Views of posts with category: 107 &nbsp;
-                                                                                    | &nbsp; Average Rating: 3.75
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="col-md-1 itemToggle">
-                                                                                <i class="fas fa-angle-double-down"></i>
-                                                                            </div>
-                                                                            <div class="col-md-7 itemSummary">
-                                                                                <span> Name: ${categories[i].categoryName} &nbsp;
-                                                                                    |&nbsp; Creator: John Doe
-                                                                                    <!-- ${categories[i]} -->
-                                                                                </span>
-                                                                                <p class="itemBrief">There are 5 posts with this category
-                                                                                </p>
-                                                                            </div>
-                                                                            <div class="col-md-5 options">
-                                                                                <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
-                                                                                    <button type="button" class="btn btn-primary">View</button>
-                                                                                    <button type="button" class="btn btn-warning">Edit</button>
-
-                                                                                    <div class="btn-group" role="group">
-                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                                                                            aria-expanded="false">
-                                                                                            Options
-                                                                                        </button>
-                                                                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                            <a class="dropdown-item" href="#">Hide Posts</a>
-                                                                                            <a class="dropdown-item" href="#">Delete Category </a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </c:forEach>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </c:when>
-                                                <c:when test="${view == 'tags'}">
-                                                    <nav class="navbar navbar-expand-sm" id="mainUserNav">
-                                                        <ul class="navbar-nav" id="inner">
-                                                            <li class="nav-item">
-                                                                <a href="${pageContext.request.contextPath}/createTag" class="btn btn-warning" style="color: red; font-size: bold"> Create New Tag</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </nav>
-                                                    <section class="row" id="placement">
-                                                        <div class="col-md-3 windowMenu">
-                                                            <h4 class="heading1">Tag Bench</h4>
-                                                            <ul class="list-group placementMenu">
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                    Tag Notifications
-                                                                </li>
-
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                                                    My Tags
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-md-9 windowDisplay">
-                                                            <h4 class="heading1">Tag Display</h4>
-                                                            <div class="navScroll">
-                                                                
-                                                                <c:forEach var="i" begin="1" end="${categories.size()-1}">
-                                                                    <div class="viewItem " onclick="toggleItem(this)">
-    
-                                                                        <div class="row">
-                                                                            <div class="col-md-11 itemDate">
-                                                                                <span>
-                                                                                    Created: Today
-                                                                                    <!-- ${categories[i]} -->
-                                                                                    <br> Views of posts with Tag: 1 &nbsp; | &nbsp;
-                                                                                    Average Rating:  3.4
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="col-md-1 itemToggle">
-                                                                                <i class="fas fa-angle-double-down"></i>
-                                                                            </div>
-                                                                            <div class="col-md-7 itemSummary">
-                                                                                <span> Name: ${tags[i].tagName} &nbsp; |&nbsp; Creator:
-                                                                                    John Doe
-                                                                                    <!-- ${categories[i]} -->
-                                                                                </span>
-                                                                                <p class="itemBrief">There are 5 posts with this Tag
-                                                                                </p>
-                                                                            </div>
-                                                                            <div class="col-md-5 options">
-                                                                                <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
-                                                                                    <button type="button" class="btn btn-primary">View</button>
-                                                                                    <button type="button" class="btn btn-warning">Edit</button>
-    
-                                                                                    <div class="btn-group" role="group">
-                                                                                        <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                                                                            aria-expanded="false">
-                                                                                            Options
-                                                                                        </button>
-                                                                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                                                            <a class="dropdown-item" href="#">Hide Posts</a>
-                                                                                            <a class="dropdown-item" href="#">Delete Tag </a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </c:forEach>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </c:when>
-                                            </c:choose>
-
                                         </div>
+                                        </section>
+                                        </c:when>
+
+
+
+
+                                        <c:when test="${view == 'users'}">
+                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                <ul class="navbar-nav nav-btn" id="inner">
+                                                    <a href="${pageContext.request.contextPath}/createUser" class="btn btn-warning navigationButton"> Create New User</a>
+                                                    </li>
+
+                                                </ul>
+                                            </nav>
+
+                                            <section class="row" id="placement">
+                                                <div class="col-md-3 windowMenu">
+                                                    <h4 class="heading1">User Menu</h4>
+                                                    <ul class="list-group placementMenu">
+
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_pending')"> My Pending Users </a>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <a data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_settings')">My Settings </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-9 windowDisplay">
+                                                    <h4 class="heading1">Window Display</h4>
+                                                    <div class="navScroll">
+
+                                                        <c:forEach var="i" begin="0" end="${users.size()-1}">
+                                                            <div class="viewItem container-fluid" onclick="toggleItem(this)">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-11 itemDate">
+                                                                        <span>
+                                                                            Last Active: ${users[i].lastActive}
+                                                                            <br> Posts: 31 &nbsp; | &nbsp; Categories: 3 &nbsp;
+                                                                            | &nbsp; Tags: 3
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-md-1 itemToggle">
+                                                                        <i class="fas fa-angle-double-down"></i>
+                                                                    </div>
+                                                                    <div class="col-md-7 itemSummary">
+                                                                        <span> User: ${users[i].username} &nbsp; | &nbsp; Admin
+                                                                            &nbsp; | &nbsp; Active</span>
+                                                                        <p class="itemBrief">This user has 1 post, 2 tags, 42 categories pending
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-5 options">
+                                                                        <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
+                                                                            <a class="btn btn-success" data-target="#exampleModal" href="#"> View Posts </a>
+
+                                                                            <a class="btn btn-warning" data-target="#exampleModal" href="#"> Edit </a>
+
+                                                                            <div class="btn-group" role="group">
+                                                                                <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                                                    aria-expanded="false">
+                                                                                    Options
+                                                                                </button>
+                                                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_ban')">Ban User</a>
+                                                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#" onclick="populateModal('users_delete')">Vanquish User</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+
+
+
+                                        </c:when>
+                                        <c:when test="${view == 'posts'}">
+                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                <ul class="navbar-nav" id="inner">
+                                                    <li class="nav-item">
+                                                        <a href="${pageContext.request.contextPath}/createPost" class="btn btn-warning" style="color: red; font-size: bold"> Create New Post</a>
+                                                    </li>
+
+                                                </ul>
+                                            </nav>
+
+                                            <section class="row" id="placement">
+                                                <div class="col-md-3 windowMenu">
+                                                    <h4 class="heading1">Posts Menu</h4>
+                                                    <ul class="list-group placementMenu">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+
+                                                            <a href="${pageContext.request.contextPath}/userDashboard?view=users&mode=settings"> Post Notifications</a>
+                                                        </li>
+
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                                            My Posts
+                                                        </li>
+
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                                            Filter Posts By
+                                                        </li>
+
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                                            All Posts
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-9 windowDisplay">
+                                                    <h4 class="heading1">Posts Display</h4>
+                                                    <div class="navScroll">
+
+                                                        <c:forEach var="i" begin="0" end="${posts.size()-1}">
+                                                            <div class="viewItem " onclick="toggleItem(this)">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-11 itemDate">
+                                                                        <span>
+                                                                            Published Date: ${posts[i].postDate}
+                                                                            <br> Views: 107 &nbsp; | &nbsp; Edits: 3 &nbsp; |
+                                                                            &nbsp; Ratings: 3.75
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-md-1 itemToggle">
+                                                                        <i class="fas fa-angle-double-down"></i>
+                                                                    </div>
+                                                                    <div class="col-md-7 itemSummary">
+                                                                        <span> Title: ${posts[i].postTitle} &nbsp; |&nbsp; Creator:
+                                                                            ${posts[i].user} </span>
+                                                                        <p class="itemBrief">This post has 2 tags (beaches, bottles) has a category
+                                                                            of Food.
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-5 options">
+                                                                        <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
+                                                                            <button type="button" class="btn btn-primary">View</button>
+                                                                            <button type="button" class="btn btn-warning">Edit</button>
+
+                                                                            <div class="btn-group" role="group">
+                                                                                <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                                                    aria-expanded="false">
+                                                                                    Options
+                                                                                </button>
+                                                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                                                    <a class="dropdown-item" href="#">Set Expiration</a>
+                                                                                    <a class="dropdown-item" href="#">Change status </a>
+                                                                                    <hr class="thinHr">
+                                                                                    <a class="dropdown-item text" href="#">Delete Post </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </c:forEach>
+
+                                                    </div>
+
+                                                </div>
+                                            </section>
+                                            <br>
+                                            <br>
+
+                                        </c:when>
+                                        <c:when test="${view == 'categories'}">
+                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                <ul class="navbar-nav" id="inner">
+                                                    <li class="nav-item">
+                                                        <a href="${pageContext.request.contextPath}/createCategory" class="btn btn-warning" style="color: red; font-size: bold">
+                                                            Create New Category</a>
+                                                    </li>
+
+                                                </ul>
+                                            </nav>
+
+                                            <section class="row" id="placement">
+                                                <div class="col-md-3 windowMenu">
+                                                    <h4 class="heading1">Category Menu</h4>
+                                                    <ul class="list-group placementMenu">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                                            Category Notifications
+                                                        </li>
+
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                                            My Categories
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-9 windowDisplay">
+                                                    <h4 class="heading1">Category Display</h4>
+                                                    <div class="navScroll">
+
+                                                        <c:forEach var="i" begin="0" end="${categories.size()-1}">
+                                                            <div class="viewItem " onclick="toggleItem(this)">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-11 itemDate">
+                                                                        <span>
+                                                                            Created: Today
+                                                                            <!-- ${categories[i]} -->
+                                                                            <br> Views of posts with category: 107 &nbsp; | &nbsp;
+                                                                            Average Rating: 3.75
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-md-1 itemToggle">
+                                                                        <i class="fas fa-angle-double-down"></i>
+                                                                    </div>
+                                                                    <div class="col-md-7 itemSummary">
+                                                                        <span> Name: ${categories[i].categoryName} &nbsp; |&nbsp;
+                                                                            Creator: John Doe
+                                                                            <!-- ${categories[i]} -->
+                                                                        </span>
+                                                                        <p class="itemBrief">There are 5 posts with this category
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-5 options">
+                                                                        <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
+                                                                            <button type="button" class="btn btn-primary">View</button>
+                                                                            <button type="button" class="btn btn-warning">Edit</button>
+
+                                                                            <div class="btn-group" role="group">
+                                                                                <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                                                    aria-expanded="false">
+                                                                                    Options
+                                                                                </button>
+                                                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                                                    <a class="dropdown-item" href="#">Hide Posts</a>
+                                                                                    <a class="dropdown-item" href="#">Delete Category </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </c:when>
+                                        <c:when test="${view == 'tags'}">
+                                            <nav class="navbar navbar-expand-sm" id="mainUserNav">
+                                                <ul class="navbar-nav" id="inner">
+                                                    <li class="nav-item">
+                                                        <a href="${pageContext.request.contextPath}/createTag" class="btn btn-warning" style="color: red; font-size: bold"> Create New Tag</a>
+                                                    </li>
+
+                                                </ul>
+                                            </nav>
+                                            <section class="row" id="placement">
+                                                <div class="col-md-3 windowMenu">
+                                                    <h4 class="heading1">Tag Bench</h4>
+                                                    <ul class="list-group placementMenu">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                                            Tag Notifications
+                                                        </li>
+
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                                            My Tags
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-9 windowDisplay">
+                                                    <h4 class="heading1">Tag Display</h4>
+                                                    <div class="navScroll">
+
+                                                        <c:forEach var="i" begin="0" end="${categories.size()-1}">
+                                                            <div class="viewItem " onclick="toggleItem(this)">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-11 itemDate">
+                                                                        <span>
+                                                                            Created: Today
+                                                                            <!-- ${categories[i]} -->
+                                                                            <br> Views of posts with Tag: 1 &nbsp; | &nbsp; Average
+                                                                            Rating: 3.4
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-md-1 itemToggle">
+                                                                        <i class="fas fa-angle-double-down"></i>
+                                                                    </div>
+                                                                    <div class="col-md-7 itemSummary">
+                                                                        <span> Name: ${tags[i].tagName} &nbsp; |&nbsp; Creator:
+                                                                            John Doe
+                                                                            <!-- ${categories[i]} -->
+                                                                        </span>
+                                                                        <p class="itemBrief">There are 5 posts with this Tag
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-5 options">
+                                                                        <div class="btn-group itemOptions" role="group" aria-label="Button group with nested dropdown">
+                                                                            <button type="button" class="btn btn-primary">View</button>
+                                                                            <button type="button" class="btn btn-warning">Edit</button>
+
+                                                                            <div class="btn-group" role="group">
+                                                                                <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                                                                    aria-expanded="false">
+                                                                                    Options
+                                                                                </button>
+                                                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                                                    <a class="dropdown-item" href="#">Hide Posts</a>
+                                                                                    <a class="dropdown-item" href="#">Delete Tag </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </c:when>
+                                        </c:choose>
+
+                                    </div>
                                     </div>
                                     <br>
                                     <br>

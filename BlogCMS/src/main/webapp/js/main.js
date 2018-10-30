@@ -175,13 +175,34 @@
 //==================
 
 $('.carousel').carousel({
-  interval: 200,
-  pause: "false",
-  pauseOnHover: "false",
-  wrap: "true"
+	interval: 200,
+	pause: "false",
+	pauseOnHover: "false",
+	wrap: "true"
 });
 
 
+$(document).ready(function () {
+
+
+
+});
+
+
+function changeNav(navItem) {
+
+
+	var currentWindow = $('.menu-option.active');
+
+	$(currentWindow).each((index, el) => {
+		if (index == navItem) {
+			$(el).addClass("active");
+		} else {
+			$(el).removeClass("active");
+		}
+	})
+
+}
 
 
 
@@ -189,41 +210,41 @@ $('.carousel').carousel({
 
 
 $('#addCat-btn').click(function (event) {
-performAjaxCall('category', '', 'POST');
+	performAjaxCall('category', '', 'POST');
 });
 
 $('#updateCat-btn').click(function (event) {
-performAjaxCall('category', '', 'PUT');
+	performAjaxCall('category', '', 'PUT');
 });
 
 function performAjaxCall(endpoint, extraParameter, ajaxType) {
-    var returnData;
+	var returnData;
 
-    $.ajax({
-        async: false,
-        type: ajaxType,
-        url: `http://localhost:8080/BlogCMS/${endpoint}/${extraParameter}`,
-        data: JSON.stringify({
-            
-                categoryName: $('#categoryName').val()
-            }),
-        
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        dataType: 'json',
-        success: function (data, status) {
-            console.log(data);
-            returnData = data;
-        },
-        error: function () {
-            console.log("travon");
+	$.ajax({
+		async: false,
+		type: ajaxType,
+		url: `http://localhost:8080/BlogCMS/${endpoint}/${extraParameter}`,
+		data: JSON.stringify({
 
-            returnData = null;
-        }
-    });
-    return returnData;
+			categoryName: $('#categoryName').val()
+		}),
+
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		dataType: 'json',
+		success: function (data, status) {
+			console.log(data);
+			returnData = data;
+		},
+		error: function () {
+			console.log("travon");
+
+			returnData = null;
+		}
+	});
+	return returnData;
 }
 
 // Travz Users Code
@@ -248,7 +269,7 @@ function toggleItem(item) {
 }
 
 function populateModal(type, secondary) {
-	
+
 	var label = $("#generalModalLabel");
 	var body = $("#generalModalBody");
 	var footer = $("#generalModalFooter");
@@ -274,7 +295,7 @@ function populateModal(type, secondary) {
 		</div>
 		</div>
 	  `);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  <a href="http://localhost:8080/BlogCMS/userDashboard?view=notifications&filters=users" class="btn btn-primary"> Filter </a>
 	  `);
@@ -290,7 +311,7 @@ function populateModal(type, secondary) {
 			 <a href="#" class="btn btn-success"> Edit Category </a> 
 		</div>
 	  `);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  `);
 	}
@@ -299,7 +320,7 @@ function populateModal(type, secondary) {
 		// Rest controller api call , POST
 		label.html("Category Approval")
 		body.html(`<h4>Successfully Approved Category</h4>`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	  `);
 	}
@@ -321,7 +342,7 @@ function populateModal(type, secondary) {
 		</div>
 		</div>
 		`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  <a href="#" class="btn btn-success"> Submit Edit Request</a> 
 	  `);
@@ -344,7 +365,7 @@ function populateModal(type, secondary) {
 		</div>
 		</div>
 		`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  <a href="#" class="btn btn-success"> Finalize Delete</a> 
 	  `);
@@ -364,7 +385,7 @@ function populateModal(type, secondary) {
 		<a href="#"> Mary  </a> <a href="#"> Jesus  </a>
 		</div>
 		`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	  `);
 	}
@@ -385,7 +406,7 @@ function populateModal(type, secondary) {
 		<a href="#" class="btn btn-primary"> Submit new password </a> 
 		</div>
 		`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  `);
 	}
@@ -398,7 +419,7 @@ function populateModal(type, secondary) {
 		 	<p class="mine"> Top Category: All about greece, 50 likes <a href="#"> See all posts >>  </a> </p>
 		</div>
 		`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  `);
 	}
@@ -419,7 +440,7 @@ function populateModal(type, secondary) {
 		</div>
 		</div>
 		`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  <a href="#" class="btn btn-success"> Finalize Ban</a> 
 	  `);
@@ -441,13 +462,13 @@ function populateModal(type, secondary) {
 		</div>
 		</div>
 		`);
-	  footer.html(` 
+		footer.html(` 
 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 	  <a href="#" class="btn btn-success"> Finalize delete</a> 
 	  `);
 	}
 
- 
+
 
 
 
